@@ -1261,11 +1261,7 @@ async function openApp(){
     .textContent =
     currentUser.email;
 
-  document
-    .getElementById("userRole")
-    .textContent =
-    "Wòl: " + (currentUserData.role || "");
-
+  alert("WÒL KONT OU: " + (currentUserData.role || "PA GEN WÒL"));
   applyRoleAccess();
 
   await loadAllData();
