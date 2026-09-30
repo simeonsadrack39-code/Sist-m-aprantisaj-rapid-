@@ -1163,8 +1163,7 @@ onAuthStateChanged(auth,async(user)=>{
 
 });
 
-
-/* LOAD USER */
+  /* LOAD USER */
 
 async function loadUserProfile(user){
 
@@ -1173,22 +1172,16 @@ async function loadUserProfile(user){
     const ref = doc(db,"users",user.uid);
     const snap = await getDoc(ref);
 
-    console.log("UID Google:", user.uid);
-    console.log("Dokiman users egziste:", snap.exists());
-
     if(!snap.exists()){
 
-      await setDoc(
-        ref,
-        {
-          uid:user.uid,
-          email:user.email,
-          nom:user.displayName || "",
-          role:"eleve",
-          status:"attente",
-          createdAt:serverTimestamp()
-        }
-      );
+      await setDoc(ref,{
+        uid:user.uid,
+        email:user.email,
+        nom:user.displayName || "",
+        role:"eleve",
+        status:"attente",
+        createdAt:serverTimestamp()
+      });
 
       await signOut(auth);
 
@@ -1209,28 +1202,29 @@ async function loadUserProfile(user){
       .trim()
       .toLowerCase();
 
-    console.log("Role:", role);
-    console.log("Status:", status);
-
     if(status !== "accepted"){
 
-      await signOut(auth);
-
       showMessage(
-        "Kont ou poko apwouve pa administratè a."
+        "DEBUG — UID: " + user.uid +
+        " | ROLE: " + role +
+        " | STATUS: " + status
       );
+
+      await signOut(auth);
 
       return;
     }
 
-    if(role !== "administrateur" &&
-       role !== "professeur" &&
-       role !== "eleve"){
+    if(
+      role !== "administrateur" &&
+      role !== "professeur" &&
+      role !== "eleve"
+    ){
 
       await signOut(auth);
 
       showMessage(
-        "Wòl kont lan pa rekonèt. Tanpri verifye kont lan nan Firestore."
+        "Wòl kont lan pa rekonèt. ROLE: " + role
       );
 
       return;
