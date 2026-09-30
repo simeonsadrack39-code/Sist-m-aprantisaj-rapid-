@@ -1170,11 +1170,11 @@ async function loadUserProfile(user){
 
   try{
 
-    const ref =
-      doc(db,"users",user.uid);
+    const ref = doc(db,"users",user.uid);
+    const snap = await getDoc(ref);
 
-    const snap =
-      await getDoc(ref);
+    console.log("UID Google:", user.uid);
+    console.log("Dokiman users egziste:", snap.exists());
 
     if(!snap.exists()){
 
@@ -1201,7 +1201,18 @@ async function loadUserProfile(user){
 
     currentUserData = snap.data();
 
-    if(currentUserData.status !== "accepted"){
+    const role = String(currentUserData.role || "")
+      .trim()
+      .toLowerCase();
+
+    const status = String(currentUserData.status || "")
+      .trim()
+      .toLowerCase();
+
+    console.log("Role:", role);
+    console.log("Status:", status);
+
+    if(status !== "accepted"){
 
       await signOut(auth);
 
@@ -1212,11 +1223,24 @@ async function loadUserProfile(user){
       return;
     }
 
+    if(role !== "administrateur" &&
+       role !== "professeur" &&
+       role !== "eleve"){
+
+      await signOut(auth);
+
+      showMessage(
+        "Wòl kont lan pa rekonèt. Tanpri verifye kont lan nan Firestore."
+      );
+
+      return;
+    }
+
     openApp();
 
   }catch(error){
 
-    console.error(error);
+    console.error("ERÈ VERIFIKASYON:",error);
 
     await signOut(auth);
 
@@ -1227,9 +1251,6 @@ async function loadUserProfile(user){
   }
 
 }
-
-
-/* OPEN APP */
 
 async function openApp(){
 
