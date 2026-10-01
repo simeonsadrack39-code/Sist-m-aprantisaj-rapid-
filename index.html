@@ -2,164 +2,139 @@
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
 <title>Sistèm Aprantisaj</title>
 
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#2563eb">
-
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:#f3f6fb;
-  color:#172033;
+  font-family:Arial,sans-serif;
+  background:#f1f5f9;
+  color:#0f172a;
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
 
-button{
-  border:0;
-  cursor:pointer;
-}
+.hidden{display:none!important}
 
-.hidden{
-  display:none!important;
-}
-
-/* LOGIN */
-#authPage{
+.authPage{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  background:linear-gradient(135deg,#2563eb,#0f172a);
 }
 
 .authBox{
   width:100%;
   max-width:430px;
   background:white;
-  border-radius:22px;
+  border-radius:20px;
   padding:28px;
-  box-shadow:0 20px 50px rgba(0,0,0,.18);
+  box-shadow:0 20px 50px #0005;
 }
 
 .logo{
-  width:70px;
-  height:70px;
-  margin:0 auto 15px;
-  border-radius:20px;
-  background:#2563eb;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  font-weight:bold;
+  text-align:center;
+  font-size:32px;
+  margin-bottom:8px;
 }
 
 .authBox h1{
   text-align:center;
-  color:#1d4ed8;
+  color:#2563eb;
   margin-bottom:8px;
 }
 
 .subtitle{
   text-align:center;
   color:#64748b;
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
 
-.authBox input{
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+.field input,
+.field select,
+.field textarea{
   width:100%;
-  padding:14px;
-  margin-bottom:12px;
-  border:1px solid #d5dbe7;
-  border-radius:12px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:12px;
   outline:none;
 }
 
-.authBox input:focus{
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
   border-color:#2563eb;
 }
 
 .btn{
   width:100%;
-  padding:14px;
-  border-radius:12px;
-  background:#2563eb;
+  border:0;
+  border-radius:10px;
+  padding:12px;
   color:white;
+  background:#2563eb;
   font-weight:bold;
-  margin-top:5px;
+  margin-top:8px;
 }
 
-.btn:hover{
-  background:#1d4ed8;
-}
+.btn:hover{opacity:.9}
 
-.btn.google{
+.google{
   background:#111827;
-  margin-top:10px;
 }
 
-.btn.secondary{
-  background:#e8eefc;
-  color:#1d4ed8;
-}
-
-.switch{
+.divider{
   text-align:center;
-  margin-top:18px;
-  color:#2563eb;
-  cursor:pointer;
-  font-weight:bold;
+  margin:18px 0;
+  color:#64748b;
 }
 
 .message{
-  margin-top:12px;
-  padding:10px;
+  margin-top:15px;
+  padding:12px;
   border-radius:10px;
-  text-align:center;
-  font-size:14px;
+  background:#eff6ff;
+  color:#1d4ed8;
+  display:none;
 }
 
-.error{
-  background:#fee2e2;
-  color:#991b1b;
-}
-
-.success{
-  background:#dcfce7;
-  color:#166534;
-}
-
-/* APP */
-#app{
+.app{
   min-height:100vh;
 }
 
 .header{
-  height:70px;
-  background:white;
-  border-bottom:1px solid #e5e7eb;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  background:#2563eb;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 18px;
-  position:sticky;
-  top:0;
-  z-index:20;
+  z-index:1000;
+  box-shadow:0 2px 10px #0002;
 }
 
-.headerTitle{
-  font-size:21px;
+.brand{
+  font-size:20px;
   font-weight:bold;
-  color:#2563eb;
 }
 
 .headerRight{
@@ -168,112 +143,100 @@ button{
   gap:8px;
 }
 
-.header select{
-  padding:8px;
-  border:1px solid #d1d5db;
+.headerRight select{
+  border:0;
   border-radius:8px;
+  padding:7px;
 }
 
-.installBtn{
-  background:#16a34a;
-  color:white;
-  padding:9px 12px;
-  border-radius:9px;
-  font-weight:bold;
-}
-
-.logoutBtn{
-  background:#ef4444;
-  color:white;
-  padding:9px 12px;
-  border-radius:9px;
+.headerBtn{
+  border:0;
+  border-radius:8px;
+  padding:8px 10px;
+  background:white;
+  color:#2563eb;
   font-weight:bold;
 }
 
 .layout{
   display:flex;
-  min-height:calc(100vh - 70px);
+  padding-top:64px;
 }
 
 .sidebar{
-  width:240px;
-  background:#111827;
-  color:white;
-  padding:18px 12px;
+  position:fixed;
+  top:64px;
+  bottom:0;
+  left:0;
+  width:235px;
+  background:#0f172a;
+  padding:15px 10px;
+  overflow-y:auto;
 }
 
-.userInfo{
-  background:#1f2937;
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:15px;
-  font-size:13px;
-  word-break:break-word;
-}
-
-.navBtn{
+.sidebar button{
+  display:block;
   width:100%;
   text-align:left;
+  border:0;
   background:transparent;
-  color:#e5e7eb;
-  padding:13px 12px;
+  color:#cbd5e1;
+  padding:12px;
   border-radius:9px;
   margin-bottom:4px;
-  font-size:15px;
 }
 
-.navBtn:hover,
-.navBtn.active{
+.sidebar button:hover,
+.sidebar button.active{
   background:#2563eb;
   color:white;
 }
 
-.content{
-  flex:1;
-  padding:22px;
-  overflow-x:auto;
+.main{
+  margin-left:235px;
+  width:calc(100% - 235px);
+  padding:24px;
 }
 
-.section{
-  display:none;
-}
+.section{display:none}
+.section.active{display:block}
 
-.section.active{
-  display:block;
-}
-
-.section h2{
+h2{
   margin-bottom:18px;
-  color:#172033;
+}
+
+.panel{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px #0000000d;
 }
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
-  margin-bottom:25px;
 }
 
 .card{
   background:white;
-  border-radius:15px;
   padding:20px;
-  box-shadow:0 5px 18px rgba(0,0,0,.06);
+  border-radius:14px;
+  box-shadow:0 2px 8px #0000000d;
 }
 
-.card .number{
+.number{
   font-size:30px;
   font-weight:bold;
   color:#2563eb;
   margin-top:8px;
 }
 
-.panel{
-  background:white;
-  padding:18px;
-  border-radius:15px;
-  box-shadow:0 5px 18px rgba(0,0,0,.06);
-  margin-bottom:20px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
 .tableWrap{
@@ -283,11 +246,12 @@ button{
 table{
   width:100%;
   border-collapse:collapse;
+  background:white;
 }
 
 th,td{
   padding:12px;
-  border-bottom:1px solid #e5e7eb;
+  border-bottom:1px solid #e2e8f0;
   text-align:left;
 }
 
@@ -295,64 +259,99 @@ th{
   background:#f8fafc;
 }
 
-.empty{
-  text-align:center;
-  color:#64748b;
-  padding:25px;
-}
-
 .smallBtn{
-  padding:8px 11px;
-  border-radius:8px;
-  background:#2563eb;
+  border:0;
+  padding:7px 10px;
+  border-radius:7px;
+  margin:2px;
   color:white;
 }
 
-.accept{
-  background:#16a34a;
+.accept{background:#16a34a}
+.refuse{background:#dc2626}
+.edit{background:#2563eb}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#64748b;
 }
 
-.refuse{
-  background:#dc2626;
+.formActions{
+  display:flex;
+  gap:10px;
 }
 
-@media(max-width:800px){
-  .header{
-    height:auto;
-    min-height:70px;
-    flex-wrap:wrap;
-    gap:8px;
-    padding:12px;
-  }
+.formActions button{
+  flex:1;
+}
 
-  .headerRight{
-    flex-wrap:wrap;
-  }
-
-  .layout{
-    display:block;
+@media(max-width:900px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .sidebar{
+    width:190px;
+  }
+
+  .main{
+    margin-left:190px;
+    width:calc(100% - 190px);
+  }
+}
+
+@media(max-width:650px){
+  .header{
+    height:auto;
+    min-height:64px;
+    flex-wrap:wrap;
+    padding:8px;
+  }
+
+  .headerRight{
     width:100%;
-    padding:10px;
+    justify-content:flex-end;
+  }
+
+  .layout{
+    padding-top:100px;
+  }
+
+  .sidebar{
+    position:relative;
+    top:0;
+    width:100%;
+    height:auto;
     display:flex;
     overflow-x:auto;
-    gap:6px;
+    gap:5px;
+    padding:8px;
   }
 
-  .userInfo{
-    display:none;
-  }
-
-  .navBtn{
+  .sidebar button{
     min-width:max-content;
-    width:auto;
     margin:0;
   }
 
-  .content{
+  .main{
+    margin-left:0;
+    width:100%;
     padding:15px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:430px){
+  .cards{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -360,109 +359,107 @@ th{
 
 <body>
 
-<!-- AUTH -->
-<div id="authPage">
+<!-- ================= LOGIN ================= -->
+
+<div id="authPage" class="authPage">
 
   <div class="authBox">
 
-    <div class="logo">SA</div>
+    <div class="logo">📚</div>
 
     <h1>Sistèm Aprantisaj</h1>
-    <p class="subtitle">Platfòm aprantisaj sou entènèt</p>
 
-    <div id="loginForm">
+    <p class="subtitle">
+      Platfòm aprantisaj sou entènèt
+    </p>
 
-      <input
-        id="loginEmail"
-        type="email"
-        placeholder="Adrès email"
-      >
-
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="Modpas"
-      >
-
-      <button class="btn" onclick="connecter()">
-        Konekte
-      </button>
-
-      <button class="btn google" onclick="connecterAvecGoogle()">
-        Kontinye ak Google
-      </button>
-
-      <div class="switch" onclick="showRegister()">
-        Kreye yon nouvo kont
-      </div>
-
+    <div class="field">
+      <label>Email</label>
+      <input id="loginEmail" type="email"
+             placeholder="Egzanp: non@email.com">
     </div>
 
-    <div id="registerForm" class="hidden">
-
-      <input
-        id="registerName"
-        type="text"
-        placeholder="Non konplè"
-      >
-
-      <input
-        id="registerEmail"
-        type="email"
-        placeholder="Adrès email"
-      >
-
-      <input
-        id="registerPassword"
-        type="password"
-        placeholder="Modpas"
-      >
-
-      <button class="btn" onclick="registerUser()">
-        Kreye kont
-      </button>
-
-      <button class="btn google" onclick="registerGoogle()">
-        Enskri ak Google
-      </button>
-
-      <div class="switch" onclick="showLogin()">
-        Mwen deja gen yon kont
-      </div>
-
+    <div class="field">
+      <label>Modpas</label>
+      <input id="loginPassword" type="password"
+             placeholder="Modpas">
     </div>
 
-    <div id="authMessage"></div>
+    <button class="btn" onclick="connecter()">
+      Konekte
+    </button>
+
+    <button class="btn google" onclick="connecterAvecGoogle()">
+      Kontinye ak Google
+    </button>
+
+    <div class="divider">oswa kreye yon kont</div>
+
+    <div class="field">
+      <label>Non</label>
+      <input id="registerName"
+             placeholder="Non konplè">
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input id="registerEmail"
+             type="email"
+             placeholder="Email">
+    </div>
+
+    <div class="field">
+      <label>Modpas</label>
+      <input id="registerPassword"
+             type="password"
+             placeholder="Omwen 6 karaktè">
+    </div>
+
+    <button class="btn" onclick="registerAccount()">
+      Kreye kont
+    </button>
+
+    <button class="btn google"
+            onclick="registerGoogle()">
+      Enskri ak Google
+    </button>
+
+    <div id="authMessage" class="message"></div>
 
   </div>
-
 </div>
 
 
-<!-- APP -->
-<div id="app" class="hidden">
+<!-- ================= APPLICATION ================= -->
+
+<div id="app" class="app hidden">
 
   <header class="header">
 
-    <div class="headerTitle">
+    <div class="brand">
       📚 Sistèm Aprantisaj
     </div>
 
     <div class="headerRight">
 
-      <select id="languageSelect" onchange="changeLanguage()">
+      <span id="userEmail"></span>
+
+      <span id="userRole"></span>
+
+      <select id="languageSelect"
+              onchange="changeLanguage(this.value)">
         <option value="ht">Kreyòl</option>
         <option value="fr">Français</option>
       </select>
 
-      <button
-        id="installBtn"
-        class="installBtn hidden"
-        onclick="installerApp()">
-        📲 Enstale aplikasyon an
+      <button id="installBtn"
+              class="headerBtn hidden"
+              onclick="installApp()">
+        📲 Enstale
       </button>
 
-      <button class="logoutBtn" onclick="logout()">
+      <button class="headerBtn"
+              onclick="logout()">
         Dekonekte
       </button>
 
@@ -473,108 +470,111 @@ th{
 
   <div class="layout">
 
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
-      <div class="userInfo">
-        <div id="userEmail"></div>
-        <div id="userRole"></div>
-      </div>
-
-      <button class="navBtn active" onclick="showSection('home',this)">
+      <button class="menuBtn active"
+              onclick="showSection('home',this)">
         🏠 Akèy
       </button>
 
-      <button
-        class="navBtn adminOnly"
-        onclick="showSection('eleves',this)">
+      <button class="menuBtn adminOnly"
+              onclick="showSection('eleves',this)">
         👨‍🎓 Elèv
       </button>
 
-      <button
-        class="navBtn adminOnly"
-        onclick="showSection('professeurs',this)">
+      <button class="menuBtn adminOnly"
+              onclick="showSection('professeurs',this)">
         👨‍🏫 Pwofesè
       </button>
 
-      <button
-        class="navBtn adminOnly"
-        onclick="showSection('classes',this)">
+      <button class="menuBtn adminOnly"
+              onclick="showSection('classes',this)">
         🏫 Klas
       </button>
 
-      <button
-        class="navBtn adminOnly"
-        onclick="showSection('matieres',this)">
+      <button class="menuBtn adminOnly"
+              onclick="showSection('matieres',this)">
         📚 Matyè
       </button>
 
-      <button
-        class="navBtn teacherOnly"
-        onclick="showSection('devoirs',this)">
+      <button class="menuBtn teacherOnly"
+              onclick="showSection('devoirs',this)">
         📝 Devwa
       </button>
 
-      <button
-        class="navBtn teacherOnly"
-        onclick="showSection('remises',this)">
-        📥 Remèt
+      <button class="menuBtn teacherOnly"
+              onclick="showSection('remises',this)">
+        📤 Remèt
       </button>
 
-      <button
-        class="navBtn teacherOnly"
-        onclick="showSection('resultats',this)">
+      <button class="menuBtn teacherOnly"
+              onclick="showSection('resultats',this)">
         📊 Rezilta
       </button>
 
-      <button
-        class="navBtn"
-        onclick="showSection('statistiques',this)">
+      <button class="menuBtn"
+              onclick="showSection('statistiques',this)">
         📈 Estatistik
       </button>
 
-      <button
-        class="navBtn adminOnly"
-        onclick="showSection('users',this)">
+      <button class="menuBtn adminOnly"
+              onclick="showSection('users',this)">
         👥 Itilizatè
       </button>
 
     </aside>
 
 
-    <main class="content">
+    <!-- MAIN -->
+
+    <main class="main">
+
 
       <!-- HOME -->
+
       <section id="home" class="section active">
 
         <h2>Akèy</h2>
 
         <div class="panel">
-          <h3 id="welcomeTitle">Byenveni nan Sistèm Aprantisaj</h3>
+
+          <h3>
+            Byenveni nan Sistèm Aprantisaj
+          </h3>
+
           <p style="margin-top:8px;color:#64748b">
-            Jere elèv, pwofesè, klas, matyè, devwa ak rezilta yo.
+            Jere elèv, pwofesè, klas, matyè,
+            devwa ak rezilta yo.
           </p>
+
         </div>
 
         <div class="cards">
 
           <div class="card adminOnly">
             <div>Elèv</div>
-            <div class="number" id="statEleves">0</div>
+            <div id="statEleves"
+                 class="number">0</div>
           </div>
 
           <div class="card adminOnly">
             <div>Pwofesè</div>
-            <div class="number" id="statProfesseurs">0</div>
+            <div id="statProfesseurs"
+                 class="number">0</div>
           </div>
 
           <div class="card adminOnly">
             <div>Klas</div>
-            <div class="number" id="statClasses">0</div>
+            <div id="statClasses"
+                 class="number">0</div>
           </div>
 
           <div class="card">
             <div>Devwa</div>
-            <div class="number" id="statDevoirs">0</div>
+            <div id="statDevoirs"
+                 class="number">0</div>
           </div>
 
         </div>
@@ -583,171 +583,366 @@ th{
 
 
       <!-- ELEVES -->
+
       <section id="eleves" class="section">
 
         <h2>👨‍🎓 Elèv</h2>
 
         <div class="panel">
-          <div class="tableWrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Non</th>
-                  <th>Klas</th>
-                </tr>
-              </thead>
-              <tbody id="listeEleves"></tbody>
-            </table>
+
+          <div class="grid">
+
+            <div class="field">
+              <label>Non elèv</label>
+              <input id="eleveNom"
+                     placeholder="Non elèv">
+            </div>
+
+            <div class="field">
+              <label>Klas</label>
+              <input id="eleveClasse"
+                     placeholder="6e AF">
+            </div>
+
           </div>
+
+          <button class="btn"
+                  onclick="ajouterEleve()">
+            ➕ Ajoute elèv
+          </button>
+
+        </div>
+
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Non</th>
+                <th>Klas</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeEleves"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- PROFESSEURS -->
-      <section id="professeurs" class="section">
+
+      <section id="professeurs"
+               class="section">
 
         <h2>👨‍🏫 Pwofesè</h2>
 
         <div class="panel">
-          <div class="tableWrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Non</th>
-                  <th>Email</th>
-                  <th>Matyè</th>
-                </tr>
-              </thead>
-              <tbody id="listeProfesseurs"></tbody>
-            </table>
+
+          <div class="grid">
+
+            <div class="field">
+              <label>Non</label>
+              <input id="profNom"
+                     placeholder="Non pwofesè">
+            </div>
+
+            <div class="field">
+              <label>Email</label>
+              <input id="profEmail"
+                     type="email"
+                     placeholder="Email">
+            </div>
+
+            <div class="field">
+              <label>Matyè</label>
+              <input id="profMatiere"
+                     placeholder="Mathématiques">
+            </div>
+
           </div>
+
+          <button class="btn"
+                  onclick="ajouterProfesseur()">
+            ➕ Ajoute pwofesè
+          </button>
+
+        </div>
+
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Non</th>
+                <th>Email</th>
+                <th>Matyè</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeProfesseurs"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- CLASSES -->
-      <section id="classes" class="section">
+
+      <section id="classes"
+               class="section">
 
         <h2>🏫 Klas</h2>
 
         <div class="panel">
-          <div class="tableWrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Non klas la</th>
-                </tr>
-              </thead>
-              <tbody id="listeClasses"></tbody>
-            </table>
+
+          <div class="field">
+            <label>Non klas</label>
+            <input id="classeNom"
+                   placeholder="6e AF">
           </div>
+
+          <button class="btn"
+                  onclick="ajouterClasse()">
+            ➕ Ajoute klas
+          </button>
+
+        </div>
+
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Non klas</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeClasses"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- MATIERES -->
-      <section id="matieres" class="section">
+
+      <section id="matieres"
+               class="section">
 
         <h2>📚 Matyè</h2>
 
         <div class="panel">
-          <div class="tableWrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Matyè</th>
-                </tr>
-              </thead>
-              <tbody id="listeMatieres"></tbody>
-            </table>
+
+          <div class="field">
+            <label>Non matyè</label>
+            <input id="matiereNom"
+                   placeholder="Mathématiques">
           </div>
+
+          <button class="btn"
+                  onclick="ajouterMatiere()">
+            ➕ Ajoute matyè
+          </button>
+
+        </div>
+
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Non matyè</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeMatieres"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- DEVOIRS -->
-      <section id="devoirs" class="section">
+
+      <section id="devoirs"
+               class="section">
 
         <h2>📝 Devwa</h2>
 
         <div class="panel">
-          <div class="tableWrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Tit</th>
-                  <th>Matyè</th>
-                  <th>Klas</th>
-                  <th>Dire</th>
-                  <th>Tantativ</th>
-                </tr>
-              </thead>
-              <tbody id="listeDevoirs"></tbody>
-            </table>
+
+          <div class="grid">
+
+            <div class="field">
+              <label>Tit devwa</label>
+              <input id="devoirTitre"
+                     placeholder="Devoir de Mathématiques">
+            </div>
+
+            <div class="field">
+              <label>Matyè</label>
+              <input id="devoirMatiere"
+                     placeholder="Mathématiques">
+            </div>
+
+            <div class="field">
+              <label>Klas</label>
+              <input id="devoirClasse"
+                     placeholder="6e AF">
+            </div>
+
+            <div class="field">
+              <label>Dire (minit)</label>
+              <input id="devoirDuree"
+                     type="number"
+                     value="30">
+            </div>
+
+            <div class="field">
+              <label>Maksimòm tantativ</label>
+              <select id="devoirTentatives">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+
           </div>
+
+          <button class="btn"
+                  onclick="ajouterDevoir()">
+            ➕ Kreye devwa
+          </button>
+
+        </div>
+
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Tit</th>
+                <th>Matyè</th>
+                <th>Klas</th>
+                <th>Dire</th>
+                <th>Tantativ</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeDevoirs"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- REMISES -->
-      <section id="remises" class="section">
 
-        <h2>📥 Devwa remèt</h2>
+      <section id="remises"
+               class="section">
 
-        <div class="panel">
-          <div class="empty">
-            Rezilta ak devwa elèv yo ap parèt isit la.
-          </div>
+        <h2>📤 Travay remèt</h2>
+
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Elèv</th>
+                <th>Devwa</th>
+                <th>Nòt</th>
+                <th>Tan</th>
+                <th>Tantativ</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeRemises"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- RESULTATS -->
-      <section id="resultats" class="section">
+
+      <section id="resultats"
+               class="section">
 
         <h2>📊 Rezilta</h2>
 
-        <div class="panel">
-          <div class="tableWrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Devwa</th>
-                  <th>Elèv</th>
-                  <th>Nòt</th>
-                  <th>Nòt final</th>
-                  <th>Kòmantè</th>
-                </tr>
-              </thead>
-              <tbody id="listeResultats"></tbody>
-            </table>
-          </div>
+        <div class="panel tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Elèv</th>
+                <th>Devwa</th>
+                <th>Score</th>
+                <th>Nòt /100</th>
+                <th>Komantè</th>
+              </tr>
+            </thead>
+
+            <tbody id="listeResultats"></tbody>
+
+          </table>
+
         </div>
 
       </section>
 
 
       <!-- STATISTIQUES -->
-      <section id="statistiques" class="section">
+
+      <section id="statistiques"
+               class="section">
 
         <h2>📈 Estatistik</h2>
 
         <div class="cards">
 
           <div class="card">
-            <div>Devwa</div>
-            <div class="number" id="statsDevoirs">0</div>
+            <div>Elèv</div>
+            <div id="stat2Eleves"
+                 class="number">0</div>
           </div>
 
           <div class="card">
-            <div>Rezilta</div>
-            <div class="number" id="statsResultats">0</div>
+            <div>Pwofesè</div>
+            <div id="stat2Professeurs"
+                 class="number">0</div>
+          </div>
+
+          <div class="card">
+            <div>Klas</div>
+            <div id="stat2Classes"
+                 class="number">0</div>
+          </div>
+
+          <div class="card">
+            <div>Devwa</div>
+            <div id="stat2Devoirs"
+                 class="number">0</div>
           </div>
 
         </div>
@@ -756,11 +951,17 @@ th{
 
 
       <!-- USERS -->
-      <section id="users" class="section">
 
-        <h2>👥 Itilizatè an atant</h2>
+      <section id="users"
+               class="section">
+
+        <h2>👥 Itilizatè</h2>
 
         <div class="panel">
+
+          <p style="color:#64748b;margin-bottom:15px">
+            Aksepte oswa refize nouvo kont.
+          </p>
 
           <div class="tableWrap">
 
@@ -770,7 +971,7 @@ th{
                 <tr>
                   <th>Email</th>
                   <th>Non</th>
-                  <th>Estati</th>
+                  <th>Status</th>
                   <th>Aksyon</th>
                 </tr>
               </thead>
@@ -794,8 +995,9 @@ th{
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
   getAuth,
@@ -807,9 +1009,9 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  updateProfile
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
   getFirestore,
@@ -819,14 +1021,12 @@ import {
   getDoc,
   getDocs,
   updateDoc,
-  query,
-  where,
+  deleteDoc,
   serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* FIREBASE */
+/* ================= FIREBASE ================= */
 
 const firebaseConfig = {
   apiKey: "AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
@@ -849,102 +1049,47 @@ provider.setCustomParameters({
   prompt:"select_account"
 });
 
+await setPersistence(
+  auth,
+  browserLocalPersistence
+);
 
-/* VARIABLES */
+
+/* ================= VARIABLES ================= */
 
 let currentUser = null;
 let currentUserData = null;
-
 let deferredPrompt = null;
 
 
-/* PWA INSTALL */
+/* ================= SECURITY ================= */
 
-window.addEventListener("beforeinstallprompt",(event)=>{
+function escapeHTML(value){
 
-  event.preventDefault();
-
-  deferredPrompt = event;
-
-  document
-    .getElementById("installBtn")
-    .classList.remove("hidden");
-
-});
-
-
-window.installerApp = async function(){
-
-  if(!deferredPrompt){
-
-    alert("Navigatè a poko bay opsyon enstalasyon an.");
-
-    return;
-  }
-
-  deferredPrompt.prompt();
-
-  await deferredPrompt.userChoice;
-
-  deferredPrompt = null;
-
-  document
-    .getElementById("installBtn")
-    .classList.add("hidden");
-
-};
-
-
-/* AUTH UI */
-
-window.showRegister = function(){
-
-  document
-    .getElementById("loginForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("registerForm")
-    .classList.remove("hidden");
-
-  clearMessage();
-
-};
-
-
-window.showLogin = function(){
-
-  document
-    .getElementById("registerForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
-
-  clearMessage();
-
-};
-
-
-function showMessage(message,type="error"){
-
-  const box = document.getElementById("authMessage");
-
-  box.innerHTML =
-    `<div class="message ${type}">${message}</div>`;
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
-function clearMessage(){
+/* ================= MESSAGE ================= */
 
-  document.getElementById("authMessage").innerHTML="";
+function showMessage(message){
+
+  const box =
+    document.getElementById("authMessage");
+
+  box.textContent = message;
+  box.style.display = "block";
 
 }
 
 
-/* EMAIL LOGIN */
+/* ================= EMAIL LOGIN ================= */
 
 window.connecter = async function(){
 
@@ -956,7 +1101,9 @@ window.connecter = async function(){
 
   if(!email || !password){
 
-    showMessage("Tanpri ranpli email ak modpas la.");
+    showMessage(
+      "Tanpri antre email ak modpas ou."
+    );
 
     return;
   }
@@ -982,13 +1129,16 @@ window.connecter = async function(){
 };
 
 
-/* GOOGLE LOGIN */
+/* ================= GOOGLE LOGIN ================= */
 
 window.connecterAvecGoogle = async function(){
 
   try{
 
-    await signInWithPopup(auth,provider);
+    await signInWithPopup(
+      auth,
+      provider
+    );
 
   }catch(error){
 
@@ -996,7 +1146,10 @@ window.connecterAvecGoogle = async function(){
 
     try{
 
-      await signInWithRedirect(auth,provider);
+      await signInWithRedirect(
+        auth,
+        provider
+      );
 
     }catch(error2){
 
@@ -1013,23 +1166,26 @@ window.connecterAvecGoogle = async function(){
 };
 
 
-/* REGISTER */
+/* ================= REGISTER EMAIL ================= */
 
-window.registerUser = async function(){
+window.registerAccount = async function(){
 
-  const name =
-    document.getElementById("registerName").value.trim();
+  const nom =
+    document.getElementById("registerName")
+      .value.trim();
 
   const email =
-    document.getElementById("registerEmail").value.trim();
+    document.getElementById("registerEmail")
+      .value.trim();
 
   const password =
-    document.getElementById("registerPassword").value;
+    document.getElementById("registerPassword")
+      .value;
 
-  if(!name || !email || !password){
+  if(!nom || !email || !password){
 
     showMessage(
-      "Tanpri ranpli non, email ak modpas la."
+      "Tanpri ranpli tout chan yo."
     );
 
     return;
@@ -1053,28 +1209,25 @@ window.registerUser = async function(){
         password
       );
 
-    await updateProfile(
-      credential.user,
-      {
-        displayName:name
-      }
-    );
+    const user =
+      credential.user;
 
     await setDoc(
-      doc(db,"users",credential.user.uid),
+      doc(db,"users",user.uid),
       {
-        uid:credential.user.uid,
-        email:email,
-        nom:name,
+        uid:user.uid,
+        email:user.email,
+        nom:nom,
         role:"eleve",
         status:"attente",
         createdAt:serverTimestamp()
       }
     );
 
+    await signOut(auth);
+
     showMessage(
-      "Kont la kreye. Li an atant apwobasyon administratè a.",
-      "success"
+      "Kont la kreye. Administratè a dwe apwouve li."
     );
 
   }catch(error){
@@ -1082,9 +1235,7 @@ window.registerUser = async function(){
     console.error(error);
 
     showMessage(
-      error.code === "auth/email-already-in-use"
-      ? "Email sa deja gen yon kont."
-      : "Nou pa kapab kreye kont lan."
+      "Nou pa kapab kreye kont sa a."
     );
 
   }
@@ -1092,16 +1243,20 @@ window.registerUser = async function(){
 };
 
 
-/* GOOGLE REGISTER */
+/* ================= REGISTER GOOGLE ================= */
 
 window.registerGoogle = async function(){
 
   try{
 
     const credential =
-      await signInWithPopup(auth,provider);
+      await signInWithPopup(
+        auth,
+        provider
+      );
 
-    const user = credential.user;
+    const user =
+      credential.user;
 
     const userRef =
       doc(db,"users",user.uid);
@@ -1125,6 +1280,12 @@ window.registerGoogle = async function(){
 
     }
 
+    await signOut(auth);
+
+    showMessage(
+      "Kont Google la kreye. Administratè a dwe apwouve li."
+    );
+
   }catch(error){
 
     console.error(error);
@@ -1138,50 +1299,31 @@ window.registerGoogle = async function(){
 };
 
 
-/* AUTH STATE */
-
-onAuthStateChanged(auth,async(user)=>{
-
-  if(!user){
-
-    currentUser = null;
-
-    document
-      .getElementById("authPage")
-      .classList.remove("hidden");
-
-    document
-      .getElementById("app")
-      .classList.add("hidden");
-
-    return;
-  }
-
-  currentUser = user;
-
-  await loadUserProfile(user);
-
-});
-
-  /* LOAD USER */
+/* ================= USER PROFILE ================= */
 
 async function loadUserProfile(user){
 
   try{
 
-    const ref = doc(db,"users",user.uid);
-    const snap = await getDoc(ref);
+    const ref =
+      doc(db,"users",user.uid);
+
+    const snap =
+      await getDoc(ref);
 
     if(!snap.exists()){
 
-      await setDoc(ref,{
-        uid:user.uid,
-        email:user.email,
-        nom:user.displayName || "",
-        role:"eleve",
-        status:"attente",
-        createdAt:serverTimestamp()
-      });
+      await setDoc(
+        ref,
+        {
+          uid:user.uid,
+          email:user.email,
+          nom:user.displayName || "",
+          role:"eleve",
+          status:"attente",
+          createdAt:serverTimestamp()
+        }
+      );
 
       await signOut(auth);
 
@@ -1192,25 +1334,30 @@ async function loadUserProfile(user){
       return;
     }
 
-    currentUserData = snap.data();
+    currentUserData =
+      snap.data();
 
-    const role = String(currentUserData.role || "")
+    const role =
+      String(
+        currentUserData.role || ""
+      )
       .trim()
       .toLowerCase();
 
-    const status = String(currentUserData.status || "")
+    const status =
+      String(
+        currentUserData.status || ""
+      )
       .trim()
       .toLowerCase();
 
     if(status !== "accepted"){
 
-      showMessage(
-        "DEBUG — UID: " + user.uid +
-        " | ROLE: " + role +
-        " | STATUS: " + status
-      );
-
       await signOut(auth);
+
+      showMessage(
+        "Kont ou poko apwouve pa administratè a."
+      );
 
       return;
     }
@@ -1224,7 +1371,7 @@ async function loadUserProfile(user){
       await signOut(auth);
 
       showMessage(
-        "Wòl kont lan pa rekonèt. ROLE: " + role
+        "Wòl kont lan pa rekonèt."
       );
 
       return;
@@ -1234,7 +1381,10 @@ async function loadUserProfile(user){
 
   }catch(error){
 
-    console.error("ERÈ VERIFIKASYON:",error);
+    console.error(
+      "ERÈ VERIFIKASYON:",
+      error
+    );
 
     await signOut(auth);
 
@@ -1245,6 +1395,9 @@ async function loadUserProfile(user){
   }
 
 }
+
+
+/* ================= OPEN APP ================= */
 
 async function openApp(){
 
@@ -1259,9 +1412,14 @@ async function openApp(){
   document
     .getElementById("userEmail")
     .textContent =
-    currentUser.email;
+    currentUser.email || "";
 
-  alert("WÒL KONT OU: " + (currentUserData.role || "PA GEN WÒL"));
+  document
+    .getElementById("userRole")
+    .textContent =
+    "Wòl: " +
+    (currentUserData.role || "");
+
   applyRoleAccess();
 
   await loadAllData();
@@ -1269,12 +1427,16 @@ async function openApp(){
 }
 
 
-/* ROLE ACCESS */
+/* ================= ROLE ACCESS ================= */
 
 function applyRoleAccess(){
 
   const role =
-    currentUserData.role;
+    String(
+      currentUserData.role || ""
+    )
+    .trim()
+    .toLowerCase();
 
   document
     .querySelectorAll(".adminOnly")
@@ -1302,9 +1464,10 @@ function applyRoleAccess(){
 }
 
 
-/* NAVIGATION */
+/* ================= SECTION ================= */
 
-window.showSection = function(id,button){
+window.showSection =
+function(id,button){
 
   document
     .querySelectorAll(".section")
@@ -1312,15 +1475,15 @@ window.showSection = function(id,button){
       section.classList.remove("active");
     });
 
-  const target =
+  const section =
     document.getElementById(id);
 
-  if(target){
-    target.classList.add("active");
+  if(section){
+    section.classList.add("active");
   }
 
   document
-    .querySelectorAll(".navBtn")
+    .querySelectorAll(".menuBtn")
     .forEach(btn=>{
       btn.classList.remove("active");
     });
@@ -1332,7 +1495,7 @@ window.showSection = function(id,button){
 };
 
 
-/* LOAD ALL DATA */
+/* ================= LOAD ALL ================= */
 
 async function loadAllData(){
 
@@ -1342,19 +1505,23 @@ async function loadAllData(){
     loadClasses(),
     loadMatieres(),
     loadDevoirs(),
+    loadRemises(),
     loadResultats()
   ]);
 
-  if(currentUserData.role === "administrateur"){
-
+  if(
+    currentUserData.role ===
+    "administrateur"
+  ){
     await loadUsers();
-
   }
+
+  updateStats();
 
 }
 
 
-/* ELEVES */
+/* ================= ELEVES ================= */
 
 async function loadEleves(){
 
@@ -1366,17 +1533,16 @@ async function loadEleves(){
       );
 
     const tbody =
-      document.getElementById("listeEleves");
+      document.getElementById(
+        "listeEleves"
+      );
 
-    tbody.innerHTML="";
-
-    let count=0;
+    tbody.innerHTML = "";
 
     snap.forEach(item=>{
 
-      const data=item.data();
-
-      count++;
+      const data =
+        item.data();
 
       tbody.innerHTML += `
         <tr>
@@ -1387,14 +1553,17 @@ async function loadEleves(){
 
     });
 
-    if(count===0){
+    if(!snap.size){
 
       tbody.innerHTML =
-        `<tr><td colspan="2" class="empty">Pa gen elèv.</td></tr>`;
+        `<tr>
+          <td colspan="2"
+              class="empty">
+            Pa gen elèv.
+          </td>
+        </tr>`;
 
     }
-
-    document.getElementById("statEleves").textContent=count;
 
   }catch(error){
 
@@ -1405,13 +1574,74 @@ async function loadEleves(){
 }
 
 
-/* PROFESSEURS */
+/* ================= ADD ELEV ================= */
 
-async function loadProfesseurs(){
+window.ajouterEleve =
+async function(){
 
-  if(currentUserData.role !== "administrateur"){
+  if(
+    currentUserData.role !==
+    "administrateur"
+  ) return;
+
+  const nom =
+    document
+      .getElementById("eleveNom")
+      .value.trim();
+
+  const classe =
+    document
+      .getElementById("eleveClasse")
+      .value.trim();
+
+  if(!nom){
+
+    alert("Antre non elèv la.");
+
     return;
   }
+
+  try{
+
+    const id =
+      "eleve_" +
+      Date.now();
+
+    await setDoc(
+      doc(db,"eleves",id),
+      {
+        nom:nom,
+        classe:classe
+      }
+    );
+
+    document
+      .getElementById("eleveNom")
+      .value = "";
+
+    document
+      .getElementById("eleveClasse")
+      .value = "";
+
+    await loadEleves();
+    updateStats();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Nou pa kapab ajoute elèv la."
+    );
+
+  }
+
+};
+
+
+/* ================= PROFESSEURS ================= */
+
+async function loadProfesseurs(){
 
   try{
 
@@ -1421,17 +1651,16 @@ async function loadProfesseurs(){
       );
 
     const tbody =
-      document.getElementById("listeProfesseurs");
+      document.getElementById(
+        "listeProfesseurs"
+      );
 
-    tbody.innerHTML="";
-
-    let count=0;
+    tbody.innerHTML = "";
 
     snap.forEach(item=>{
 
-      const data=item.data();
-
-      count++;
+      const data =
+        item.data();
 
       tbody.innerHTML += `
         <tr>
@@ -1443,14 +1672,17 @@ async function loadProfesseurs(){
 
     });
 
-    if(count===0){
+    if(!snap.size){
 
       tbody.innerHTML =
-        `<tr><td colspan="3" class="empty">Pa gen pwofesè.</td></tr>`;
+        `<tr>
+          <td colspan="3"
+              class="empty">
+            Pa gen pwofesè.
+          </td>
+        </tr>`;
 
     }
-
-    document.getElementById("statProfesseurs").textContent=count;
 
   }catch(error){
 
@@ -1461,13 +1693,79 @@ async function loadProfesseurs(){
 }
 
 
-/* CLASSES */
+/* ================= ADD PROF ================= */
 
-async function loadClasses(){
+window.ajouterProfesseur =
+async function(){
 
-  if(currentUserData.role !== "administrateur"){
+  const nom =
+    document
+      .getElementById("profNom")
+      .value.trim();
+
+  const email =
+    document
+      .getElementById("profEmail")
+      .value.trim();
+
+  const matiere =
+    document
+      .getElementById("profMatiere")
+      .value.trim();
+
+  if(!nom){
+
+    alert("Antre non pwofesè a.");
+
     return;
   }
+
+  try{
+
+    const id =
+      "professeur_" +
+      Date.now();
+
+    await setDoc(
+      doc(db,"professeurs",id),
+      {
+        nom:nom,
+        email:email,
+        matiere:matiere
+      }
+    );
+
+    document
+      .getElementById("profNom")
+      .value = "";
+
+    document
+      .getElementById("profEmail")
+      .value = "";
+
+    document
+      .getElementById("profMatiere")
+      .value = "";
+
+    await loadProfesseurs();
+    updateStats();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Nou pa kapab ajoute pwofesè a."
+    );
+
+  }
+
+};
+
+
+/* ================= CLASSES ================= */
+
+async function loadClasses(){
 
   try{
 
@@ -1477,17 +1775,16 @@ async function loadClasses(){
       );
 
     const tbody =
-      document.getElementById("listeClasses");
+      document.getElementById(
+        "listeClasses"
+      );
 
-    tbody.innerHTML="";
-
-    let count=0;
+    tbody.innerHTML = "";
 
     snap.forEach(item=>{
 
-      const data=item.data();
-
-      count++;
+      const data =
+        item.data();
 
       tbody.innerHTML += `
         <tr>
@@ -1497,14 +1794,16 @@ async function loadClasses(){
 
     });
 
-    if(count===0){
+    if(!snap.size){
 
       tbody.innerHTML =
-        `<tr><td class="empty">Pa gen klas.</td></tr>`;
+        `<tr>
+          <td class="empty">
+            Pa gen klas.
+          </td>
+        </tr>`;
 
     }
-
-    document.getElementById("statClasses").textContent=count;
 
   }catch(error){
 
@@ -1515,13 +1814,59 @@ async function loadClasses(){
 }
 
 
-/* MATIERES */
+/* ================= ADD CLASS ================= */
 
-async function loadMatieres(){
+window.ajouterClasse =
+async function(){
 
-  if(currentUserData.role !== "administrateur"){
+  const nom =
+    document
+      .getElementById("classeNom")
+      .value.trim();
+
+  if(!nom){
+
+    alert("Antre non klas la.");
+
     return;
   }
+
+  try{
+
+    const id =
+      "classe_" +
+      Date.now();
+
+    await setDoc(
+      doc(db,"classes",id),
+      {
+        nom:nom
+      }
+    );
+
+    document
+      .getElementById("classeNom")
+      .value = "";
+
+    await loadClasses();
+    updateStats();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Nou pa kapab ajoute klas la."
+    );
+
+  }
+
+};
+
+
+/* ================= MATIERES ================= */
+
+async function loadMatieres(){
 
   try{
 
@@ -1531,13 +1876,16 @@ async function loadMatieres(){
       );
 
     const tbody =
-      document.getElementById("listeMatieres");
+      document.getElementById(
+        "listeMatieres"
+      );
 
-    tbody.innerHTML="";
+    tbody.innerHTML = "";
 
     snap.forEach(item=>{
 
-      const data=item.data();
+      const data =
+        item.data();
 
       tbody.innerHTML += `
         <tr>
@@ -1546,6 +1894,17 @@ async function loadMatieres(){
       `;
 
     });
+
+    if(!snap.size){
+
+      tbody.innerHTML =
+        `<tr>
+          <td class="empty">
+            Pa gen matyè.
+          </td>
+        </tr>`;
+
+    }
 
   }catch(error){
 
@@ -1556,7 +1915,57 @@ async function loadMatieres(){
 }
 
 
-/* DEVOIRS */
+/* ================= ADD MATIERE ================= */
+
+window.ajouterMatiere =
+async function(){
+
+  const nom =
+    document
+      .getElementById("matiereNom")
+      .value.trim();
+
+  if(!nom){
+
+    alert("Antre non matyè a.");
+
+    return;
+  }
+
+  try{
+
+    const id =
+      "matiere_" +
+      Date.now();
+
+    await setDoc(
+      doc(db,"matieres",id),
+      {
+        nom:nom
+      }
+    );
+
+    document
+      .getElementById("matiereNom")
+      .value = "";
+
+    await loadMatieres();
+    updateStats();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Nou pa kapab ajoute matyè a."
+    );
+
+  }
+
+};
+
+
+/* ================= DEVOIRS ================= */
 
 async function loadDevoirs(){
 
@@ -1568,39 +1977,40 @@ async function loadDevoirs(){
       );
 
     const tbody =
-      document.getElementById("listeDevoirs");
+      document.getElementById(
+        "listeDevoirs"
+      );
 
-    tbody.innerHTML="";
-
-    let count=0;
+    tbody.innerHTML = "";
 
     snap.forEach(item=>{
 
-      const data=item.data();
-
-      count++;
+      const data =
+        item.data();
 
       tbody.innerHTML += `
         <tr>
           <td>${escapeHTML(data.titre || "")}</td>
           <td>${escapeHTML(data.matiere || "")}</td>
           <td>${escapeHTML(data.classe || "")}</td>
-          <td>${data.duree || 0} min</td>
-          <td>${data.maxTentatives || 0}</td>
+          <td>${escapeHTML(data.duree || 0)} min</td>
+          <td>${escapeHTML(data.maxTentatives || 1)}</td>
         </tr>
       `;
 
     });
 
-    if(count===0){
+    if(!snap.size){
 
       tbody.innerHTML =
-        `<tr><td colspan="5" class="empty">Pa gen devwa.</td></tr>`;
+        `<tr>
+          <td colspan="5"
+              class="empty">
+            Pa gen devwa.
+          </td>
+        </tr>`;
 
     }
-
-    document.getElementById("statDevoirs").textContent=count;
-    document.getElementById("statsDevoirs").textContent=count;
 
   }catch(error){
 
@@ -1611,7 +2021,106 @@ async function loadDevoirs(){
 }
 
 
-/* RESULTATS */
+/* ================= ADD DEVOIR ================= */
+
+window.ajouterDevoir =
+async function(){
+
+  const titre =
+    document
+      .getElementById("devoirTitre")
+      .value.trim();
+
+  const matiere =
+    document
+      .getElementById("devoirMatiere")
+      .value.trim();
+
+  const classe =
+    document
+      .getElementById("devoirClasse")
+      .value.trim();
+
+  const duree =
+    Number(
+      document
+        .getElementById("devoirDuree")
+        .value
+    ) || 30;
+
+  const maxTentatives =
+    Number(
+      document
+        .getElementById("devoirTentatives")
+        .value
+    ) || 1;
+
+  if(!titre){
+
+    alert("Antre tit devwa a.");
+
+    return;
+  }
+
+  try{
+
+    const id =
+      "devoir_" +
+      Date.now();
+
+    await setDoc(
+      doc(db,"devoirs",id),
+      {
+        titre:titre,
+        matiere:matiere,
+        classe:classe,
+        duree:duree,
+        maxTentatives:maxTentatives,
+        createdAt:serverTimestamp()
+      }
+    );
+
+    document
+      .getElementById("devoirTitre")
+      .value = "";
+
+    await loadDevoirs();
+    updateStats();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Nou pa kapab kreye devwa a."
+    );
+
+  }
+
+};
+
+
+/* ================= REMISES ================= */
+
+async function loadRemises(){
+
+  const tbody =
+    document.getElementById(
+      "listeRemises"
+    );
+
+  tbody.innerHTML =
+    `<tr>
+      <td colspan="5"
+          class="empty">
+        Pa gen travay remèt pou kounye a.
+      </td>
+    </tr>`;
+
+}
+
+
+/* ================= RESULTATS ================= */
 
 async function loadResultats(){
 
@@ -1623,38 +2132,62 @@ async function loadResultats(){
       );
 
     const tbody =
-      document.getElementById("listeResultats");
+      document.getElementById(
+        "listeResultats"
+      );
 
-    tbody.innerHTML="";
-
-    let count=0;
+    tbody.innerHTML = "";
 
     snap.forEach(item=>{
 
-      const data=item.data();
+      const data =
+        item.data();
 
-      count++;
+      let note = 0;
+
+      if(
+        data.noteFinale !== undefined
+      ){
+
+        note =
+          Number(
+            data.noteFinale
+          );
+
+      }else if(
+        data.score !== undefined
+      ){
+
+        note =
+          Number(
+            data.score
+          );
+
+      }
 
       tbody.innerHTML += `
         <tr>
-          <td>${escapeHTML(data.devoirId || "")}</td>
           <td>${escapeHTML(data.eleveId || "")}</td>
-          <td>${data.score ?? 0}/5</td>
-          <td>${data.noteFinale ?? 0}/5</td>
+          <td>${escapeHTML(data.devoirId || "")}</td>
+          <td>${escapeHTML(data.score || 0)}</td>
+          <td><strong>${note}/100</strong></td>
           <td>${escapeHTML(data.commentaire || "")}</td>
         </tr>
       `;
 
     });
 
-    if(count===0){
+    if(!snap.size){
 
       tbody.innerHTML =
-        `<tr><td colspan="5" class="empty">Pa gen rezilta.</td></tr>`;
+        `<tr>
+          <td colspan="5"
+              class="empty">
+            Pa gen rezilta.
+          </td>
+        </tr>`;
 
     }
-
-    document.getElementById("statsResultats").textContent=count;
 
   }catch(error){
 
@@ -1665,7 +2198,7 @@ async function loadResultats(){
 }
 
 
-/* USERS */
+/* ================= USERS ================= */
 
 async function loadUsers(){
 
@@ -1677,26 +2210,45 @@ async function loadUsers(){
       );
 
     const tbody =
-      document.getElementById("listeUsers");
+      document.getElementById(
+        "listeUsers"
+      );
 
-    tbody.innerHTML="";
+    tbody.innerHTML = "";
 
-    let count=0;
+    let count = 0;
 
     snap.forEach(item=>{
 
-      const data=item.data();
+      const data =
+        item.data();
 
-      if(data.status === "attente"){
+      if(
+        String(data.status || "")
+          .trim()
+          .toLowerCase()
+        === "attente"
+      ){
 
         count++;
 
         tbody.innerHTML += `
           <tr>
-            <td>${escapeHTML(data.email || "")}</td>
-            <td>${escapeHTML(data.nom || "")}</td>
-            <td>⏳ An atant</td>
+
             <td>
+              ${escapeHTML(data.email || "")}
+            </td>
+
+            <td>
+              ${escapeHTML(data.nom || "")}
+            </td>
+
+            <td>
+              ⏳ An atant
+            </td>
+
+            <td>
+
               <button
                 class="smallBtn accept"
                 onclick="acceptUser('${item.id}')">
@@ -1708,7 +2260,9 @@ async function loadUsers(){
                 onclick="refuseUser('${item.id}')">
                 Refize
               </button>
+
             </td>
+
           </tr>
         `;
 
@@ -1716,12 +2270,15 @@ async function loadUsers(){
 
     });
 
-    if(count===0){
+    if(count === 0){
 
       tbody.innerHTML =
-        `<tr><td colspan="4" class="empty">
-          Pa gen itilizatè an atant.
-        </td></tr>`;
+        `<tr>
+          <td colspan="4"
+              class="empty">
+            Pa gen itilizatè an atant.
+          </td>
+        </tr>`;
 
     }
 
@@ -1734,9 +2291,10 @@ async function loadUsers(){
 }
 
 
-/* ACCEPT USER */
+/* ================= ACCEPT USER ================= */
 
-window.acceptUser = async function(uid){
+window.acceptUser =
+async function(uid){
 
   try{
 
@@ -1749,7 +2307,9 @@ window.acceptUser = async function(uid){
 
     await loadUsers();
 
-    alert("Itilizatè a aksepte.");
+    alert(
+      "Itilizatè a aksepte."
+    );
 
   }catch(error){
 
@@ -1764,22 +2324,22 @@ window.acceptUser = async function(uid){
 };
 
 
-/* REFUSE USER */
+/* ================= REFUSE USER ================= */
 
-window.refuseUser = async function(uid){
+window.refuseUser =
+async function(uid){
 
   try{
 
-    await updateDoc(
-      doc(db,"users",uid),
-      {
-        status:"refused"
-      }
+    await deleteDoc(
+      doc(db,"users",uid)
     );
 
     await loadUsers();
 
-    alert("Itilizatè a refize.");
+    alert(
+      "Itilizatè a refize."
+    );
 
   }catch(error){
 
@@ -1794,47 +2354,228 @@ window.refuseUser = async function(uid){
 };
 
 
-/* LOGOUT */
+/* ================= STATS ================= */
 
-window.logout = async function(){
+async function updateStats(){
 
-  await signOut(auth);
+  try{
 
-};
+    const [
+      eleves,
+      professeurs,
+      classes,
+      devoirs
+    ] = await Promise.all([
+
+      getDocs(
+        collection(db,"eleves")
+      ),
+
+      getDocs(
+        collection(db,"professeurs")
+      ),
+
+      getDocs(
+        collection(db,"classes")
+      ),
+
+      getDocs(
+        collection(db,"devoirs")
+      )
+
+    ]);
+
+    const values = {
+
+      statEleves:
+        eleves.size,
+
+      statProfesseurs:
+        professeurs.size,
+
+      statClasses:
+        classes.size,
+
+      statDevoirs:
+        devoirs.size,
+
+      stat2Eleves:
+        eleves.size,
+
+      stat2Professeurs:
+        professeurs.size,
+
+      stat2Classes:
+        classes.size,
+
+      stat2Devoirs:
+        devoirs.size
+
+    };
+
+    Object.keys(values)
+      .forEach(id=>{
+
+        const element =
+          document.getElementById(id);
+
+        if(element){
+          element.textContent =
+            values[id];
+        }
+
+      });
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
 
 
-/* LANGUAGE */
+/* ================= LANGUAGE ================= */
 
-window.changeLanguage = function(){
+window.changeLanguage =
+function(lang){
 
-  const language =
-    document.getElementById("languageSelect").value;
+  localStorage.setItem(
+    "language",
+    lang
+  );
 
-  if(language === "fr"){
+  if(lang === "fr"){
 
-    document.getElementById("welcomeTitle").textContent =
-      "Bienvenue dans Système d'apprentissage";
+    document
+      .querySelector(".brand")
+      .textContent =
+      "📚 Système d'Apprentissage";
 
   }else{
 
-    document.getElementById("welcomeTitle").textContent =
-      "Byenveni nan Sistèm Aprantisaj";
+    document
+      .querySelector(".brand")
+      .textContent =
+      "📚 Sistèm Aprantisaj";
 
   }
 
 };
 
 
-/* SECURITY HTML */
+/* ================= LOGOUT ================= */
 
-function escapeHTML(value){
+window.logout =
+async function(){
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  try{
+
+    await signOut(auth);
+
+    location.reload();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* ================= PWA INSTALL ================= */
+
+window.addEventListener(
+  "beforeinstallprompt",
+  event=>{
+
+    event.preventDefault();
+
+    deferredPrompt = event;
+
+    const button =
+      document.getElementById(
+        "installBtn"
+      );
+
+    button.classList.remove("hidden");
+
+  }
+);
+
+
+window.installApp =
+async function(){
+
+  if(!deferredPrompt){
+
+    alert(
+      "Navigatè a poko prepare enstalasyon an."
+    );
+
+    return;
+
+  }
+
+  deferredPrompt.prompt();
+
+  await deferredPrompt.userChoice;
+
+  deferredPrompt = null;
+
+  document
+    .getElementById("installBtn")
+    .classList.add("hidden");
+
+};
+
+
+/* ================= REDIRECT RESULT ================= */
+
+try{
+
+  await getRedirectResult(auth);
+
+}catch(error){
+
+  console.error(
+    "Redirect Google:",
+    error
+  );
+
+}
+
+
+/* ================= AUTH STATE ================= */
+
+onAuthStateChanged(
+  auth,
+  async user=>{
+
+    if(user){
+
+      currentUser = user;
+
+      await loadUserProfile(user);
+
+    }
+
+  }
+);
+
+
+/* ================= START LANGUAGE ================= */
+
+const savedLanguage =
+  localStorage.getItem("language");
+
+if(savedLanguage){
+
+  document
+    .getElementById("languageSelect")
+    .value =
+    savedLanguage;
 
 }
 
