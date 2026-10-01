@@ -4,138 +4,410 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Sistèm Aprantisaj</title>
+
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#2563eb">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f1f5f9;color:#172033}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer;border:0}
-.hidden{display:none!important}
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+ font-family:Arial,sans-serif;
+}
+
+body{
+ background:#f1f5f9;
+ color:#172033;
+}
+
+button,input,select,textarea{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+ border:0;
+}
+
+.hidden{
+ display:none!important;
+}
+
+/* LOGIN */
 
 #loginScreen{
- min-height:100vh;display:flex;align-items:center;justify-content:center;
- padding:20px;background:linear-gradient(135deg,#2563eb,#1e40af)
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ background:linear-gradient(135deg,#2563eb,#1e40af);
 }
+
 .loginBox{
- width:100%;max-width:430px;background:white;border-radius:22px;
- padding:28px;box-shadow:0 20px 50px #0004
+ width:100%;
+ max-width:430px;
+ background:#fff;
+ border-radius:22px;
+ padding:28px;
+ box-shadow:0 20px 50px #0004;
 }
-.logo{text-align:center;font-size:48px;margin-bottom:8px}
-.loginBox h1{text-align:center;color:#1e40af;margin-bottom:6px}
-.loginBox p{text-align:center;color:#64748b;margin-bottom:22px}
-.field{margin-bottom:14px}
-.field label{display:block;font-weight:bold;margin-bottom:6px}
-.field input,.field select,.field textarea{
- width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;
- outline:none;background:white
+
+.logo{
+ text-align:center;
+ font-size:50px;
+ margin-bottom:8px;
 }
-.field input:focus,.field select:focus,.field textarea:focus{
- border-color:#2563eb
+
+.loginBox h1{
+ text-align:center;
+ color:#1e40af;
+ margin-bottom:7px;
 }
+
+.loginBox>p{
+ text-align:center;
+ color:#64748b;
+ margin-bottom:20px;
+}
+
+.field{
+ margin-bottom:14px;
+}
+
+.field label{
+ display:block;
+ font-weight:bold;
+ margin-bottom:6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+ width:100%;
+ padding:12px;
+ border:1px solid #cbd5e1;
+ border-radius:10px;
+ outline:none;
+ background:#fff;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+ border-color:#2563eb;
+}
+
 .btn{
- width:100%;padding:12px;border-radius:10px;font-weight:bold;
- margin-top:8px
+ width:100%;
+ padding:12px;
+ border-radius:10px;
+ font-weight:bold;
+ margin-top:8px;
 }
-.primary{background:#2563eb;color:white}
-.google{background:#fff;color:#111827;border:1px solid #cbd5e1}
-.secondary{background:#e2e8f0;color:#172033}
-.danger{background:#dc2626;color:white}
-.success{background:#16a34a;color:white}
-.message{
- padding:11px;border-radius:10px;margin-top:14px;text-align:center;
- display:none
-}
-.message.show{display:block}
-.message.error{background:#fee2e2;color:#991b1b}
-.message.ok{background:#dcfce7;color:#166534}
 
-#appScreen{display:none;min-height:100vh}
+.primary{
+ background:#2563eb;
+ color:#fff;
+}
+
+.google{
+ background:#fff;
+ color:#111827;
+ border:1px solid #cbd5e1;
+}
+
+.secondary{
+ background:#e2e8f0;
+ color:#172033;
+}
+
+.success{
+ background:#16a34a;
+ color:#fff;
+}
+
+.danger{
+ background:#dc2626;
+ color:#fff;
+}
+
+#authMessage{
+ margin-top:14px;
+ padding:11px;
+ border-radius:10px;
+ text-align:center;
+ display:none;
+}
+
+#authMessage.show{
+ display:block;
+}
+
+#authMessage.error{
+ background:#fee2e2;
+ color:#991b1b;
+}
+
+#authMessage.ok{
+ background:#dcfce7;
+ color:#166534;
+}
+
+/* APP */
+
+#appScreen{
+ display:none;
+ min-height:100vh;
+}
+
 header{
- height:68px;background:#fff;border-bottom:1px solid #e2e8f0;
- display:flex;align-items:center;gap:12px;padding:10px 18px;
- position:sticky;top:0;z-index:20
+ min-height:68px;
+ background:#fff;
+ border-bottom:1px solid #e2e8f0;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:10px 16px;
+ position:sticky;
+ top:0;
+ z-index:20;
 }
-.brand{display:flex;align-items:center;gap:8px;font-weight:bold;color:#1e40af;font-size:20px}
-.brand span{font-size:28px}
-.userInfo{margin-left:auto;font-size:13px;color:#475569}
-header select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}
-.install{background:#2563eb;color:white;padding:9px 12px;border-radius:8px}
-.logout{background:#ef4444;color:white;padding:9px 12px;border-radius:8px}
 
-.layout{display:flex;min-height:calc(100vh - 68px)}
+.brand{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ font-weight:bold;
+ color:#1e40af;
+ font-size:20px;
+}
+
+.brand span{
+ font-size:28px;
+}
+
+.userInfo{
+ margin-left:auto;
+ font-size:13px;
+ color:#475569;
+}
+
+header select{
+ padding:8px;
+ border:1px solid #cbd5e1;
+ border-radius:8px;
+}
+
+.install{
+ background:#2563eb;
+ color:#fff;
+ padding:9px 12px;
+ border-radius:8px;
+}
+
+.logout{
+ background:#ef4444;
+ color:#fff;
+ padding:9px 12px;
+ border-radius:8px;
+}
+
+.layout{
+ display:flex;
+ min-height:calc(100vh - 68px);
+}
+
 .sidebar{
- width:235px;background:#0f172a;color:white;padding:15px;flex-shrink:0
+ width:235px;
+ background:#0f172a;
+ padding:14px;
+ flex-shrink:0;
 }
+
 .navBtn{
- width:100%;padding:11px;margin-bottom:6px;background:transparent;
- color:#cbd5e1;text-align:left;border-radius:8px
+ width:100%;
+ padding:11px;
+ margin-bottom:6px;
+ background:transparent;
+ color:#cbd5e1;
+ text-align:left;
+ border-radius:8px;
 }
-.navBtn:hover,.navBtn.active{background:#2563eb;color:white}
-.main{flex:1;padding:20px;overflow:auto}
-.section{display:none}
-.section.active{display:block}
-.section h2{margin-bottom:18px}
+
+.navBtn:hover,
+.navBtn.active{
+ background:#2563eb;
+ color:#fff;
+}
+
+.main{
+ flex:1;
+ padding:20px;
+ overflow:auto;
+}
+
+.section{
+ display:none;
+}
+
+.section.active{
+ display:block;
+}
+
+.section h2{
+ margin-bottom:18px;
+}
+
 .cards{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:15px;margin-bottom:22px
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+ gap:14px;
+ margin-bottom:20px;
 }
-.card{
- background:white;border-radius:14px;padding:18px;
- box-shadow:0 2px 10px #0000000d
-}
-.card .num{font-size:28px;font-weight:bold;color:#2563eb;margin-top:7px}
-.toolbar{
- display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px
-}
-.toolbar button{padding:10px 14px;border-radius:9px}
-.list{display:grid;gap:10px}
-.item{
- background:white;border-radius:12px;padding:15px;
- box-shadow:0 2px 8px #0000000b
-}
-.itemTop{
- display:flex;justify-content:space-between;gap:10px;align-items:center
-}
-.item h3{margin-bottom:5px}
-.muted{color:#64748b;font-size:14px}
-.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.actions button{padding:8px 10px;border-radius:7px}
+
+.card,
+.item,
 .empty{
- background:white;border-radius:12px;padding:30px;text-align:center;
- color:#64748b
+ background:#fff;
+ border-radius:13px;
+ padding:17px;
+ box-shadow:0 2px 9px #0000000d;
+}
+
+.num{
+ font-size:28px;
+ font-weight:bold;
+ color:#2563eb;
+ margin-top:7px;
+}
+
+.toolbar{
+ margin-bottom:14px;
+}
+
+.toolbar button,
+.actions button{
+ padding:9px 11px;
+ border-radius:8px;
+}
+
+.list{
+ display:grid;
+ gap:10px;
+}
+
+.itemTop{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ align-items:center;
+}
+
+.item h3{
+ margin-bottom:5px;
+}
+
+.muted{
+ color:#64748b;
+ font-size:14px;
+}
+
+.actions{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+ margin-top:10px;
+}
+
+.empty{
+ text-align:center;
+ color:#64748b;
 }
 
 .modal{
- position:fixed;inset:0;background:#0008;display:none;
- align-items:center;justify-content:center;padding:20px;z-index:50
+ position:fixed;
+ inset:0;
+ background:#0008;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ z-index:50;
 }
-.modal.show{display:flex}
+
+.modal.show{
+ display:flex;
+}
+
 .modalBox{
- background:white;border-radius:15px;width:100%;max-width:500px;
- padding:20px
+ background:#fff;
+ border-radius:15px;
+ width:100%;
+ max-width:500px;
+ padding:20px;
 }
+
 .modalHead{
- display:flex;justify-content:space-between;align-items:center;margin-bottom:15px
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:15px;
 }
-.close{background:#e2e8f0;border-radius:8px;padding:7px 10px}
+
+.close{
+ background:#e2e8f0;
+ border-radius:8px;
+ padding:7px 10px;
+}
 
 #messageBox{
- position:fixed;right:15px;bottom:15px;z-index:100;
- max-width:330px;background:#172033;color:white;padding:13px;
- border-radius:10px;display:none
+ position:fixed;
+ right:15px;
+ bottom:15px;
+ z-index:100;
+ max-width:330px;
+ background:#172033;
+ color:#fff;
+ padding:13px;
+ border-radius:10px;
+ display:none;
 }
 
 @media(max-width:800px){
- header{height:auto;min-height:68px;flex-wrap:wrap}
- .userInfo{order:3;width:100%;margin-left:0}
- .layout{display:block}
- .sidebar{
-  width:100%;display:flex;overflow-x:auto;gap:5px;padding:8px
+
+ header{
+  flex-wrap:wrap;
  }
- .navBtn{width:auto;white-space:nowrap;margin:0}
- .main{padding:13px}
+
+ .userInfo{
+  order:3;
+  width:100%;
+  margin-left:0;
+ }
+
+ .layout{
+  display:block;
+ }
+
+ .sidebar{
+  width:100%;
+  display:flex;
+  overflow-x:auto;
+  gap:5px;
+  padding:8px;
+ }
+
+ .navBtn{
+  width:auto;
+  white-space:nowrap;
+  margin:0;
+ }
+
+ .main{
+  padding:13px;
+ }
 }
 </style>
 </head>
@@ -143,194 +415,555 @@ header select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}
 <body>
 
 <div id="loginScreen">
- <div class="loginBox">
-  <div class="logo">📚</div>
-  <h1>Sistèm Aprantisaj</h1>
-  <p id="loginTitle">Konekte nan kont ou</p>
 
-  <div class="field">
-   <label>Email</label>
-   <input id="email" type="email" placeholder="egzanp@email.com">
-  </div>
+<div class="loginBox">
 
-  <div class="field">
-   <label>Modpas</label>
-   <input id="password" type="password" placeholder="Modpas">
-  </div>
+<div class="logo">📚</div>
 
-  <button class="btn primary" onclick="connecter()">Konekte</button>
-  <button class="btn google" onclick="connecterAvecGoogle()">🔵 Kont Google</button>
+<h1>Sistèm Aprantisaj</h1>
 
-  <button class="btn secondary" onclick="showRegister()">Kreye kont</button>
+<p id="loginTitle">
+Konekte nan kont ou
+</p>
 
-  <div id="registerBox" class="hidden">
-   <hr style="margin:20px 0">
-   <h3 style="margin-bottom:12px">Kreye nouvo kont</h3>
-
-   <div class="field">
-    <label>Email</label>
-    <input id="regEmail" type="email" placeholder="Email">
-   </div>
-
-   <div class="field">
-    <label>Modpas</label>
-    <input id="regPassword" type="password" placeholder="Omwen 6 karaktè">
-   </div>
-
-   <button class="btn success" onclick="registerAccount()">Enskri</button>
-   <button class="btn google" onclick="registerGoogle()">Enskri ak Google</button>
-  </div>
-
-  <div id="authMessage" class="message"></div>
- </div>
+<div class="field">
+<label>Email</label>
+<input
+ id="email"
+ type="email"
+ placeholder="Email">
 </div>
+
+<div class="field">
+<label>Modpas</label>
+<input
+ id="password"
+ type="password"
+ placeholder="Modpas">
+</div>
+
+<button
+ class="btn primary"
+ onclick="connecter()">
+Konekte
+</button>
+
+<button
+ class="btn google"
+ onclick="connecterAvecGoogle()">
+🔵 Kont Google
+</button>
+
+<button
+ class="btn secondary"
+ onclick="showRegister()">
+Kreye kont
+</button>
+
+<div id="registerBox" class="hidden">
+
+<hr style="margin:20px 0">
+
+<h3 style="margin-bottom:12px">
+Kreye nouvo kont
+</h3>
+
+<div class="field">
+<label>Email</label>
+<input
+ id="regEmail"
+ type="email"
+ placeholder="Email">
+</div>
+
+<div class="field">
+<label>Modpas</label>
+<input
+ id="regPassword"
+ type="password"
+ placeholder="Omwen 6 karaktè">
+</div>
+
+<button
+ class="btn success"
+ onclick="registerAccount()">
+Enskri
+</button>
+
+<button
+ class="btn google"
+ onclick="registerGoogle()">
+Enskri ak Google
+</button>
+
+</div>
+
+<div id="authMessage"></div>
+
+</div>
+</div>
+
 
 <div id="appScreen">
 
 <header>
- <div class="brand"><span>📚</span> Sistèm Aprantisaj</div>
- <div id="userInfo" class="userInfo"></div>
 
- <select id="languageSelect" onchange="changeLanguage(this.value)">
-  <option value="ht">🇭🇹 Kreyòl</option>
-  <option value="fr">🇫🇷 Français</option>
- </select>
+<div class="brand">
+<span>📚</span>
+Sistèm Aprantisaj
+</div>
 
- <button id="installBtn" class="install hidden" onclick="installApp()">
-  📲 Enstale aplikasyon an
- </button>
+<div id="userInfo" class="userInfo"></div>
 
- <button class="logout" onclick="deconnecter()">Soti</button>
+<select
+ onchange="changeLanguage(this.value)">
+
+<option value="ht">
+🇭🇹 Kreyòl
+</option>
+
+<option value="fr">
+🇫🇷 Français
+</option>
+
+</select>
+
+<button
+ id="installBtn"
+ class="install hidden"
+ onclick="installApp()">
+📲 Enstale aplikasyon an
+</button>
+
+<button
+ class="logout"
+ onclick="deconnecter()">
+Soti
+</button>
+
 </header>
+
 
 <div class="layout">
 
 <aside class="sidebar">
- <button class="navBtn active" onclick="showSection('home',this)">🏠 Akèy</button>
- <button class="navBtn" onclick="showSection('eleves',this)">👨‍🎓 Elèv</button>
- <button class="navBtn" onclick="showSection('professeurs',this)">👨‍🏫 Pwofesè</button>
- <button class="navBtn" onclick="showSection('classes',this)">🏫 Klas</button>
- <button class="navBtn" onclick="showSection('matieres',this)">📚 Matyè</button>
- <button class="navBtn" onclick="showSection('devoirs',this)">📝 Devwa</button>
- <button class="navBtn" onclick="showSection('remises',this)">📥 Remèt</button>
- <button class="navBtn" onclick="showSection('resultats',this)">📊 Rezilta</button>
- <button class="navBtn" onclick="showSection('statistiques',this)">📈 Estatistik</button>
- <button id="usersNav" class="navBtn" onclick="showSection('users',this)">👥 Itilizatè</button>
+
+<button
+ class="navBtn active"
+ onclick="showSection('home',this)">
+🏠 Akèy
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('eleves',this)">
+👨‍🎓 Elèv
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('professeurs',this)">
+👨‍🏫 Pwofesè
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('classes',this)">
+🏫 Klas
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('matieres',this)">
+📚 Matyè
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('devoirs',this)">
+📝 Devwa
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('remises',this)">
+📥 Remèt
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('resultats',this)">
+📊 Rezilta
+</button>
+
+<button
+ class="navBtn"
+ onclick="showSection('statistiques',this)">
+📈 Estatistik
+</button>
+
+<button
+ id="usersNav"
+ class="navBtn"
+ onclick="showSection('users',this)">
+👥 Itilizatè
+</button>
+
 </aside>
+
 
 <main class="main">
 
-<section id="home" class="section active">
- <h2>🏠 Akèy</h2>
 
- <div class="cards">
-  <div class="card">👨‍🎓 Elèv<div id="statEleves" class="num">0</div></div>
-  <div class="card">👨‍🏫 Pwofesè<div id="statProfesseurs" class="num">0</div></div>
-  <div class="card">🏫 Klas<div id="statClasses" class="num">0</div></div>
-  <div class="card">📝 Devwa<div id="statDevoirs" class="num">0</div></div>
- </div>
+<section
+ id="home"
+ class="section active">
 
- <div class="card">
-  <h3>Byenveni nan Sistèm Aprantisaj</h3>
-  <p class="muted" style="margin-top:8px">
-   Jere elèv, pwofesè, klas, matyè, devwa, remèt ak rezilta yo.
-  </p>
- </div>
+<h2>🏠 Akèy</h2>
+
+<div class="cards">
+
+<div class="card">
+👨‍🎓 Elèv
+<div id="statEleves" class="num">
+0
+</div>
+</div>
+
+<div class="card">
+👨‍🏫 Pwofesè
+<div id="statProfesseurs" class="num">
+0
+</div>
+</div>
+
+<div class="card">
+🏫 Klas
+<div id="statClasses" class="num">
+0
+</div>
+</div>
+
+<div class="card">
+📝 Devwa
+<div id="statDevoirs" class="num">
+0
+</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+Byenveni nan Sistèm Aprantisaj
+</h3>
+
+<p
+ class="muted"
+ style="margin-top:8px">
+
+Jere elèv, pwofesè, klas, matyè,
+devwa, remèt ak rezilta yo.
+
+</p>
+
+</div>
+
 </section>
 
-<section id="eleves" class="section">
- <h2>👨‍🎓 Elèv</h2>
- <div class="toolbar">
-  <button class="primary" onclick="ajouterEleve()">➕ Ajoute elèv</button>
- </div>
- <div id="listeEleves" class="list"></div>
+
+<section
+ id="eleves"
+ class="section">
+
+<h2>👨‍🎓 Elèv</h2>
+
+<div class="toolbar">
+
+<button
+ id="addEleve"
+ class="primary"
+ onclick="ajouterEleve()">
+
+➕ Ajoute elèv
+
+</button>
+
+</div>
+
+<div
+ id="listeEleves"
+ class="list">
+</div>
+
 </section>
 
-<section id="professeurs" class="section">
- <h2>👨‍🏫 Pwofesè</h2>
- <div class="toolbar">
-  <button class="primary" onclick="ajouterProfesseur()">➕ Ajoute pwofesè</button>
- </div>
- <div id="listeProfesseurs" class="list"></div>
+
+<section
+ id="professeurs"
+ class="section">
+
+<h2>👨‍🏫 Pwofesè</h2>
+
+<div class="toolbar">
+
+<button
+ id="addProf"
+ class="primary"
+ onclick="ajouterProfesseur()">
+
+➕ Ajoute pwofesè
+
+</button>
+
+</div>
+
+<div
+ id="listeProfesseurs"
+ class="list">
+</div>
+
 </section>
 
-<section id="classes" class="section">
- <h2>🏫 Klas</h2>
- <div class="toolbar">
-  <button class="primary" onclick="ajouterClasse()">➕ Ajoute klas</button>
- </div>
- <div id="listeClasses" class="list"></div>
+
+<section
+ id="classes"
+ class="section">
+
+<h2>🏫 Klas</h2>
+
+<div class="toolbar">
+
+<button
+ id="addClass"
+ class="primary"
+ onclick="ajouterClasse()">
+
+➕ Ajoute klas
+
+</button>
+
+</div>
+
+<div
+ id="listeClasses"
+ class="list">
+</div>
+
 </section>
 
-<section id="matieres" class="section">
- <h2>📚 Matyè</h2>
- <div class="toolbar">
-  <button class="primary" onclick="ajouterMatiere()">➕ Ajoute matyè</button>
- </div>
- <div id="listeMatieres" class="list"></div>
+
+<section
+ id="matieres"
+ class="section">
+
+<h2>📚 Matyè</h2>
+
+<div class="toolbar">
+
+<button
+ id="addMatiere"
+ class="primary"
+ onclick="ajouterMatiere()">
+
+➕ Ajoute matyè
+
+</button>
+
+</div>
+
+<div
+ id="listeMatieres"
+ class="list">
+</div>
+
 </section>
 
-<section id="devoirs" class="section">
- <h2>📝 Devwa</h2>
- <div class="toolbar">
-  <button class="primary" onclick="ajouterDevoir()">➕ Ajoute devwa</button>
- </div>
- <div id="listeDevoirs" class="list"></div>
+
+<section
+ id="devoirs"
+ class="section">
+
+<h2>📝 Devwa</h2>
+
+<div class="toolbar">
+
+<button
+ id="addDevoir"
+ class="primary"
+ onclick="ajouterDevoir()">
+
+➕ Ajoute devwa
+
+</button>
+
+</div>
+
+<div
+ id="listeDevoirs"
+ class="list">
+</div>
+
 </section>
 
-<section id="remises" class="section">
- <h2>📥 Remèt</h2>
- <div id="listeRemises" class="list"></div>
+
+<section
+ id="remises"
+ class="section">
+
+<h2>📥 Remèt</h2>
+
+<div
+ id="listeRemises"
+ class="list">
+</div>
+
 </section>
 
-<section id="resultats" class="section">
- <h2>📊 Rezilta</h2>
- <div id="listeResultats" class="list"></div>
+
+<section
+ id="resultats"
+ class="section">
+
+<h2>📊 Rezilta</h2>
+
+<div
+ id="listeResultats"
+ class="list">
+</div>
+
 </section>
 
-<section id="statistiques" class="section">
- <h2>📈 Estatistik</h2>
- <div class="cards">
-  <div class="card">Elèv<div id="statsEleves" class="num">0</div></div>
-  <div class="card">Pwofesè<div id="statsProfesseurs" class="num">0</div></div>
-  <div class="card">Klas<div id="statsClasses" class="num">0</div></div>
-  <div class="card">Devwa<div id="statsDevoirs" class="num">0</div></div>
- </div>
+
+<section
+ id="statistiques"
+ class="section">
+
+<h2>📈 Estatistik</h2>
+
+<div class="cards">
+
+<div class="card">
+Elèv
+<div
+ id="statsEleves"
+ class="num">
+0
+</div>
+</div>
+
+<div class="card">
+Pwofesè
+<div
+ id="statsProfesseurs"
+ class="num">
+0
+</div>
+</div>
+
+<div class="card">
+Klas
+<div
+ id="statsClasses"
+ class="num">
+0
+</div>
+</div>
+
+<div class="card">
+Devwa
+<div
+ id="statsDevoirs"
+ class="num">
+0
+</div>
+</div>
+
+</div>
+
 </section>
 
-<section id="users" class="section">
- <h2>👥 Itilizatè an atant</h2>
- <div id="listeUsers" class="list"></div>
+
+<section
+ id="users"
+ class="section">
+
+<h2>
+👥 Itilizatè an atant
+</h2>
+
+<div
+ id="listeUsers"
+ class="list">
+</div>
+
 </section>
+
 
 </main>
 </div>
 </div>
 
-<div id="remetModal" class="modal">
- <div class="modalBox">
-  <div class="modalHead">
-   <h3>📥 Remèt devwa</h3>
-   <button class="close" onclick="fermerRemetModal()">✕</button>
-  </div>
 
-  <input id="remetDevoirId" type="hidden">
+<div
+ id="remetModal"
+ class="modal">
 
-  <div class="field">
-   <label>Repons</label>
-   <textarea id="remetRepons" rows="7" placeholder="Ekri repons ou..."></textarea>
-  </div>
+<div class="modalBox">
 
-  <button class="btn primary" onclick="envoyerRemise()">Voye</button>
- </div>
+<div class="modalHead">
+
+<h3>
+📥 Remèt devwa
+</h3>
+
+<button
+ class="close"
+ onclick="fermerRemetModal()">
+✕
+</button>
+
 </div>
+
+<input
+ id="remetDevoirId"
+ type="hidden">
+
+<div class="field">
+
+<label>
+Repons
+</label>
+
+<textarea
+ id="remetRepons"
+ rows="7"
+ placeholder="Ekri repons ou...">
+</textarea>
+
+</div>
+
+<button
+ class="btn primary"
+ onclick="envoyerRemise()">
+Voye
+</button>
+
+</div>
+</div>
+
 
 <div id="messageBox"></div>
 
+
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+ initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
  getAuth,
@@ -344,7 +977,9 @@ import {
  signOut,
  setPersistence,
  browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
  getFirestore,
@@ -356,1131 +991,2924 @@ import {
  updateDoc,
  deleteDoc,
  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-const firebaseConfig={
- apiKey:"AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
- authDomain:"sist-aprantisaj.firebaseapp.com",
- projectId:"sist-aprantisaj",
- storageBucket:"sist-aprantisaj.firebasestorage.app",
- messagingSenderId:"517876142004",
- appId:"1:517876142004:web:2771066976950b208dace1"
+
+const firebaseConfig = {
+
+ apiKey:
+ "AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
+
+ authDomain:
+ "sist-aprantisaj.firebaseapp.com",
+
+ projectId:
+ "sist-aprantisaj",
+
+ storageBucket:
+ "sist-aprantisaj.firebasestorage.app",
+
+ messagingSenderId:
+ "517876142004",
+
+ appId:
+ "1:517876142004:web:2771066976950b208dace1"
+
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
 
-const googleProvider=new GoogleAuthProvider();
-googleProvider.setCustomParameters({prompt:"select_account"});
+const app =
+ initializeApp(firebaseConfig);
 
-let currentUser=null;
-let currentProfile=null;
-let deferredPrompt=null;
+const auth =
+ getAuth(app);
 
-window.currentUser=null;
+const db =
+ getFirestore(app);
 
-await setPersistence(auth,browserLocalPersistence);
 
-function msg(text,type="ok"){
- const box=document.getElementById("messageBox");
- box.textContent=text;
- box.style.display="block";
- box.style.background=type==="error"?"#dc2626":"#172033";
- setTimeout(()=>box.style.display="none",3500);
-}
+const googleProvider =
+ new GoogleAuthProvider();
 
-function authMsg(text,type="error"){
- const box=document.getElementById("authMessage");
- box.textContent=text;
- box.className="message show "+type;
-}
+googleProvider.setCustomParameters({
+ prompt:"select_account"
+});
+
+
+let currentUser = null;
+let currentProfile = null;
+let deferredPrompt = null;
+
+
+await setPersistence(
+ auth,
+ browserLocalPersistence
+);
+
 
 function escapeHTML(value){
- return String(value??"")
+
+ return String(value ?? "")
  .replaceAll("&","&amp;")
  .replaceAll("<","&lt;")
  .replaceAll(">","&gt;")
  .replaceAll('"',"&quot;")
  .replaceAll("'","&#039;");
+
 }
 
+
+function showMessage(text,error=false){
+
+ const box =
+ document.getElementById("messageBox");
+
+ box.textContent = text;
+
+ box.style.display = "block";
+
+ box.style.background =
+ error ? "#dc2626" : "#172033";
+
+ setTimeout(()=>{
+  box.style.display="none";
+ },3000);
+
+}
+
+
+function showAuthMessage(text,type="error"){
+
+ const box =
+ document.getElementById("authMessage");
+
+ box.textContent=text;
+
+ box.className =
+ "message show "+type;
+
+}
+
+
+function getFirebaseError(error){
+
+ const code=error?.code || "";
+
+ const messages={
+
+  "auth/invalid-email":
+  "Email la pa valab.",
+
+  "auth/user-not-found":
+  "Kont sa a pa egziste.",
+
+  "auth/wrong-password":
+  "Modpas la pa kòrèk.",
+
+  "auth/invalid-credential":
+  "Email oswa modpas la pa kòrèk.",
+
+  "auth/email-already-in-use":
+  "Email sa a deja itilize.",
+
+  "auth/weak-password":
+  "Modpas la twò fèb.",
+
+  "auth/popup-blocked":
+  "Navigatè a bloke fenèt Google la.",
+
+  "auth/popup-closed-by-user":
+  "Fenèt Google la fèmen.",
+
+  "auth/unauthorized-domain":
+  "Domèn sit la poko otorize nan Firebase."
+
+ };
+
+ return messages[code] ||
+        error?.message ||
+        "Yon erè rive.";
+
+}
+
+
 window.showRegister=function(){
- document.getElementById("registerBox").classList.toggle("hidden");
+
+ document
+ .getElementById("registerBox")
+ .classList
+ .toggle("hidden");
+
 };
 
-window.connecter=async function(){
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
 
- if(!email||!password){
-  authMsg("Tanpri mete email ak modpas.");
+window.connecter=async function(){
+
+ const email =
+ document.getElementById("email")
+ .value
+ .trim();
+
+ const password =
+ document.getElementById("password")
+ .value;
+
+ if(!email || !password){
+
+  showAuthMessage(
+   "Tanpri mete email ak modpas."
+  );
+
   return;
  }
 
  try{
-  authMsg("Koneksyon an ap fèt...","ok");
-  await signInWithEmailAndPassword(auth,email,password);
- }catch(e){
-  authMsg(errorText(e));
+
+  showAuthMessage(
+   "Koneksyon an ap fèt...",
+   "ok"
+  );
+
+  await signInWithEmailAndPassword(
+   auth,
+   email,
+   password
+  );
+
+ }catch(error){
+
+  showAuthMessage(
+   getFirebaseError(error)
+  );
+
  }
+
 };
 
-window.connecterAvecGoogle=async function(){
+
+async function googleConnection(){
+
  try{
-  authMsg("Koneksyon Google ap fèt...","ok");
-  await signInWithPopup(auth,googleProvider);
- }catch(e){
+
+  showAuthMessage(
+   "Koneksyon Google ap fèt...",
+   "ok"
+  );
+
+  await signInWithPopup(
+   auth,
+   googleProvider
+  );
+
+ }catch(error){
 
   if(
-   e.code==="auth/popup-blocked" ||
-   e.code==="auth/popup-closed-by-user" ||
-   e.code==="auth/cancelled-popup-request"
+   error.code==="auth/popup-blocked" ||
+   error.code==="auth/popup-closed-by-user" ||
+   error.code==="auth/cancelled-popup-request"
   ){
+
    try{
-    await signInWithRedirect(auth,googleProvider);
-   }catch(err){
-    authMsg(errorText(err));
+
+    await signInWithRedirect(
+     auth,
+     googleProvider
+    );
+
+   }catch(secondError){
+
+    showAuthMessage(
+     getFirebaseError(secondError)
+    );
+
    }
+
   }else{
-   authMsg(errorText(e));
+
+   showAuthMessage(
+    getFirebaseError(error)
+   );
+
   }
+
  }
-};
+
+}
+
+
+window.connecterAvecGoogle =
+ googleConnection;
+
+window.registerGoogle =
+ googleConnection;
+
 
 window.registerAccount=async function(){
- const email=document.getElementById("regEmail").value.trim();
- const password=document.getElementById("regPassword").value;
 
- if(!email||!password){
-  authMsg("Tanpri ranpli email ak modpas.");
+ const email =
+ document.getElementById("regEmail")
+ .value
+ .trim();
+
+ const password =
+ document.getElementById("regPassword")
+ .value;
+
+ if(!email || !password){
+
+  showAuthMessage(
+   "Tanpri ranpli email ak modpas."
+  );
+
   return;
  }
 
  if(password.length<6){
-  authMsg("Modpas la dwe gen omwen 6 karaktè.");
+
+  showAuthMessage(
+   "Modpas la dwe gen omwen 6 karaktè."
+  );
+
   return;
  }
 
  try{
-  authMsg("Kreyasyon kont lan ap fèt...","ok");
-  const result=await createUserWithEmailAndPassword(auth,email,password);
 
-  await setDoc(doc(db,"users",result.user.uid),{
-   uid:result.user.uid,
-   email:result.user.email,
-   role:"eleve",
-   status:"attente",
-   createdAt:serverTimestamp()
-  });
+  const result =
+   await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+   );
+
+  await setDoc(
+   doc(
+    db,
+    "users",
+    result.user.uid
+   ),
+   {
+    uid:result.user.uid,
+    email:result.user.email,
+    role:"eleve",
+    status:"attente",
+    createdAt:serverTimestamp()
+   }
+  );
 
   await signOut(auth);
-  authMsg("Kont lan kreye. Administratè a dwe apwouve li.","ok");
- }catch(e){
-  authMsg(errorText(e));
+
+  showAuthMessage(
+   "Kont lan kreye. Li bezwen apwobasyon administratè a.",
+   "ok"
+  );
+
+ }catch(error){
+
+  showAuthMessage(
+   getFirebaseError(error)
+  );
+
  }
+
 };
 
-window.registerGoogle=async function(){
- try{
-  authMsg("Kreyasyon kont Google ap fèt...","ok");
-  await signInWithPopup(auth,googleProvider);
- }catch(e){
-  if(
-   e.code==="auth/popup-blocked" ||
-   e.code==="auth/popup-closed-by-user" ||
-   e.code==="auth/cancelled-popup-request"
-  ){
-   try{
-    await signInWithRedirect(auth,googleProvider);
-   }catch(err){
-    authMsg(errorText(err));
-   }
-  }else{
-   authMsg(errorText(e));
-  }
- }
-};
 
 async function loadUserProfile(user){
 
  currentUser=user;
- window.currentUser=user;
 
- const ref=doc(db,"users",user.uid);
- const snap=await getDoc(ref);
+ const userRef =
+  doc(
+   db,
+   "users",
+   user.uid
+  );
 
- if(!snap.exists()){
+ const userSnap =
+  await getDoc(userRef);
 
-  await setDoc(ref,{
-   uid:user.uid,
-   email:user.email||"",
-   role:"eleve",
-   status:"attente",
-   createdAt:serverTimestamp()
-  });
+
+ if(!userSnap.exists()){
+
+  await setDoc(
+   userRef,
+   {
+    uid:user.uid,
+    email:user.email || "",
+    role:"eleve",
+    status:"attente",
+    createdAt:serverTimestamp()
+   }
+  );
 
   await signOut(auth);
-  authMsg("Kont ou an ap tann apwobasyon administratè a.");
+
+  showAuthMessage(
+   "Kont Google ou kreye. Li bezwen apwobasyon administratè a."
+  );
+
   return;
+
  }
 
- const data=snap.data();
- currentProfile=data;
 
- if(data.status!=="accepted"){
+ currentProfile =
+  userSnap.data();
+
+
+ if(
+  currentProfile.status !==
+  "accepted"
+ ){
+
   await signOut(auth);
-  authMsg("Kont ou poko apwouve pa administratè a.");
+
+  showAuthMessage(
+   "Kont sa a poko apwouve pa administratè a."
+  );
+
   return;
+
  }
 
- if(!["administrateur","professeur","eleve"].includes(data.role)){
+
+ if(
+  ![
+   "administrateur",
+   "professeur",
+   "eleve"
+  ].includes(
+   currentProfile.role
+  )
+ ){
+
   await signOut(auth);
-  authMsg("Wòl kont lan pa valide.");
+
+  showAuthMessage(
+   "Wòl kont lan pa valab."
+  );
+
   return;
+
  }
+
 
  openApp();
+
 }
+
 
 function openApp(){
 
- document.getElementById("loginScreen").style.display="none";
- document.getElementById("appScreen").style.display="block";
+ document.getElementById(
+  "loginScreen"
+ ).style.display="none";
 
- document.getElementById("userInfo").textContent=
-  (currentUser?.email||"")+" • Wòl: "+(currentProfile?.role||"");
+ document.getElementById(
+  "appScreen"
+ ).style.display="block";
+
+
+ document.getElementById(
+  "userInfo"
+ ).textContent =
+ (currentUser.email || "")+
+ " • Wòl: "+
+ (currentProfile.role || "");
+
 
  applyRoleAccess();
+
+
+ showSection("home");
+
+
  loadAllData();
+
 }
+
 
 function applyRoleAccess(){
 
- const admin=currentProfile?.role==="administrateur";
- const teacher=currentProfile?.role==="professeur";
- const student=currentProfile?.role==="eleve";
+ const admin =
+ currentProfile?.role ===
+ "administrateur";
 
- document.getElementById("usersNav")
-  .classList.toggle("hidden",!admin);
+ const teacher =
+ currentProfile?.role ===
+ "professeur";
 
- document.querySelectorAll('[onclick="ajouterEleve()"]')
-  .forEach(x=>x.classList.toggle("hidden",!admin));
 
- document.querySelectorAll('[onclick="ajouterProfesseur()"]')
-  .forEach(x=>x.classList.toggle("hidden",!admin));
+ document
+ .getElementById("usersNav")
+ .classList
+ .toggle(
+  "hidden",
+  !admin
+ );
 
- document.querySelectorAll('[onclick="ajouterClasse()"]')
-  .forEach(x=>x.classList.toggle("hidden",!admin));
 
- document.querySelectorAll('[onclick="ajouterMatiere()"]')
-  .forEach(x=>x.classList.toggle("hidden",!admin));
+ document
+ .getElementById("addEleve")
+ .classList
+ .toggle(
+  "hidden",
+  !admin
+ );
 
- document.querySelectorAll('[onclick="ajouterDevoir()"]')
-  .forEach(x=>x.classList.toggle("hidden",!(admin||teacher)));
+
+ document
+ .getElementById("addProf")
+ .classList
+ .toggle(
+  "hidden",
+  !admin
+ );
+
+
+ document
+ .getElementById("addClass")
+ .classList
+ .toggle(
+  "hidden",
+  !admin
+ );
+
+
+ document
+ .getElementById("addMatiere")
+ .classList
+ .toggle(
+  "hidden",
+  !admin
+ );
+
+
+ document
+ .getElementById("addDevoir")
+ .classList
+ .toggle(
+  "hidden",
+  !(admin || teacher)
+ );
+
 }
 
-window.showSection=function(id,button){
 
- document.querySelectorAll(".section")
-  .forEach(s=>s.classList.remove("active"));
+window.showSection=function(
+ id,
+ button
+){
 
- document.querySelectorAll(".navBtn")
-  .forEach(b=>b.classList.remove("active"));
+ document
+ .querySelectorAll(".section")
+ .forEach(
+  section =>
+  section.classList.remove(
+   "active"
+  )
+ );
 
- const section=document.getElementById(id);
- if(section)section.classList.add("active");
+ document
+ .querySelectorAll(".navBtn")
+ .forEach(
+  btn =>
+  btn.classList.remove(
+   "active"
+  )
+ );
 
- if(button)button.classList.add("active");
 
- if(id==="eleves")loadEleves();
- if(id==="professeurs")loadProfesseurs();
- if(id==="classes")loadClasses();
- if(id==="matieres")loadMatieres();
- if(id==="devoirs")loadDevoirs();
- if(id==="remises")loadRemises();
- if(id==="resultats")loadResultats();
- if(id==="users")loadUsers();
- if(id==="statistiques")updateStats();
-};
+ const section =
+ document.getElementById(id);
 
-async function loadAllData(){
- await loadEleves();
- await loadProfesseurs();
- await loadClasses();
- await loadMatieres();
- await loadDevoirs();
- await loadRemises();
- await loadResultats();
- await updateStats();
+ if(section){
 
- if(currentProfile?.role==="administrateur"){
-  await loadUsers();
+  section.classList.add(
+   "active"
+  );
+
  }
-}
 
-function emptyCard(icon,text){
- return `<div class="empty">${icon}<br><br>${escapeHTML(text)}</div>`;
-}
 
-async function loadEleves(){
+ if(button){
 
- const box=document.getElementById("listeEleves");
- if(!box)return;
+  button.classList.add(
+   "active"
+  );
 
- box.innerHTML=emptyCard("⏳","Chaje elèv yo...");
-
- try{
-  const snap=await getDocs(collection(db,"eleves"));
-
-  if(snap.empty){
-   box.innerHTML=emptyCard("👨‍🎓","Pa gen elèv.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   box.innerHTML+=`
-   <div class="item">
-    <div class="itemTop">
-     <div>
-      <h3>${escapeHTML(x.nom||"Elèv")}</h3>
-      <div class="muted">${escapeHTML(x.email||"")}</div>
-     </div>
-     ${currentProfile?.role==="administrateur"
-      ?`<button class="danger" onclick="deleteEleve('${d.id}')">🗑️ Efase</button>`:""}
-    </div>
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️","Erè: "+errorText(e));
  }
-}
 
-window.ajouterEleve=async function(){
 
- if(!(await verifyAdmin()))return;
-
- const nom=prompt("Non elèv la:");
- if(!nom)return;
-
- const email=prompt("Email elèv la (opsyonèl):")||"";
-
- try{
-  await setDoc(doc(collection(db,"eleves")),{
-   nom,
-   email,
-   createdAt:serverTimestamp()
-  });
-
-  msg("Elèv la ajoute.");
+ if(id==="eleves")
   loadEleves();
-  updateStats();
- }catch(e){msg(errorText(e),"error");}
-};
 
-async function loadProfesseurs(){
-
- const box=document.getElementById("listeProfesseurs");
- if(!box)return;
-
- box.innerHTML=emptyCard("⏳","Chaje pwofesè yo...");
-
- try{
-  const snap=await getDocs(collection(db,"professeurs"));
-
-  if(snap.empty){
-   box.innerHTML=emptyCard("👨‍🏫","Pa gen pwofesè.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   box.innerHTML+=`
-   <div class="item">
-    <div class="itemTop">
-     <div>
-      <h3>${escapeHTML(x.nom||"Pwofesè")}</h3>
-      <div class="muted">${escapeHTML(x.email||"")}</div>
-     </div>
-     ${currentProfile?.role==="administrateur"
-      ?`<button class="danger" onclick="deleteProfesseur('${d.id}')">🗑️ Efase</button>`:""}
-    </div>
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-}
-
-window.ajouterProfesseur=async function(){
-
- if(!(await verifyAdmin()))return;
-
- const nom=prompt("Non pwofesè a:");
- if(!nom)return;
-
- const email=prompt("Email pwofesè a (opsyonèl):")||"";
-
- try{
-  await setDoc(doc(collection(db,"professeurs")),{
-   nom,email,createdAt:serverTimestamp()
-  });
-
-  msg("Pwofesè a ajoute.");
+ if(id==="professeurs")
   loadProfesseurs();
-  updateStats();
- }catch(e){msg(errorText(e),"error");}
-};
 
-async function loadClasses(){
-
- const box=document.getElementById("listeClasses");
- if(!box)return;
-
- box.innerHTML=emptyCard("⏳","Chaje klas yo...");
-
- try{
-  const snap=await getDocs(collection(db,"classes"));
-
-  if(snap.empty){
-   box.innerHTML=emptyCard("🏫","Pa gen klas.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   box.innerHTML+=`
-   <div class="item">
-    <div class="itemTop">
-     <h3>${escapeHTML(x.nom||"Klas")}</h3>
-     ${currentProfile?.role==="administrateur"
-      ?`<button class="danger" onclick="deleteClasse('${d.id}')">🗑️ Efase</button>`:""}
-    </div>
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-}
-
-window.ajouterClasse=async function(){
-
- if(!(await verifyAdmin()))return;
-
- const nom=prompt("Non klas la:");
- if(!nom)return;
-
- try{
-  await setDoc(doc(collection(db,"classes")),{
-   nom,createdAt:serverTimestamp()
-  });
-
-  msg("Klas la ajoute.");
+ if(id==="classes")
   loadClasses();
-  updateStats();
- }catch(e){msg(errorText(e),"error");}
-};
 
-async function loadMatieres(){
-
- const box=document.getElementById("listeMatieres");
- if(!box)return;
-
- box.innerHTML=emptyCard("⏳","Chaje matyè yo...");
-
- try{
-  const snap=await getDocs(collection(db,"matieres"));
-
-  if(snap.empty){
-   box.innerHTML=emptyCard("📚","Pa gen matyè.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   box.innerHTML+=`
-   <div class="item">
-    <div class="itemTop">
-     <h3>${escapeHTML(x.nom||"Matyè")}</h3>
-     ${currentProfile?.role==="administrateur"
-      ?`<button class="danger" onclick="deleteMatiere('${d.id}')">🗑️ Efase</button>`:""}
-    </div>
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-}
-
-window.ajouterMatiere=async function(){
-
- if(!(await verifyAdmin()))return;
-
- const nom=prompt("Non matyè a:");
- if(!nom)return;
-
- try{
-  await setDoc(doc(collection(db,"matieres")),{
-   nom,createdAt:serverTimestamp()
-  });
-
-  msg("Matyè a ajoute.");
+ if(id==="matieres")
   loadMatieres();
-  updateStats();
- }catch(e){msg(errorText(e),"error");}
-};
 
-async function loadDevoirs(){
-
- const box=document.getElementById("listeDevoirs");
- if(!box)return;
-
- box.innerHTML=emptyCard("⏳","Chaje devwa yo...");
-
- try{
-  const snap=await getDocs(collection(db,"devoirs"));
-
-  if(snap.empty){
-   box.innerHTML=emptyCard("📝","Pa gen devwa.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   const action=currentProfile?.role==="administrateur"
-    ?`<button class="danger" onclick="deleteDevoir('${d.id}')">🗑️ Efase</button>`
-    :"";
-
-   const submit=currentProfile?.role==="eleve"
-    ?`<button class="primary" onclick="ouvrirRemetDevoir('${d.id}')">📥 Remèt</button>`
-    :"";
-
-   box.innerHTML+=`
-   <div class="item">
-    <h3>${escapeHTML(x.titre||"Devwa")}</h3>
-    <div class="muted">${escapeHTML(x.description||"")}</div>
-    <div class="actions">${submit}${action}</div>
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-}
-
-window.ajouterDevoir=async function(){
-
- if(!(currentProfile?.role==="administrateur"||
-      currentProfile?.role==="professeur")){
-  msg("Ou pa gen dwa ajoute devwa.","error");
-  return;
- }
-
- const titre=prompt("Tit devwa a:");
- if(!titre)return;
-
- const description=prompt("Deskripsyon devwa a:")||"";
-
- try{
-  await setDoc(doc(collection(db,"devoirs")),{
-   titre,
-   description,
-   createdBy:currentUser.uid,
-   createdAt:serverTimestamp()
-  });
-
-  msg("Devwa a ajoute.");
+ if(id==="devoirs")
   loadDevoirs();
-  updateStats();
- }catch(e){msg(errorText(e),"error");}
-};
 
-window.ouvrirRemetDevoir=function(id){
- document.getElementById("remetDevoirId").value=id;
- document.getElementById("remetRepons").value="";
- document.getElementById("remetModal").classList.add("show");
-};
-
-window.fermerRemetModal=function(){
- document.getElementById("remetModal").classList.remove("show");
-};
-
-window.envoyerRemise=async function(){
-
- if(!currentUser)return;
-
- const devoirId=document.getElementById("remetDevoirId").value;
- const repons=document.getElementById("remetRepons").value.trim();
-
- if(!repons){
-  msg("Ekri repons ou an.","error");
-  return;
- }
-
- try{
-  const ref=doc(collection(db,"tentatives"));
-
-  await setDoc(ref,{
-   devoirId,
-   eleveId:currentUser.uid,
-   eleveEmail:currentUser.email||"",
-   repons,
-   status:"soumet",
-   note:null,
-   commentaire:"",
-   createdAt:serverTimestamp()
-  });
-
-  fermerRemetModal();
-  msg("Devwa a remèt avèk siksè.");
+ if(id==="remises")
   loadRemises();
- }catch(e){msg(errorText(e),"error");}
-};
 
-async function loadRemises(){
-
- const box=document.getElementById("listeRemises");
- if(!box)return;
-
- box.innerHTML=emptyCard("⏳","Chaje remèt yo...");
-
- try{
-  const snap=await getDocs(collection(db,"tentatives"));
-
-  let docs=[];
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   if(
-    currentProfile?.role==="administrateur"||
-    currentProfile?.role==="professeur"||
-    x.eleveId===currentUser.uid
-   ){
-    docs.push({id:d.id,...x});
-   }
-  });
-
-  if(!docs.length){
-   box.innerHTML=emptyCard("📥","Pa gen remèt.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  docs.forEach(x=>{
-
-   const note=x.note!==null&&x.note!==undefined
-    ?`${escapeHTML(x.note)}/100`
-    :"Poko korije";
-
-   const correction=
-    (currentProfile?.role==="administrateur"||
-     currentProfile?.role==="professeur")
-    ?`
-     <div class="actions">
-      <button class="success"
-       onclick="corrigerRemise('${x.id}')">
-       ✏️ Korije
-      </button>
-      <button class="danger"
-       onclick="deleteRemise('${x.id}')">
-       🗑️ Efase
-      </button>
-     </div>`:"";
-
-   box.innerHTML+=`
-   <div class="item">
-    <h3>📥 Remèt</h3>
-    <div class="muted">Elèv: ${escapeHTML(x.eleveEmail||"")}</div>
-    <p style="margin-top:8px">${escapeHTML(x.repons||"")}</p>
-    <strong style="display:block;margin-top:8px">
-     Nòt: ${note}
-    </strong>
-    ${x.commentaire
-      ?`<div class="muted" style="margin-top:5px">
-        Koreksyon: ${escapeHTML(x.commentaire)}
-       </div>`:""}
-    ${correction}
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-}
-
-window.corrigerRemise=async function(id){
-
- if(!(currentProfile?.role==="administrateur"||
-      currentProfile?.role==="professeur")){
-  return;
- }
-
- const note=prompt("Antre nòt la sou 100:");
- if(note===null)return;
-
- const n=Number(note);
-
- if(!Number.isFinite(n)||n<0||n>100){
-  msg("Nòt la dwe ant 0 ak 100.","error");
-  return;
- }
-
- const commentaire=prompt("Kòmantè pwofesè a:")||"";
-
- try{
-
-  const remiseSnap=await getDoc(doc(db,"tentatives",id));
-
-  if(!remiseSnap.exists()){
-   msg("Remèt la pa egziste.","error");
-   return;
-  }
-
-  const r=remiseSnap.data();
-
-  await updateDoc(doc(db,"tentatives",id),{
-   note:n,
-   commentaire,
-   status:"corrije",
-   correctedAt:serverTimestamp(),
-   correctedBy:currentUser.uid
-  });
-
-  await setDoc(doc(db,"resultats",id),{
-   tentativeId:id,
-   devoirId:r.devoirId||"",
-   eleveId:r.eleveId||"",
-   eleveEmail:r.eleveEmail||"",
-   note:n,
-   noteFinale:n,
-   commentaire,
-   status:"corrije",
-   updatedAt:serverTimestamp()
-  },{merge:true});
-
-  msg("Nòt la anrejistre: "+n+"/100");
-  loadRemises();
+ if(id==="resultats")
   loadResultats();
 
- }catch(e){msg(errorText(e),"error");}
-};
-
-async function loadResultats(){
-
- const box=document.getElementById("listeResultats");
- if(!box)return;
-
- box.innerHTML=emptyCard("⏳","Chaje rezilta yo...");
-
- try{
-  const snap=await getDocs(collection(db,"resultats"));
-
-  let docs=[];
-
-  snap.forEach(d=>{
-   const x=d.data();
-
-   if(
-    currentProfile?.role==="administrateur"||
-    currentProfile?.role==="professeur"||
-    x.eleveId===currentUser.uid
-   ){
-    docs.push({id:d.id,...x});
-   }
-  });
-
-  if(!docs.length){
-   box.innerHTML=emptyCard("📊","Pa gen rezilta.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  docs.forEach(x=>{
-   box.innerHTML+=`
-   <div class="item">
-    <h3>📊 Rezilta</h3>
-    <div class="muted">${escapeHTML(x.eleveEmail||"")}</div>
-    <strong style="display:block;margin-top:8px">
-     Nòt: ${escapeHTML(x.note??0)}/100
-    </strong>
-    ${x.commentaire
-     ?`<p style="margin-top:6px">
-       ${escapeHTML(x.commentaire)}
-      </p>`:""}
-    ${currentProfile?.role==="administrateur"
-     ?`<div class="actions">
-       <button class="danger"
-        onclick="deleteResultat('${x.id}')">
-        🗑️ Efase
-       </button>
-      </div>`:""}
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-};
-
-async function loadUsers(){
-
- const box=document.getElementById("listeUsers");
- if(!box||currentProfile?.role!=="administrateur")return;
-
- box.innerHTML=emptyCard("⏳","Chaje itilizatè yo...");
-
- try{
-
-  const snap=await getDocs(collection(db,"users"));
-  const users=[];
-
-  snap.forEach(d=>{
-   const x=d.data();
-   if(x.status==="attente"){
-    users.push({id:d.id,...x});
-   }
-  });
-
-  if(!users.length){
-   box.innerHTML=emptyCard("✅","Pa gen itilizatè an atant.");
-   return;
-  }
-
-  box.innerHTML="";
-
-  users.forEach(x=>{
-   box.innerHTML+=`
-   <div class="item">
-    <h3>${escapeHTML(x.email||"San email")}</h3>
-    <div class="muted">Status: an atant</div>
-
-    <div class="actions">
-     <button class="success"
-      onclick="acceptUser('${x.id}','eleve')">
-      ✅ Aksepte kòm elèv
-     </button>
-
-     <button class="primary"
-      onclick="acceptUser('${x.id}','professeur')">
-      👨‍🏫 Aksepte kòm pwofesè
-     </button>
-
-     <button class="danger"
-      onclick="refuseUser('${x.id}')">
-      ❌ Refize
-     </button>
-    </div>
-   </div>`;
-  });
-
- }catch(e){
-  box.innerHTML=emptyCard("⚠️",errorText(e));
- }
-}
-
-window.acceptUser=async function(id,role){
-
- if(!(await verifyAdmin()))return;
-
- try{
-  await updateDoc(doc(db,"users",id),{
-   role,
-   status:"accepted",
-   approvedAt:serverTimestamp(),
-   approvedBy:currentUser.uid
-  });
-
-  msg("Itilizatè a aksepte kòm "+role+".");
+ if(id==="users")
   loadUsers();
- }catch(e){msg(errorText(e),"error");}
+
+ if(id==="statistiques")
+  updateStats();
+
 };
 
-window.refuseUser=async function(id){
-
- if(!(await verifyAdmin()))return;
-
- if(!confirm("Èske ou sèten ou vle refize itilizatè sa a?")){
-  return;
- }
-
- try{
-  await deleteDoc(doc(db,"users",id));
-  msg("Itilizatè a refize.");
-  loadUsers();
- }catch(e){msg(errorText(e),"error");}
-};
 
 async function verifyAdmin(){
 
- if(!currentUser||currentProfile?.role!=="administrateur"){
-  msg("Se administratè a sèlman ki ka fè aksyon sa a.","error");
+ if(
+  !currentUser ||
+  currentProfile?.role !==
+  "administrateur"
+ ){
+
+  showMessage(
+   "Se administratè a ka fè aksyon sa a.",
+   true
+  );
+
   return false;
+
  }
 
  return true;
+
 }
+
 
 async function confirmDelete(text){
 
- return confirm(text);
+ return window.confirm(text);
+
 }
 
-window.deleteEleve=async function(id){
 
- if(
-  !(await verifyAdmin())||
-  !(await confirmDelete("Èske ou sèten ou vle efase elèv sa a?"))
- )return;
+/* ELÈV */
+
+async function loadEleves(){
+
+ const box =
+ document.getElementById(
+  "listeEleves"
+ );
+
+ if(!box)return;
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje elèv yo...</div>";
+
 
  try{
-  await deleteDoc(doc(db,"eleves",id));
-  msg("Elèv la efase.");
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "eleves"
+    )
+   );
+
+
+  box.innerHTML="";
+
+
+  if(snap.empty){
+
+   box.innerHTML =
+   "<div class='empty'>👨‍🎓<br><br>Pa gen elèv.</div>";
+
+   return;
+
+  }
+
+
+  snap.forEach(
+   item => {
+
+    const data =
+     item.data();
+
+
+    const deleteButton =
+     currentProfile?.role ===
+     "administrateur"
+
+     ?
+
+     `<button
+       class="danger"
+       onclick="deleteEleve('${item.id}')">
+       🗑️ Efase
+      </button>`
+
+     :
+
+     "";
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <div class="itemTop">
+
+       <div>
+
+        <h3>
+         ${escapeHTML(
+          data.nom || "Elèv"
+         )}
+        </h3>
+
+        <div class="muted">
+         ${escapeHTML(
+          data.email || ""
+         )}
+        </div>
+
+       </div>
+
+       ${deleteButton}
+
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.ajouterEleve=async function(){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ const nom =
+ prompt("Non elèv la:");
+
+ if(!nom)return;
+
+
+ const email =
+ prompt(
+  "Email elèv la (opsyonèl):"
+ ) || "";
+
+
+ try{
+
+  await setDoc(
+   doc(
+    collection(
+     db,
+     "eleves"
+    )
+   ),
+   {
+    nom,
+    email,
+    createdAt:
+     serverTimestamp()
+   }
+  );
+
+
+  showMessage(
+   "Elèv la ajoute."
+  );
+
   loadEleves();
+
   updateStats();
- }catch(e){msg(errorText(e),"error");}
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
 };
 
-window.deleteProfesseur=async function(id){
+
+window.deleteEleve=
+async function(id){
 
  if(
-  !(await verifyAdmin())||
-  !(await confirmDelete("Èske ou sèten ou vle efase pwofesè sa a?"))
- )return;
+  !(await verifyAdmin())
+ )
+ return;
+
+
+ if(
+  !(await confirmDelete(
+   "Èske ou sèten ou vle efase elèv sa a?"
+  ))
+ )
+ return;
+
 
  try{
-  await deleteDoc(doc(db,"professeurs",id));
-  msg("Pwofesè a efase.");
+
+  await deleteDoc(
+   doc(
+    db,
+    "eleves",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Elèv la efase."
+  );
+
+
+  await loadEleves();
+
+  await updateStats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* PWOFESÈ */
+
+async function loadProfesseurs(){
+
+ const box =
+ document.getElementById(
+  "listeProfesseurs"
+ );
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje pwofesè yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "professeurs"
+    )
+   );
+
+
+  box.innerHTML="";
+
+
+  if(snap.empty){
+
+   box.innerHTML =
+   "<div class='empty'>👨‍🏫<br><br>Pa gen pwofesè.</div>";
+
+   return;
+
+  }
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <div class="itemTop">
+
+       <div>
+
+        <h3>
+         ${escapeHTML(
+          data.nom ||
+          "Pwofesè"
+         )}
+        </h3>
+
+        <div class="muted">
+         ${escapeHTML(
+          data.email || ""
+         )}
+        </div>
+
+       </div>
+
+       ${
+        currentProfile?.role ===
+        "administrateur"
+
+        ?
+
+        `<button
+          class="danger"
+          onclick="deleteProfesseur('${item.id}')">
+          🗑️ Efase
+         </button>`
+
+        :
+
+        ""
+       }
+
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.ajouterProfesseur=
+async function(){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ const nom =
+ prompt("Non pwofesè a:");
+
+ if(!nom)return;
+
+
+ const email =
+ prompt(
+  "Email pwofesè a (opsyonèl):"
+ ) || "";
+
+
+ try{
+
+  await setDoc(
+   doc(
+    collection(
+     db,
+     "professeurs"
+    )
+   ),
+   {
+    nom,
+    email,
+    createdAt:
+     serverTimestamp()
+   }
+  );
+
+
+  showMessage(
+   "Pwofesè a ajoute."
+  );
+
   loadProfesseurs();
+
   updateStats();
- }catch(e){msg(errorText(e),"error");}
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
 };
 
-window.deleteClasse=async function(id){
+
+window.deleteProfesseur=
+async function(id){
+
+ if(!(await verifyAdmin()))
+  return;
+
 
  if(
-  !(await verifyAdmin())||
-  !(await confirmDelete("Èske ou sèten ou vle efase klas sa a?"))
- )return;
+  !(await confirmDelete(
+   "Èske ou sèten ou vle efase pwofesè sa a?"
+  ))
+ )
+ return;
+
 
  try{
-  await deleteDoc(doc(db,"classes",id));
-  msg("Klas la efase.");
+
+  await deleteDoc(
+   doc(
+    db,
+    "professeurs",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Pwofesè a efase."
+  );
+
+  loadProfesseurs();
+
+  updateStats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* KLAS */
+
+async function loadClasses(){
+
+ const box =
+ document.getElementById(
+  "listeClasses"
+ );
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje klas yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "classes"
+    )
+   );
+
+
+  box.innerHTML="";
+
+
+  if(snap.empty){
+
+   box.innerHTML =
+   "<div class='empty'>🏫<br><br>Pa gen klas.</div>";
+
+   return;
+
+  }
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <div class="itemTop">
+
+       <h3>
+        ${escapeHTML(
+         data.nom || "Klas"
+        )}
+       </h3>
+
+       ${
+        currentProfile?.role ===
+        "administrateur"
+
+        ?
+
+        `<button
+          class="danger"
+          onclick="deleteClasse('${item.id}')">
+          🗑️ Efase
+         </button>`
+
+        :
+
+        ""
+       }
+
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.ajouterClasse=
+async function(){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ const nom =
+ prompt("Non klas la:");
+
+ if(!nom)return;
+
+
+ try{
+
+  await setDoc(
+   doc(
+    collection(
+     db,
+     "classes"
+    )
+   ),
+   {
+    nom,
+    createdAt:
+     serverTimestamp()
+   }
+  );
+
+
+  showMessage(
+   "Klas la ajoute."
+  );
+
   loadClasses();
+
   updateStats();
- }catch(e){msg(errorText(e),"error");}
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
 };
 
-window.deleteMatiere=async function(id){
+
+window.deleteClasse=
+async function(id){
+
+ if(!(await verifyAdmin()))
+  return;
+
 
  if(
-  !(await verifyAdmin())||
-  !(await confirmDelete("Èske ou sèten ou vle efase matyè sa a?"))
- )return;
+  !(await confirmDelete(
+   "Èske ou sèten ou vle efase klas sa a?"
+  ))
+ )
+ return;
+
 
  try{
-  await deleteDoc(doc(db,"matieres",id));
-  msg("Matyè a efase.");
+
+  await deleteDoc(
+   doc(
+    db,
+    "classes",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Klas la efase."
+  );
+
+  loadClasses();
+
+  updateStats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* MATYÈ */
+
+async function loadMatieres(){
+
+ const box =
+ document.getElementById(
+  "listeMatieres"
+ );
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje matyè yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "matieres"
+    )
+   );
+
+
+  box.innerHTML="";
+
+
+  if(snap.empty){
+
+   box.innerHTML =
+   "<div class='empty'>📚<br><br>Pa gen matyè.</div>";
+
+   return;
+
+  }
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <div class="itemTop">
+
+       <h3>
+        ${escapeHTML(
+         data.nom || "Matyè"
+        )}
+       </h3>
+
+       ${
+        currentProfile?.role ===
+        "administrateur"
+
+        ?
+
+        `<button
+          class="danger"
+          onclick="deleteMatiere('${item.id}')">
+          🗑️ Efase
+         </button>`
+
+        :
+
+        ""
+       }
+
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.ajouterMatiere=
+async function(){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ const nom =
+ prompt("Non matyè a:");
+
+ if(!nom)return;
+
+
+ try{
+
+  await setDoc(
+   doc(
+    collection(
+     db,
+     "matieres"
+    )
+   ),
+   {
+    nom,
+    createdAt:
+     serverTimestamp()
+   }
+  );
+
+
+  showMessage(
+   "Matyè a ajoute."
+  );
+
   loadMatieres();
- }catch(e){msg(errorText(e),"error");}
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
 };
 
-window.deleteDevoir=async function(id){
+
+window.deleteMatiere=
+async function(id){
+
+ if(!(await verifyAdmin()))
+  return;
+
 
  if(
-  !(await verifyAdmin())||
-  !(await confirmDelete("Èske ou sèten ou vle efase devwa sa a?"))
- )return;
+  !(await confirmDelete(
+   "Èske ou sèten ou vle efase matyè sa a?"
+  ))
+ )
+ return;
+
 
  try{
-  await deleteDoc(doc(db,"devoirs",id));
-  msg("Devwa a efase.");
+
+  await deleteDoc(
+   doc(
+    db,
+    "matieres",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Matyè a efase."
+  );
+
+  loadMatieres();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* DEVOIR */
+
+async function loadDevoirs(){
+
+ const box =
+ document.getElementById(
+  "listeDevoirs"
+ );
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje devwa yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "devoirs"
+    )
+   );
+
+
+  box.innerHTML="";
+
+
+  if(snap.empty){
+
+   box.innerHTML =
+   "<div class='empty'>📝<br><br>Pa gen devwa.</div>";
+
+   return;
+
+  }
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    let actions="";
+
+
+    if(
+     currentProfile?.role ===
+     "eleve"
+    ){
+
+     actions += `
+      <button
+       class="primary"
+       onclick="ouvrirRemetDevoir('${item.id}')">
+       📥 Remèt
+      </button>
+     `;
+
+    }
+
+
+    if(
+     currentProfile?.role ===
+     "administrateur"
+    ){
+
+     actions += `
+      <button
+       class="danger"
+       onclick="deleteDevoir('${item.id}')">
+       🗑️ Efase
+      </button>
+     `;
+
+    }
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <h3>
+       ${escapeHTML(
+        data.titre ||
+        "Devwa"
+       )}
+      </h3>
+
+      <div class="muted">
+       ${escapeHTML(
+        data.description ||
+        ""
+       )}
+      </div>
+
+      <div class="actions">
+       ${actions}
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.ajouterDevoir=
+async function(){
+
+ if(
+  ![
+   "administrateur",
+   "professeur"
+  ].includes(
+   currentProfile?.role
+  )
+ ){
+
+  showMessage(
+   "Ou pa gen dwa ajoute devwa.",
+   true
+  );
+
+  return;
+
+ }
+
+
+ const titre =
+ prompt("Tit devwa a:");
+
+ if(!titre)return;
+
+
+ const description =
+ prompt(
+  "Deskripsyon devwa a:"
+ ) || "";
+
+
+ try{
+
+  await setDoc(
+   doc(
+    collection(
+     db,
+     "devoirs"
+    )
+   ),
+   {
+    titre,
+    description,
+    createdBy:
+     currentUser.uid,
+    createdAt:
+     serverTimestamp()
+   }
+  );
+
+
+  showMessage(
+   "Devwa a ajoute."
+  );
+
   loadDevoirs();
+
   updateStats();
- }catch(e){msg(errorText(e),"error");}
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
 };
 
-window.deleteRemise=async function(id){
 
- if(!(await verifyAdmin()))return;
+window.deleteDevoir=
+async function(id){
 
- if(!(await confirmDelete("Èske ou sèten ou vle efase remèt sa a?")))return;
+ if(!(await verifyAdmin()))
+  return;
 
- try{
-  await deleteDoc(doc(db,"tentatives",id));
-  await deleteDoc(doc(db,"resultats",id)).catch(()=>{});
-
-  msg("Remèt la efase.");
-  loadRemises();
-  loadResultats();
- }catch(e){msg(errorText(e),"error");}
-};
-
-window.deleteResultat=async function(id){
 
  if(
-  !(await verifyAdmin())||
-  !(await confirmDelete("Èske ou sèten ou vle efase rezilta sa a?"))
- )return;
+  !(await confirmDelete(
+   "Èske ou sèten ou vle efase devwa sa a?"
+  ))
+ )
+ return;
+
 
  try{
-  await deleteDoc(doc(db,"resultats",id));
-  msg("Rezilta a efase.");
-  loadResultats();
- }catch(e){msg(errorText(e),"error");}
+
+  await deleteDoc(
+   doc(
+    db,
+    "devoirs",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Devwa a efase."
+  );
+
+  loadDevoirs();
+
+  updateStats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
 };
+
+
+/* REMÈT */
+
+window.ouvrirRemetDevoir=
+function(id){
+
+ document.getElementById(
+  "remetDevoirId"
+ ).value=id;
+
+ document.getElementById(
+  "remetRepons"
+ ).value="";
+
+ document.getElementById(
+  "remetModal"
+ ).classList.add(
+  "show"
+ );
+
+};
+
+
+window.fermerRemetModal=
+function(){
+
+ document.getElementById(
+  "remetModal"
+ ).classList.remove(
+  "show"
+ );
+
+};
+
+
+window.envoyerRemise=
+async function(){
+
+ const devoirId =
+ document.getElementById(
+  "remetDevoirId"
+ ).value;
+
+ const repons =
+ document.getElementById(
+  "remetRepons"
+ ).value
+ .trim();
+
+
+ if(!repons){
+
+  showMessage(
+   "Ekri repons ou.",
+   true
+  );
+
+  return;
+
+ }
+
+
+ try{
+
+  await setDoc(
+   doc(
+    collection(
+     db,
+     "tentatives"
+    )
+   ),
+   {
+    devoirId,
+    eleveId:
+     currentUser.uid,
+    eleveEmail:
+     currentUser.email || "",
+    repons,
+    status:"soumet",
+    note:null,
+    commentaire:"",
+    createdAt:
+     serverTimestamp()
+   }
+  );
+
+
+  fermerRemetModal();
+
+  showMessage(
+   "Devwa a remèt avèk siksè."
+  );
+
+  loadRemises();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+async function loadRemises(){
+
+ const box =
+ document.getElementById(
+  "listeRemises"
+ );
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje remèt yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "tentatives"
+    )
+   );
+
+
+  box.innerHTML="";
+
+  let found=false;
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    const allowed =
+     currentProfile?.role ===
+     "administrateur" ||
+
+     currentProfile?.role ===
+     "professeur" ||
+
+     data.eleveId ===
+     currentUser.uid;
+
+
+    if(!allowed)return;
+
+
+    found=true;
+
+
+    let note="Poko korije";
+
+    if(
+     data.note !== null &&
+     data.note !== undefined
+    ){
+
+     note =
+      escapeHTML(
+       data.note
+      )+"/100";
+
+    }
+
+
+    let actions="";
+
+
+    if(
+     currentProfile?.role ===
+     "administrateur" ||
+     currentProfile?.role ===
+     "professeur"
+    ){
+
+     actions += `
+      <button
+       class="success"
+       onclick="corrigerRemise('${item.id}')">
+       ✏️ Korije
+      </button>
+     `;
+
+    }
+
+
+    if(
+     currentProfile?.role ===
+     "administrateur"
+    ){
+
+     actions += `
+      <button
+       class="danger"
+       onclick="deleteRemise('${item.id}')">
+       🗑️ Efase
+      </button>
+     `;
+
+    }
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <h3>
+       📥 Remèt
+      </h3>
+
+      <div class="muted">
+       ${escapeHTML(
+        data.eleveEmail ||
+        ""
+       )}
+      </div>
+
+      <p style="margin-top:8px">
+       ${escapeHTML(
+        data.repons ||
+        ""
+       )}
+      </p>
+
+      <strong>
+       Nòt: ${note}
+      </strong>
+
+      ${
+       data.commentaire
+
+       ?
+
+       `<p style="margin-top:7px">
+        Koreksyon:
+        ${escapeHTML(
+         data.commentaire
+        )}
+       </p>`
+
+       :
+
+       ""
+      }
+
+      <div class="actions">
+       ${actions}
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+  if(!found){
+
+   box.innerHTML =
+   "<div class='empty'>📥<br><br>Pa gen remèt.</div>";
+
+  }
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.corrigerRemise=
+async function(id){
+
+ if(
+  ![
+   "administrateur",
+   "professeur"
+  ].includes(
+   currentProfile?.role
+  )
+ )return;
+
+
+ const noteText =
+ prompt(
+  "Antre nòt la sou 100:"
+ );
+
+
+ if(noteText===null)return;
+
+
+ const note =
+ Number(noteText);
+
+
+ if(
+  !Number.isFinite(note) ||
+  note<0 ||
+  note>100
+ ){
+
+  showMessage(
+   "Nòt la dwe ant 0 ak 100.",
+   true
+  );
+
+  return;
+
+ }
+
+
+ const commentaire =
+ prompt(
+  "Kòmantè pwofesè a:"
+ ) || "";
+
+
+ try{
+
+  const remiseSnap =
+   await getDoc(
+    doc(
+     db,
+     "tentatives",
+     id
+    )
+   );
+
+
+  if(!remiseSnap.exists()){
+
+   showMessage(
+    "Remèt la pa egziste.",
+    true
+   );
+
+   return;
+
+  }
+
+
+  const remise =
+   remiseSnap.data();
+
+
+  await updateDoc(
+   doc(
+    db,
+    "tentatives",
+    id
+   ),
+   {
+    note,
+    commentaire,
+    status:"corrije",
+    correctedAt:
+     serverTimestamp(),
+    correctedBy:
+     currentUser.uid
+   }
+  );
+
+
+  await setDoc(
+   doc(
+    db,
+    "resultats",
+    id
+   ),
+   {
+    tentativeId:id,
+    devoirId:
+     remise.devoirId || "",
+    eleveId:
+     remise.eleveId || "",
+    eleveEmail:
+     remise.eleveEmail || "",
+    note,
+    noteFinale:note,
+    commentaire,
+    status:"corrije",
+    updatedAt:
+     serverTimestamp()
+   },
+   {
+    merge:true
+   }
+  );
+
+
+  showMessage(
+   "Nòt la anrejistre: "+
+   note+
+   "/100"
+  );
+
+
+  loadRemises();
+
+  loadResultats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* REZILTA */
+
+async function loadResultats(){
+
+ const box =
+ document.getElementById(
+  "listeResultats"
+ );
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje rezilta yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "resultats"
+    )
+   );
+
+
+  box.innerHTML="";
+
+  let found=false;
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    const allowed =
+     currentProfile?.role ===
+     "administrateur" ||
+
+     currentProfile?.role ===
+     "professeur" ||
+
+     data.eleveId ===
+     currentUser.uid;
+
+
+    if(!allowed)return;
+
+
+    found=true;
+
+
+    let deleteButton="";
+
+
+    if(
+     currentProfile?.role ===
+     "administrateur"
+    ){
+
+     deleteButton = `
+
+      <button
+       class="danger"
+       onclick="deleteResultat('${item.id}')">
+
+       🗑️ Efase
+
+      </button>
+
+     `;
+
+    }
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <h3>
+       📊 Rezilta
+      </h3>
+
+      <div class="muted">
+       ${escapeHTML(
+        data.eleveEmail ||
+        ""
+       )}
+      </div>
+
+      <strong>
+       Nòt:
+       ${escapeHTML(
+        data.note ??
+        0
+       )}/100
+      </strong>
+
+      ${
+       data.commentaire
+
+       ?
+
+       `<p style="margin-top:7px">
+        ${escapeHTML(
+         data.commentaire
+        )}
+       </p>`
+
+       :
+
+       ""
+      }
+
+      <div class="actions">
+       ${deleteButton}
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+  if(!found){
+
+   box.innerHTML =
+   "<div class='empty'>📊<br><br>Pa gen rezilta.</div>";
+
+  }
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+/* ITILIZATÈ */
+
+async function loadUsers(){
+
+ const box =
+ document.getElementById(
+  "listeUsers"
+ );
+
+ if(
+  currentProfile?.role !==
+  "administrateur"
+ )return;
+
+
+ box.innerHTML =
+ "<div class='empty'>⏳<br><br>Chaje itilizatè yo...</div>";
+
+
+ try{
+
+  const snap =
+   await getDocs(
+    collection(
+     db,
+     "users"
+    )
+   );
+
+
+  box.innerHTML="";
+
+  let found=false;
+
+
+  snap.forEach(
+   item=>{
+
+    const data =
+     item.data();
+
+
+    if(
+     data.status !==
+     "attente"
+    )return;
+
+
+    found=true;
+
+
+    box.innerHTML += `
+
+     <div class="item">
+
+      <h3>
+       ${escapeHTML(
+        data.email ||
+        "San email"
+       )}
+      </h3>
+
+      <div class="muted">
+       Status: an atant
+      </div>
+
+      <div class="actions">
+
+       <button
+        class="success"
+        onclick="acceptUser(
+         '${item.id}',
+         'eleve'
+        )">
+
+        ✅ Aksepte kòm elèv
+
+       </button>
+
+       <button
+        class="primary"
+        onclick="acceptUser(
+         '${item.id}',
+         'professeur'
+        )">
+
+        👨‍🏫 Aksepte kòm pwofesè
+
+       </button>
+
+       <button
+        class="danger"
+        onclick="refuseUser(
+         '${item.id}'
+        )">
+
+        ❌ Refize
+
+       </button>
+
+      </div>
+
+     </div>
+
+    `;
+
+   }
+  );
+
+
+  if(!found){
+
+   box.innerHTML =
+   "<div class='empty'>✅<br><br>Pa gen itilizatè an atant.</div>";
+
+  }
+
+
+ }catch(error){
+
+  box.innerHTML =
+  `<div class="empty">
+   ⚠️<br><br>
+   ${escapeHTML(
+    getFirebaseError(error)
+   )}
+  </div>`;
+
+ }
+
+}
+
+
+window.acceptUser=
+async function(
+ id,
+ role
+){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ try{
+
+  await updateDoc(
+   doc(
+    db,
+    "users",
+    id
+   ),
+   {
+    role,
+    status:"accepted",
+    approvedAt:
+     serverTimestamp(),
+    approvedBy:
+     currentUser.uid
+   }
+  );
+
+
+  showMessage(
+   "Itilizatè a aksepte."
+  );
+
+
+  loadUsers();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+window.refuseUser=
+async function(id){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ if(
+  !confirm(
+   "Èske ou sèten ou vle refize itilizatè sa a?"
+  )
+ )return;
+
+
+ try{
+
+  await deleteDoc(
+   doc(
+    db,
+    "users",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Itilizatè a refize."
+  );
+
+
+  loadUsers();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* EFASMAN */
+
+window.deleteRemise=
+async function(id){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ if(
+  !confirm(
+   "Èske ou sèten ou vle efase remèt sa a?"
+  )
+ )return;
+
+
+ try{
+
+  await deleteDoc(
+   doc(
+    db,
+    "tentatives",
+    id
+   )
+  );
+
+
+  try{
+
+   await deleteDoc(
+    doc(
+     db,
+     "resultats",
+     id
+    )
+   );
+
+  }catch(error){
+
+   console.log(
+    "Rezilta asosye a pa egziste."
+   );
+
+  }
+
+
+  showMessage(
+   "Remèt la efase."
+  );
+
+
+  loadRemises();
+
+  loadResultats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+window.deleteResultat=
+async function(id){
+
+ if(!(await verifyAdmin()))
+  return;
+
+
+ if(
+  !confirm(
+   "Èske ou sèten ou vle efase rezilta sa a?"
+  )
+ )return;
+
+
+ try{
+
+  await deleteDoc(
+   doc(
+    db,
+    "resultats",
+    id
+   )
+  );
+
+
+  showMessage(
+   "Rezilta a efase."
+  );
+
+
+  loadResultats();
+
+
+ }catch(error){
+
+  showMessage(
+   getFirebaseError(error),
+   true
+  );
+
+ }
+
+};
+
+
+/* ESTATISTIK */
 
 async function updateStats(){
 
  try{
 
-  const [e,p,c,d]=await Promise.all([
-   getDocs(collection(db,"eleves")),
-   getDocs(collection(db,"professeurs")),
-   getDocs(collection(db,"classes")),
-   getDocs(collection(db,"devoirs"))
-  ]);
+  const eleves =
+   await getDocs(
+    collection(
+     db,
+     "eleves"
+    )
+   );
 
-  const values={
-   statEleves:e.size,
-   statProfesseurs:p.size,
-   statClasses:c.size,
-   statDevoirs:d.size,
-   statsEleves:e.size,
-   statsProfesseurs:p.size,
-   statsClasses:c.size,
-   statsDevoirs:d.size
-  };
+  const professeurs =
+   await getDocs(
+    collection(
+     db,
+     "professeurs"
+    )
+   );
 
-  Object.entries(values).forEach(([id,value])=>{
-   const el=document.getElementById(id);
-   if(el)el.textContent=value;
-  });
+  const classes =
+   await getDocs(
+    collection(
+     db,
+     "classes"
+    )
+   );
 
- }catch(e){
-  console.error(e);
+  const devoirs =
+   await getDocs(
+    collection(
+     db,
+     "devoirs"
+    )
+   );
+
+
+  document.getElementById(
+   "statEleves"
+  ).textContent =
+  eleves.size;
+
+  document.getElementById(
+   "statProfesseurs"
+  ).textContent =
+  professeurs.size;
+
+  document.getElementById(
+   "statClasses"
+  ).textContent =
+  classes.size;
+
+  document.getElementById(
+   "statDevoirs"
+  ).textContent =
+  devoirs.size;
+
+
+  document.getElementById(
+   "statsEleves"
+  ).textContent =
+  eleves.size;
+
+  document.getElementById(
+   "statsProfesseurs"
+  ).textContent =
+  professeurs.size;
+
+  document.getElementById(
+   "statsClasses"
+  ).textContent =
+  classes.size;
+
+  document.getElementById(
+   "statsDevoirs"
+  ).textContent =
+  devoirs.size;
+
+
+ }catch(error){
+
+  console.error(error);
+
  }
+
 }
 
-window.deconnecter=async function(){
+
+/* CHAJE TOUT */
+
+async function loadAllData(){
+
+ await loadEleves();
+
+ await loadProfesseurs();
+
+ await loadClasses();
+
+ await loadMatieres();
+
+ await loadDevoirs();
+
+ await loadRemises();
+
+ await loadResultats();
+
+ await updateStats();
+
+
+ if(
+  currentProfile?.role ===
+  "administrateur"
+ ){
+
+  await loadUsers();
+
+ }
+
+}
+
+
+/* DEKONEKTE */
+
+window.deconnecter=
+async function(){
 
  try{
+
   await signOut(auth);
- }catch(e){
-  console.error(e);
+
+ }catch(error){
+
+  console.error(error);
+
  }
 
  currentUser=null;
- currentProfile=null;
- window.currentUser=null;
 
- document.getElementById("appScreen").style.display="none";
- document.getElementById("loginScreen").style.display="flex";
+ currentProfile=null;
+
+ document.getElementById(
+  "appScreen"
+ ).style.display="none";
+
+ document.getElementById(
+  "loginScreen"
+ ).style.display="flex";
+
 };
 
-window.changeLanguage=function(lang){
 
- document.documentElement.lang=lang;
+/* LANG */
+
+window.changeLanguage=
+function(lang){
+
+ document.documentElement.lang=
+ lang;
+
+ const title =
+ document.getElementById(
+  "loginTitle"
+ );
 
  if(lang==="fr"){
-  document.getElementById("loginTitle").textContent="Connectez-vous à votre compte";
+
+  title.textContent =
+  "Connectez-vous à votre compte";
+
  }else{
-  document.getElementById("loginTitle").textContent="Konekte nan kont ou";
+
+  title.textContent =
+  "Konekte nan kont ou";
+
  }
+
 };
 
-function errorText(e){
 
- const code=e?.code||"";
+/* PWA */
 
- const errors={
-  "auth/invalid-email":"Email la pa valab.",
-  "auth/user-not-found":"Kont sa a pa egziste.",
-  "auth/wrong-password":"Modpas la pa kòrèk.",
-  "auth/invalid-credential":"Email oswa modpas la pa kòrèk.",
-  "auth/email-already-in-use":"Email sa a deja itilize.",
-  "auth/weak-password":"Modpas la twò fèb.",
-  "auth/popup-closed-by-user":"Fenèt Google la te fèmen.",
-  "auth/popup-blocked":"Navigatè a bloke fenèt Google la.",
-  "auth/unauthorized-domain":"Domèn sit la poko otorize nan Firebase.",
-  "permission-denied":"Firebase refize aksè a."
- };
+window.addEventListener(
+ "beforeinstallprompt",
+ event=>{
 
- return errors[code]||e?.message||"Yon erè rive.";
-}
+  event.preventDefault();
 
-window.addEventListener("beforeinstallprompt",e=>{
- e.preventDefault();
- deferredPrompt=e;
- document.getElementById("installBtn").classList.remove("hidden");
-});
+  deferredPrompt=event;
 
-window.installApp=async function(){
+  document
+  .getElementById(
+   "installBtn"
+  )
+  .classList
+  .remove("hidden");
+
+ }
+);
+
+
+window.installApp=
+async function(){
 
  if(!deferredPrompt){
-  msg("Navigatè a poko bay opsyon enstalasyon an.","error");
+
+  showMessage(
+   "Enstalasyon an poko disponib.",
+   true
+  );
+
   return;
+
  }
+
 
  deferredPrompt.prompt();
 
- try{
-  await deferredPrompt.userChoice;
- }catch(e){
-  console.error(e);
- }
+ await deferredPrompt.userChoice;
 
  deferredPrompt=null;
- document.getElementById("installBtn").classList.add("hidden");
+
+ document
+ .getElementById(
+  "installBtn"
+ )
+ .classList
+ .add("hidden");
+
 };
 
-if("serviceWorker" in navigator){
- window.addEventListener("load",()=>{
-  navigator.serviceWorker.register("./sw.js").catch(e=>{
-   console.log("Service worker:",e);
-  });
- });
+
+/* SERVICE WORKER */
+
+if(
+ "serviceWorker" in navigator
+){
+
+ window.addEventListener(
+  "load",
+  ()=>{
+
+   navigator.serviceWorker
+   .register("./sw.js")
+   .catch(
+    error =>
+    console.log(
+     "Service Worker:",
+     error
+    )
+   );
+
+  }
+ );
+
 }
+
+
+/* GOOGLE REDIRECT */
 
 try{
- await getRedirectResult(auth);
-}catch(e){
- console.error("Google redirect:",e);
+
+ await getRedirectResult(
+  auth
+ );
+
+}catch(error){
+
+ console.error(
+  "Google redirect:",
+  error
+ );
+
 }
 
-onAuthStateChanged(auth,async user=>{
 
- if(!user)return;
+/* OTANTIFIKASYON */
 
- try{
-  await loadUserProfile(user);
- }catch(e){
-  console.error(e);
-  authMsg("Pa kapab verifye kont ou: "+errorText(e));
+onAuthStateChanged(
+ auth,
+ async user=>{
+
+  if(!user){
+
+   document.getElementById(
+    "loginScreen"
+   ).style.display="flex";
+
+   document.getElementById(
+    "appScreen"
+   ).style.display="none";
+
+   return;
+
+  }
+
+
+  try{
+
+   await loadUserProfile(
+    user
+   );
+
+  }catch(error){
+
+   console.error(error);
+
+   showAuthMessage(
+    "Erè pandan verifikasyon kont lan: "+
+    getFirebaseError(error)
+   );
+
+  }
+
  }
-});
+);
 
 </script>
 
