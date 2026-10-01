@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#2563eb">
-
 <link rel="manifest" href="./manifest.json">
 
 <title>Sistèm Aprantisaj</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   font-family:Arial,sans-serif;
@@ -18,9 +21,20 @@ body{
   color:#0f172a;
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
 
 /* ================= AUTH ================= */
 
@@ -30,7 +44,13 @@ button{cursor:pointer}
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#2563eb,#1e3a8a,#0f172a);
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1e3a8a,
+      #0f172a
+    );
 }
 
 .authBox{
@@ -112,9 +132,13 @@ button{cursor:pointer}
   margin-top:8px;
 }
 
-.btn:hover{opacity:.92}
+.btn:hover{
+  opacity:.92;
+}
 
-.google{background:#111827}
+.google{
+  background:#111827;
+}
 
 .divider{
   text-align:center;
@@ -202,7 +226,7 @@ button{cursor:pointer}
   color:#b91c1c;
 }
 
-/* ================= LAYOUT ================= */
+/* ================= SIDEBAR ================= */
 
 .layout{
   display:flex;
@@ -249,14 +273,21 @@ button{cursor:pointer}
   color:white;
 }
 
+/* ================= MAIN ================= */
+
 .main{
   margin-left:245px;
   width:calc(100% - 245px);
   padding:26px;
 }
 
-.section{display:none}
-.section.active{display:block}
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
 
 .pageTitle{
   margin-bottom:18px;
@@ -271,10 +302,15 @@ button{cursor:pointer}
   margin-top:5px;
 }
 
-/* ================= HOME ================= */
+/* ================= HERO ================= */
 
 .hero{
-  background:linear-gradient(135deg,#2563eb,#1e40af);
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1e40af
+    );
   color:white;
   border-radius:20px;
   padding:28px;
@@ -302,6 +338,8 @@ button{cursor:pointer}
   max-width:600px;
   line-height:1.6;
 }
+
+/* ================= STATS ================= */
 
 .statsGrid{
   display:grid;
@@ -398,7 +436,7 @@ button{cursor:pointer}
   top:13px;
 }
 
-/* ================= CARD GRID ================= */
+/* ================= CARDS ================= */
 
 .dataGrid{
   display:grid;
@@ -406,13 +444,14 @@ button{cursor:pointer}
   gap:16px;
 }
 
-.dataCard{
+.dataCard,
+.submissionCard,
+.resultCard{
   background:white;
   border:1px solid #e5eaf1;
   border-radius:17px;
   padding:18px;
   box-shadow:0 5px 18px #00000008;
-  transition:.2s;
 }
 
 .dataCard:hover{
@@ -469,8 +508,6 @@ button{cursor:pointer}
   word-break:break-word;
 }
 
-/* ================= BADGES ================= */
-
 .badge{
   display:inline-flex;
   align-items:center;
@@ -500,8 +537,6 @@ button{cursor:pointer}
   color:#b91c1c;
 }
 
-/* ================= ACTIONS ================= */
-
 .cardActions{
   display:flex;
   gap:7px;
@@ -517,62 +552,16 @@ button{cursor:pointer}
   font-size:12px;
 }
 
-.accept{background:#16a34a}
-.refuse{background:#dc2626}
-.edit{background:#2563eb}
-
-/* ================= RESULT ================= */
-
-.resultCard{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 5px 18px #00000008;
+.accept{
+  background:#16a34a;
 }
 
-.scoreCircle{
-  width:82px;
-  height:82px;
-  border-radius:50%;
-  background:#eff6ff;
-  border:7px solid #bfdbfe;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#1d4ed8;
-  font-weight:bold;
-  font-size:18px;
-  margin-bottom:15px;
+.refuse{
+  background:#dc2626;
 }
 
-/* ================= SUBMISSION ================= */
-
-.submissionCard{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:18px;
-  box-shadow:0 5px 18px #00000008;
-}
-
-.submissionIcon{
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.answerBox{
-  margin-top:15px;
-  padding:14px;
-  background:#f8fafc;
-  border-radius:12px;
-  line-height:1.6;
-}
-
-.answerText{
-  margin-top:8px;
-  white-space:pre-wrap;
-  word-break:break-word;
+.edit{
+  background:#2563eb;
 }
 
 /* ================= EMPTY ================= */
@@ -602,7 +591,8 @@ table{
   border-collapse:collapse;
 }
 
-th,td{
+th,
+td{
   padding:12px;
   border-bottom:1px solid #e2e8f0;
   text-align:left;
@@ -646,1313 +636,1885 @@ th{
 
 @media(max-width:1100px){
 
-  .statsGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.statsGrid{
+  grid-template-columns:repeat(2,1fr);
+}
 
-  .dataGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.dataGrid{
+  grid-template-columns:repeat(2,1fr);
+}
 
 }
 
 @media(max-width:750px){
 
-  .header{
-    position:relative;
-    min-height:auto;
-  }
+.header{
+  position:relative;
+  min-height:auto;
+}
 
-  .layout{
-    padding-top:0;
-    display:block;
-  }
+.layout{
+  padding-top:0;
+  display:block;
+}
 
-  .sidebar{
-    position:relative;
-    top:0;
-    width:100%;
-    height:auto;
-    display:flex;
-    overflow-x:auto;
-    padding:8px;
-    gap:5px;
-  }
+.sidebar{
+  position:relative;
+  top:0;
+  width:100%;
+  height:auto;
+  display:flex;
+  overflow-x:auto;
+  padding:8px;
+  gap:5px;
+}
 
-  .sidebarTitle{
-    display:none;
-  }
+.sidebarTitle{
+  display:none;
+}
 
-  .sidebar button{
-    min-width:max-content;
-    margin:0;
-  }
+.sidebar button{
+  min-width:max-content;
+  margin:0;
+}
 
-  .main{
-    margin-left:0;
-    width:100%;
-    padding:15px;
-  }
+.main{
+  margin-left:0;
+  width:100%;
+  padding:15px;
+}
 
-  .header{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:9px;
-    padding:12px;
-  }
+.header{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:9px;
+  padding:12px;
+}
 
-  .headerRight{
-    width:100%;
-    justify-content:flex-start;
-  }
+.headerRight{
+  width:100%;
+  justify-content:flex-start;
+}
 
-  .userBadge{
-    max-width:190px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
+.userBadge{
+  max-width:190px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
 
-  .formGrid{
-    grid-template-columns:1fr;
-  }
+.formGrid{
+  grid-template-columns:1fr;
+}
 
 }
 
 @media(max-width:560px){
 
-  .statsGrid,
-  .dataGrid{
-    grid-template-columns:1fr;
-  }
+.statsGrid,
+.dataGrid{
+  grid-template-columns:1fr;
+}
 
-  .hero{
-    padding:22px;
-  }
+.hero{
+  padding:22px;
+}
 
-  .hero h2{
-    font-size:23px;
-  }
+.hero h2{
+  font-size:23px;
+}
 
-  .pageTitle h2{
-    font-size:21px;
-  }
+.pageTitle h2{
+  font-size:21px;
+}
 
-  .panel{
-    padding:15px;
-  }
+.panel{
+  padding:15px;
+}
 
-  .formActions{
-    flex-direction:column;
-  }
+.formActions{
+  flex-direction:column;
+}
 
-  .headerRight{
-    gap:5px;
-  }
+.headerRight{
+  gap:5px;
+}
 
-  .headerBtn{
-    padding:8px;
-    font-size:12px;
-  }
+.headerBtn{
+  padding:8px;
+  font-size:12px;
+}
 
 }
 </style>
 </head>
-
 <body>
-
-<!-- ================= LOGIN ================= -->
+  <!-- ================= AUTH PAGE ================= -->
 
 <div id="authPage" class="authPage">
 
-<div class="authBox">
+  <div class="authBox">
 
-<div class="logo">📚</div>
+    <div class="logo">
+      📚
+    </div>
 
-<h1>Sistèm Aprantisaj</h1>
+    <h1>
+      Sistèm Aprantisaj
+    </h1>
 
-<p class="subtitle">
-Platfòm aprantisaj sou entènèt
-</p>
+    <p class="subtitle">
+      Platfòm aprantisaj sou entènèt
+    </p>
 
-<div class="field">
-<label>Email</label>
-<input id="loginEmail"
-type="email"
-placeholder="Egzanp: non@email.com">
-</div>
 
-<div class="field">
-<label>Modpas</label>
-<input id="loginPassword"
-type="password"
-placeholder="Modpas">
-</div>
+    <!-- LOGIN -->
 
-<button class="btn"
-onclick="connecter()">
-Konekte
-</button>
-
-<button class="btn google"
-onclick="connecterAvecGoogle()">
-Kontinye ak Google
-</button>
-
-<div class="divider">
-oswa kreye yon kont
-</div>
+    <div class="field">
 
-<div class="field">
-<label>Non</label>
-<input id="registerName"
-placeholder="Non konplè">
-</div>
+      <label>
+        Email
+      </label>
 
-<div class="field">
-<label>Email</label>
-<input id="registerEmail"
-type="email"
-placeholder="Email">
-</div>
+      <input
+        id="loginEmail"
+        type="email"
+        placeholder="Egzanp: non@email.com"
+      >
 
-<div class="field">
-<label>Modpas</label>
-<input id="registerPassword"
-type="password"
-placeholder="Omwen 6 karaktè">
-</div>
+    </div>
 
-<button class="btn"
-onclick="registerAccount()">
-Kreye kont
-</button>
 
-<button class="btn google"
-onclick="registerGoogle()">
-Enskri ak Google
-</button>
+    <div class="field">
 
-<div id="authMessage"
-class="message"></div>
+      <label>
+        Modpas
+      </label>
 
-</div>
-</div>
+      <input
+        id="loginPassword"
+        type="password"
+        placeholder="Modpas"
+      >
 
+    </div>
 
-<!-- ================= APP ================= -->
 
-<div id="app" class="app hidden">
+    <button
+      class="btn"
+      onclick="connecter()"
+    >
+      Konekte
+    </button>
 
-<header class="header">
 
-<div class="brand">
-📚 Sistèm Aprantisaj
-</div>
+    <button
+      class="btn google"
+      onclick="connecterAvecGoogle()"
+    >
+      Kontinye ak Google
+    </button>
 
-<div class="headerRight">
 
-<span id="userEmail"
-class="userBadge"></span>
+    <div class="divider">
+      oswa kreye yon kont
+    </div>
 
-<span id="userRole"
-class="roleBadge"></span>
 
-<select id="languageSelect"
-onchange="changeLanguage(this.value)">
-<option value="ht">🇭🇹 Kreyòl</option>
-<option value="fr">🇫🇷 Français</option>
-</select>
+    <!-- REGISTER -->
 
-<button id="installBtn"
-class="headerBtn hidden"
-onclick="installApp()">
-📲 Enstale
-</button>
-
-<button class="headerBtn logoutBtn"
-onclick="logout()">
-Dekonekte
-</button>
+    <div class="field">
 
-</div>
-</header>
+      <label>
+        Non
+      </label>
+
+      <input
+        id="registerName"
+        placeholder="Non konplè"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Email
+      </label>
 
+      <input
+        id="registerEmail"
+        type="email"
+        placeholder="Email"
+      >
 
-<div class="layout">
+    </div>
 
-<!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar">
+    <div class="field">
 
-<div class="sidebarTitle">
-Navigasyon
+      <label>
+        Modpas
+      </label>
+
+      <input
+        id="registerPassword"
+        type="password"
+        placeholder="Omwen 6 karaktè"
+      >
+
+    </div>
+
+
+    <button
+      class="btn"
+      onclick="registerAccount()"
+    >
+      Kreye kont
+    </button>
+
+
+    <button
+      class="btn google"
+      onclick="registerGoogle()"
+    >
+      Enskri ak Google
+    </button>
+
+
+    <div
+      id="authMessage"
+      class="message"
+    ></div>
+
+  </div>
+
 </div>
 
-<button class="menuBtn active"
-onclick="showSection('home',this)">
-🏠 <span>Akèy</span>
-</button>
 
-<button class="menuBtn adminOnly"
-onclick="showSection('eleves',this)">
-👨‍🎓 <span>Elèv</span>
-</button>
+<!-- ================= APPLICATION ================= -->
 
-<button class="menuBtn adminOnly"
-onclick="showSection('professeurs',this)">
-👨‍🏫 <span>Pwofesè</span>
-</button>
+<div
+  id="app"
+  class="app hidden"
+>
 
-<button class="menuBtn adminOnly"
-onclick="showSection('classes',this)">
-🏫 <span>Klas</span>
-</button>
 
-<button class="menuBtn adminOnly"
-onclick="showSection('matieres',this)">
-📚 <span>Matyè</span>
-</button>
+  <!-- HEADER -->
 
-<button class="menuBtn"
-onclick="showSection('devoirs',this)">
-📝 <span>Devwa</span>
-</button>
+  <header class="header">
 
-<button class="menuBtn teacherOnly"
-onclick="showSection('remises',this)">
-📤 <span>Remèt elèv yo</span>
-</button>
+    <div class="brand">
+      📚 Sistèm Aprantisaj
+    </div>
 
-<button class="menuBtn"
-onclick="showSection('resultats',this)">
-🏆 <span>Rezilta</span>
-</button>
 
-<button class="menuBtn"
-onclick="showSection('statistiques',this)">
-📈 <span>Estatistik</span>
-</button>
+    <div class="headerRight">
 
-<button class="menuBtn adminOnly"
-onclick="showSection('users',this)">
-👥 <span>Itilizatè</span>
-</button>
+      <span
+        id="userEmail"
+        class="userBadge"
+      ></span>
 
-</aside>
 
+      <span
+        id="userRole"
+        class="roleBadge"
+      ></span>
 
-<main class="main">
 
+      <select
+        id="languageSelect"
+        onchange="changeLanguage(this.value)"
+      >
 
-<!-- ================= HOME ================= -->
+        <option value="ht">
+          🇭🇹 Kreyòl
+        </option>
 
-<section id="home" class="section active">
+        <option value="fr">
+          🇫🇷 Français
+        </option>
 
-<div class="pageTitle">
-<h2>Akèy</h2>
-<p>Byenveni nan Sistèm Aprantisaj.</p>
-</div>
+      </select>
 
-<div class="hero">
 
-<h2>Byenveni nan Sistèm Aprantisaj 👋</h2>
+      <button
+        id="installBtn"
+        class="headerBtn hidden"
+        onclick="installApp()"
+      >
+        📲 Enstale
+      </button>
 
-<p>
-Jere elèv, pwofesè, klas, matyè, devwa,
-travay remèt ak rezilta yo nan yon sèl espas.
-</p>
 
-</div>
+      <button
+        class="headerBtn logoutBtn"
+        onclick="logout()"
+      >
+        Dekonekte
+      </button>
 
-<div class="statsGrid">
+    </div>
 
-<div class="statCard adminOnly">
-<div class="statIcon">👨‍🎓</div>
-<div class="statLabel">Total elèv</div>
-<div id="statEleves"
-class="number">0</div>
-</div>
+  </header>
 
-<div class="statCard adminOnly">
-<div class="statIcon">👨‍🏫</div>
-<div class="statLabel">Total pwofesè</div>
-<div id="statProfesseurs"
-class="number">0</div>
-</div>
 
-<div class="statCard adminOnly">
-<div class="statIcon">🏫</div>
-<div class="statLabel">Total klas</div>
-<div id="statClasses"
-class="number">0</div>
-</div>
+  <!-- ================= LAYOUT ================= -->
 
-<div class="statCard">
-<div class="statIcon">📝</div>
-<div class="statLabel">Total devwa</div>
-<div id="statDevoirs"
-class="number">0</div>
-</div>
+  <div class="layout">
 
-</div>
 
-</section>
+    <!-- ================= SIDEBAR ================= -->
 
+    <aside class="sidebar">
 
-<!-- ================= ELEVES ================= -->
+      <div class="sidebarTitle">
+        Navigasyon
+      </div>
 
-<section id="eleves" class="section">
 
-<div class="pageTitle">
-<h2>👨‍🎓 Elèv</h2>
-<p>Jere lis elèv yo.</p>
-</div>
+      <button
+        class="menuBtn active"
+        onclick="showSection('home',this)"
+      >
+        🏠
+        <span>
+          Akèy
+        </span>
+      </button>
 
-<div class="panel">
 
-<div class="panelTitle">
-➕ Ajoute yon nouvo elèv
-</div>
+      <button
+        class="menuBtn adminOnly"
+        onclick="showSection('eleves',this)"
+      >
+        👨‍🎓
+        <span>
+          Elèv
+        </span>
+      </button>
 
-<div class="formGrid">
 
-<div class="field">
-<label>Non elèv</label>
-<input id="eleveNom"
-placeholder="Non konplè">
-</div>
+      <button
+        class="menuBtn adminOnly"
+        onclick="showSection('professeurs',this)"
+      >
+        👨‍🏫
+        <span>
+          Pwofesè
+        </span>
+      </button>
 
-<div class="field">
-<label>Klas</label>
-<input id="eleveClasse"
-placeholder="6e AF">
-</div>
 
-</div>
+      <button
+        class="menuBtn adminOnly"
+        onclick="showSection('classes',this)"
+      >
+        🏫
+        <span>
+          Klas
+        </span>
+      </button>
 
-<button class="btn"
-onclick="ajouterEleve()">
-➕ Ajoute elèv
-</button>
 
-</div>
+      <button
+        class="menuBtn adminOnly"
+        onclick="showSection('matieres',this)"
+      >
+        📚
+        <span>
+          Matyè
+        </span>
+      </button>
 
-<div class="searchBox">
-<span>🔎</span>
-<input id="searchEleves"
-oninput="filterCards('searchEleves','listeEleves')"
-placeholder="Chèche yon elèv...">
-</div>
 
-<div id="listeEleves"
-class="dataGrid"></div>
+      <button
+        class="menuBtn"
+        onclick="showSection('devoirs',this)"
+      >
+        📝
+        <span>
+          Devwa
+        </span>
+      </button>
 
-</section>
 
+      <button
+        class="menuBtn teacherOnly"
+        onclick="showSection('remises',this)"
+      >
+        📤
+        <span>
+          Remèt elèv yo
+        </span>
+      </button>
 
-<!-- ================= PROFESSEURS ================= -->
 
-<section id="professeurs" class="section">
+      <button
+        class="menuBtn"
+        onclick="showSection('resultats',this)"
+      >
+        🏆
+        <span>
+          Rezilta
+        </span>
+      </button>
 
-<div class="pageTitle">
-<h2>👨‍🏫 Pwofesè</h2>
-<p>Jere pwofesè ak matyè yo anseye.</p>
-</div>
 
-<div class="panel">
+      <button
+        class="menuBtn"
+        onclick="showSection('statistiques',this)"
+      >
+        📈
+        <span>
+          Estatistik
+        </span>
+      </button>
 
-<div class="panelTitle">
-➕ Ajoute yon pwofesè
-</div>
 
-<div class="formGrid">
+      <button
+        class="menuBtn adminOnly"
+        onclick="showSection('users',this)"
+      >
+        👥
+        <span>
+          Itilizatè
+        </span>
+      </button>
 
-<div class="field">
-<label>Non</label>
-<input id="profNom"
-placeholder="Non pwofesè">
-</div>
+    </aside>
 
-<div class="field">
-<label>Email</label>
-<input id="profEmail"
-type="email"
-placeholder="Email">
-</div>
 
-<div class="field">
-<label>Matyè</label>
-<input id="profMatiere"
-placeholder="Mathématiques">
-</div>
+    <!-- ================= MAIN ================= -->
 
-</div>
+    <main class="main">
 
-<button class="btn"
-onclick="ajouterProfesseur()">
-➕ Ajoute pwofesè
-</button>
 
-</div>
+      <!-- ================= HOME ================= -->
 
-<div class="searchBox">
-<span>🔎</span>
-<input id="searchProfesseurs"
-oninput="filterCards('searchProfesseurs','listeProfesseurs')"
-placeholder="Chèche yon pwofesè...">
-</div>
+      <section
+        id="home"
+        class="section active"
+      >
 
-<div id="listeProfesseurs"
-class="dataGrid"></div>
+        <div class="pageTitle">
 
-</section>
+          <h2>
+            Akèy
+          </h2>
 
+          <p>
+            Byenveni nan Sistèm Aprantisaj.
+          </p>
 
-<!-- ================= CLASSES ================= -->
+        </div>
 
-<section id="classes" class="section">
 
-<div class="pageTitle">
-<h2>🏫 Klas</h2>
-<p>Jere klas lekòl la.</p>
-</div>
+        <div class="hero">
 
-<div class="panel">
+          <h2>
+            Byenveni nan Sistèm Aprantisaj 👋
+          </h2>
 
-<div class="panelTitle">
-➕ Ajoute yon klas
-</div>
+          <p>
+            Jere elèv, pwofesè, klas, matyè,
+            devwa, travay remèt ak rezilta yo
+            nan yon sèl espas.
+          </p>
 
-<div class="field">
-<label>Non klas</label>
-<input id="classeNom"
-placeholder="6e AF">
-</div>
+        </div>
 
-<button class="btn"
-onclick="ajouterClasse()">
-➕ Ajoute klas
-</button>
 
-</div>
+        <div class="statsGrid">
 
-<div id="listeClasses"
-class="dataGrid"></div>
 
-</section>
+          <div class="statCard adminOnly">
 
+            <div class="statIcon">
+              👨‍🎓
+            </div>
 
-<!-- ================= MATIERES ================= -->
+            <div class="statLabel">
+              Total elèv
+            </div>
 
-<section id="matieres" class="section">
+            <div
+              id="statEleves"
+              class="number"
+            >
+              0
+            </div>
 
-<div class="pageTitle">
-<h2>📚 Matyè</h2>
-<p>Jere matyè yo.</p>
-</div>
+          </div>
 
-<div class="panel">
 
-<div class="panelTitle">
-➕ Ajoute yon matyè
-</div>
+          <div class="statCard adminOnly">
 
-<div class="field">
-<label>Non matyè</label>
-<input id="matiereNom"
-placeholder="Mathématiques">
-</div>
+            <div class="statIcon">
+              👨‍🏫
+            </div>
 
-<button class="btn"
-onclick="ajouterMatiere()">
-➕ Ajoute matyè
-</button>
+            <div class="statLabel">
+              Total pwofesè
+            </div>
 
-</div>
+            <div
+              id="statProfesseurs"
+              class="number"
+            >
+              0
+            </div>
 
-<div id="listeMatieres"
-class="dataGrid"></div>
+          </div>
 
-</section>
 
+          <div class="statCard adminOnly">
 
-<!-- ================= DEVOIRS ================= -->
+            <div class="statIcon">
+              🏫
+            </div>
 
-<section id="devoirs" class="section">
+            <div class="statLabel">
+              Total klas
+            </div>
 
-<div class="pageTitle">
-<h2>📝 Devwa</h2>
-<p>Kreye devwa oswa fè devwa ou resevwa yo.</p>
-</div>
+            <div
+              id="statClasses"
+              class="number"
+            >
+              0
+            </div>
 
-<!-- SE PWOFESÈ/ADMIN KI WÈ SA -->
+          </div>
 
-<div id="createDevoirPanel"
-class="panel">
 
-<div class="panelTitle">
-➕ Kreye yon nouvo devwa
-</div>
+          <div class="statCard">
 
-<div class="formGrid">
+            <div class="statIcon">
+              📝
+            </div>
 
-<div class="field">
-<label>Tit devwa</label>
-<input id="devoirTitre"
-placeholder="Devoir de Mathématiques">
-</div>
+            <div class="statLabel">
+              Total devwa
+            </div>
 
-<div class="field">
-<label>Matyè</label>
-<input id="devoirMatiere"
-placeholder="Mathématiques">
-</div>
+            <div
+              id="statDevoirs"
+              class="number"
+            >
+              0
+            </div>
 
-<div class="field">
-<label>Klas</label>
-<input id="devoirClasse"
-placeholder="6e AF">
-</div>
+          </div>
 
-<div class="field">
-<label>Dire (minit)</label>
-<input id="devoirDuree"
-type="number"
-value="30">
-</div>
 
-<div class="field">
-<label>Maksimòm tantativ</label>
+        </div>
 
-<select id="devoirTentatives">
+      </section>
 
-<option value="1">1</option>
-<option value="2" selected>2</option>
-<option value="3">3</option>
 
-</select>
+      <!-- ================= ELEVES ================= -->
 
-</div>
+      <section
+        id="eleves"
+        class="section"
+      >
 
-</div>
+        <div class="pageTitle">
 
-<button class="btn"
-onclick="ajouterDevoir()">
-➕ Kreye devwa
-</button>
+          <h2>
+            👨‍🎓 Elèv
+          </h2>
 
-</div>
+          <p>
+            Jere lis elèv yo.
+          </p>
 
-<div class="searchBox">
+        </div>
 
-<span>🔎</span>
 
-<input
-id="searchDevoirs"
-oninput="filterCards('searchDevoirs','listeDevoirs')"
-placeholder="Chèche yon devwa...">
+        <div class="panel">
 
-</div>
+          <div class="panelTitle">
+            ➕ Ajoute yon nouvo elèv
+          </div>
 
-<div id="listeDevoirs"
-class="dataGrid"></div>
 
-</section>
+          <div class="formGrid">
 
+            <div class="field">
 
-<!-- ================= REMISES ================= -->
+              <label>
+                Non elèv
+              </label>
 
-<section id="remises" class="section">
+              <input
+                id="eleveNom"
+                placeholder="Non konplè"
+              >
 
-<div class="pageTitle">
+            </div>
 
-<h2>📤 Travay remèt</h2>
 
-<p>
-Gade travay elèv yo soumèt,
-epi korije yo.
-</p>
+            <div class="field">
 
-</div>
+              <label>
+                Klas
+              </label>
 
-<div id="listeRemises"
-class="dataGrid"></div>
+              <input
+                id="eleveClasse"
+                placeholder="6e AF"
+              >
 
-</section>
+            </div>
 
+          </div>
 
-<!-- ================= RESULTATS ================= -->
 
-<section id="resultats" class="section">
+          <button
+            class="btn"
+            onclick="ajouterEleve()"
+          >
+            ➕ Ajoute elèv
+          </button>
 
-<div class="pageTitle">
+        </div>
 
-<h2>🏆 Rezilta</h2>
 
-<p>
-Nòt ak kòmantè elèv yo.
-</p>
+        <div class="searchBox">
 
-</div>
+          <span>
+            🔎
+          </span>
 
-<div id="listeResultats"
-class="dataGrid"></div>
+          <input
+            id="searchEleves"
+            oninput="filterCards('searchEleves','listeEleves')"
+            placeholder="Chèche yon elèv..."
+          >
 
-</section>
+        </div>
 
 
-<!-- ================= STATISTIQUES ================= -->
+        <div
+          id="listeEleves"
+          class="dataGrid"
+        ></div>
 
-<section id="statistiques" class="section">
+      </section>
 
-<div class="pageTitle">
 
-<h2>📈 Estatistik</h2>
+      <!-- ================= PROFESSEURS ================= -->
 
-<p>
-Yon rezime sou done sistèm nan.
-</p>
+      <section
+        id="professeurs"
+        class="section"
+      >
 
-</div>
+        <div class="pageTitle">
 
-<div class="statsGrid">
+          <h2>
+            👨‍🏫 Pwofesè
+          </h2>
 
-<div class="statCard">
+          <p>
+            Jere pwofesè ak matyè yo anseye.
+          </p>
 
-<div class="statIcon">👨‍🎓</div>
+        </div>
 
-<div class="statLabel">
-Elèv
-</div>
 
-<div id="stat2Eleves"
-class="number">0</div>
+        <div class="panel">
 
-</div>
+          <div class="panelTitle">
+            ➕ Ajoute yon pwofesè
+          </div>
 
 
-<div class="statCard">
+          <div class="formGrid">
 
-<div class="statIcon">👨‍🏫</div>
 
-<div class="statLabel">
-Pwofesè
-</div>
+            <div class="field">
 
-<div id="stat2Professeurs"
-class="number">0</div>
+              <label>
+                Non
+              </label>
 
-</div>
+              <input
+                id="profNom"
+                placeholder="Non pwofesè"
+              >
 
+            </div>
 
-<div class="statCard">
 
-<div class="statIcon">🏫</div>
+            <div class="field">
 
-<div class="statLabel">
-Klas
-</div>
+              <label>
+                Email
+              </label>
 
-<div id="stat2Classes"
-class="number">0</div>
+              <input
+                id="profEmail"
+                type="email"
+                placeholder="Email"
+              >
 
-</div>
+            </div>
 
 
-<div class="statCard">
+            <div class="field">
 
-<div class="statIcon">📝</div>
+              <label>
+                Matyè
+              </label>
 
-<div class="statLabel">
-Devwa
-</div>
+              <input
+                id="profMatiere"
+                placeholder="Mathématiques"
+              >
 
-<div id="stat2Devoirs"
-class="number">0</div>
+            </div>
 
-</div>
 
-</div>
+          </div>
 
-</section>
 
+          <button
+            class="btn"
+            onclick="ajouterProfesseur()"
+          >
+            ➕ Ajoute pwofesè
+          </button>
 
-<!-- ================= USERS ================= -->
+        </div>
 
-<section id="users" class="section">
 
-<div class="pageTitle">
+        <div class="searchBox">
 
-<h2>👥 Itilizatè</h2>
+          <span>
+            🔎
+          </span>
 
-<p>
-Jere kont ki mande aksè.
-</p>
+          <input
+            id="searchProfesseurs"
+            oninput="filterCards('searchProfesseurs','listeProfesseurs')"
+            placeholder="Chèche yon pwofesè..."
+          >
 
-</div>
+        </div>
 
-<div id="listeUsers"
-class="dataGrid"></div>
 
-</section>
+        <div
+          id="listeProfesseurs"
+          class="dataGrid"
+        ></div>
 
-</main>
+      </section>
+            <!-- ================= KLAS ================= -->
 
-</div>
+      <section
+        id="classes"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            🏫 Klas
+          </h2>
+
+          <p>
+            Jere klas lekòl la.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panelTitle">
+            ➕ Ajoute yon klas
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Non klas
+            </label>
+
+            <input
+              id="classeNom"
+              placeholder="6e AF"
+            >
+
+          </div>
+
+
+          <button
+            class="btn"
+            onclick="ajouterClasse()"
+          >
+            ➕ Ajoute klas
+          </button>
+
+        </div>
+
+
+        <div
+          id="listeClasses"
+          class="dataGrid"
+        ></div>
+
+      </section>
+
+
+      <!-- ================= MATIERES ================= -->
+
+      <section
+        id="matieres"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            📚 Matyè
+          </h2>
+
+          <p>
+            Jere matyè yo.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panelTitle">
+            ➕ Ajoute yon matyè
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Non matyè
+            </label>
+
+            <input
+              id="matiereNom"
+              placeholder="Mathématiques"
+            >
+
+          </div>
+
+
+          <button
+            class="btn"
+            onclick="ajouterMatiere()"
+          >
+            ➕ Ajoute matyè
+          </button>
+
+        </div>
+
+
+        <div
+          id="listeMatieres"
+          class="dataGrid"
+        ></div>
+
+      </section>
+
+
+      <!-- ================= DEVOIRS ================= -->
+
+      <section
+        id="devoirs"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            📝 Devwa
+          </h2>
+
+          <p>
+            Kreye devwa oswa fè devwa ou resevwa yo.
+          </p>
+
+        </div>
+
+
+        <div
+          id="createDevoirPanel"
+          class="panel"
+        >
+
+          <div class="panelTitle">
+            ➕ Kreye yon nouvo devwa
+          </div>
+
+
+          <div class="formGrid">
+
+
+            <div class="field">
+
+              <label>
+                Tit devwa
+              </label>
+
+              <input
+                id="devoirTitre"
+                placeholder="Devoir de Mathématiques"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Matyè
+              </label>
+
+              <input
+                id="devoirMatiere"
+                placeholder="Mathématiques"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Klas
+              </label>
+
+              <input
+                id="devoirClasse"
+                placeholder="6e AF"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Dire (minit)
+              </label>
+
+              <input
+                id="devoirDuree"
+                type="number"
+                value="30"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Maksimòm tantativ
+              </label>
+
+              <select id="devoirTentatives">
+
+                <option value="1">
+                  1
+                </option>
+
+                <option
+                  value="2"
+                  selected
+                >
+                  2
+                </option>
+
+                <option value="3">
+                  3
+                </option>
+
+              </select>
+
+            </div>
+
+
+          </div>
+
+
+          <button
+            class="btn"
+            onclick="ajouterDevoir()"
+          >
+            ➕ Kreye devwa
+          </button>
+
+        </div>
+
+
+        <div class="searchBox">
+
+          <span>
+            🔎
+          </span>
+
+          <input
+            id="searchDevoirs"
+            oninput="filterCards('searchDevoirs','listeDevoirs')"
+            placeholder="Chèche yon devwa..."
+          >
+
+        </div>
+
+
+        <div
+          id="listeDevoirs"
+          class="dataGrid"
+        ></div>
+
+      </section>
+
+
+      <!-- ================= REMISES ================= -->
+
+      <section
+        id="remises"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            📤 Travay remèt
+          </h2>
+
+          <p>
+            Gade travay elèv yo soumèt,
+            epi korije yo.
+          </p>
+
+        </div>
+
+
+        <div
+          id="listeRemises"
+          class="dataGrid"
+        ></div>
+
+      </section>
+
+
+      <!-- ================= RESULTATS ================= -->
+
+      <section
+        id="resultats"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            🏆 Rezilta
+          </h2>
+
+          <p>
+            Nòt ak kòmantè elèv yo.
+          </p>
+
+        </div>
+
+
+        <div
+          id="listeResultats"
+          class="dataGrid"
+        ></div>
+
+      </section>
+
+
+      <!-- ================= STATISTIQUES ================= -->
+
+      <section
+        id="statistiques"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            📈 Estatistik
+          </h2>
+
+          <p>
+            Yon rezime sou done sistèm nan.
+          </p>
+
+        </div>
+
+
+        <div class="statsGrid">
+
+
+          <div class="statCard">
+
+            <div class="statIcon">
+              👨‍🎓
+            </div>
+
+            <div class="statLabel">
+              Elèv
+            </div>
+
+            <div
+              id="stat2Eleves"
+              class="number"
+            >
+              0
+            </div>
+
+          </div>
+
+
+          <div class="statCard">
+
+            <div class="statIcon">
+              👨‍🏫
+            </div>
+
+            <div class="statLabel">
+              Pwofesè
+            </div>
+
+            <div
+              id="stat2Professeurs"
+              class="number"
+            >
+              0
+            </div>
+
+          </div>
+
+
+          <div class="statCard">
+
+            <div class="statIcon">
+              🏫
+            </div>
+
+            <div class="statLabel">
+              Klas
+            </div>
+
+            <div
+              id="stat2Classes"
+              class="number"
+            >
+              0
+            </div>
+
+          </div>
+
+
+          <div class="statCard">
+
+            <div class="statIcon">
+              📝
+            </div>
+
+            <div class="statLabel">
+              Devwa
+            </div>
+
+            <div
+              id="stat2Devoirs"
+              class="number"
+            >
+              0
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= USERS ================= -->
+
+      <section
+        id="users"
+        class="section"
+      >
+
+        <div class="pageTitle">
+
+          <h2>
+            👥 Itilizatè
+          </h2>
+
+          <p>
+            Jere kont ki mande aksè.
+          </p>
+
+        </div>
+
+
+        <div
+          id="listeUsers"
+          class="dataGrid"
+        ></div>
+
+      </section>
+
+
+    </main>
+
+  </div>
+
 </div>
 
 
 <!-- ================= MODAL REMET DEVWA ================= -->
 
-<div id="remetModal"
-class="modal hidden">
+<div
+  id="remetModal"
+  class="modal hidden"
+>
 
-<div class="modalBox">
+  <div class="modalBox">
 
-<div class="modalTitle">
-📤 Remèt devwa
+
+    <div class="modalTitle">
+      📤 Remèt devwa
+    </div>
+
+
+    <div
+      id="remetDevoirInfo"
+    ></div>
+
+
+    <input
+      type="hidden"
+      id="remetDevoirId"
+    >
+
+
+    <div class="field">
+
+      <label>
+        Repons / Travay ou
+      </label>
+
+      <textarea
+        id="remetReponse"
+        rows="8"
+        placeholder="Ekri repons ou oswa travay ou la..."
+      ></textarea>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Tan ou itilize (minit)
+      </label>
+
+      <input
+        id="remetTemps"
+        type="number"
+        min="0"
+        placeholder="30"
+      >
+
+    </div>
+
+
+    <div class="formActions">
+
+      <button
+        class="btn"
+        onclick="envoyerRemise()"
+      >
+        📤 Remèt devwa
+      </button>
+
+
+      <button
+        class="btn closeModal"
+        onclick="fermerRemetModal()"
+      >
+        Anile
+      </button>
+
+    </div>
+
+
+  </div>
+
 </div>
 
-<div id="remetDevoirInfo"></div>
 
-<input
-type="hidden"
-id="remetDevoirId">
-
-<div class="field">
-
-<label>
-Repons / Travay ou
-</label>
-
-<textarea
-id="remetReponse"
-rows="8"
-placeholder="Ekri repons ou oswa travay ou la...">
-</textarea>
-
-</div>
-
-<div class="field">
-
-<label>
-Tan ou itilize (minit)
-</label>
-
-<input
-id="remetTemps"
-type="number"
-min="0"
-placeholder="30">
-
-</div>
-
-<div class="formActions">
-
-<button
-class="btn"
-onclick="envoyerRemise()">
-
-📤 Remèt devwa
-
-</button>
-
-<button
-class="btn closeModal"
-onclick="fermerRemetModal()">
-
-Anile
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= FIREBASE ================= -->
+<!-- ================= FIREBASE SCRIPT ================= -->
 
 <script type="module">
 
 import {
-initializeApp
+  initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 
 import {
-getAuth,
-GoogleAuthProvider,
-signInWithPopup,
-signInWithRedirect,
-getRedirectResult,
-signInWithEmailAndPassword,
-createUserWithEmailAndPassword,
-onAuthStateChanged,
-signOut,
-setPersistence,
-browserLocalPersistence
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  setPersistence,
+  browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 
 import {
-getFirestore,
-collection,
-doc,
-setDoc,
-getDoc,
-getDocs,
-addDoc,
-updateDoc,
-deleteDoc,
-serverTimestamp
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* ================= FIREBASE ================= */
+/* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
 
-apiKey:"AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
+  apiKey:
+    "AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
 
-authDomain:"sist-aprantisaj.firebaseapp.com",
+  authDomain:
+    "sist-aprantisaj.firebaseapp.com",
 
-projectId:"sist-aprantisaj",
+  projectId:
+    "sist-aprantisaj",
 
-storageBucket:"sist-aprantisaj.firebasestorage.app",
+  storageBucket:
+    "sist-aprantisaj.firebasestorage.app",
 
-messagingSenderId:"517876142004",
+  messagingSenderId:
+    "517876142004",
 
-appId:"1:517876142004:web:2771066976950b208dace1"
+  appId:
+    "1:517876142004:web:2771066976950b208dace1"
 
 };
 
 
-const app=initializeApp(firebaseConfig);
+/* ================= INITIALIZE ================= */
 
-const auth=getAuth(app);
+const app =
+  initializeApp(firebaseConfig);
 
-const db=getFirestore(app);
+const auth =
+  getAuth(app);
 
-const provider=new GoogleAuthProvider();
+const db =
+  getFirestore(app);
+
+const provider =
+  new GoogleAuthProvider();
 
 
 provider.setCustomParameters({
-prompt:"select_account"
+  prompt: "select_account"
 });
-
-
-await setPersistence(
-auth,
-browserLocalPersistence
-);
 
 
 /* ================= VARIABLES ================= */
 
-let currentUser=null;
+let currentUser = null;
 
-let currentUserData=null;
+let currentUserData = null;
 
-let deferredPrompt=null;
+let deferredPrompt = null;
 
 
-/* ================= SECURITY ================= */
+/* ================= PERSISTENCE ================= */
+
+await setPersistence(
+  auth,
+  browserLocalPersistence
+);
+
+
+/* ================= HELPERS ================= */
 
 function escapeHTML(value){
 
-return String(value ?? "")
-
-.replaceAll("&","&amp;")
-
-.replaceAll("<","&lt;")
-
-.replaceAll(">","&gt;")
-
-.replaceAll('"',"&quot;")
-
-.replaceAll("'","&#039;");
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
-
-/* ================= MESSAGE ================= */
 
 function showMessage(message){
 
-const box=document.getElementById(
-"authMessage"
-);
+  const box =
+    document.getElementById("authMessage");
 
-box.textContent=message;
+  if(!box) return;
 
-box.style.display="block";
+  box.textContent = message;
 
-}
-
-
-/* ================= LOGIN ================= */
-
-window.connecter=async function(){
-
-const email=document
-.getElementById("loginEmail")
-.value.trim();
-
-const password=document
-.getElementById("loginPassword")
-.value;
-
-
-if(!email||!password){
-
-showMessage(
-"Tanpri antre email ak modpas ou."
-);
-
-return;
+  box.style.display = "block";
 
 }
 
 
-try{
+function role(){
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-}catch(error){
-
-console.error(error);
-
-showMessage(
-"Email oswa modpas la pa kòrèk."
-);
+  return String(
+    currentUserData?.role || ""
+  )
+  .trim()
+  .toLowerCase();
 
 }
+
+
+function isAdmin(){
+
+  return role() === "administrateur";
+
+}
+
+
+function isTeacher(){
+
+  return (
+    role() === "administrateur" ||
+    role() === "professeur"
+  );
+
+}
+
+
+/* ================= LOGIN EMAIL ================= */
+
+window.connecter = async function(){
+
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
+
+
+  if(!email || !password){
+
+    showMessage(
+      "Tanpri antre email ak modpas ou."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Email oswa modpas la pa kòrèk."
+    );
+
+  }
 
 };
 
 
 /* ================= GOOGLE LOGIN ================= */
 
-window.connecterAvecGoogle=async function(){
+window.connecterAvecGoogle = async function(){
 
-try{
+  try{
 
-await signInWithPopup(
-auth,
-provider
-);
+    await signInWithPopup(
+      auth,
+      provider
+    );
 
-}catch(error){
+  }catch(error){
 
-console.error(error);
-
-try{
-
-await signInWithRedirect(
-auth,
-provider
-);
-
-}catch(error2){
-
-console.error(error2);
-
-showMessage(
-"Koneksyon Google pa reyisi."
-);
-
-}
-
-}
-
-};
+    console.error(
+      "Google Popup:",
+      error
+    );
 
 
-/* ================= REGISTER ================= */
+    try{
 
-window.registerAccount=async function(){
+      await signInWithRedirect(
+        auth,
+        provider
+      );
 
-const nom=document
-.getElementById("registerName")
-.value.trim();
+    }catch(error2){
 
-const email=document
-.getElementById("registerEmail")
-.value.trim();
+      console.error(
+        "Google Redirect:",
+        error2
+      );
 
-const password=document
-.getElementById("registerPassword")
-.value;
+      showMessage(
+        "Koneksyon Google pa reyisi."
+      );
 
+    }
 
-if(!nom||!email||!password){
-
-showMessage(
-"Tanpri ranpli tout chan yo."
-);
-
-return;
-
-}
-
-
-if(password.length<6){
-
-showMessage(
-"Modpas la dwe gen omwen 6 karaktè."
-);
-
-return;
-
-}
-
-
-try{
-
-const credential=
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-const user=credential.user;
-
-
-await setDoc(
-doc(db,"users",user.uid),
-{
-
-uid:user.uid,
-
-email:user.email,
-
-nom:nom,
-
-role:"eleve",
-
-status:"attente",
-
-createdAt:
-serverTimestamp()
-
-}
-);
-
-
-await signOut(auth);
-
-
-showMessage(
-"Kont la kreye. Administratè a dwe apwouve li."
-);
-
-
-}catch(error){
-
-console.error(error);
-
-showMessage(
-"Nou pa kapab kreye kont sa a."
-);
-
-}
+  }
 
 };
 
 
-/* ================= GOOGLE REGISTER ================= */
+/* ================= REGISTER EMAIL ================= */
 
-window.registerGoogle=async function(){
+window.registerAccount = async function(){
 
-try{
+  const nom =
+    document
+      .getElementById("registerName")
+      .value
+      .trim();
 
-const credential=
-await signInWithPopup(
-auth,
-provider
-);
+  const email =
+    document
+      .getElementById("registerEmail")
+      .value
+      .trim();
 
-const user=credential.user;
-
-
-const ref=doc(
-db,
-"users",
-user.uid
-);
-
-
-const existing=
-await getDoc(ref);
+  const password =
+    document
+      .getElementById("registerPassword")
+      .value;
 
 
-if(!existing.exists()){
+  if(!nom || !email || !password){
 
-await setDoc(
-ref,
-{
+    showMessage(
+      "Tanpri ranpli tout chan yo."
+    );
 
-uid:user.uid,
+    return;
 
-email:user.email,
-
-nom:user.displayName||"",
-
-role:"eleve",
-
-status:"attente",
-
-createdAt:
-serverTimestamp()
-
-}
-);
-
-}
+  }
 
 
-await signOut(auth);
+  if(password.length < 6){
+
+    showMessage(
+      "Modpas la dwe gen omwen 6 karaktè."
+    );
+
+    return;
+
+  }
 
 
-showMessage(
-"Kont Google la kreye. Administratè a dwe apwouve li."
-);
+  try{
+
+    const credential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
 
-}catch(error){
+    const user =
+      credential.user;
 
-console.error(error);
 
-showMessage(
-"Enskripsyon Google pa reyisi."
-);
+    await setDoc(
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
+      {
 
-}
+        uid: user.uid,
+
+        email: user.email,
+
+        nom: nom,
+
+        role: "eleve",
+
+        status: "attente",
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    await signOut(auth);
+
+
+    showMessage(
+      "Kont la kreye. Administratè a dwe apwouve li."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Nou pa kapab kreye kont sa a."
+    );
+
+  }
 
 };
 
 
-/* ================= PROFILE ================= */
+/* ================= REGISTER GOOGLE ================= */
+
+window.registerGoogle = async function(){
+
+  try{
+
+    const credential =
+      await signInWithPopup(
+        auth,
+        provider
+      );
+
+
+    const user =
+      credential.user;
+
+
+    const ref =
+      doc(
+        db,
+        "users",
+        user.uid
+      );
+
+
+    const old =
+      await getDoc(ref);
+
+
+    if(!old.exists()){
+
+      await setDoc(
+        ref,
+        {
+
+          uid: user.uid,
+
+          email: user.email,
+
+          nom:
+            user.displayName || "",
+
+          role: "eleve",
+
+          status: "attente",
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+    }
+
+
+    await signOut(auth);
+
+
+    showMessage(
+      "Kont Google la kreye. Administratè a dwe apwouve li."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Enskripsyon Google pa reyisi."
+    );
+
+  }
+
+};
+
+
+/* ================= USER PROFILE ================= */
 
 async function loadUserProfile(user){
 
-try{
+  try{
 
-const ref=doc(
-db,
-"users",
-user.uid
-);
-
-
-const snap=
-await getDoc(ref);
+    const ref =
+      doc(
+        db,
+        "users",
+        user.uid
+      );
 
 
-if(!snap.exists()){
-
-await setDoc(
-ref,
-{
-
-uid:user.uid,
-
-email:user.email,
-
-nom:user.displayName||"",
-
-role:"eleve",
-
-status:"attente",
-
-createdAt:
-serverTimestamp()
-
-}
-);
+    const snap =
+      await getDoc(ref);
 
 
-await signOut(auth);
+    if(!snap.exists()){
+
+      await setDoc(
+        ref,
+        {
+
+          uid: user.uid,
+
+          email: user.email,
+
+          nom:
+            user.displayName || "",
+
+          role: "eleve",
+
+          status: "attente",
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
 
 
-showMessage(
-"Kont ou anrejistre. Administratè a dwe apwouve li."
-);
-
-return;
-
-}
+      await signOut(auth);
 
 
-currentUserData=snap.data();
+      showMessage(
+        "Kont ou anrejistre. Administratè a dwe apwouve li."
+      );
+
+      return;
+
+    }
 
 
-const role=String(
-currentUserData.role||""
-)
-.trim()
-.toLowerCase();
+    currentUserData =
+      snap.data();
 
 
-const status=String(
-currentUserData.status||""
-)
-.trim()
-.toLowerCase();
+    const r =
+      role();
 
 
-if(status!=="accepted"){
-
-await signOut(auth);
-
-showMessage(
-"Kont ou poko apwouve pa administratè a."
-);
-
-return;
-
-}
+    const s =
+      String(
+        currentUserData.status || ""
+      )
+      .trim()
+      .toLowerCase();
 
 
-if(
-role!=="administrateur" &&
-role!=="professeur" &&
-role!=="eleve"
-){
+    if(s !== "accepted"){
 
-await signOut(auth);
-
-showMessage(
-"Wòl kont lan pa rekonèt."
-);
-
-return;
-
-}
+      await signOut(auth);
 
 
-openApp();
+      showMessage(
+        "Kont ou poko apwouve pa administratè a."
+      );
+
+      return;
+
+    }
 
 
-}catch(error){
+    if(
+      ![
+        "administrateur",
+        "professeur",
+        "eleve"
+      ].includes(r)
+    ){
 
-console.error(error);
+      await signOut(auth);
 
-await signOut(auth);
 
-showMessage(
-"Nou pa kapab verifye kont ou kounye a."
-);
+      showMessage(
+        "Wòl kont lan pa rekonèt."
+      );
 
-}
+      return;
+
+    }
+
+
+    openApp();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    await signOut(auth);
+
+    showMessage(
+      "Nou pa kapab verifye kont ou kounye a."
+    );
+
+  }
 
 }
 
@@ -1961,141 +2523,128 @@ showMessage(
 
 async function openApp(){
 
-document
-.getElementById("authPage")
-.classList.add("hidden");
+  document
+    .getElementById("authPage")
+    .classList
+    .add("hidden");
 
 
-document
-.getElementById("app")
-.classList.remove("hidden");
+  document
+    .getElementById("app")
+    .classList
+    .remove("hidden");
 
 
-document
-.getElementById("userEmail")
-.textContent=
-currentUser.email||"";
+  document
+    .getElementById("userEmail")
+    .textContent =
+      currentUser.email || "";
 
 
-document
-.getElementById("userRole")
-.textContent=
-"Wòl: "+
-(currentUserData.role||"");
+  document
+    .getElementById("userRole")
+    .textContent =
+      "Wòl: " +
+      (currentUserData.role || "");
 
 
-applyRoleAccess();
+  applyRoleAccess();
 
 
-await loadAllData();
+  await loadAllData();
 
 }
 
 
-/* ================= ACCESS ================= */
+/* ================= ROLE ACCESS ================= */
 
 function applyRoleAccess(){
 
-const role=String(
-currentUserData.role||""
-)
-.trim()
-.toLowerCase();
+  document
+    .querySelectorAll(".adminOnly")
+    .forEach(element => {
+
+      element.style.display =
+        isAdmin()
+          ? ""
+          : "none";
+
+    });
 
 
-/* ADMIN */
+  document
+    .querySelectorAll(".teacherOnly")
+    .forEach(element => {
 
-document
-.querySelectorAll(".adminOnly")
-.forEach(el=>{
+      element.style.display =
+        isTeacher()
+          ? ""
+          : "none";
 
-el.style.display=
-role==="administrateur"
-?"":"none";
-
-});
-
-
-/* TEACHER + ADMIN */
-
-document
-.querySelectorAll(".teacherOnly")
-.forEach(el=>{
-
-el.style.display=
-role==="administrateur"||
-role==="professeur"
-?"":"none";
-
-});
+    });
 
 
-/* CREATE HOMEWORK */
+  const panel =
+    document.getElementById(
+      "createDevoirPanel"
+    );
 
-const createPanel=
-document.getElementById(
-"createDevoirPanel"
-);
 
-if(createPanel){
+  if(panel){
 
-createPanel.style.display=
-role==="administrateur"||
-role==="professeur"
-?"":"none";
+    panel.style.display =
+      isTeacher()
+        ? ""
+        : "none";
 
-}
+  }
 
 }
 
 
-/* ================= SECTION ================= */
+/* ================= NAVIGATION ================= */
 
-window.showSection=function(
-id,
-button
-){
+window.showSection =
+function(id,button){
 
-document
-.querySelectorAll(".section")
-.forEach(section=>{
+  document
+    .querySelectorAll(".section")
+    .forEach(section => {
 
-section.classList.remove(
-"active"
-);
+      section.classList
+        .remove("active");
 
-});
+    });
 
 
-const section=
-document.getElementById(id);
+  const section =
+    document.getElementById(id);
 
 
-if(section){
+  if(section){
 
-section.classList.add("active");
+    section.classList
+      .add("active");
 
-}
-
-
-document
-.querySelectorAll(".menuBtn")
-.forEach(btn=>{
-
-btn.classList.remove(
-"active"
-);
-
-});
+  }
 
 
-if(button){
+  document
+    .querySelectorAll(".menuBtn")
+    .forEach(btn => {
 
-button.classList.add(
-"active"
-);
+      btn.classList
+        .remove("active");
 
-}
+    });
+
+
+  if(button){
+
+    button.classList
+      .add("active");
+
+  }
 
 };
 
@@ -2104,286 +2653,610 @@ button.classList.add(
 
 async function loadAllData(){
 
-const role=String(
-currentUserData.role||""
-)
-.trim()
-.toLowerCase();
+  const r = role();
 
-const tasks=[
 
-loadDevoirs(),
+  const tasks = [
 
-loadResultats()
+    loadDevoirs(),
 
-];
+    loadResultats()
 
+  ];
+
+
+  if(
+    r === "administrateur" ||
+    r === "professeur"
+  ){
+
+    tasks.push(
+      loadEleves()
+    );
+
+    tasks.push(
+      loadRemises()
+    );
+
+  }
+
+
+  if(r === "administrateur"){
+
+    tasks.push(
+      loadProfesseurs()
+    );
+
+    tasks.push(
+      loadClasses()
+    );
+
+    tasks.push(
+      loadMatieres()
+    );
+
+    tasks.push(
+      loadUsers()
+    );
+
+  }
+
+
+  await Promise.all(tasks);
+
+
+  await updateStats();
+
+}
+
+
+/* ================= EMPTY CARD ================= */
+
+function emptyCard(icon,text){
+
+  return `
+
+    <div class="empty">
+
+      <div class="emptyIcon">
+        ${icon}
+      </div>
+
+      <div>
+        ${escapeHTML(text)}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+window.logout = async function(){
+
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* ================= AUTH STATE ================= */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(user){
+
+      currentUser =
+        user;
+
+      await loadUserProfile(
+        user
+      );
+
+    }else{
+
+      currentUser =
+        null;
+
+      currentUserData =
+        null;
+
+
+      document
+        .getElementById("authPage")
+        .classList
+        .remove("hidden");
+
+
+      document
+        .getElementById("app")
+        .classList
+        .add("hidden");
+
+    }
+
+  }
+);
+
+
+/* ================= REDIRECT RESULT ================= */
+
+getRedirectResult(auth)
+  .then(async result => {
+
+    if(result?.user){
+
+      currentUser =
+        result.user;
+
+      await loadUserProfile(
+        result.user
+      );
+
+    }
+
+  })
+  .catch(error => {
+
+    console.error(
+      "Redirect:",
+      error
+    );
+
+  });
+
+
+/* ================= PWA INSTALL ================= */
+
+window.addEventListener(
+  "beforeinstallprompt",
+  event => {
+
+    event.preventDefault();
+
+    deferredPrompt =
+      event;
+
+
+    const button =
+      document.getElementById(
+        "installBtn"
+      );
+
+
+    if(button){
+
+      button.classList
+        .remove("hidden");
+
+    }
+
+  }
+);
+
+
+window.installApp =
+async function(){
+
+  if(!deferredPrompt){
+
+    alert(
+      "Aplikasyon an poko pare pou enstalasyon sou navigatè sa a."
+    );
+
+    return;
+
+  }
+
+
+  deferredPrompt.prompt();
+
+
+  const result =
+    await deferredPrompt.userChoice;
+
+
+  console.log(
+    "Installation:",
+    result.outcome
+  );
+
+
+  deferredPrompt =
+    null;
+
+
+  const button =
+    document.getElementById(
+      "installBtn"
+    );
+
+
+  if(button){
+
+    button.classList
+      .add("hidden");
+
+  }
+
+};
+
+
+/* ================= LANGUAGE ================= */
+
+window.changeLanguage =
+function(lang){
+
+  localStorage.setItem(
+    "language",
+    lang
+  );
+
+
+  const brand =
+    document.querySelector(
+      ".brand"
+    );
+
+
+  if(!brand) return;
+
+
+  if(lang === "fr"){
+
+    brand.textContent =
+      "📚 Système d'Apprentissage";
+
+  }else{
+
+    brand.textContent =
+      "📚 Sistèm Aprantisaj";
+
+  }
+
+};
+
+
+/* ================= RESTORE LANGUAGE ================= */
+
+const savedLanguage =
+  localStorage.getItem(
+    "language"
+  );
+
+
+if(savedLanguage){
+
+  const select =
+    document.getElementById(
+      "languageSelect"
+    );
+
+
+  if(select){
+
+    select.value =
+      savedLanguage;
+
+  }
+
+
+  changeLanguage(
+    savedLanguage
+  );
+
+}
+
+
+/* ================= FILTER CARDS ================= */
+
+window.filterCards =
+function(inputId,listId){
+
+  const input =
+    document.getElementById(
+      inputId
+    );
+
+
+  const list =
+    document.getElementById(
+      listId
+    );
+
+
+  if(!input || !list)
+    return;
+
+
+  const search =
+    input.value
+      .trim()
+      .toLowerCase();
+
+
+  list
+    .querySelectorAll(".dataCard")
+    .forEach(card => {
+
+      const text =
+        card.textContent
+          .toLowerCase();
+
+
+      card.style.display =
+        text.includes(search)
+          ? ""
+          : "none";
+
+    });
+
+};
+
+
+/* ================= SERVICE WORKER ================= */
 
 if(
-role==="administrateur"||
-role==="professeur"
+  "serviceWorker" in navigator
 ){
 
-tasks.push(
-loadEleves()
-);
+  window.addEventListener(
+    "load",
+    () => {
 
-tasks.push(
-loadRemises()
-);
+      navigator.serviceWorker
+        .register(
+          "./service-worker.js"
+        )
+        .catch(error => {
 
-}
+          console.log(
+            "Service Worker:",
+            error
+          );
 
+        });
 
-if(role==="administrateur"){
-
-tasks.push(
-loadProfesseurs()
-);
-
-tasks.push(
-loadClasses()
-);
-
-tasks.push(
-loadMatieres()
-);
-
-tasks.push(
-loadUsers()
-);
+    }
+  );
 
 }
 
-
-await Promise.all(tasks);
-
-
-await updateStats();
-
-}
-
-
-/* ================= EMPTY ================= */
-
-function emptyCard(
-icon,
-text
-){
-
-return `
-
-<div class="empty">
-
-<div class="emptyIcon">
-${icon}
-</div>
-
-<div>
-${escapeHTML(text)}
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ================= ELEVES ================= */
+</script>
+  /* ================= ELEVES ================= */
 
 async function loadEleves(){
 
-try{
+  const box =
+    document.getElementById("listeEleves");
 
-const snap=await getDocs(
-collection(db,"eleves")
-);
+  if(!box) return;
 
-
-const box=document
-.getElementById(
-"listeEleves"
-);
+  box.innerHTML =
+    emptyCard("⏳","Chaje elèv yo...");
 
 
-box.innerHTML="";
+  try{
+
+    const snap =
+      await getDocs(
+        collection(db,"eleves")
+      );
 
 
-if(!snap.size){
-
-box.innerHTML=
-emptyCard(
-"👨‍🎓",
-"Pa gen elèv pou kounye a."
-);
-
-return;
-
-}
+    box.innerHTML = "";
 
 
-snap.forEach(item=>{
+    if(snap.empty){
 
-const data=item.data();
+      box.innerHTML =
+        emptyCard(
+          "👨‍🎓",
+          "Pa gen elèv pou kounye a."
+        );
 
+      return;
 
-const nom=
-data.nom||
-"Elèv san non";
-
-
-const classe=
-data.classe||
-"Pa gen klas";
+    }
 
 
-box.innerHTML+=`
+    snap.forEach(item => {
 
-<div
-class="dataCard searchItem"
-data-search="${escapeHTML(
-(nom+" "+classe).toLowerCase()
-)}">
+      const data =
+        item.data();
 
-<div class="cardTop">
-
-<div class="avatar">
-👨‍🎓
-</div>
-
-<div>
-
-<div class="cardTitle">
-${escapeHTML(nom)}
-</div>
-
-<div class="cardSub">
-Elèv
-</div>
-
-</div>
-
-</div>
-
-<div class="infoRow">
-
-<span>
-Klas
-</span>
-
-<strong>
-${escapeHTML(classe)}
-</strong>
-
-</div>
-
-<div class="infoRow">
-
-<span>
-ID
-</span>
-
-<strong>
-${escapeHTML(item.id)}
-</strong>
-
-</div>
-
-</div>
-
-`;
-
-});
+      const id =
+        item.id;
 
 
-}catch(error){
+      box.innerHTML += `
 
-console.error(
-"Eleves:",
-error
-);
+        <div
+          class="dataCard"
+          data-search="${escapeHTML(
+            (data.nom || "") +
+            " " +
+            (data.classe || "")
+          )}"
+        >
 
-}
+          <div class="cardIcon">
+            👨‍🎓
+          </div>
 
-}
+          <div class="cardContent">
+
+            <h3>
+              ${escapeHTML(
+                data.nom || "San non"
+              )}
+            </h3>
+
+            <p>
+              <strong>Klas:</strong>
+              ${escapeHTML(
+                data.classe || "Pa defini"
+              )}
+            </p>
+
+            <p>
+              <strong>ID:</strong>
+              ${escapeHTML(id)}
+            </p>
+
+          </div>
+
+          ${
+            isAdmin()
+            ? `
+              <div class="cardActions">
+
+                <button
+                  class="smallBtn refuse"
+                  onclick="deleteEleve('${id}')"
+                >
+                  🗑️ Efase
+                </button>
+
+              </div>
+            `
+            : ""
+          }
+
+        </div>
+
+      `;
+
+    });
 
 
-/* ================= ADD ELEV ================= */
+  }catch(error){
 
-window.ajouterEleve=async function(){
+    console.error(
+      "ERÈ ELEVES:",
+      error
+    );
 
-const nom=document
-.getElementById("eleveNom")
-.value.trim();
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje elèv yo."
+      );
 
-
-const classe=document
-.getElementById("eleveClasse")
-.value.trim();
-
-
-if(!nom){
-
-alert(
-"Antre non elèv la."
-);
-
-return;
+  }
 
 }
 
 
-try{
+/* ================= AJOUTER ELEVE ================= */
 
-const id=
-"eleve_"+Date.now();
+window.ajouterEleve =
+async function(){
 
+  if(!isAdmin()){
 
-await setDoc(
-doc(db,"eleves",id),
-{
+    alert(
+      "Se administratè a sèlman ki ka ajoute elèv."
+    );
 
-nom:nom,
+    return;
 
-classe:classe,
-
-createdAt:
-serverTimestamp()
-
-}
-);
+  }
 
 
-document
-.getElementById("eleveNom")
-.value="";
+  const nom =
+    document
+      .getElementById("eleveNom")
+      .value
+      .trim();
 
 
-document
-.getElementById("eleveClasse")
-.value="";
+  const classe =
+    document
+      .getElementById("eleveClasse")
+      .value
+      .trim();
 
 
-await loadEleves();
+  if(!nom){
 
-await updateStats();
+    alert(
+      "Tanpri antre non elèv la."
+    );
+
+    return;
+
+  }
 
 
-alert(
-"Elèv la ajoute avèk siksè."
-);
+  try{
+
+    await setDoc(
+
+      doc(
+        db,
+        "eleves",
+        "eleve_" + Date.now()
+      ),
+
+      {
+
+        nom: nom,
+
+        classe: classe,
+
+        createdAt:
+          serverTimestamp(),
+
+        createdBy:
+          currentUser.uid
+
+      }
+
+    );
 
 
-}catch(error){
+    document
+      .getElementById("eleveNom")
+      .value = "";
 
-console.error(error);
 
-alert(
-"Nou pa kapab ajoute elèv la."
-);
+    document
+      .getElementById("eleveClasse")
+      .value = "";
 
-}
+
+    await loadEleves();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Elèv la ajoute avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Nou pa kapab ajoute elèv la."
+    );
+
+  }
 
 };
 
@@ -2392,390 +3265,473 @@ alert(
 
 async function loadProfesseurs(){
 
-try{
+  const box =
+    document.getElementById(
+      "listeProfesseurs"
+    );
 
-const snap=await getDocs(
-collection(db,"professeurs")
-);
-
-
-const box=document
-.getElementById(
-"listeProfesseurs"
-);
+  if(!box) return;
 
 
-box.innerHTML="";
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje pwofesè yo..."
+    );
 
 
-if(!snap.size){
+  try{
 
-box.innerHTML=
-emptyCard(
-"👨‍🏫",
-"Pa gen pwofesè pou kounye a."
-);
-
-return;
-
-}
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "professeurs"
+        )
+      );
 
 
-snap.forEach(item=>{
-
-const data=item.data();
+    box.innerHTML = "";
 
 
-const nom=
-data.nom||
-"Pwofesè";
+    if(snap.empty){
+
+      box.innerHTML =
+        emptyCard(
+          "👨‍🏫",
+          "Pa gen pwofesè pou kounye a."
+        );
+
+      return;
+
+    }
 
 
-const email=
-data.email||
-"";
+    snap.forEach(item => {
+
+      const data =
+        item.data();
+
+      const id =
+        item.id;
 
 
-const matiere=
-data.matiere||
-"Pa presize";
+      box.innerHTML += `
+
+        <div
+          class="dataCard"
+          data-search="${escapeHTML(
+            (data.nom || "") +
+            " " +
+            (data.email || "") +
+            " " +
+            (data.matiere || "")
+          )}"
+        >
+
+          <div class="cardIcon">
+            👨‍🏫
+          </div>
+
+          <div class="cardContent">
+
+            <h3>
+              ${escapeHTML(
+                data.nom || "San non"
+              )}
+            </h3>
+
+            <p>
+              <strong>Email:</strong>
+              ${escapeHTML(
+                data.email || "Pa gen email"
+              )}
+            </p>
+
+            <p>
+              <strong>Matyè:</strong>
+              ${escapeHTML(
+                data.matiere || "Pa defini"
+              )}
+            </p>
+
+          </div>
 
 
-box.innerHTML+=`
+          ${
+            isAdmin()
+            ? `
+              <div class="cardActions">
 
-<div
-class="dataCard searchItem"
-data-search="${escapeHTML(
-(nom+" "+email+" "+matiere).toLowerCase()
-)}">
+                <button
+                  class="smallBtn refuse"
+                  onclick="deleteProfesseur('${id}')"
+                >
+                  🗑️ Efase
+                </button>
 
-<div class="cardTop">
+              </div>
+            `
+            : ""
+          }
 
-<div class="avatar">
-👨‍🏫
-</div>
+        </div>
 
-<div>
+      `;
 
-<div class="cardTitle">
-${escapeHTML(nom)}
-</div>
-
-<div class="cardSub">
-Pwofesè
-</div>
-
-</div>
-
-</div>
-
-<div class="infoRow">
-
-<span>
-Email
-</span>
-
-<strong>
-${escapeHTML(email)}
-</strong>
-
-</div>
-
-<div class="infoRow">
-
-<span>
-Matyè
-</span>
-
-<strong>
-
-<span class="badge badgeBlue">
-${escapeHTML(matiere)}
-</span>
-
-</strong>
-
-</div>
-
-</div>
-
-`;
-
-});
+    });
 
 
-}catch(error){
+  }catch(error){
 
-console.error(
-"Professeurs:",
-error
-);
+    console.error(
+      "ERÈ PROFESSEURS:",
+      error
+    );
 
-}
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje pwofesè yo."
+      );
 
-}
-
-
-/* ================= ADD PROF ================= */
-
-window.ajouterProfesseur=async function(){
-
-const nom=document
-.getElementById("profNom")
-.value.trim();
-
-
-const email=document
-.getElementById("profEmail")
-.value.trim();
-
-
-const matiere=document
-.getElementById("profMatiere")
-.value.trim();
-
-
-if(!nom){
-
-alert(
-"Antre non pwofesè a."
-);
-
-return;
+  }
 
 }
 
 
-try{
+/* ================= AJOUTER PROFESSEUR ================= */
 
-const id=
-"professeur_"+Date.now();
+window.ajouterProfesseur =
+async function(){
 
+  if(!isAdmin()){
 
-await setDoc(
-doc(db,"professeurs",id),
-{
+    alert(
+      "Se administratè a sèlman ki ka ajoute pwofesè."
+    );
 
-nom:nom,
+    return;
 
-email:email,
-
-matiere:matiere,
-
-createdAt:
-serverTimestamp()
-
-}
-);
+  }
 
 
-document
-.getElementById("profNom")
-.value="";
+  const nom =
+    document
+      .getElementById("profNom")
+      .value
+      .trim();
 
 
-document
-.getElementById("profEmail")
-.value="";
+  const email =
+    document
+      .getElementById("profEmail")
+      .value
+      .trim();
 
 
-document
-.getElementById("profMatiere")
-.value="";
+  const matiere =
+    document
+      .getElementById("profMatiere")
+      .value
+      .trim();
 
 
-await loadProfesseurs();
+  if(!nom){
 
-await updateStats();
+    alert(
+      "Tanpri antre non pwofesè a."
+    );
+
+    return;
+
+  }
 
 
-alert(
-"Pwofesè a ajoute avèk siksè."
-);
+  try{
+
+    await setDoc(
+
+      doc(
+        db,
+        "professeurs",
+        "professeur_" + Date.now()
+      ),
+
+      {
+
+        nom: nom,
+
+        email: email,
+
+        matiere: matiere,
+
+        createdAt:
+          serverTimestamp(),
+
+        createdBy:
+          currentUser.uid
+
+      }
+
+    );
 
 
-}catch(error){
+    document
+      .getElementById("profNom")
+      .value = "";
 
-console.error(error);
 
-alert(
-"Nou pa kapab ajoute pwofesè a."
-);
+    document
+      .getElementById("profEmail")
+      .value = "";
 
-}
+
+    document
+      .getElementById("profMatiere")
+      .value = "";
+
+
+    await loadProfesseurs();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Pwofesè a ajoute avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Nou pa kapab ajoute pwofesè a."
+    );
+
+  }
 
 };
 
 
-/* ================= CLASSES ================= */
+/* ================= KLAS ================= */
 
 async function loadClasses(){
 
-try{
+  const box =
+    document.getElementById(
+      "listeClasses"
+    );
 
-const snap=await getDocs(
-collection(db,"classes")
-);
-
-
-const box=document
-.getElementById(
-"listeClasses"
-);
+  if(!box) return;
 
 
-box.innerHTML="";
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje klas yo..."
+    );
 
 
-if(!snap.size){
+  try{
 
-box.innerHTML=
-emptyCard(
-"🏫",
-"Pa gen klas pou kounye a."
-);
-
-return;
-
-}
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "classes"
+        )
+      );
 
 
-snap.forEach(item=>{
-
-const data=item.data();
+    box.innerHTML = "";
 
 
-const nom=
-data.nom||
-"Klas";
+    if(snap.empty){
+
+      box.innerHTML =
+        emptyCard(
+          "🏫",
+          "Pa gen klas pou kounye a."
+        );
+
+      return;
+
+    }
 
 
-box.innerHTML+=`
+    snap.forEach(item => {
 
-<div
-class="dataCard searchItem"
-data-search="${escapeHTML(
-nom.toLowerCase()
-)}">
+      const data =
+        item.data();
 
-<div class="cardTop">
-
-<div class="avatar">
-🏫
-</div>
-
-<div>
-
-<div class="cardTitle">
-${escapeHTML(nom)}
-</div>
-
-<div class="cardSub">
-Klas lekòl
-</div>
-
-</div>
-
-</div>
-
-<div class="infoRow">
-
-<span>
-ID
-</span>
-
-<strong>
-${escapeHTML(item.id)}
-</strong>
-
-</div>
-
-<span class="badge badgeGreen">
-Aktif
-</span>
-
-</div>
-
-`;
-
-});
+      const id =
+        item.id;
 
 
-}catch(error){
+      box.innerHTML += `
 
-console.error(
-"Classes:",
-error
-);
+        <div
+          class="dataCard"
+          data-search="${escapeHTML(
+            data.nom || ""
+          )}"
+        >
 
-}
+          <div class="cardIcon">
+            🏫
+          </div>
 
-}
+          <div class="cardContent">
 
+            <h3>
+              ${escapeHTML(
+                data.nom || "San non"
+              )}
+            </h3>
 
-/* ================= ADD CLASS ================= */
+            <p>
+              <strong>ID:</strong>
+              ${escapeHTML(id)}
+            </p>
 
-window.ajouterClasse=async function(){
+            <p>
+              <span class="badge">
+                Aktif
+              </span>
+            </p>
 
-const nom=document
-.getElementById("classeNom")
-.value.trim();
-
-
-if(!nom){
-
-alert(
-"Antre non klas la."
-);
-
-return;
-
-}
-
-
-try{
-
-const id=
-"classe_"+Date.now();
+          </div>
 
 
-await setDoc(
-doc(db,"classes",id),
-{
+          ${
+            isAdmin()
+            ? `
+              <div class="cardActions">
 
-nom:nom,
+                <button
+                  class="smallBtn refuse"
+                  onclick="deleteClasse('${id}')"
+                >
+                  🗑️ Efase
+                </button>
 
-createdAt:
-serverTimestamp()
+              </div>
+            `
+            : ""
+          }
+
+        </div>
+
+      `;
+
+    });
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ CLASSES:",
+      error
+    );
+
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje klas yo."
+      );
+
+  }
 
 }
-);
 
 
-document
-.getElementById("classeNom")
-.value="";
+/* ================= AJOUTER KLAS ================= */
+
+window.ajouterClasse =
+async function(){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se administratè a sèlman ki ka ajoute klas."
+    );
+
+    return;
+
+  }
 
 
-await loadClasses();
-
-await updateStats();
-
-
-alert(
-"Klas la ajoute avèk siksè."
-);
+  const nom =
+    document
+      .getElementById("classeNom")
+      .value
+      .trim();
 
 
-}catch(error){
+  if(!nom){
 
-console.error(error);
+    alert(
+      "Tanpri antre non klas la."
+    );
 
-alert(
-"Nou pa kapab ajoute klas la."
-);
+    return;
 
-}
+  }
+
+
+  try{
+
+    await setDoc(
+
+      doc(
+        db,
+        "classes",
+        "classe_" + Date.now()
+      ),
+
+      {
+
+        nom: nom,
+
+        active: true,
+
+        createdAt:
+          serverTimestamp(),
+
+        createdBy:
+          currentUser.uid
+
+      }
+
+    );
+
+
+    document
+      .getElementById("classeNom")
+      .value = "";
+
+
+    await loadClasses();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Klas la ajoute avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Nou pa kapab ajoute klas la."
+    );
+
+  }
 
 };
 
@@ -2784,2165 +3740,2452 @@ alert(
 
 async function loadMatieres(){
 
-try{
+  const box =
+    document.getElementById(
+      "listeMatieres"
+    );
 
-const snap=await getDocs(
-collection(db,"matieres")
-);
-
-
-const box=document
-.getElementById(
-"listeMatieres"
-);
+  if(!box) return;
 
 
-box.innerHTML="";
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje matyè yo..."
+    );
 
 
-if(!snap.size){
+  try{
 
-box.innerHTML=
-emptyCard(
-"📚",
-"Pa gen matyè pou kounye a."
-);
-
-return;
-
-}
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "matieres"
+        )
+      );
 
 
-snap.forEach(item=>{
-
-const data=item.data();
+    box.innerHTML = "";
 
 
-const nom=
-data.nom||
-"Matyè";
+    if(snap.empty){
+
+      box.innerHTML =
+        emptyCard(
+          "📚",
+          "Pa gen matyè pou kounye a."
+        );
+
+      return;
+
+    }
 
 
-box.innerHTML+=`
+    snap.forEach(item => {
 
-<div
-class="dataCard searchItem"
-data-search="${escapeHTML(
-nom.toLowerCase()
-)}">
+      const data =
+        item.data();
 
-<div class="cardTop">
-
-<div class="avatar">
-📚
-</div>
-
-<div>
-
-<div class="cardTitle">
-${escapeHTML(nom)}
-</div>
-
-<div class="cardSub">
-Matyè akademik
-</div>
-
-</div>
-
-</div>
-
-<div class="infoRow">
-
-<span>
-Non
-</span>
-
-<strong>
-${escapeHTML(nom)}
-</strong>
-
-</div>
-
-<span class="badge badgeBlue">
-Matyè aktif
-</span>
-
-</div>
-
-`;
-
-});
+      const id =
+        item.id;
 
 
-}catch(error){
+      box.innerHTML += `
 
-console.error(
-"Matieres:",
-error
-);
+        <div
+          class="dataCard"
+          data-search="${escapeHTML(
+            data.nom || ""
+          )}"
+        >
 
-}
+          <div class="cardIcon">
+            📚
+          </div>
 
-}
+          <div class="cardContent">
 
+            <h3>
+              ${escapeHTML(
+                data.nom || "San non"
+              )}
+            </h3>
 
-/* ================= ADD MATIERE ================= */
+            <p>
+              <span class="badge">
+                Aktif
+              </span>
+            </p>
 
-window.ajouterMatiere=async function(){
-
-const nom=document
-.getElementById("matiereNom")
-.value.trim();
-
-
-if(!nom){
-
-alert(
-"Antre non matyè a."
-);
-
-return;
-
-}
+          </div>
 
 
-try{
+          ${
+            isAdmin()
+            ? `
+              <div class="cardActions">
 
-const id=
-"matiere_"+Date.now();
+                <button
+                  class="smallBtn refuse"
+                  onclick="deleteMatiere('${id}')"
+                >
+                  🗑️ Efase
+                </button>
+
+              </div>
+            `
+            : ""
+          }
+
+        </div>
+
+      `;
+
+    });
 
 
-await setDoc(
-doc(db,"matieres",id),
-{
+  }catch(error){
 
-nom:nom,
+    console.error(
+      "ERÈ MATIERES:",
+      error
+    );
 
-createdAt:
-serverTimestamp()
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje matyè yo."
+      );
+
+  }
 
 }
-);
 
 
-document
-.getElementById("matiereNom")
-.value="";
+/* ================= AJOUTER MATIERE ================= */
+
+window.ajouterMatiere =
+async function(){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se administratè a sèlman ki ka ajoute matyè."
+    );
+
+    return;
+
+  }
 
 
-await loadMatieres();
-
-await updateStats();
-
-
-alert(
-"Matyè a ajoute avèk siksè."
-);
+  const nom =
+    document
+      .getElementById("matiereNom")
+      .value
+      .trim();
 
 
-}catch(error){
+  if(!nom){
 
-console.error(error);
+    alert(
+      "Tanpri antre non matyè a."
+    );
 
-alert(
-"Nou pa kapab ajoute matyè a."
-);
+    return;
 
-}
+  }
+
+
+  try{
+
+    await setDoc(
+
+      doc(
+        db,
+        "matieres",
+        "matiere_" + Date.now()
+      ),
+
+      {
+
+        nom: nom,
+
+        active: true,
+
+        createdAt:
+          serverTimestamp(),
+
+        createdBy:
+          currentUser.uid
+
+      }
+
+    );
+
+
+    document
+      .getElementById("matiereNom")
+      .value = "";
+
+
+    await loadMatieres();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Matyè a ajoute avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Nou pa kapab ajoute matyè a."
+    );
+
+  }
 
 };
-
-
-/* ================= DEVOIRS ================= */
+  /* ================= DEVOIRS ================= */
 
 async function loadDevoirs(){
 
-try{
+  const box =
+    document.getElementById(
+      "listeDevoirs"
+    );
 
-const snap=await getDocs(
-collection(db,"devoirs")
-);
-
-
-const box=document
-.getElementById(
-"listeDevoirs"
-);
+  if(!box) return;
 
 
-box.innerHTML="";
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje devwa yo..."
+    );
 
 
-const role=String(
-currentUserData?.role||""
-)
-.toLowerCase();
+  try{
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "devoirs"
+        )
+      );
 
 
-if(!snap.size){
+    box.innerHTML = "";
 
-box.innerHTML=
-emptyCard(
-"📝",
-"Pa gen devwa pou kounye a."
-);
 
-return;
+    if(snap.empty){
+
+      box.innerHTML =
+        emptyCard(
+          "📝",
+          "Pa gen devwa pou kounye a."
+        );
+
+      return;
+
+    }
+
+
+    snap.forEach(item => {
+
+      const data =
+        item.data();
+
+      const id =
+        item.id;
+
+
+      const title =
+        data.titre ||
+        "San tit";
+
+
+      const matiere =
+        data.matiere ||
+        "Pa defini";
+
+
+      const classe =
+        data.classe ||
+        "Pa defini";
+
+
+      const duree =
+        data.duree ||
+        0;
+
+
+      const tentatives =
+        data.maxTentatives ||
+        1;
+
+
+      let action = "";
+
+
+      if(role() === "eleve"){
+
+        action = `
+
+          <button
+            class="smallBtn edit"
+            onclick="ouvrirRemetDevoir('${id}')"
+          >
+            📤 Fè epi remèt
+          </button>
+
+        `;
+
+      }
+
+
+      if(isAdmin() || role() === "professeur"){
+
+        action += `
+
+          <button
+            class="smallBtn refuse"
+            onclick="deleteDevoir('${id}')"
+          >
+            🗑️ Efase
+          </button>
+
+        `;
+
+      }
+
+
+      box.innerHTML += `
+
+        <div
+          class="dataCard"
+          data-search="${escapeHTML(
+            title +
+            " " +
+            matiere +
+            " " +
+            classe
+          )}"
+        >
+
+          <div class="cardIcon">
+            📝
+          </div>
+
+
+          <div class="cardContent">
+
+            <h3>
+              ${escapeHTML(title)}
+            </h3>
+
+
+            <p>
+              <strong>Matyè:</strong>
+              ${escapeHTML(matiere)}
+            </p>
+
+
+            <p>
+              <strong>Klas:</strong>
+              ${escapeHTML(classe)}
+            </p>
+
+
+            <p>
+              <strong>Dire:</strong>
+              ${escapeHTML(duree)} minit
+            </p>
+
+
+            <p>
+              <strong>Tantativ:</strong>
+              ${escapeHTML(tentatives)}
+            </p>
+
+
+            <div class="cardActions">
+
+              ${action}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ DEVOIRS:",
+      error
+    );
+
+
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje devwa yo."
+      );
+
+  }
 
 }
 
 
-snap.forEach(item=>{
+/* ================= AJOUTER DEVOIR ================= */
 
-const data=item.data();
+window.ajouterDevoir =
+async function(){
 
+  if(!isTeacher()){
 
-const titre=
-data.titre||
-"Devwa";
+    alert(
+      "Se pwofesè oswa administratè sèlman ki ka kreye devwa."
+    );
 
+    return;
 
-const matiere=
-data.matiere||
-"Pa presize";
+  }
 
 
-const classe=
-data.classe||
-"Pa presize";
+  const titre =
+    document
+      .getElementById("devoirTitre")
+      .value
+      .trim();
 
 
-const duree=
-data.duree||
-0;
+  const matiere =
+    document
+      .getElementById("devoirMatiere")
+      .value
+      .trim();
 
 
-const tent=
-data.maxTentatives||
-1;
+  const classe =
+    document
+      .getElementById("devoirClasse")
+      .value
+      .trim();
 
 
-let bouton="";
+  const duree =
+    Number(
+      document
+        .getElementById("devoirDuree")
+        .value
+    ) || 30;
 
 
-if(role==="eleve"){
+  const maxTentatives =
+    Number(
+      document
+        .getElementById("devoirTentatives")
+        .value
+    ) || 1;
 
-bouton=`
 
-<button
-class="btn"
-style="margin-top:14px"
-onclick="ouvrirRemetDevoir('${item.id}')">
+  if(!titre){
 
-📤 Fè epi remèt devwa
+    alert(
+      "Tanpri antre tit devwa a."
+    );
 
-</button>
+    return;
 
-`;
+  }
 
-}
 
+  try{
 
-box.innerHTML+=`
+    await setDoc(
 
-<div
-class="dataCard searchItem"
-data-search="${escapeHTML(
-(titre+" "+matiere+" "+classe).toLowerCase()
-)}">
+      doc(
+        db,
+        "devoirs",
+        "devoir_" + Date.now()
+      ),
 
-<div class="cardTop">
+      {
 
-<div class="avatar">
-📝
-</div>
+        titre: titre,
 
-<div>
+        matiere: matiere,
 
-<div class="cardTitle">
-${escapeHTML(titre)}
-</div>
+        classe: classe,
 
-<div class="cardSub">
-${escapeHTML(matiere)}
-</div>
+        duree: duree,
 
-</div>
+        maxTentatives:
+          maxTentatives,
 
-</div>
+        createdAt:
+          serverTimestamp(),
 
+        createdBy:
+          currentUser.uid
 
-<div class="infoRow">
+      }
 
-<span>
-Klas
-</span>
+    );
 
-<strong>
-${escapeHTML(classe)}
-</strong>
 
-</div>
+    document
+      .getElementById("devoirTitre")
+      .value = "";
 
 
-<div class="infoRow">
+    document
+      .getElementById("devoirMatiere")
+      .value = "";
 
-<span>
-Dire
-</span>
 
-<strong>
-${escapeHTML(duree)} min
-</strong>
+    document
+      .getElementById("devoirClasse")
+      .value = "";
 
-</div>
 
+    await loadDevoirs();
 
-<div class="infoRow">
+    await updateStats();
 
-<span>
-Tantativ
-</span>
 
-<strong>
-${escapeHTML(tent)}
-</strong>
+    alert(
+      "✅ Devwa a kreye avèk siksè."
+    );
 
-</div>
 
+  }catch(error){
 
-<div style="margin-top:12px">
+    console.error(error);
 
-<span class="badge badgeBlue">
-${escapeHTML(matiere)}
-</span>
+    alert(
+      "❌ Nou pa kapab kreye devwa a."
+    );
 
-</div>
-
-
-${bouton}
-
-</div>
-
-`;
-
-});
-
-
-}catch(error){
-
-console.error(
-"Devoirs:",
-error
-);
-
-
-const box=document
-.getElementById(
-"listeDevoirs"
-);
-
-
-box.innerHTML=
-emptyCard(
-"⚠️",
-"Pa kapab chaje devwa yo."
-);
-
-}
-
-}
-
-
-/* ================= ADD DEVOIR ================= */
-
-window.ajouterDevoir=async function(){
-
-const titre=document
-.getElementById("devoirTitre")
-.value.trim();
-
-
-const matiere=document
-.getElementById("devoirMatiere")
-.value.trim();
-
-
-const classe=document
-.getElementById("devoirClasse")
-.value.trim();
-
-
-const duree=Number(
-document.getElementById(
-"devoirDuree"
-).value
-)||30;
-
-
-const maxTentatives=Number(
-document.getElementById(
-"devoirTentatives"
-).value
-)||1;
-
-
-if(!titre){
-
-alert(
-"Antre tit devwa a."
-);
-
-return;
-
-}
-
-
-try{
-
-const id=
-"devoir_"+Date.now();
-
-
-await setDoc(
-doc(db,"devoirs",id),
-{
-
-titre:titre,
-
-matiere:matiere,
-
-classe:classe,
-
-duree:duree,
-
-maxTentatives:maxTentatives,
-
-createdAt:
-serverTimestamp(),
-
-createdBy:
-currentUser.uid
-
-}
-);
-
-
-document
-.getElementById("devoirTitre")
-.value="";
-
-
-document
-.getElementById("devoirMatiere")
-.value="";
-
-
-document
-.getElementById("devoirClasse")
-.value="";
-
-
-await loadDevoirs();
-
-await updateStats();
-
-
-alert(
-"Devwa a kreye avèk siksè."
-);
-
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Nou pa kapab kreye devwa a."
-);
-
-}
+  }
 
 };
 
 
-/* ================= REMET DEVWA ================= */
+/* ================= OUVRI REMET DEVWA ================= */
 
-window.ouvrirRemetDevoir=async function(
-devoirId
-){
+window.ouvrirRemetDevoir =
+async function(devoirId){
 
-try{
+  if(role() !== "eleve"){
 
-const ref=doc(
-db,
-"devoirs",
-devoirId
-);
+    return;
+
+  }
 
 
-const snap=
-await getDoc(ref);
+  try{
+
+    const ref =
+      doc(
+        db,
+        "devoirs",
+        devoirId
+      );
 
 
-if(!snap.exists()){
-
-alert(
-"Devwa sa a pa egziste."
-);
-
-return;
-
-}
+    const snap =
+      await getDoc(ref);
 
 
-const data=snap.data();
+    if(!snap.exists()){
+
+      alert(
+        "Devwa sa a pa egziste ankò."
+      );
+
+      return;
+
+    }
 
 
-document
-.getElementById(
-"remetDevoirId"
-)
-.value=devoirId;
+    const data =
+      snap.data();
 
 
-document
-.getElementById(
-"remetReponse"
-)
-.value="";
+    document
+      .getElementById(
+        "remetDevoirId"
+      )
+      .value =
+        devoirId;
 
 
-document
-.getElementById(
-"remetTemps"
-)
-.value="";
+    document
+      .getElementById(
+        "remetDevoirInfo"
+      )
+      .innerHTML = `
+
+        <div class="infoBox">
+
+          <h3>
+            ${escapeHTML(
+              data.titre || "Devwa"
+            )}
+          </h3>
+
+          <p>
+            <strong>Matyè:</strong>
+            ${escapeHTML(
+              data.matiere || "Pa defini"
+            )}
+          </p>
+
+          <p>
+            <strong>Klas:</strong>
+            ${escapeHTML(
+              data.classe || "Pa defini"
+            )}
+          </p>
+
+          <p>
+            <strong>Dire:</strong>
+            ${escapeHTML(
+              data.duree || 0
+            )} minit
+          </p>
+
+        </div>
+
+      `;
 
 
-document
-.getElementById(
-"remetDevoirInfo"
-)
-.innerHTML=`
-
-<div class="infoRow">
-
-<span>
-Devwa
-</span>
-
-<strong>
-${escapeHTML(
-data.titre||""
-)}
-</strong>
-
-</div>
+    document
+      .getElementById(
+        "remetReponse"
+      )
+      .value = "";
 
 
-<div class="infoRow">
-
-<span>
-Matyè
-</span>
-
-<strong>
-${escapeHTML(
-data.matiere||""
-)}
-</strong>
-
-</div>
+    document
+      .getElementById(
+        "remetTemps"
+      )
+      .value = "";
 
 
-<div class="infoRow">
-
-<span>
-Klas
-</span>
-
-<strong>
-${escapeHTML(
-data.classe||""
-)}
-</strong>
-
-</div>
+    document
+      .getElementById(
+        "remetModal"
+      )
+      .classList
+      .remove("hidden");
 
 
-<div class="infoRow">
+  }catch(error){
 
-<span>
-Maksimòm tantativ
-</span>
+    console.error(error);
 
-<strong>
-${escapeHTML(
-data.maxTentatives||1
-)}
-</strong>
+    alert(
+      "❌ Nou pa kapab ouvri devwa sa a."
+    );
 
-</div>
-
-`;
-
-
-document
-.getElementById(
-"remetModal"
-)
-.classList.remove(
-"hidden"
-);
-
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Nou pa kapab ouvri devwa sa a."
-);
-
-}
+  }
 
 };
 
 
-/* ================= FERME MODAL ================= */
+/* ================= FERMER MODAL ================= */
 
-window.fermerRemetModal=function(){
+window.fermerRemetModal =
+function(){
 
-document
-.getElementById(
-"remetModal"
-)
-.classList.add(
-"hidden"
-);
+  document
+    .getElementById(
+      "remetModal"
+    )
+    .classList
+    .add("hidden");
 
 };
 
 
 /* ================= ENVOYE REMISE ================= */
 
-window.envoyerRemise=async function(){
+window.envoyerRemise =
+async function(){
 
-if(!currentUser){
+  if(role() !== "eleve"){
 
-alert(
-"Ou pa konekte."
-);
+    alert(
+      "Se elèv yo sèlman ki ka remèt devwa."
+    );
 
-return;
-
-}
-
-
-const devoirId=document
-.getElementById(
-"remetDevoirId"
-)
-.value;
-
-
-const reponse=document
-.getElementById(
-"remetReponse"
-)
-.value.trim();
-
-
-const temps=Number(
-document
-.getElementById(
-"remetTemps"
-)
-.value
-)||0;
-
-
-if(!devoirId){
-
-alert(
-"Devwa a pa jwenn."
-);
-
-return;
-
-}
-
-
-if(!reponse){
-
-alert(
-"Tanpri ekri repons ou anvan ou remèt devwa a."
-);
-
-return;
-
-}
-
-
-try{
-
-const devoirRef=doc(
-db,
-"devoirs",
-devoirId
-);
-
-
-const devoirSnap=
-await getDoc(
-devoirRef
-);
-
-
-if(!devoirSnap.exists()){
-
-alert(
-"Devwa sa a pa egziste."
-);
-
-return;
-
-}
-
-
-const devoir=
-devoirSnap.data();
-
-
-const tentativesSnap=
-await getDocs(
-collection(db,"tentatives")
-);
-
-
-let nombreTentatives=0;
-
-
-tentativesSnap.forEach(
-item=>{
-
-const data=item.data();
-
-
-if(
-data.eleveId===
-currentUser.uid &&
-data.devoirId===
-devoirId
-){
-
-nombreTentatives++;
-
-}
-
-});
-
-
-const maxTentatives=
-Number(
-devoir.maxTentatives
-)||1;
-
-
-if(
-nombreTentatives>=
-maxTentatives
-){
-
-alert(
-"Ou deja itilize tout tantativ ou genyen pou devwa sa a."
-);
-
-return;
-
-}
-
-
-const numeroTentative=
-nombreTentatives+1;
-
-
-await addDoc(
-collection(db,"tentatives"),
-{
-
-eleveId:
-currentUser.uid,
-
-eleveNom:
-currentUserData.nom||
-currentUser.displayName||
-currentUser.email||
-"Elèv",
-
-devoirId:
-devoirId,
-
-devoirTitre:
-devoir.titre||
-"Devwa",
-
-matiere:
-devoir.matiere||
-"",
-
-classe:
-devoir.classe||
-"",
-
-numeroTentative:
-numeroTentative,
-
-reponse:
-reponse,
-
-temps:
-temps,
-
-score:
-0,
-
-noteFinale:
-null,
-
-commentaire:
-"",
-
-status:
-"soumis",
-
-createdAt:
-serverTimestamp(),
-
-}
-);
-
-
-fermerRemetModal();
-
-
-alert(
-"✅ Devwa a remèt avèk siksè!"
-);
-
-
-await loadDevoirs();
-
-
-}catch(error){
-
-console.error(
-"Erreur remise:",
-error
-);
-
-
-alert(
-"❌ Nou pa kapab remèt devwa a. Verifye Firestore Rules yo."
-);
-
-}
-
-};
-
-
-/* ================= REMISES / CORRECTIONS ================= */
-
-async function loadRemises(){
-
-const box=document
-.getElementById(
-"listeRemises"
-);
-
-
-try{
-
-const snap=
-await getDocs(
-collection(db,"tentatives")
-);
-
-
-box.innerHTML="";
-
-
-if(!snap.size){
-
-box.innerHTML=
-emptyCard(
-"📤",
-"Pa gen travay remèt pou kounye a."
-);
-
-return;
-
-}
-
-
-snap.forEach(item=>{
-
-const data=item.data();
-
-
-let score=0;
-
-
-if(
-data.noteFinale!==null &&
-data.noteFinale!==undefined
-){
-
-score=
-Number(data.noteFinale)||0;
-
-}else{
-
-score=
-Number(data.score)||0;
-
-}
-
-
-const commentaire=
-data.commentaire||
-"";
-
-
-box.innerHTML+=`
-
-<div class="submissionCard">
-
-
-<div class="submissionIcon">
-📤
-</div>
-
-
-<div class="cardTitle">
-
-${escapeHTML(
-data.eleveNom||
-data.eleveId||
-"Elèv"
-)}
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Devwa
-</span>
-
-<strong>
-${escapeHTML(
-data.devoirTitre||
-data.devoirId||
-""
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Matyè
-</span>
-
-<strong>
-${escapeHTML(
-data.matiere||""
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Klas
-</span>
-
-<strong>
-${escapeHTML(
-data.classe||""
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Tantativ
-</span>
-
-<strong>
-${escapeHTML(
-data.numeroTentative||1
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Tan
-</span>
-
-<strong>
-${escapeHTML(
-data.temps||0
-)} min
-</strong>
-
-</div>
-
-
-<div class="answerBox">
-
-<strong>
-📝 Repons elèv la:
-</strong>
-
-
-<div class="answerText">
-
-${escapeHTML(
-data.reponse||
-"Pa gen repons."
-)}
-
-</div>
-
-</div>
-
-
-<div class="field">
-
-<label>
-Nòt /100
-</label>
-
-<input
-id="score_${item.id}"
-type="number"
-min="0"
-max="100"
-value="${escapeHTML(score)}">
-
-</div>
-
-
-<div class="field">
-
-<label>
-Koreksyon / Kòmantè
-</label>
-
-<textarea
-id="comment_${item.id}"
-rows="4"
-placeholder="Ekri koreksyon oswa kòmantè...">${escapeHTML(commentaire)}</textarea>
-
-</div>
-
-
-<button
-class="btn"
-onclick="corrigerRemise('${item.id}')">
-
-💾 Sove nòt ak koreksyon
-
-</button>
-
-
-</div>
-
-`;
-
-});
-
-
-}catch(error){
-
-console.error(
-"Remises:",
-error
-);
-
-
-box.innerHTML=
-emptyCard(
-"⚠️",
-"Pa kapab chaje travay remèt yo."
-);
-
-}
-
-}
-
-
-/* ================= CORRECTION ================= */
-
-window.corrigerRemise=async function(
-id
-){
-
-try{
-
-const scoreInput=
-document.getElementById(
-"score_"+id
-);
-
-
-const commentInput=
-document.getElementById(
-"comment_"+id
-);
-
-
-let score=
-Number(scoreInput.value);
-
-
-if(isNaN(score)){
-
-score=0;
-
-}
-
-
-if(score<0){
-
-score=0;
-
-}
-
-
-if(score>100){
-
-score=100;
-
-}
-
-
-const commentaire=
-commentInput.value.trim();
-
-
-const tentativeRef=
-doc(
-db,
-"tentatives",
-id
-);
-
-
-const tentativeSnap=
-await getDoc(
-tentativeRef
-);
-
-
-if(!tentativeSnap.exists()){
-
-alert(
-"Travay sa a pa egziste ankò."
-);
-
-return;
-
-}
-
-
-const tentative=
-tentativeSnap.data();
-
-
-/* Mete koreksyon sou tentative a */
-
-await updateDoc(
-tentativeRef,
-{
-
-score:
-score,
-
-noteFinale:
-score,
-
-commentaire:
-commentaire,
-
-status:
-"corrige",
-
-correctedAt:
-serverTimestamp(),
-
-correctedBy:
-currentUser.uid
-
-}
-);
-
-
-/* Kreye oswa mete rezilta a */
-
-await setDoc(
-doc(
-db,
-"resultats",
-id
-),
-{
-
-tentativeId:
-id,
-
-eleveId:
-tentative.eleveId||
-"",
-
-eleveNom:
-tentative.eleveNom||
-"",
-
-devoirId:
-tentative.devoirId||
-"",
-
-devoirTitre:
-tentative.devoirTitre||
-"",
-
-matiere:
-tentative.matiere||
-"",
-
-classe:
-tentative.classe||
-"",
-
-noteFinale:
-score,
-
-score:
-score,
-
-commentaire:
-commentaire,
-
-status:
-"corrige",
-
-updatedAt:
-serverTimestamp(),
-
-correctedBy:
-currentUser.uid
-
-},
-{
-merge:true
-}
-);
-
-
-alert(
-"✅ Nòt la ak koreksyon an sove: "+
-score+
-"/100"
-);
-
-
-await loadRemises();
-
-await loadResultats();
-
-
-}catch(error){
-
-console.error(
-"Correction:",
-error
-);
-
-
-alert(
-"❌ Nou pa kapab sove koreksyon an."
-);
-
-}
-
-};
-
-
-/* ================= RESULTATS ================= */
-
-async function loadResultats(){
-
-try{
-
-const snap=
-await getDocs(
-collection(db,"resultats")
-);
-
-
-const box=document
-.getElementById(
-"listeResultats"
-);
-
-
-box.innerHTML="";
-
-
-if(!snap.size){
-
-box.innerHTML=
-emptyCard(
-"🏆",
-"Pa gen rezilta pou kounye a."
-);
-
-return;
-
-}
-
-
-snap.forEach(item=>{
-
-const data=item.data();
-
-
-let note=0;
-
-
-if(
-data.noteFinale!==undefined &&
-data.noteFinale!==null
-){
-
-note=
-Number(data.noteFinale)||0;
-
-}else if(
-data.score!==undefined
-){
-
-note=
-Number(data.score)||0;
-
-}
-
-
-box.innerHTML+=`
-
-<div class="resultCard">
-
-
-<div class="scoreCircle">
-
-${escapeHTML(note)}/100
-
-</div>
-
-
-<div class="cardTitle">
-
-${escapeHTML(
-data.eleveNom||
-"Rezilta elèv"
-)}
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Elèv
-</span>
-
-<strong>
-${escapeHTML(
-data.eleveId||
-""
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Devwa
-</span>
-
-<strong>
-${escapeHTML(
-data.devoirTitre||
-data.devoirId||
-""
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Matyè
-</span>
-
-<strong>
-${escapeHTML(
-data.matiere||
-""
-)}
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Nòt
-</span>
-
-<strong>
-${escapeHTML(note)}/100
-</strong>
-
-</div>
-
-
-<div class="comment">
-
-<strong>
-💬 Koreksyon:
-</strong>
-
-<br>
-
-${escapeHTML(
-data.commentaire||
-"Pa gen kòmantè."
-)}
-
-</div>
-
-
-</div>
-
-`;
-
-});
-
-
-}catch(error){
-
-console.error(
-"Resultats:",
-error
-);
-
-
-const box=document
-.getElementById(
-"listeResultats"
-);
-
-
-box.innerHTML=
-emptyCard(
-"⚠️",
-"Pa kapab chaje rezilta yo."
-);
-
-}
-
-}
-
-
-async function loadUsers(){
-
-  const box = document.getElementById("listeUsers");
-
-  if(!box){
-    console.error("listeUsers pa jwenn.");
     return;
+
   }
 
-  box.innerHTML = `
-    <div class="empty-card">
-      <div class="empty-icon">⏳</div>
-      <h3>Chaje demann yo...</h3>
-    </div>
-  `;
+
+  const devoirId =
+    document
+      .getElementById(
+        "remetDevoirId"
+      )
+      .value;
+
+
+  const reponse =
+    document
+      .getElementById(
+        "remetReponse"
+      )
+      .value
+      .trim();
+
+
+  const temps =
+    Number(
+      document
+        .getElementById(
+          "remetTemps"
+        )
+        .value
+    ) || 0;
+
+
+  if(!devoirId){
+
+    alert(
+      "Devwa a pa idantifye."
+    );
+
+    return;
+
+  }
+
+
+  if(!reponse){
+
+    alert(
+      "Tanpri ekri repons oswa travay ou."
+    );
+
+    return;
+
+  }
+
 
   try{
 
-    const snap = await getDocs(collection(db,"users"));
+    const devoirSnap =
+      await getDoc(
+        doc(
+          db,
+          "devoirs",
+          devoirId
+        )
+      );
 
-    console.log("Kantite users:", snap.size);
+
+    if(!devoirSnap.exists()){
+
+      alert(
+        "Devwa sa a pa egziste ankò."
+      );
+
+      return;
+
+    }
+
+
+    const devoir =
+      devoirSnap.data();
+
+
+    const tentativesSnap =
+      await getDocs(
+
+        query(
+
+          collection(
+            db,
+            "tentatives"
+          ),
+
+          where(
+            "eleveId",
+            "==",
+            currentUser.uid
+          ),
+
+          where(
+            "devoirId",
+            "==",
+            devoirId
+          )
+
+        )
+
+      );
+
+
+    const maxTentatives =
+      Number(
+        devoir.maxTentatives || 1
+      );
+
+
+    if(
+      tentativesSnap.size >=
+      maxTentatives
+    ){
+
+      alert(
+        "Ou rive nan kantite tantativ ki pèmèt pou devwa sa a."
+      );
+
+      return;
+
+    }
+
+
+    const tentativeId =
+      "tentative_" +
+      Date.now();
+
+
+    await setDoc(
+
+      doc(
+        db,
+        "tentatives",
+        tentativeId
+      ),
+
+      {
+
+        devoirId:
+          devoirId,
+
+        devoirTitre:
+          devoir.titre || "",
+
+        eleveId:
+          currentUser.uid,
+
+        eleveEmail:
+          currentUser.email || "",
+
+        reponse:
+          reponse,
+
+        temps:
+          temps,
+
+        numeroTentative:
+          tentativesSnap.size + 1,
+
+        status:
+          "soumis",
+
+        score:
+          null,
+
+        noteFinale:
+          null,
+
+        commentaire:
+          "",
+
+        submittedAt:
+          serverTimestamp(),
+
+        correctedAt:
+          null,
+
+        correctedBy:
+          null
+
+      }
+
+    );
+
+
+    document
+      .getElementById(
+        "remetReponse"
+      )
+      .value = "";
+
+
+    document
+      .getElementById(
+        "remetTemps"
+      )
+      .value = "";
+
+
+    fermerRemetModal();
+
+
+    alert(
+      "✅ Travay la voye avèk siksè."
+    );
+
+
+    await loadResultats();
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ REMISE:",
+      error
+    );
+
+
+    alert(
+      "❌ Nou pa kapab voye travay la."
+    );
+
+  }
+
+};
+
+
+/* ================= REMISES ================= */
+
+async function loadRemises(){
+
+  const box =
+    document.getElementById(
+      "listeRemises"
+    );
+
+  if(!box) return;
+
+
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje travay elèv yo..."
+    );
+
+
+  try{
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "tentatives"
+        )
+      );
+
 
     box.innerHTML = "";
 
-    let count = 0;
+
+    if(snap.empty){
+
+      box.innerHTML =
+        emptyCard(
+          "📤",
+          "Pa gen travay remèt pou kounye a."
+        );
+
+      return;
+
+    }
+
 
     snap.forEach(item => {
 
-      const data = item.data();
+      const data =
+        item.data();
 
-      console.log("USER:", item.id, data);
 
-      const status = String(data.status || "")
+      const id =
+        item.id;
+
+
+      const score =
+        data.noteFinale ??
+        data.score;
+
+
+      const status =
+        String(
+          data.status || "soumis"
+        );
+
+
+      box.innerHTML += `
+
+        <div class="dataCard">
+
+          <div class="cardIcon">
+            📤
+          </div>
+
+
+          <div class="cardContent">
+
+            <h3>
+              ${escapeHTML(
+                data.devoirTitre ||
+                "Devwa"
+              )}
+            </h3>
+
+
+            <p>
+              <strong>Elèv:</strong>
+              ${escapeHTML(
+                data.eleveEmail ||
+                data.eleveId ||
+                "Pa defini"
+              )}
+            </p>
+
+
+            <p>
+              <strong>Repons:</strong>
+            </p>
+
+
+            <div class="responseBox">
+              ${escapeHTML(
+                data.reponse || ""
+              )}
+            </div>
+
+
+            <p>
+              <strong>Tan:</strong>
+              ${escapeHTML(
+                data.temps || 0
+              )} minit
+            </p>
+
+
+            <p>
+              <strong>Status:</strong>
+              ${escapeHTML(status)}
+            </p>
+
+
+            <div class="field">
+
+              <label>
+                Nòt /100
+              </label>
+
+              <input
+                id="score_${id}"
+                type="number"
+                min="0"
+                max="100"
+                value="${
+                  score === null ||
+                  score === undefined
+                    ? ""
+                    : escapeHTML(score)
+                }"
+                placeholder="Egzanp: 15"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Kòmantè pwofesè
+              </label>
+
+              <textarea
+                id="comment_${id}"
+                rows="4"
+                placeholder="Ekri yon kòmantè..."
+              >${escapeHTML(
+                data.commentaire || ""
+              )}</textarea>
+
+            </div>
+
+
+            <div class="cardActions">
+
+              <button
+                class="smallBtn edit"
+                onclick="corrigerRemise('${id}')"
+              >
+                💾 Sove koreksyon
+              </button>
+
+
+              ${
+                isAdmin()
+                ? `
+
+                  <button
+                    class="smallBtn refuse"
+                    onclick="deleteRemise('${id}')"
+                  >
+                    🗑️ Efase
+                  </button>
+
+                `
+                : ""
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ REMISES:",
+      error
+    );
+
+
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje travay yo."
+      );
+
+  }
+
+}
+
+
+/* ================= CORRIGER REMISE ================= */
+
+window.corrigerRemise =
+async function(id){
+
+  if(!isTeacher()){
+
+    alert(
+      "Se pwofesè oswa administratè sèlman ki ka korije travay."
+    );
+
+    return;
+
+  }
+
+
+  const scoreInput =
+    document.getElementById(
+      "score_" + id
+    );
+
+
+  const commentInput =
+    document.getElementById(
+      "comment_" + id
+    );
+
+
+  if(!scoreInput){
+
+    alert(
+      "Chan nòt la pa jwenn."
+    );
+
+    return;
+
+  }
+
+
+  let score =
+    Number(
+      scoreInput.value
+    );
+
+
+  if(
+    Number.isNaN(score) ||
+    score < 0 ||
+    score > 100
+  ){
+
+    alert(
+      "Nòt la dwe ant 0 ak 100."
+    );
+
+    return;
+
+  }
+
+
+  const commentaire =
+    commentInput
+      ? commentInput.value.trim()
+      : "";
+
+
+  try{
+
+    await updateDoc(
+
+      doc(
+        db,
+        "tentatives",
+        id
+      ),
+
+      {
+
+        score:
+          score,
+
+        noteFinale:
+          score,
+
+        commentaire:
+          commentaire,
+
+        status:
+          "corrige",
+
+        correctedAt:
+          serverTimestamp(),
+
+        correctedBy:
+          currentUser.uid
+
+      }
+
+    );
+
+
+    await setDoc(
+
+      doc(
+        db,
+        "resultats",
+        id
+      ),
+
+      {
+
+        tentativeId:
+          id,
+
+        devoirId:
+          "",
+
+        eleveId:
+          "",
+
+        score:
+          score,
+
+        note:
+          score,
+
+        noteFinale:
+          score,
+
+        commentaire:
+          commentaire,
+
+        updatedAt:
+          serverTimestamp(),
+
+        updatedBy:
+          currentUser.uid
+
+      },
+
+      {
+        merge: true
+      }
+
+    );
+
+
+    alert(
+      "✅ Koreksyon an sove."
+    );
+
+
+    await loadRemises();
+
+    await loadResultats();
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ KOREKSYON:",
+      error
+    );
+
+
+    alert(
+      "❌ Nou pa kapab sove koreksyon an."
+    );
+
+  }
+
+};
+     /* ================= RESULTATS ================= */
+
+async function loadResultats(){
+
+  const box =
+    document.getElementById(
+      "listeResultats"
+    );
+
+  if(!box) return;
+
+
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje rezilta yo..."
+    );
+
+
+  try{
+
+    const r = role();
+
+    let snap;
+
+
+    /*
+      Elèv la pa bezwen li tout rezilta
+      lòt elèv yo.
+    */
+
+    if(r === "eleve"){
+
+      snap =
+        await getDocs(
+
+          query(
+
+            collection(
+              db,
+              "resultats"
+            ),
+
+            where(
+              "eleveId",
+              "==",
+              currentUser.uid
+            )
+
+          )
+
+        );
+
+    }else{
+
+      snap =
+        await getDocs(
+          collection(
+            db,
+            "resultats"
+          )
+        );
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    if(snap.empty){
+
+      box.innerHTML =
+        emptyCard(
+          "🏆",
+          "Pa gen rezilta pou kounye a."
+        );
+
+      return;
+
+    }
+
+
+    snap.forEach(item => {
+
+      const data =
+        item.data();
+
+
+      const id =
+        item.id;
+
+
+      const note =
+        data.noteFinale ??
+        data.note ??
+        data.score;
+
+
+      const noteText =
+        note === null ||
+        note === undefined ||
+        note === ""
+          ? "Pa korije"
+          : Number(note).toFixed(0) + "/100";
+
+
+      box.innerHTML += `
+
+        <div class="dataCard">
+
+          <div class="cardIcon">
+            🏆
+          </div>
+
+
+          <div class="cardContent">
+
+            <h3>
+              ${escapeHTML(
+                data.devoirTitre ||
+                "Rezilta devwa"
+              )}
+            </h3>
+
+
+            ${
+              r !== "eleve"
+              ? `
+
+                <p>
+                  <strong>Elèv:</strong>
+                  ${escapeHTML(
+                    data.eleveEmail ||
+                    data.eleveId ||
+                    "Pa defini"
+                  )}
+                </p>
+
+              `
+              : ""
+            }
+
+
+            <div
+              style="
+                font-size:28px;
+                font-weight:800;
+                margin:12px 0;
+              "
+            >
+              ${escapeHTML(noteText)}
+            </div>
+
+
+            <p>
+              <strong>Kòmantè:</strong>
+              ${
+                escapeHTML(
+                  data.commentaire ||
+                  "Pa gen kòmantè."
+                )
+              }
+            </p>
+
+
+            ${
+              isAdmin()
+              ? `
+
+                <div class="cardActions">
+
+                  <button
+                    class="smallBtn refuse"
+                    onclick="deleteResultat('${id}')"
+                  >
+                    🗑️ Efase
+                  </button>
+
+                </div>
+
+              `
+              : ""
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ RESULTATS:",
+      error
+    );
+
+
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje rezilta yo."
+      );
+
+  }
+
+};
+
+
+/* ================= USERS ================= */
+
+async function loadUsers(){
+
+  const box =
+    document.getElementById(
+      "listeUsers"
+    );
+
+  if(!box) return;
+
+
+  if(!isAdmin()){
+
+    box.innerHTML =
+      emptyCard(
+        "🔒",
+        "Se administratè a sèlman ki ka wè itilizatè yo."
+      );
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    emptyCard(
+      "⏳",
+      "Chaje demann yo..."
+    );
+
+
+  try{
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "users"
+        )
+      );
+
+
+    box.innerHTML = "";
+
+
+    let count = 0;
+
+
+    snap.forEach(item => {
+
+      const data =
+        item.data();
+
+
+      const status =
+        String(
+          data.status || ""
+        )
         .trim()
         .toLowerCase();
 
-      if(status === "attente"){
 
-        count++;
+      if(status !== "attente"){
 
-        const nom = data.nom || "San non";
-        const email = data.email || "San email";
-        const uid = item.id;
+        return;
 
-        box.innerHTML += `
-          <div class="card" style="margin-bottom:15px;">
-            <h3>👤 ${nom}</h3>
+      }
+
+
+      count++;
+
+
+      const uid =
+        item.id;
+
+
+      const nom =
+        data.nom ||
+        "San non";
+
+
+      const email =
+        data.email ||
+        "San email";
+
+
+      box.innerHTML += `
+
+        <div class="dataCard">
+
+          <div class="cardIcon">
+            👤
+          </div>
+
+
+          <div class="cardContent">
+
+            <h3>
+              ${escapeHTML(nom)}
+            </h3>
+
 
             <p>
-              <strong>Email:</strong> ${email}
+              <strong>Email:</strong>
+              ${escapeHTML(email)}
             </p>
+
 
             <p>
-              <strong>Status:</strong> An atant
+              <strong>Status:</strong>
+              <span class="badge">
+                An atant
+              </span>
             </p>
 
-            <select id="role_${uid}" style="padding:10px;margin-top:10px;">
-              <option value="eleve">Elèv</option>
-              <option value="professeur">Pwofesè</option>
-            </select>
 
-            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+            <div class="field">
+
+              <label>
+                Chwazi wòl
+              </label>
+
+              <select
+                id="role_${uid}"
+              >
+
+                <option value="eleve">
+                  Elèv
+                </option>
+
+                <option value="professeur">
+                  Pwofesè
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="cardActions">
 
               <button
+                class="smallBtn accept"
                 onclick="acceptUser('${uid}')"
-                class="btn-primary">
+              >
                 ✅ Aksepte
               </button>
 
+
               <button
+                class="smallBtn refuse"
                 onclick="refuseUser('${uid}')"
-                class="btn-danger">
+              >
                 ❌ Refize
               </button>
 
             </div>
+
           </div>
-        `;
-      }
+
+        </div>
+
+      `;
+
     });
+
 
     if(count === 0){
 
-      box.innerHTML = `
-        <div class="empty-card">
-          <div class="empty-icon">👥</div>
-          <h3>Pa gen demann an atant.</h3>
-          <p>Lè yon moun kreye kont, demann li ap parèt isit la.</p>
-        </div>
-      `;
+      box.innerHTML =
+        emptyCard(
+          "👥",
+          "Pa gen demann an atant."
+        );
+
     }
+
 
   }catch(error){
 
-    console.error("ERÈ USERS:", error);
+    console.error(
+      "ERÈ USERS:",
+      error
+    );
 
-    box.innerHTML = `
-      <div class="empty-card">
-        <div class="empty-icon">⚠️</div>
-        <h3>Erè pandan chajman</h3>
-        <p>${error.code || ""}</p>
-        <p>${error.message || "Nou pa kapab chaje demann yo."}</p>
-      </div>
-    `;
+
+    box.innerHTML =
+      emptyCard(
+        "⚠️",
+        "Nou pa kapab chaje itilizatè yo."
+      );
+
   }
-}
-
-
-/* ================= ACCEPT USER ================= */
-
-window.acceptUser=async function(
-uid
-){
-
-try{
-
-const select=
-document.getElementById(
-"role_"+uid
-);
-
-
-const role=
-select
-?select.value
-:"eleve";
-
-
-await updateDoc(
-doc(db,"users",uid),
-{
-
-status:
-"accepted",
-
-role:
-role
 
 }
-);
 
 
-await loadUsers();
+/* ================= AKSEPTE USER ================= */
+
+window.acceptUser =
+async function(uid){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se administratè a sèlman ki ka aksepte itilizatè."
+    );
+
+    return;
+
+  }
 
 
-alert(
-"Itilizatè a aksepte avèk wòl: "+
-role
-);
+  const select =
+    document.getElementById(
+      "role_" + uid
+    );
 
 
-}catch(error){
+  const selectedRole =
+    select
+      ? select.value
+      : "eleve";
 
-console.error(error);
+
+  if(
+    selectedRole !== "eleve" &&
+    selectedRole !== "professeur"
+  ){
+
+    alert(
+      "Wòl la pa valab."
+    );
+
+    return;
+
+  }
 
 
-alert(
-"Nou pa kapab aksepte itilizatè a."
-);
+  try{
 
-}
+    await updateDoc(
+
+      doc(
+        db,
+        "users",
+        uid
+      ),
+
+      {
+
+        role:
+          selectedRole,
+
+        status:
+          "accepted",
+
+        approvedAt:
+          serverTimestamp(),
+
+        approvedBy:
+          currentUser.uid
+
+      }
+
+    );
+
+
+    await loadUsers();
+
+
+    alert(
+      "✅ Itilizatè a aksepte avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ ACCEPT USER:",
+      error
+    );
+
+
+    alert(
+      "❌ Nou pa kapab aksepte itilizatè sa a."
+    );
+
+  }
 
 };
 
 
-/* ================= REFUSE USER ================= */
+/* ================= REFIZE USER ================= */
 
-window.refuseUser=async function(
-uid
-){
+window.refuseUser =
+async function(uid){
 
-if(!confirm(
-"Èske ou sèten ou vle refize kont sa a?"
-)){
+  if(!isAdmin()){
 
-return;
+    alert(
+      "Se administratè a sèlman ki ka refize itilizatè."
+    );
 
-}
+    return;
 
-
-try{
-
-await deleteDoc(
-doc(db,"users",uid)
-);
+  }
 
 
-await loadUsers();
+  const ok =
+    confirm(
+      "Èske ou sèten ou vle refize epi efase demann sa a?"
+    );
 
 
-alert(
-"Itilizatè a refize."
-);
+  if(!ok) return;
 
 
-}catch(error){
+  try{
 
-console.error(error);
+    await deleteDoc(
+
+      doc(
+        db,
+        "users",
+        uid
+      )
+
+    );
 
 
-alert(
-"Nou pa kapab refize itilizatè a."
-);
+    await loadUsers();
 
-}
+
+    alert(
+      "✅ Demann lan efase."
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "ERÈ REFIZE USER:",
+      error
+    );
+
+
+    alert(
+      "❌ Nou pa kapab efase demann lan."
+    );
+
+  }
 
 };
 
 
-/* ================= STATS ================= */
+/* ================= ADMIN DELETE ================= */
+
+async function verifyAdmin(){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se administratè a sèlman ki ka fè operasyon sa a."
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+async function confirmDelete(message){
+
+  return confirm(message);
+
+}
+
+
+/* ================= DELETE ELEVE ================= */
+
+window.deleteEleve =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase elèv sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "eleves",
+        id
+      )
+    );
+
+
+    await loadEleves();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Elèv la efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase elèv la."
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE PROFESSEUR ================= */
+
+window.deleteProfesseur =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase pwofesè sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "professeurs",
+        id
+      )
+    );
+
+
+    await loadProfesseurs();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Pwofesè a efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase pwofesè a."
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE KLAS ================= */
+
+window.deleteClasse =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase klas sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "classes",
+        id
+      )
+    );
+
+
+    await loadClasses();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Klas la efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase klas la."
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE MATIERE ================= */
+
+window.deleteMatiere =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase matyè sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "matieres",
+        id
+      )
+    );
+
+
+    await loadMatieres();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Matyè a efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase matyè a."
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE DEVOIR ================= */
+
+window.deleteDevoir =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase devwa sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "devoirs",
+        id
+      )
+    );
+
+
+    await loadDevoirs();
+
+    await updateStats();
+
+
+    alert(
+      "✅ Devwa a efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase devwa a."
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE REMISE ================= */
+
+window.deleteRemise =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase travay elèv sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "tentatives",
+        id
+      )
+    );
+
+
+    /*
+      Nou efase rezilta ki gen menm ID
+      si li egziste.
+    */
+
+    try{
+
+      await deleteDoc(
+        doc(
+          db,
+          "resultats",
+          id
+        )
+      );
+
+    }catch(resultError){
+
+      console.log(
+        "Rezilta a pa jwenn:",
+        resultError
+      );
+
+    }
+
+
+    await loadRemises();
+
+    await loadResultats();
+
+
+    alert(
+      "✅ Travay la efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase travay sa a."
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE RESULTAT ================= */
+
+window.deleteResultat =
+async function(id){
+
+  if(
+    !(await verifyAdmin()) ||
+    !(await confirmDelete(
+      "Èske ou sèten ou vle efase rezilta sa a?"
+    ))
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "resultats",
+        id
+      )
+    );
+
+
+    await loadResultats();
+
+
+    alert(
+      "✅ Rezilta a efase avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Nou pa kapab efase rezilta a."
+    );
+
+  }
+
+};
+
+
+/* ================= STATISTIQUES ================= */
 
 async function updateStats(){
 
-try{
+  try{
 
-const role=String(
-currentUserData.role||""
-).toLowerCase();
+    const devoirsSnap =
+      await getDocs(
+        collection(
+          db,
+          "devoirs"
+        )
+      );
 
 
-const devoirs=
-await getDocs(
-collection(db,"devoirs")
-);
+    const devoirsCount =
+      devoirsSnap.size;
 
 
-const statDevoirs=
-document.getElementById(
-"statDevoirs"
-);
+    document
+      .getElementById(
+        "statDevoirs"
+      )
+      ?.textContent =
+        devoirsCount;
 
 
-const stat2Devoirs=
-document.getElementById(
-"stat2Devoirs"
-);
+    document
+      .getElementById(
+        "stat2Devoirs"
+      )
+      ?.textContent =
+        devoirsCount;
 
 
-if(statDevoirs){
+    if(!isAdmin()){
 
-statDevoirs.textContent=
-devoirs.size;
+      return;
 
-}
+    }
 
 
-if(stat2Devoirs){
+    const [
+      elevesSnap,
+      professeursSnap,
+      classesSnap
+    ] =
+      await Promise.all([
 
-stat2Devoirs.textContent=
-devoirs.size;
+        getDocs(
+          collection(
+            db,
+            "eleves"
+          )
+        ),
 
-}
+        getDocs(
+          collection(
+            db,
+            "professeurs"
+          )
+        ),
 
+        getDocs(
+          collection(
+            db,
+            "classes"
+          )
+        )
 
-if(
-role==="administrateur"||
-role==="professeur"
-){
+      ]);
 
-const eleves=
-await getDocs(
-collection(db,"eleves")
-);
 
+    const elevesCount =
+      elevesSnap.size;
 
-const statEleves=
-document.getElementById(
-"statEleves"
-);
 
+    const professeursCount =
+      professeursSnap.size;
 
-const stat2Eleves=
-document.getElementById(
-"stat2Eleves"
-);
 
+    const classesCount =
+      classesSnap.size;
 
-if(statEleves){
 
-statEleves.textContent=
-eleves.size;
+    document
+      .getElementById(
+        "statEleves"
+      )
+      ?.textContent =
+        elevesCount;
 
-}
 
+    document
+      .getElementById(
+        "statProfesseurs"
+      )
+      ?.textContent =
+        professeursCount;
 
-if(stat2Eleves){
 
-stat2Eleves.textContent=
-eleves.size;
+    document
+      .getElementById(
+        "statClasses"
+      )
+      ?.textContent =
+        classesCount;
 
-}
 
-}
+    document
+      .getElementById(
+        "stat2Eleves"
+      )
+      ?.textContent =
+        elevesCount;
 
 
-if(role==="administrateur"){
+    document
+      .getElementById(
+        "stat2Professeurs"
+      )
+      ?.textContent =
+        professeursCount;
 
-const [
-professeurs,
-classes
-]=await Promise.all([
 
-getDocs(
-collection(db,"professeurs")
-),
+    document
+      .getElementById(
+        "stat2Classes"
+      )
+      ?.textContent =
+        classesCount;
 
-getDocs(
-collection(db,"classes")
-)
 
-]);
+  }catch(error){
 
+    console.error(
+      "ERÈ STATS:",
+      error
+    );
 
-const statProfesseurs=
-document.getElementById(
-"statProfesseurs"
-);
+  }
 
-
-const stat2Professeurs=
-document.getElementById(
-"stat2Professeurs"
-);
-
-
-const statClasses=
-document.getElementById(
-"statClasses"
-);
-
-
-const stat2Classes=
-document.getElementById(
-"stat2Classes"
-);
-
-
-if(statProfesseurs){
-
-statProfesseurs.textContent=
-professeurs.size;
-
-}
-
-
-if(stat2Professeurs){
-
-stat2Professeurs.textContent=
-professeurs.size;
-
-}
-
-
-if(statClasses){
-
-statClasses.textContent=
-classes.size;
-
-}
-
-
-if(stat2Classes){
-
-stat2Classes.textContent=
-classes.size;
-
-}
-
-}
-
-
-}catch(error){
-
-console.error(
-"Stats:",
-error
-);
-
-}
-
-}
-
-
-/* ================= SEARCH ================= */
-
-window.filterCards=function(
-inputId,
-containerId
-){
-
-const input=
-document.getElementById(
-inputId
-);
-
-
-const value=
-input.value
-.toLowerCase()
-.trim();
-
-
-const container=
-document.getElementById(
-containerId
-);
-
-
-const cards=
-container.querySelectorAll(
-".searchItem"
-);
-
-
-cards.forEach(card=>{
-
-const text=
-card.dataset.search||"";
-
-
-card.style.display=
-text.includes(value)
-?""
-:"none";
-
-});
-
-};
-
-
-/* ================= LANGUAGE ================= */
-
-window.changeLanguage=function(
-lang
-){
-
-localStorage.setItem(
-"language",
-lang
-);
-
-
-const brand=
-document.querySelector(
-".brand"
-);
-
-
-if(lang==="fr"){
-
-brand.textContent=
-"📚 Système d'Apprentissage";
-
-}else{
-
-brand.textContent=
-"📚 Sistèm Aprantisaj";
-
-}
-
-};
-
-
-/* ================= LOGOUT ================= */
-
-window.logout=async function(){
-
-try{
-
-await signOut(auth);
-
-location.reload();
-
-}catch(error){
-
-console.error(error);
-
-}
-
-};
-
-
-/* ================= PWA ================= */
-
-window.addEventListener(
-"beforeinstallprompt",
-event=>{
-
-event.preventDefault();
-
-deferredPrompt=event;
-
-
-document
-.getElementById(
-"installBtn"
-)
-.classList.remove(
-"hidden"
-);
-
-}
-);
-
-
-window.installApp=async function(){
-
-if(!deferredPrompt){
-
-alert(
-"Navigatè a poko prepare enstalasyon an."
-);
-
-return;
-
-}
-
-
-deferredPrompt.prompt();
-
-
-await deferredPrompt.userChoice;
-
-
-deferredPrompt=null;
-
-
-document
-.getElementById(
-"installBtn"
-)
-.classList.add(
-"hidden"
-);
-
-};
-
-
-/* ================= REDIRECT ================= */
-
-try{
-
-await getRedirectResult(
-auth
-);
-
-}catch(error){
-
-console.error(
-"Redirect Google:",
-error
-);
-
-}
-
-
-/* ================= AUTH STATE ================= */
-
-onAuthStateChanged(
-auth,
-async user=>{
-
-if(user){
-
-currentUser=user;
-
-await loadUserProfile(
-user
-);
-
-}
-
-}
-);
-
-
-/* ================= LANGUAGE START ================= */
-
-const savedLanguage=
-localStorage.getItem(
-"language"
-);
-
-
-if(savedLanguage){
-
-document
-.getElementById(
-"languageSelect"
-)
-.value=savedLanguage;
-
-}
-
-
-/* ================= CLOSE MODAL OUTSIDE ================= */
-
-document
-.getElementById("remetModal")
-.addEventListener(
-"click",
-event=>{
-
-if(
-event.target.id===
-"remetModal"
-){
-
-fermerRemetModal();
-
-}
-
-}
-);
-
-</script>
-
-
-<!-- ================= SERVICE WORKER ================= -->
-
-<script>
-
-if(
-"serviceWorker"
-in navigator
-){
-
-window.addEventListener(
-"load",
-()=>{
-
-navigator.serviceWorker
-.register("./sw.js")
-
-.then(()=>{
-
-console.log(
-"Sistèm Aprantisaj pare kòm app."
-);
-
-})
-
-.catch(error=>{
-
-console.error(
-"Erè aplikasyon an:",
-error
-);
-
-});
-
-}
-);
-
-}
+} 
+     /* ================= FEN SCRIPT ================= */
 
 </script>
 
 </body>
-</html>
+
+</html> 
+      
