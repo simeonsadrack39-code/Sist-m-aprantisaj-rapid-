@@ -88,6 +88,11 @@ button{cursor:pointer}
   background:#f8fafc;
 }
 
+.field textarea{
+  resize:vertical;
+  line-height:1.5;
+}
+
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
@@ -124,6 +129,7 @@ button{cursor:pointer}
   background:#eff6ff;
   color:#1d4ed8;
   display:none;
+  line-height:1.5;
 }
 
 /* ================= HEADER ================= */
@@ -460,6 +466,7 @@ button{cursor:pointer}
 
 .infoRow strong{
   text-align:right;
+  word-break:break-word;
 }
 
 /* ================= BADGES ================= */
@@ -539,15 +546,6 @@ button{cursor:pointer}
   margin-bottom:15px;
 }
 
-.comment{
-  background:#f8fafc;
-  padding:11px;
-  border-radius:10px;
-  margin-top:12px;
-  color:#475569;
-  font-size:14px;
-}
-
 /* ================= SUBMISSION ================= */
 
 .submissionCard{
@@ -561,6 +559,20 @@ button{cursor:pointer}
 .submissionIcon{
   font-size:30px;
   margin-bottom:10px;
+}
+
+.answerBox{
+  margin-top:15px;
+  padding:14px;
+  background:#f8fafc;
+  border-radius:12px;
+  line-height:1.6;
+}
+
+.answerText{
+  margin-top:8px;
+  white-space:pre-wrap;
+  word-break:break-word;
 }
 
 /* ================= EMPTY ================= */
@@ -579,7 +591,7 @@ button{cursor:pointer}
   margin-bottom:8px;
 }
 
-/* ================= TABLE FALLBACK ================= */
+/* ================= TABLE ================= */
 
 .tableWrap{
   overflow-x:auto;
@@ -598,6 +610,36 @@ th,td{
 
 th{
   background:#f8fafc;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:5000;
+  padding:20px;
+  overflow:auto;
+}
+
+.modalBox{
+  max-width:600px;
+  margin:40px auto;
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 20px 60px #0008;
+}
+
+.modalTitle{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.closeModal{
+  background:#64748b;
 }
 
 /* ================= MOBILE ================= */
@@ -839,7 +881,7 @@ Dekonekte
 
 <div class="layout">
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
@@ -872,17 +914,17 @@ onclick="showSection('matieres',this)">
 📚 <span>Matyè</span>
 </button>
 
-<button class="menuBtn teacherOnly"
+<button class="menuBtn"
 onclick="showSection('devoirs',this)">
 📝 <span>Devwa</span>
 </button>
 
 <button class="menuBtn teacherOnly"
 onclick="showSection('remises',this)">
-📤 <span>Remèt</span>
+📤 <span>Remèt elèv yo</span>
 </button>
 
-<button class="menuBtn teacherOnly"
+<button class="menuBtn"
 onclick="showSection('resultats',this)">
 🏆 <span>Rezilta</span>
 </button>
@@ -909,7 +951,7 @@ onclick="showSection('users',this)">
 
 <div class="pageTitle">
 <h2>Akèy</h2>
-<p>Byenveni nan espas administrasyon ou.</p>
+<p>Byenveni nan Sistèm Aprantisaj.</p>
 </div>
 
 <div class="hero">
@@ -1141,10 +1183,13 @@ class="dataGrid"></div>
 
 <div class="pageTitle">
 <h2>📝 Devwa</h2>
-<p>Kreye epi jere devwa yo.</p>
+<p>Kreye devwa oswa fè devwa ou resevwa yo.</p>
 </div>
 
-<div class="panel">
+<!-- SE PWOFESÈ/ADMIN KI WÈ SA -->
+
+<div id="createDevoirPanel"
+class="panel">
 
 <div class="panelTitle">
 ➕ Kreye yon nouvo devwa
@@ -1179,11 +1224,15 @@ value="30">
 
 <div class="field">
 <label>Maksimòm tantativ</label>
+
 <select id="devoirTentatives">
+
 <option value="1">1</option>
 <option value="2" selected>2</option>
 <option value="3">3</option>
+
 </select>
+
 </div>
 
 </div>
@@ -1196,10 +1245,14 @@ onclick="ajouterDevoir()">
 </div>
 
 <div class="searchBox">
+
 <span>🔎</span>
-<input id="searchDevoirs"
+
+<input
+id="searchDevoirs"
 oninput="filterCards('searchDevoirs','listeDevoirs')"
 placeholder="Chèche yon devwa...">
+
 </div>
 
 <div id="listeDevoirs"
@@ -1213,8 +1266,14 @@ class="dataGrid"></div>
 <section id="remises" class="section">
 
 <div class="pageTitle">
+
 <h2>📤 Travay remèt</h2>
-<p>Gade travay elèv yo soumèt.</p>
+
+<p>
+Gade travay elèv yo soumèt,
+epi korije yo.
+</p>
+
 </div>
 
 <div id="listeRemises"
@@ -1228,8 +1287,13 @@ class="dataGrid"></div>
 <section id="resultats" class="section">
 
 <div class="pageTitle">
+
 <h2>🏆 Rezilta</h2>
-<p>Nòt ak kòmantè elèv yo.</p>
+
+<p>
+Nòt ak kòmantè elèv yo.
+</p>
+
 </div>
 
 <div id="listeResultats"
@@ -1243,38 +1307,70 @@ class="dataGrid"></div>
 <section id="statistiques" class="section">
 
 <div class="pageTitle">
+
 <h2>📈 Estatistik</h2>
-<p>Yon rezime sou done sistèm nan.</p>
+
+<p>
+Yon rezime sou done sistèm nan.
+</p>
+
 </div>
 
 <div class="statsGrid">
 
 <div class="statCard">
+
 <div class="statIcon">👨‍🎓</div>
-<div class="statLabel">Elèv</div>
+
+<div class="statLabel">
+Elèv
+</div>
+
 <div id="stat2Eleves"
 class="number">0</div>
+
 </div>
 
+
 <div class="statCard">
+
 <div class="statIcon">👨‍🏫</div>
-<div class="statLabel">Pwofesè</div>
+
+<div class="statLabel">
+Pwofesè
+</div>
+
 <div id="stat2Professeurs"
 class="number">0</div>
+
 </div>
 
+
 <div class="statCard">
+
 <div class="statIcon">🏫</div>
-<div class="statLabel">Klas</div>
+
+<div class="statLabel">
+Klas
+</div>
+
 <div id="stat2Classes"
 class="number">0</div>
+
 </div>
 
+
 <div class="statCard">
+
 <div class="statIcon">📝</div>
-<div class="statLabel">Devwa</div>
+
+<div class="statLabel">
+Devwa
+</div>
+
 <div id="stat2Devoirs"
 class="number">0</div>
+
 </div>
 
 </div>
@@ -1287,8 +1383,13 @@ class="number">0</div>
 <section id="users" class="section">
 
 <div class="pageTitle">
+
 <h2>👥 Itilizatè</h2>
-<p>Jere kont ki mande aksè.</p>
+
+<p>
+Jere kont ki mande aksè.
+</p>
+
 </div>
 
 <div id="listeUsers"
@@ -1297,15 +1398,89 @@ class="dataGrid"></div>
 </section>
 
 </main>
+
 </div>
 </div>
 
+
+<!-- ================= MODAL REMET DEVWA ================= -->
+
+<div id="remetModal"
+class="modal hidden">
+
+<div class="modalBox">
+
+<div class="modalTitle">
+📤 Remèt devwa
+</div>
+
+<div id="remetDevoirInfo"></div>
+
+<input
+type="hidden"
+id="remetDevoirId">
+
+<div class="field">
+
+<label>
+Repons / Travay ou
+</label>
+
+<textarea
+id="remetReponse"
+rows="8"
+placeholder="Ekri repons ou oswa travay ou la...">
+</textarea>
+
+</div>
+
+<div class="field">
+
+<label>
+Tan ou itilize (minit)
+</label>
+
+<input
+id="remetTemps"
+type="number"
+min="0"
+placeholder="30">
+
+</div>
+
+<div class="formActions">
+
+<button
+class="btn"
+onclick="envoyerRemise()">
+
+📤 Remèt devwa
+
+</button>
+
+<button
+class="btn closeModal"
+onclick="fermerRemetModal()">
+
+Anile
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
 import {
 initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
 import {
 getAuth,
@@ -1321,6 +1496,7 @@ setPersistence,
 browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
+
 import {
 getFirestore,
 collection,
@@ -1328,6 +1504,7 @@ doc,
 setDoc,
 getDoc,
 getDocs,
+addDoc,
 updateDoc,
 deleteDoc,
 serverTimestamp
@@ -1337,13 +1514,21 @@ serverTimestamp
 /* ================= FIREBASE ================= */
 
 const firebaseConfig = {
+
 apiKey:"AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
+
 authDomain:"sist-aprantisaj.firebaseapp.com",
+
 projectId:"sist-aprantisaj",
+
 storageBucket:"sist-aprantisaj.firebasestorage.app",
+
 messagingSenderId:"517876142004",
+
 appId:"1:517876142004:web:2771066976950b208dace1"
+
 };
+
 
 const app=initializeApp(firebaseConfig);
 
@@ -1353,9 +1538,11 @@ const db=getFirestore(app);
 
 const provider=new GoogleAuthProvider();
 
+
 provider.setCustomParameters({
 prompt:"select_account"
 });
+
 
 await setPersistence(
 auth,
@@ -1366,7 +1553,9 @@ browserLocalPersistence
 /* ================= VARIABLES ================= */
 
 let currentUser=null;
+
 let currentUserData=null;
+
 let deferredPrompt=null;
 
 
@@ -1375,10 +1564,15 @@ let deferredPrompt=null;
 function escapeHTML(value){
 
 return String(value ?? "")
+
 .replaceAll("&","&amp;")
+
 .replaceAll("<","&lt;")
+
 .replaceAll(">","&gt;")
+
 .replaceAll('"',"&quot;")
+
 .replaceAll("'","&#039;");
 
 }
@@ -1388,9 +1582,12 @@ return String(value ?? "")
 
 function showMessage(message){
 
-const box=document.getElementById("authMessage");
+const box=document.getElementById(
+"authMessage"
+);
 
 box.textContent=message;
+
 box.style.display="block";
 
 }
@@ -1408,6 +1605,7 @@ const password=document
 .getElementById("loginPassword")
 .value;
 
+
 if(!email||!password){
 
 showMessage(
@@ -1415,12 +1613,16 @@ showMessage(
 );
 
 return;
+
 }
+
 
 try{
 
 await signInWithEmailAndPassword(
-auth,email,password
+auth,
+email,
+password
 );
 
 }catch(error){
@@ -1436,14 +1638,15 @@ showMessage(
 };
 
 
-/* ================= GOOGLE ================= */
+/* ================= GOOGLE LOGIN ================= */
 
 window.connecterAvecGoogle=async function(){
 
 try{
 
 await signInWithPopup(
-auth,provider
+auth,
+provider
 );
 
 }catch(error){
@@ -1453,7 +1656,8 @@ console.error(error);
 try{
 
 await signInWithRedirect(
-auth,provider
+auth,
+provider
 );
 
 }catch(error2){
@@ -1487,6 +1691,7 @@ const password=document
 .getElementById("registerPassword")
 .value;
 
+
 if(!nom||!email||!password){
 
 showMessage(
@@ -1494,7 +1699,9 @@ showMessage(
 );
 
 return;
+
 }
+
 
 if(password.length<6){
 
@@ -1503,34 +1710,50 @@ showMessage(
 );
 
 return;
+
 }
+
 
 try{
 
 const credential=
 await createUserWithEmailAndPassword(
-auth,email,password
+auth,
+email,
+password
 );
 
 const user=credential.user;
 
+
 await setDoc(
 doc(db,"users",user.uid),
 {
+
 uid:user.uid,
+
 email:user.email,
+
 nom:nom,
+
 role:"eleve",
+
 status:"attente",
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
+
 await signOut(auth);
+
 
 showMessage(
 "Kont la kreye. Administratè a dwe apwouve li."
 );
+
 
 }catch(error){
 
@@ -1553,38 +1776,56 @@ try{
 
 const credential=
 await signInWithPopup(
-auth,provider
+auth,
+provider
 );
 
 const user=credential.user;
 
+
 const ref=doc(
-db,"users",user.uid
+db,
+"users",
+user.uid
 );
 
-const existing=await getDoc(ref);
+
+const existing=
+await getDoc(ref);
+
 
 if(!existing.exists()){
 
 await setDoc(
 ref,
 {
+
 uid:user.uid,
+
 email:user.email,
+
 nom:user.displayName||"",
+
 role:"eleve",
+
 status:"attente",
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
 }
 
+
 await signOut(auth);
+
 
 showMessage(
 "Kont Google la kreye. Administratè a dwe apwouve li."
 );
+
 
 }catch(error){
 
@@ -1606,43 +1847,67 @@ async function loadUserProfile(user){
 try{
 
 const ref=doc(
-db,"users",user.uid
+db,
+"users",
+user.uid
 );
 
-const snap=await getDoc(ref);
+
+const snap=
+await getDoc(ref);
+
 
 if(!snap.exists()){
 
 await setDoc(
 ref,
 {
+
 uid:user.uid,
+
 email:user.email,
+
 nom:user.displayName||"",
+
 role:"eleve",
+
 status:"attente",
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
+
 await signOut(auth);
+
 
 showMessage(
 "Kont ou anrejistre. Administratè a dwe apwouve li."
 );
 
 return;
+
 }
+
 
 currentUserData=snap.data();
 
+
 const role=String(
 currentUserData.role||""
-).trim().toLowerCase();
+)
+.trim()
+.toLowerCase();
+
 
 const status=String(
 currentUserData.status||""
-).trim().toLowerCase();
+)
+.trim()
+.toLowerCase();
+
 
 if(status!=="accepted"){
 
@@ -1653,7 +1918,9 @@ showMessage(
 );
 
 return;
+
 }
+
 
 if(
 role!=="administrateur" &&
@@ -1668,9 +1935,12 @@ showMessage(
 );
 
 return;
+
 }
 
+
 openApp();
+
 
 }catch(error){
 
@@ -1687,7 +1957,7 @@ showMessage(
 }
 
 
-/* ================= OPEN ================= */
+/* ================= OPEN APP ================= */
 
 async function openApp(){
 
@@ -1695,14 +1965,17 @@ document
 .getElementById("authPage")
 .classList.add("hidden");
 
+
 document
 .getElementById("app")
 .classList.remove("hidden");
+
 
 document
 .getElementById("userEmail")
 .textContent=
 currentUser.email||"";
+
 
 document
 .getElementById("userRole")
@@ -1710,7 +1983,9 @@ document
 "Wòl: "+
 (currentUserData.role||"");
 
+
 applyRoleAccess();
+
 
 await loadAllData();
 
@@ -1723,7 +1998,12 @@ function applyRoleAccess(){
 
 const role=String(
 currentUserData.role||""
-).trim().toLowerCase();
+)
+.trim()
+.toLowerCase();
+
+
+/* ADMIN */
 
 document
 .querySelectorAll(".adminOnly")
@@ -1734,6 +2014,9 @@ role==="administrateur"
 ?"":"none";
 
 });
+
+
+/* TEACHER + ADMIN */
 
 document
 .querySelectorAll(".teacherOnly")
@@ -1746,72 +2029,135 @@ role==="professeur"
 
 });
 
+
+/* CREATE HOMEWORK */
+
+const createPanel=
+document.getElementById(
+"createDevoirPanel"
+);
+
+if(createPanel){
+
+createPanel.style.display=
+role==="administrateur"||
+role==="professeur"
+?"":"none";
+
+}
+
 }
 
 
 /* ================= SECTION ================= */
 
-window.showSection=function(id,button){
+window.showSection=function(
+id,
+button
+){
 
 document
 .querySelectorAll(".section")
 .forEach(section=>{
-section.classList.remove("active");
+
+section.classList.remove(
+"active"
+);
+
 });
+
 
 const section=
 document.getElementById(id);
 
+
 if(section){
+
 section.classList.add("active");
+
 }
+
 
 document
 .querySelectorAll(".menuBtn")
 .forEach(btn=>{
-btn.classList.remove("active");
+
+btn.classList.remove(
+"active"
+);
+
 });
 
+
 if(button){
-button.classList.add("active");
+
+button.classList.add(
+"active"
+);
+
 }
 
 };
 
 
-/* ================= LOAD ================= */
+/* ================= LOAD ALL ================= */
 
 async function loadAllData(){
 
 const role=String(
 currentUserData.role||""
-).toLowerCase();
+)
+.toLowerCase();
+
 
 const tasks=[
+
 loadDevoirs(),
+
 loadResultats()
+
 ];
+
 
 if(
 role==="administrateur"||
 role==="professeur"
 ){
 
-tasks.push(loadEleves());
-tasks.push(loadRemises());
+tasks.push(
+loadEleves()
+);
+
+tasks.push(
+loadRemises()
+);
 
 }
+
 
 if(role==="administrateur"){
 
-tasks.push(loadProfesseurs());
-tasks.push(loadClasses());
-tasks.push(loadMatieres());
-tasks.push(loadUsers());
+tasks.push(
+loadProfesseurs()
+);
+
+tasks.push(
+loadClasses()
+);
+
+tasks.push(
+loadMatieres()
+);
+
+tasks.push(
+loadUsers()
+);
 
 }
 
+
 await Promise.all(tasks);
+
 
 await updateStats();
 
@@ -1820,13 +2166,25 @@ await updateStats();
 
 /* ================= EMPTY ================= */
 
-function emptyCard(icon,text){
+function emptyCard(
+icon,
+text
+){
 
 return `
+
 <div class="empty">
-<div class="emptyIcon">${icon}</div>
-<div>${text}</div>
+
+<div class="emptyIcon">
+${icon}
 </div>
+
+<div>
+${escapeHTML(text)}
+</div>
+
+</div>
+
 `;
 
 }
@@ -1842,38 +2200,60 @@ const snap=await getDocs(
 collection(db,"eleves")
 );
 
+
 const box=document
-.getElementById("listeEleves");
+.getElementById(
+"listeEleves"
+);
+
 
 box.innerHTML="";
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("👨‍🎓","Pa gen elèv pou kounye a.");
+emptyCard(
+"👨‍🎓",
+"Pa gen elèv pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
-const nom=data.nom||"Elèv san non";
-const classe=data.classe||"Pa gen klas";
+
+const nom=
+data.nom||
+"Elèv san non";
+
+
+const classe=
+data.classe||
+"Pa gen klas";
+
 
 box.innerHTML+=`
 
-<div class="dataCard searchItem"
+<div
+class="dataCard searchItem"
 data-search="${escapeHTML(
 (nom+" "+classe).toLowerCase()
 )}">
 
 <div class="cardTop">
 
-<div class="avatar">👨‍🎓</div>
+<div class="avatar">
+👨‍🎓
+</div>
 
 <div>
+
 <div class="cardTitle">
 ${escapeHTML(nom)}
 </div>
@@ -1881,22 +2261,33 @@ ${escapeHTML(nom)}
 <div class="cardSub">
 Elèv
 </div>
+
 </div>
 
 </div>
 
 <div class="infoRow">
-<span>Klas</span>
+
+<span>
+Klas
+</span>
+
 <strong>
 ${escapeHTML(classe)}
 </strong>
+
 </div>
 
 <div class="infoRow">
-<span>ID</span>
+
+<span>
+ID
+</span>
+
 <strong>
 ${escapeHTML(item.id)}
 </strong>
+
 </div>
 
 </div>
@@ -1905,9 +2296,13 @@ ${escapeHTML(item.id)}
 
 });
 
+
 }catch(error){
 
-console.error("Eleves:",error);
+console.error(
+"Eleves:",
+error
+);
 
 }
 
@@ -1922,37 +2317,63 @@ const nom=document
 .getElementById("eleveNom")
 .value.trim();
 
+
 const classe=document
 .getElementById("eleveClasse")
 .value.trim();
 
+
 if(!nom){
 
-alert("Antre non elèv la.");
+alert(
+"Antre non elèv la."
+);
 
 return;
+
 }
+
 
 try{
 
-const id="eleve_"+Date.now();
+const id=
+"eleve_"+Date.now();
+
 
 await setDoc(
 doc(db,"eleves",id),
 {
+
 nom:nom,
+
 classe:classe,
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
-document.getElementById("eleveNom").value="";
-document.getElementById("eleveClasse").value="";
+
+document
+.getElementById("eleveNom")
+.value="";
+
+
+document
+.getElementById("eleveClasse")
+.value="";
+
 
 await loadEleves();
+
 await updateStats();
 
-alert("Elèv la ajoute avèk siksè.");
+
+alert(
+"Elèv la ajoute avèk siksè."
+);
+
 
 }catch(error){
 
@@ -1977,39 +2398,65 @@ const snap=await getDocs(
 collection(db,"professeurs")
 );
 
+
 const box=document
-.getElementById("listeProfesseurs");
+.getElementById(
+"listeProfesseurs"
+);
+
 
 box.innerHTML="";
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("👨‍🏫","Pa gen pwofesè pou kounye a.");
+emptyCard(
+"👨‍🏫",
+"Pa gen pwofesè pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
-const nom=data.nom||"Pwofesè";
-const email=data.email||"";
-const matiere=data.matiere||"Pa presize";
+
+const nom=
+data.nom||
+"Pwofesè";
+
+
+const email=
+data.email||
+"";
+
+
+const matiere=
+data.matiere||
+"Pa presize";
+
 
 box.innerHTML+=`
 
-<div class="dataCard searchItem"
+<div
+class="dataCard searchItem"
 data-search="${escapeHTML(
 (nom+" "+email+" "+matiere).toLowerCase()
 )}">
 
 <div class="cardTop">
 
-<div class="avatar">👨‍🏫</div>
+<div class="avatar">
+👨‍🏫
+</div>
 
 <div>
+
 <div class="cardTitle">
 ${escapeHTML(nom)}
 </div>
@@ -2017,24 +2464,37 @@ ${escapeHTML(nom)}
 <div class="cardSub">
 Pwofesè
 </div>
+
 </div>
 
 </div>
 
 <div class="infoRow">
-<span>Email</span>
+
+<span>
+Email
+</span>
+
 <strong>
 ${escapeHTML(email)}
 </strong>
+
 </div>
 
 <div class="infoRow">
-<span>Matyè</span>
+
+<span>
+Matyè
+</span>
+
 <strong>
+
 <span class="badge badgeBlue">
 ${escapeHTML(matiere)}
 </span>
+
 </strong>
+
 </div>
 
 </div>
@@ -2043,9 +2503,13 @@ ${escapeHTML(matiere)}
 
 });
 
+
 }catch(error){
 
-console.error("Professeurs:",error);
+console.error(
+"Professeurs:",
+error
+);
 
 }
 
@@ -2060,43 +2524,75 @@ const nom=document
 .getElementById("profNom")
 .value.trim();
 
+
 const email=document
 .getElementById("profEmail")
 .value.trim();
+
 
 const matiere=document
 .getElementById("profMatiere")
 .value.trim();
 
+
 if(!nom){
 
-alert("Antre non pwofesè a.");
+alert(
+"Antre non pwofesè a."
+);
 
 return;
+
 }
+
 
 try{
 
-const id="professeur_"+Date.now();
+const id=
+"professeur_"+Date.now();
+
 
 await setDoc(
 doc(db,"professeurs",id),
 {
+
 nom:nom,
+
 email:email,
+
 matiere:matiere,
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
-document.getElementById("profNom").value="";
-document.getElementById("profEmail").value="";
-document.getElementById("profMatiere").value="";
+
+document
+.getElementById("profNom")
+.value="";
+
+
+document
+.getElementById("profEmail")
+.value="";
+
+
+document
+.getElementById("profMatiere")
+.value="";
+
 
 await loadProfesseurs();
+
 await updateStats();
 
-alert("Pwofesè a ajoute avèk siksè.");
+
+alert(
+"Pwofesè a ajoute avèk siksè."
+);
+
 
 }catch(error){
 
@@ -2121,37 +2617,55 @@ const snap=await getDocs(
 collection(db,"classes")
 );
 
+
 const box=document
-.getElementById("listeClasses");
+.getElementById(
+"listeClasses"
+);
+
 
 box.innerHTML="";
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("🏫","Pa gen klas pou kounye a.");
+emptyCard(
+"🏫",
+"Pa gen klas pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
-const nom=data.nom||"Klas";
+
+const nom=
+data.nom||
+"Klas";
+
 
 box.innerHTML+=`
 
-<div class="dataCard searchItem"
+<div
+class="dataCard searchItem"
 data-search="${escapeHTML(
 nom.toLowerCase()
 )}">
 
 <div class="cardTop">
 
-<div class="avatar">🏫</div>
+<div class="avatar">
+🏫
+</div>
 
 <div>
+
 <div class="cardTitle">
 ${escapeHTML(nom)}
 </div>
@@ -2159,15 +2673,21 @@ ${escapeHTML(nom)}
 <div class="cardSub">
 Klas lekòl
 </div>
+
 </div>
 
 </div>
 
 <div class="infoRow">
-<span>ID</span>
+
+<span>
+ID
+</span>
+
 <strong>
 ${escapeHTML(item.id)}
 </strong>
+
 </div>
 
 <span class="badge badgeGreen">
@@ -2180,9 +2700,13 @@ Aktif
 
 });
 
+
 }catch(error){
 
-console.error("Classes:",error);
+console.error(
+"Classes:",
+error
+);
 
 }
 
@@ -2197,31 +2721,51 @@ const nom=document
 .getElementById("classeNom")
 .value.trim();
 
+
 if(!nom){
 
-alert("Antre non klas la.");
+alert(
+"Antre non klas la."
+);
 
 return;
+
 }
+
 
 try{
 
-const id="classe_"+Date.now();
+const id=
+"classe_"+Date.now();
+
 
 await setDoc(
 doc(db,"classes",id),
 {
+
 nom:nom,
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
-document.getElementById("classeNom").value="";
+
+document
+.getElementById("classeNom")
+.value="";
+
 
 await loadClasses();
+
 await updateStats();
 
-alert("Klas la ajoute avèk siksè.");
+
+alert(
+"Klas la ajoute avèk siksè."
+);
+
 
 }catch(error){
 
@@ -2246,37 +2790,55 @@ const snap=await getDocs(
 collection(db,"matieres")
 );
 
+
 const box=document
-.getElementById("listeMatieres");
+.getElementById(
+"listeMatieres"
+);
+
 
 box.innerHTML="";
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("📚","Pa gen matyè pou kounye a.");
+emptyCard(
+"📚",
+"Pa gen matyè pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
-const nom=data.nom||"Matyè";
+
+const nom=
+data.nom||
+"Matyè";
+
 
 box.innerHTML+=`
 
-<div class="dataCard searchItem"
+<div
+class="dataCard searchItem"
 data-search="${escapeHTML(
 nom.toLowerCase()
 )}">
 
 <div class="cardTop">
 
-<div class="avatar">📚</div>
+<div class="avatar">
+📚
+</div>
 
 <div>
+
 <div class="cardTitle">
 ${escapeHTML(nom)}
 </div>
@@ -2284,15 +2846,21 @@ ${escapeHTML(nom)}
 <div class="cardSub">
 Matyè akademik
 </div>
+
 </div>
 
 </div>
 
 <div class="infoRow">
-<span>Non</span>
+
+<span>
+Non
+</span>
+
 <strong>
 ${escapeHTML(nom)}
 </strong>
+
 </div>
 
 <span class="badge badgeBlue">
@@ -2305,9 +2873,13 @@ Matyè aktif
 
 });
 
+
 }catch(error){
 
-console.error("Matieres:",error);
+console.error(
+"Matieres:",
+error
+);
 
 }
 
@@ -2322,31 +2894,51 @@ const nom=document
 .getElementById("matiereNom")
 .value.trim();
 
+
 if(!nom){
 
-alert("Antre non matyè a.");
+alert(
+"Antre non matyè a."
+);
 
 return;
+
 }
+
 
 try{
 
-const id="matiere_"+Date.now();
+const id=
+"matiere_"+Date.now();
+
 
 await setDoc(
 doc(db,"matieres",id),
 {
+
 nom:nom,
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
-document.getElementById("matiereNom").value="";
+
+document
+.getElementById("matiereNom")
+.value="";
+
 
 await loadMatieres();
+
 await updateStats();
 
-alert("Matyè a ajoute avèk siksè.");
+
+alert(
+"Matyè a ajoute avèk siksè."
+);
+
 
 }catch(error){
 
@@ -2371,41 +2963,102 @@ const snap=await getDocs(
 collection(db,"devoirs")
 );
 
+
 const box=document
-.getElementById("listeDevoirs");
+.getElementById(
+"listeDevoirs"
+);
+
 
 box.innerHTML="";
+
+
+const role=String(
+currentUserData?.role||""
+)
+.toLowerCase();
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("📝","Pa gen devwa pou kounye a.");
+emptyCard(
+"📝",
+"Pa gen devwa pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
-const titre=data.titre||"Devwa";
-const matiere=data.matiere||"Pa presize";
-const classe=data.classe||"Pa presize";
-const duree=data.duree||0;
-const tent=data.maxTentatives||1;
+
+const titre=
+data.titre||
+"Devwa";
+
+
+const matiere=
+data.matiere||
+"Pa presize";
+
+
+const classe=
+data.classe||
+"Pa presize";
+
+
+const duree=
+data.duree||
+0;
+
+
+const tent=
+data.maxTentatives||
+1;
+
+
+let bouton="";
+
+
+if(role==="eleve"){
+
+bouton=`
+
+<button
+class="btn"
+style="margin-top:14px"
+onclick="ouvrirRemetDevoir('${item.id}')">
+
+📤 Fè epi remèt devwa
+
+</button>
+
+`;
+
+}
+
 
 box.innerHTML+=`
 
-<div class="dataCard searchItem"
+<div
+class="dataCard searchItem"
 data-search="${escapeHTML(
 (titre+" "+matiere+" "+classe).toLowerCase()
 )}">
 
 <div class="cardTop">
 
-<div class="avatar">📝</div>
+<div class="avatar">
+📝
+</div>
 
 <div>
+
 <div class="cardTitle">
 ${escapeHTML(titre)}
 </div>
@@ -2413,36 +3066,61 @@ ${escapeHTML(titre)}
 <div class="cardSub">
 ${escapeHTML(matiere)}
 </div>
+
 </div>
 
 </div>
+
 
 <div class="infoRow">
-<span>Klas</span>
+
+<span>
+Klas
+</span>
+
 <strong>
 ${escapeHTML(classe)}
 </strong>
+
 </div>
 
+
 <div class="infoRow">
-<span>Dire</span>
+
+<span>
+Dire
+</span>
+
 <strong>
 ${escapeHTML(duree)} min
 </strong>
+
 </div>
 
+
 <div class="infoRow">
-<span>Tantativ</span>
+
+<span>
+Tantativ
+</span>
+
 <strong>
 ${escapeHTML(tent)}
 </strong>
+
 </div>
 
+
 <div style="margin-top:12px">
+
 <span class="badge badgeBlue">
 ${escapeHTML(matiere)}
 </span>
+
 </div>
+
+
+${bouton}
 
 </div>
 
@@ -2450,9 +3128,26 @@ ${escapeHTML(matiere)}
 
 });
 
+
 }catch(error){
 
-console.error("Devoirs:",error);
+console.error(
+"Devoirs:",
+error
+);
+
+
+const box=document
+.getElementById(
+"listeDevoirs"
+);
+
+
+box.innerHTML=
+emptyCard(
+"⚠️",
+"Pa kapab chaje devwa yo."
+);
 
 }
 
@@ -2467,53 +3162,96 @@ const titre=document
 .getElementById("devoirTitre")
 .value.trim();
 
+
 const matiere=document
 .getElementById("devoirMatiere")
 .value.trim();
+
 
 const classe=document
 .getElementById("devoirClasse")
 .value.trim();
 
+
 const duree=Number(
-document.getElementById("devoirDuree").value
+document.getElementById(
+"devoirDuree"
+).value
 )||30;
 
+
 const maxTentatives=Number(
-document.getElementById("devoirTentatives").value
+document.getElementById(
+"devoirTentatives"
+).value
 )||1;
+
 
 if(!titre){
 
-alert("Antre tit devwa a.");
+alert(
+"Antre tit devwa a."
+);
 
 return;
+
 }
+
 
 try{
 
-const id="devoir_"+Date.now();
+const id=
+"devoir_"+Date.now();
+
 
 await setDoc(
 doc(db,"devoirs",id),
 {
+
 titre:titre,
+
 matiere:matiere,
+
 classe:classe,
+
 duree:duree,
+
 maxTentatives:maxTentatives,
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp(),
+
+createdBy:
+currentUser.uid
+
 }
 );
 
-document.getElementById("devoirTitre").value="";
-document.getElementById("devoirMatiere").value="";
-document.getElementById("devoirClasse").value="";
+
+document
+.getElementById("devoirTitre")
+.value="";
+
+
+document
+.getElementById("devoirMatiere")
+.value="";
+
+
+document
+.getElementById("devoirClasse")
+.value="";
+
 
 await loadDevoirs();
+
 await updateStats();
 
-alert("Devwa a kreye avèk siksè.");
+
+alert(
+"Devwa a kreye avèk siksè."
+);
+
 
 }catch(error){
 
@@ -2528,81 +3266,610 @@ alert(
 };
 
 
-/* ================= REMISES ================= */
+/* ================= REMET DEVWA ================= */
+
+window.ouvrirRemetDevoir=async function(
+devoirId
+){
+
+try{
+
+const ref=doc(
+db,
+"devoirs",
+devoirId
+);
+
+
+const snap=
+await getDoc(ref);
+
+
+if(!snap.exists()){
+
+alert(
+"Devwa sa a pa egziste."
+);
+
+return;
+
+}
+
+
+const data=snap.data();
+
+
+document
+.getElementById(
+"remetDevoirId"
+)
+.value=devoirId;
+
+
+document
+.getElementById(
+"remetReponse"
+)
+.value="";
+
+
+document
+.getElementById(
+"remetTemps"
+)
+.value="";
+
+
+document
+.getElementById(
+"remetDevoirInfo"
+)
+.innerHTML=`
+
+<div class="infoRow">
+
+<span>
+Devwa
+</span>
+
+<strong>
+${escapeHTML(
+data.titre||""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Matyè
+</span>
+
+<strong>
+${escapeHTML(
+data.matiere||""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Klas
+</span>
+
+<strong>
+${escapeHTML(
+data.classe||""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Maksimòm tantativ
+</span>
+
+<strong>
+${escapeHTML(
+data.maxTentatives||1
+)}
+</strong>
+
+</div>
+
+`;
+
+
+document
+.getElementById(
+"remetModal"
+)
+.classList.remove(
+"hidden"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Nou pa kapab ouvri devwa sa a."
+);
+
+}
+
+};
+
+
+/* ================= FERME MODAL ================= */
+
+window.fermerRemetModal=function(){
+
+document
+.getElementById(
+"remetModal"
+)
+.classList.add(
+"hidden"
+);
+
+};
+
+
+/* ================= ENVOYE REMISE ================= */
+
+window.envoyerRemise=async function(){
+
+if(!currentUser){
+
+alert(
+"Ou pa konekte."
+);
+
+return;
+
+}
+
+
+const devoirId=document
+.getElementById(
+"remetDevoirId"
+)
+.value;
+
+
+const reponse=document
+.getElementById(
+"remetReponse"
+)
+.value.trim();
+
+
+const temps=Number(
+document
+.getElementById(
+"remetTemps"
+)
+.value
+)||0;
+
+
+if(!devoirId){
+
+alert(
+"Devwa a pa jwenn."
+);
+
+return;
+
+}
+
+
+if(!reponse){
+
+alert(
+"Tanpri ekri repons ou anvan ou remèt devwa a."
+);
+
+return;
+
+}
+
+
+try{
+
+const devoirRef=doc(
+db,
+"devoirs",
+devoirId
+);
+
+
+const devoirSnap=
+await getDoc(
+devoirRef
+);
+
+
+if(!devoirSnap.exists()){
+
+alert(
+"Devwa sa a pa egziste."
+);
+
+return;
+
+}
+
+
+const devoir=
+devoirSnap.data();
+
+
+const tentativesSnap=
+await getDocs(
+collection(db,"tentatives")
+);
+
+
+let nombreTentatives=0;
+
+
+tentativesSnap.forEach(
+item=>{
+
+const data=item.data();
+
+
+if(
+data.eleveId===
+currentUser.uid &&
+data.devoirId===
+devoirId
+){
+
+nombreTentatives++;
+
+}
+
+});
+
+
+const maxTentatives=
+Number(
+devoir.maxTentatives
+)||1;
+
+
+if(
+nombreTentatives>=
+maxTentatives
+){
+
+alert(
+"Ou deja itilize tout tantativ ou genyen pou devwa sa a."
+);
+
+return;
+
+}
+
+
+const numeroTentative=
+nombreTentatives+1;
+
+
+await addDoc(
+collection(db,"tentatives"),
+{
+
+eleveId:
+currentUser.uid,
+
+eleveNom:
+currentUserData.nom||
+currentUser.displayName||
+currentUser.email||
+"Elèv",
+
+devoirId:
+devoirId,
+
+devoirTitre:
+devoir.titre||
+"Devwa",
+
+matiere:
+devoir.matiere||
+"",
+
+classe:
+devoir.classe||
+"",
+
+numeroTentative:
+numeroTentative,
+
+reponse:
+reponse,
+
+temps:
+temps,
+
+score:
+0,
+
+noteFinale:
+null,
+
+commentaire:
+"",
+
+status:
+"soumis",
+
+createdAt:
+serverTimestamp(),
+
+}
+);
+
+
+fermerRemetModal();
+
+
+alert(
+"✅ Devwa a remèt avèk siksè!"
+);
+
+
+await loadDevoirs();
+
+
+}catch(error){
+
+console.error(
+"Erreur remise:",
+error
+);
+
+
+alert(
+"❌ Nou pa kapab remèt devwa a. Verifye Firestore Rules yo."
+);
+
+}
+
+};
+
+
+/* ================= REMISES / CORRECTIONS ================= */
 
 async function loadRemises(){
 
 const box=document
-.getElementById("listeRemises");
+.getElementById(
+"listeRemises"
+);
+
 
 try{
 
-const snap=await getDocs(
+const snap=
+await getDocs(
 collection(db,"tentatives")
 );
 
+
 box.innerHTML="";
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("📤","Pa gen travay remèt pou kounye a.");
+emptyCard(
+"📤",
+"Pa gen travay remèt pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
+
+let score=0;
+
+
+if(
+data.noteFinale!==null &&
+data.noteFinale!==undefined
+){
+
+score=
+Number(data.noteFinale)||0;
+
+}else{
+
+score=
+Number(data.score)||0;
+
+}
+
+
+const commentaire=
+data.commentaire||
+"";
+
+
 box.innerHTML+=`
 
 <div class="submissionCard">
 
-<div class="submissionIcon">📤</div>
+
+<div class="submissionIcon">
+📤
+</div>
+
 
 <div class="cardTitle">
-Travay elèv
+
+${escapeHTML(
+data.eleveNom||
+data.eleveId||
+"Elèv"
+)}
+
 </div>
+
 
 <div class="infoRow">
-<span>Elèv</span>
-<strong>
-${escapeHTML(data.eleveId||"")}
-</strong>
-</div>
 
-<div class="infoRow">
-<span>Devwa</span>
-<strong>
-${escapeHTML(data.devoirId||"")}
-</strong>
-</div>
-
-<div class="infoRow">
-<span>Tantativ</span>
-<strong>
-${escapeHTML(data.numeroTentative||1)}
-</strong>
-</div>
-
-<div class="infoRow">
-<span>Score</span>
-<strong>
-${escapeHTML(data.score||0)}
-</strong>
-</div>
-
-<div class="infoRow">
-<span>Tan</span>
-<strong>
-${escapeHTML(data.temps||0)} min
-</strong>
-</div>
-
-<span class="badge badgeGreen">
-Remèt
+<span>
+Devwa
 </span>
+
+<strong>
+${escapeHTML(
+data.devoirTitre||
+data.devoirId||
+""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Matyè
+</span>
+
+<strong>
+${escapeHTML(
+data.matiere||""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Klas
+</span>
+
+<strong>
+${escapeHTML(
+data.classe||""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Tantativ
+</span>
+
+<strong>
+${escapeHTML(
+data.numeroTentative||1
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Tan
+</span>
+
+<strong>
+${escapeHTML(
+data.temps||0
+)} min
+</strong>
+
+</div>
+
+
+<div class="answerBox">
+
+<strong>
+📝 Repons elèv la:
+</strong>
+
+
+<div class="answerText">
+
+${escapeHTML(
+data.reponse||
+"Pa gen repons."
+)}
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Nòt /100
+</label>
+
+<input
+id="score_${item.id}"
+type="number"
+min="0"
+max="100"
+value="${escapeHTML(score)}">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Koreksyon / Kòmantè
+</label>
+
+<textarea
+id="comment_${item.id}"
+rows="4"
+placeholder="Ekri koreksyon oswa kòmantè...">${escapeHTML(commentaire)}</textarea>
+
+</div>
+
+
+<button
+class="btn"
+onclick="corrigerRemise('${item.id}')">
+
+💾 Sove nòt ak koreksyon
+
+</button>
+
 
 </div>
 
@@ -2610,9 +3877,14 @@ Remèt
 
 });
 
+
 }catch(error){
 
-console.error("Remises:",error);
+console.error(
+"Remises:",
+error
+);
+
 
 box.innerHTML=
 emptyCard(
@@ -2625,84 +3897,362 @@ emptyCard(
 }
 
 
+/* ================= CORRECTION ================= */
+
+window.corrigerRemise=async function(
+id
+){
+
+try{
+
+const scoreInput=
+document.getElementById(
+"score_"+id
+);
+
+
+const commentInput=
+document.getElementById(
+"comment_"+id
+);
+
+
+let score=
+Number(scoreInput.value);
+
+
+if(isNaN(score)){
+
+score=0;
+
+}
+
+
+if(score<0){
+
+score=0;
+
+}
+
+
+if(score>100){
+
+score=100;
+
+}
+
+
+const commentaire=
+commentInput.value.trim();
+
+
+const tentativeRef=
+doc(
+db,
+"tentatives",
+id
+);
+
+
+const tentativeSnap=
+await getDoc(
+tentativeRef
+);
+
+
+if(!tentativeSnap.exists()){
+
+alert(
+"Travay sa a pa egziste ankò."
+);
+
+return;
+
+}
+
+
+const tentative=
+tentativeSnap.data();
+
+
+/* Mete koreksyon sou tentative a */
+
+await updateDoc(
+tentativeRef,
+{
+
+score:
+score,
+
+noteFinale:
+score,
+
+commentaire:
+commentaire,
+
+status:
+"corrige",
+
+correctedAt:
+serverTimestamp(),
+
+correctedBy:
+currentUser.uid
+
+}
+);
+
+
+/* Kreye oswa mete rezilta a */
+
+await setDoc(
+doc(
+db,
+"resultats",
+id
+),
+{
+
+tentativeId:
+id,
+
+eleveId:
+tentative.eleveId||
+"",
+
+eleveNom:
+tentative.eleveNom||
+"",
+
+devoirId:
+tentative.devoirId||
+"",
+
+devoirTitre:
+tentative.devoirTitre||
+"",
+
+matiere:
+tentative.matiere||
+"",
+
+classe:
+tentative.classe||
+"",
+
+noteFinale:
+score,
+
+score:
+score,
+
+commentaire:
+commentaire,
+
+status:
+"corrige",
+
+updatedAt:
+serverTimestamp(),
+
+correctedBy:
+currentUser.uid
+
+},
+{
+merge:true
+}
+);
+
+
+alert(
+"✅ Nòt la ak koreksyon an sove: "+
+score+
+"/100"
+);
+
+
+await loadRemises();
+
+await loadResultats();
+
+
+}catch(error){
+
+console.error(
+"Correction:",
+error
+);
+
+
+alert(
+"❌ Nou pa kapab sove koreksyon an."
+);
+
+}
+
+};
+
+
 /* ================= RESULTATS ================= */
 
 async function loadResultats(){
 
 try{
 
-const snap=await getDocs(
+const snap=
+await getDocs(
 collection(db,"resultats")
 );
 
+
 const box=document
-.getElementById("listeResultats");
+.getElementById(
+"listeResultats"
+);
+
 
 box.innerHTML="";
+
 
 if(!snap.size){
 
 box.innerHTML=
-emptyCard("🏆","Pa gen rezilta pou kounye a.");
+emptyCard(
+"🏆",
+"Pa gen rezilta pou kounye a."
+);
 
 return;
+
 }
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
+
 let note=0;
 
-if(data.noteFinale!==undefined){
 
-note=Number(data.noteFinale)||0;
+if(
+data.noteFinale!==undefined &&
+data.noteFinale!==null
+){
 
-}else if(data.score!==undefined){
+note=
+Number(data.noteFinale)||0;
 
-note=Number(data.score)||0;
+}else if(
+data.score!==undefined
+){
+
+note=
+Number(data.score)||0;
 
 }
+
 
 box.innerHTML+=`
 
 <div class="resultCard">
 
+
 <div class="scoreCircle">
+
 ${escapeHTML(note)}/100
+
 </div>
+
 
 <div class="cardTitle">
-Rezilta elèv
+
+${escapeHTML(
+data.eleveNom||
+"Rezilta elèv"
+)}
+
 </div>
 
-<div class="infoRow">
-<span>Elèv</span>
-<strong>
-${escapeHTML(data.eleveId||"")}
-</strong>
-</div>
 
 <div class="infoRow">
-<span>Devwa</span>
+
+<span>
+Elèv
+</span>
+
 <strong>
-${escapeHTML(data.devoirId||"")}
+${escapeHTML(
+data.eleveId||
+""
+)}
 </strong>
+
 </div>
 
+
 <div class="infoRow">
-<span>Score</span>
+
+<span>
+Devwa
+</span>
+
 <strong>
-${escapeHTML(data.score||0)}
+${escapeHTML(
+data.devoirTitre||
+data.devoirId||
+""
+)}
 </strong>
+
 </div>
+
+
+<div class="infoRow">
+
+<span>
+Matyè
+</span>
+
+<strong>
+${escapeHTML(
+data.matiere||
+""
+)}
+</strong>
+
+</div>
+
+
+<div class="infoRow">
+
+<span>
+Nòt
+</span>
+
+<strong>
+${escapeHTML(note)}/100
+</strong>
+
+</div>
+
 
 <div class="comment">
-<strong>💬 Kòmantè:</strong><br>
+
+<strong>
+💬 Koreksyon:
+</strong>
+
+<br>
+
 ${escapeHTML(
-data.commentaire||"Pa gen kòmantè."
+data.commentaire||
+"Pa gen kòmantè."
 )}
+
 </div>
+
 
 </div>
 
@@ -2710,9 +4260,26 @@ data.commentaire||"Pa gen kòmantè."
 
 });
 
+
 }catch(error){
 
-console.error("Resultats:",error);
+console.error(
+"Resultats:",
+error
+);
+
+
+const box=document
+.getElementById(
+"listeResultats"
+);
+
+
+box.innerHTML=
+emptyCard(
+"⚠️",
+"Pa kapab chaje rezilta yo."
+);
 
 }
 
@@ -2723,100 +4290,165 @@ console.error("Resultats:",error);
 
 async function loadUsers(){
 
+const box=document
+.getElementById(
+"listeUsers"
+);
+
+
 try{
 
-const snap=await getDocs(
+const snap=
+await getDocs(
 collection(db,"users")
 );
 
-const box=document
-.getElementById("listeUsers");
 
 box.innerHTML="";
 
+
 let count=0;
+
 
 snap.forEach(item=>{
 
 const data=item.data();
 
+
 const status=String(
 data.status||""
-).trim().toLowerCase();
+)
+.trim()
+.toLowerCase();
+
 
 if(status==="attente"){
 
 count++;
 
+
 box.innerHTML+=`
 
 <div class="dataCard">
 
+
 <div class="cardTop">
 
-<div class="avatar">👤</div>
+<div class="avatar">
+👤
+</div>
+
 
 <div>
+
 <div class="cardTitle">
+
 ${escapeHTML(
-data.nom||"Itilizatè"
+data.nom||
+"Itilizatè"
 )}
+
 </div>
+
 
 <div class="cardSub">
+
 ${escapeHTML(
-data.email||""
+data.email||
+""
 )}
-</div>
+
 </div>
 
 </div>
+
+</div>
+
 
 <div class="infoRow">
-<span>Status</span>
-<strong>
-<span class="badge badgeOrange">
-⏳ An atant
+
+<span>
+Status
 </span>
+
+<strong>
+
+<span class="badge badgeOrange">
+
+⏳ An atant
+
+</span>
+
 </strong>
+
 </div>
 
+
 <div class="infoRow">
-<span>Wòl aktyèl</span>
+
+<span>
+Wòl aktyèl
+</span>
+
 <strong>
+
 ${escapeHTML(
-data.role||"eleve"
+data.role||
+"eleve"
 )}
+
 </strong>
+
 </div>
+
 
 <div class="field">
 
-<label>Chwazi wòl</label>
+<label>
+Chwazi wòl
+</label>
+
 
 <select id="role_${item.id}">
-<option value="eleve">Elèv</option>
-<option value="professeur">Pwofesè</option>
-<option value="administrateur">Administratè</option>
+
+<option value="eleve">
+Elèv
+</option>
+
+<option value="professeur">
+Pwofesè
+</option>
+
+<option value="administrateur">
+Administratè
+</option>
+
 </select>
 
 </div>
+
 
 <div class="cardActions">
 
 <button
 class="smallBtn accept"
 onclick="acceptUser('${item.id}')">
+
 ✓ Aksepte
+
 </button>
+
 
 <button
 class="smallBtn refuse"
 onclick="refuseUser('${item.id}')">
+
 ✕ Refize
+
 </button>
 
 </div>
+
 
 </div>
 
@@ -2825,6 +4457,7 @@ onclick="refuseUser('${item.id}')">
 }
 
 });
+
 
 if(count===0){
 
@@ -2836,45 +4469,73 @@ emptyCard(
 
 }
 
+
 }catch(error){
 
-console.error("Users:",error);
+console.error(
+"Users:",
+error
+);
+
+
+box.innerHTML=
+emptyCard(
+"⚠️",
+"Nou pa kapab chaje demann itilizatè yo. Verifye Rules ak kont admin lan."
+);
 
 }
 
 }
 
 
-/* ================= ACCEPT ================= */
+/* ================= ACCEPT USER ================= */
 
-window.acceptUser=async function(uid){
+window.acceptUser=async function(
+uid
+){
 
 try{
 
-const select=document
-.getElementById("role_"+uid);
+const select=
+document.getElementById(
+"role_"+uid
+);
 
-const role=select
+
+const role=
+select
 ?select.value
 :"eleve";
+
 
 await updateDoc(
 doc(db,"users",uid),
 {
-status:"accepted",
-role:role
+
+status:
+"accepted",
+
+role:
+role
+
 }
 );
 
+
 await loadUsers();
 
+
 alert(
-"Itilizatè a aksepte avèk wòl: "+role
+"Itilizatè a aksepte avèk wòl: "+
+role
 );
+
 
 }catch(error){
 
 console.error(error);
+
 
 alert(
 "Nou pa kapab aksepte itilizatè a."
@@ -2885,13 +4546,20 @@ alert(
 };
 
 
-/* ================= REFUSE ================= */
+/* ================= REFUSE USER ================= */
 
-window.refuseUser=async function(uid){
+window.refuseUser=async function(
+uid
+){
 
 if(!confirm(
 "Èske ou sèten ou vle refize kont sa a?"
-)) return;
+)){
+
+return;
+
+}
+
 
 try{
 
@@ -2899,15 +4567,19 @@ await deleteDoc(
 doc(db,"users",uid)
 );
 
+
 await loadUsers();
+
 
 alert(
 "Itilizatè a refize."
 );
 
+
 }catch(error){
 
 console.error(error);
+
 
 alert(
 "Nou pa kapab refize itilizatè a."
@@ -2928,36 +4600,81 @@ const role=String(
 currentUserData.role||""
 ).toLowerCase();
 
-const devoirs=await getDocs(
+
+const devoirs=
+await getDocs(
 collection(db,"devoirs")
 );
 
+
+const statDevoirs=
 document.getElementById(
 "statDevoirs"
-).textContent=devoirs.size;
+);
 
+
+const stat2Devoirs=
 document.getElementById(
 "stat2Devoirs"
-).textContent=devoirs.size;
+);
+
+
+if(statDevoirs){
+
+statDevoirs.textContent=
+devoirs.size;
+
+}
+
+
+if(stat2Devoirs){
+
+stat2Devoirs.textContent=
+devoirs.size;
+
+}
+
 
 if(
 role==="administrateur"||
 role==="professeur"
 ){
 
-const eleves=await getDocs(
+const eleves=
+await getDocs(
 collection(db,"eleves")
 );
 
+
+const statEleves=
 document.getElementById(
 "statEleves"
-).textContent=eleves.size;
+);
 
+
+const stat2Eleves=
 document.getElementById(
 "stat2Eleves"
-).textContent=eleves.size;
+);
+
+
+if(statEleves){
+
+statEleves.textContent=
+eleves.size;
 
 }
+
+
+if(stat2Eleves){
+
+stat2Eleves.textContent=
+eleves.size;
+
+}
+
+}
+
 
 if(role==="administrateur"){
 
@@ -2976,31 +4693,71 @@ collection(db,"classes")
 
 ]);
 
+
+const statProfesseurs=
 document.getElementById(
 "statProfesseurs"
-).textContent=
-professeurs.size;
+);
 
+
+const stat2Professeurs=
 document.getElementById(
 "stat2Professeurs"
-).textContent=
-professeurs.size;
+);
 
+
+const statClasses=
 document.getElementById(
 "statClasses"
-).textContent=
-classes.size;
+);
 
+
+const stat2Classes=
 document.getElementById(
 "stat2Classes"
-).textContent=
+);
+
+
+if(statProfesseurs){
+
+statProfesseurs.textContent=
+professeurs.size;
+
+}
+
+
+if(stat2Professeurs){
+
+stat2Professeurs.textContent=
+professeurs.size;
+
+}
+
+
+if(statClasses){
+
+statClasses.textContent=
 classes.size;
 
 }
 
+
+if(stat2Classes){
+
+stat2Classes.textContent=
+classes.size;
+
+}
+
+}
+
+
 }catch(error){
 
-console.error("Stats:",error);
+console.error(
+"Stats:",
+error
+);
 
 }
 
@@ -3014,23 +4771,35 @@ inputId,
 containerId
 ){
 
-const input=document
-.getElementById(inputId);
+const input=
+document.getElementById(
+inputId
+);
 
-const value=input.value
+
+const value=
+input.value
 .toLowerCase()
 .trim();
 
-const container=document
-.getElementById(containerId);
 
-const cards=container
-.querySelectorAll(".searchItem");
+const container=
+document.getElementById(
+containerId
+);
+
+
+const cards=
+container.querySelectorAll(
+".searchItem"
+);
+
 
 cards.forEach(card=>{
 
 const text=
 card.dataset.search||"";
+
 
 card.style.display=
 text.includes(value)
@@ -3044,15 +4813,21 @@ text.includes(value)
 
 /* ================= LANGUAGE ================= */
 
-window.changeLanguage=function(lang){
+window.changeLanguage=function(
+lang
+){
 
 localStorage.setItem(
 "language",
 lang
 );
 
-const brand=document
-.querySelector(".brand");
+
+const brand=
+document.querySelector(
+".brand"
+);
+
 
 if(lang==="fr"){
 
@@ -3098,9 +4873,14 @@ event.preventDefault();
 
 deferredPrompt=event;
 
+
 document
-.getElementById("installBtn")
-.classList.remove("hidden");
+.getElementById(
+"installBtn"
+)
+.classList.remove(
+"hidden"
+);
 
 }
 );
@@ -3115,17 +4895,26 @@ alert(
 );
 
 return;
+
 }
+
 
 deferredPrompt.prompt();
 
+
 await deferredPrompt.userChoice;
+
 
 deferredPrompt=null;
 
+
 document
-.getElementById("installBtn")
-.classList.add("hidden");
+.getElementById(
+"installBtn"
+)
+.classList.add(
+"hidden"
+);
 
 };
 
@@ -3134,7 +4923,9 @@ document
 
 try{
 
-await getRedirectResult(auth);
+await getRedirectResult(
+auth
+);
 
 }catch(error){
 
@@ -3156,7 +4947,9 @@ if(user){
 
 currentUser=user;
 
-await loadUserProfile(user);
+await loadUserProfile(
+user
+);
 
 }
 
@@ -3167,29 +4960,84 @@ await loadUserProfile(user);
 /* ================= LANGUAGE START ================= */
 
 const savedLanguage=
-localStorage.getItem("language");
+localStorage.getItem(
+"language"
+);
+
 
 if(savedLanguage){
 
 document
-.getElementById("languageSelect")
+.getElementById(
+"languageSelect"
+)
 .value=savedLanguage;
 
 }
 
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => {
-        console.log("Sistèm Aprantisaj pare kòm app.");
-      })
-      .catch(error => {
-        console.error("Erè aplikasyon an:", error);
-      });
-  });
+
+/* ================= CLOSE MODAL OUTSIDE ================= */
+
+document
+.getElementById("remetModal")
+.addEventListener(
+"click",
+event=>{
+
+if(
+event.target.id===
+"remetModal"
+){
+
+fermerRemetModal();
+
 }
+
+}
+);
+
 </script>
+
+
+<!-- ================= SERVICE WORKER ================= -->
+
+<script>
+
+if(
+"serviceWorker"
+in navigator
+){
+
+window.addEventListener(
+"load",
+()=>{
+
+navigator.serviceWorker
+.register("./sw.js")
+
+.then(()=>{
+
+console.log(
+"Sistèm Aprantisaj pare kòm app."
+);
+
+})
+
+.catch(error=>{
+
+console.error(
+"Erè aplikasyon an:",
+error
+);
+
+});
+
+}
+);
+
+}
+
+</script>
+
 </body>
 </html>
