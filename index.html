@@ -8,15 +8,18 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
   font-family:Arial,sans-serif;
-  background:#f1f5f9;
+  background:#f4f7fb;
   color:#0f172a;
 }
+
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-
 .hidden{display:none!important}
+
+/* ================= AUTH ================= */
 
 .authPage{
   min-height:100vh;
@@ -24,22 +27,28 @@ button{cursor:pointer}
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#2563eb,#0f172a);
+  background:linear-gradient(135deg,#2563eb,#1e3a8a,#0f172a);
 }
 
 .authBox{
   width:100%;
   max-width:430px;
   background:white;
-  border-radius:20px;
-  padding:28px;
-  box-shadow:0 20px 50px #0005;
+  border-radius:24px;
+  padding:30px;
+  box-shadow:0 25px 60px #0005;
 }
 
 .logo{
-  text-align:center;
-  font-size:32px;
-  margin-bottom:8px;
+  width:72px;
+  height:72px;
+  margin:0 auto 12px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eff6ff;
+  font-size:38px;
 }
 
 .authBox h1{
@@ -60,47 +69,49 @@ button{cursor:pointer}
 
 .field label{
   display:block;
-  margin-bottom:6px;
+  margin-bottom:7px;
   font-weight:bold;
+  color:#334155;
 }
 
 .field input,
 .field select,
 .field textarea{
   width:100%;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  padding:12px;
+  border:1px solid #dbe3ef;
+  border-radius:12px;
+  padding:13px;
   outline:none;
+  background:#f8fafc;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
   border-color:#2563eb;
+  background:white;
+  box-shadow:0 0 0 3px #2563eb18;
 }
 
 .btn{
   width:100%;
   border:0;
-  border-radius:10px;
-  padding:12px;
+  border-radius:12px;
+  padding:13px;
   color:white;
   background:#2563eb;
   font-weight:bold;
   margin-top:8px;
 }
 
-.btn:hover{opacity:.9}
+.btn:hover{opacity:.92}
 
-.google{
-  background:#111827;
-}
+.google{background:#111827}
 
 .divider{
   text-align:center;
-  margin:18px 0;
-  color:#64748b;
+  margin:20px 0;
+  color:#94a3b8;
 }
 
 .message{
@@ -112,27 +123,26 @@ button{cursor:pointer}
   display:none;
 }
 
-.app{
-  min-height:100vh;
-}
+/* ================= HEADER ================= */
 
 .header{
   position:fixed;
   top:0;
   left:0;
   right:0;
-  height:64px;
-  background:#2563eb;
-  color:white;
+  min-height:68px;
+  background:white;
+  border-bottom:1px solid #e2e8f0;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
+  padding:10px 20px;
   z-index:1000;
-  box-shadow:0 2px 10px #0002;
+  box-shadow:0 3px 15px #0000000b;
 }
 
 .brand{
+  color:#1e3a8a;
   font-size:20px;
   font-weight:bold;
 }
@@ -141,48 +151,86 @@ button{cursor:pointer}
   display:flex;
   align-items:center;
   gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.userBadge{
+  background:#eff6ff;
+  color:#1d4ed8;
+  padding:7px 10px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.roleBadge{
+  background:#f1f5f9;
+  color:#475569;
+  padding:7px 10px;
+  border-radius:9px;
+  font-size:13px;
 }
 
 .headerRight select{
-  border:0;
-  border-radius:8px;
+  border:1px solid #dbe3ef;
+  border-radius:9px;
   padding:7px;
+  background:white;
 }
 
 .headerBtn{
   border:0;
-  border-radius:8px;
-  padding:8px 10px;
-  background:white;
-  color:#2563eb;
+  border-radius:9px;
+  padding:9px 11px;
+  background:#2563eb;
+  color:white;
   font-weight:bold;
 }
 
+.logoutBtn{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+/* ================= LAYOUT ================= */
+
 .layout{
   display:flex;
-  padding-top:64px;
+  padding-top:68px;
 }
 
 .sidebar{
   position:fixed;
-  top:64px;
+  top:68px;
   bottom:0;
   left:0;
-  width:235px;
+  width:245px;
   background:#0f172a;
   padding:15px 10px;
   overflow-y:auto;
 }
 
+.sidebarTitle{
+  color:#64748b;
+  font-size:11px;
+  text-transform:uppercase;
+  font-weight:bold;
+  padding:10px 12px;
+  letter-spacing:1px;
+}
+
 .sidebar button{
-  display:block;
+  display:flex;
+  align-items:center;
+  gap:10px;
   width:100%;
   text-align:left;
   border:0;
   background:transparent;
   color:#cbd5e1;
   padding:12px;
-  border-radius:9px;
+  border-radius:10px;
   margin-bottom:4px;
 }
 
@@ -193,51 +241,342 @@ button{cursor:pointer}
 }
 
 .main{
-  margin-left:235px;
-  width:calc(100% - 235px);
-  padding:24px;
+  margin-left:245px;
+  width:calc(100% - 245px);
+  padding:26px;
 }
 
 .section{display:none}
 .section.active{display:block}
 
-h2{
+.pageTitle{
   margin-bottom:18px;
 }
 
-.panel{
-  background:white;
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 2px 8px #0000000d;
+.pageTitle h2{
+  font-size:25px;
 }
 
-.cards{
+.pageTitle p{
+  color:#64748b;
+  margin-top:5px;
+}
+
+/* ================= HOME ================= */
+
+.hero{
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:white;
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:after{
+  content:"📚";
+  position:absolute;
+  right:30px;
+  bottom:-20px;
+  font-size:100px;
+  opacity:.12;
+}
+
+.hero h2{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  color:#dbeafe;
+  max-width:600px;
+  line-height:1.6;
+}
+
+.statsGrid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
+  margin-bottom:20px;
 }
 
-.card{
+.statCard{
   background:white;
+  border:1px solid #e5eaf1;
+  border-radius:17px;
   padding:20px;
-  border-radius:14px;
-  box-shadow:0 2px 8px #0000000d;
+  box-shadow:0 5px 18px #00000008;
+  position:relative;
+  overflow:hidden;
+}
+
+.statIcon{
+  width:45px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:13px;
+  background:#eff6ff;
+  font-size:22px;
+  margin-bottom:13px;
+}
+
+.statLabel{
+  color:#64748b;
+  font-size:14px;
 }
 
 .number{
   font-size:30px;
   font-weight:bold;
-  color:#2563eb;
-  margin-top:8px;
+  color:#1d4ed8;
+  margin-top:5px;
 }
 
-.grid{
+/* ================= PANELS ================= */
+
+.panel{
+  background:white;
+  border:1px solid #e5eaf1;
+  border-radius:17px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 5px 18px #00000008;
+}
+
+.panelTitle{
+  font-size:17px;
+  font-weight:bold;
+  margin-bottom:16px;
+}
+
+.formGrid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:5px 15px;
 }
+
+.formActions{
+  display:flex;
+  gap:10px;
+}
+
+.formActions button{
+  flex:1;
+}
+
+/* ================= SEARCH ================= */
+
+.searchBox{
+  position:relative;
+  margin-bottom:18px;
+}
+
+.searchBox input{
+  width:100%;
+  padding:14px 16px 14px 44px;
+  border:1px solid #dbe3ef;
+  border-radius:13px;
+  outline:none;
+  background:white;
+}
+
+.searchBox span{
+  position:absolute;
+  left:15px;
+  top:13px;
+}
+
+/* ================= CARD GRID ================= */
+
+.dataGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.dataCard{
+  background:white;
+  border:1px solid #e5eaf1;
+  border-radius:17px;
+  padding:18px;
+  box-shadow:0 5px 18px #00000008;
+  transition:.2s;
+}
+
+.dataCard:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px #00000010;
+}
+
+.cardTop{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:15px;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eff6ff;
+  color:#2563eb;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.cardTitle{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.cardSub{
+  color:#64748b;
+  font-size:13px;
+  margin-top:3px;
+}
+
+.infoRow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 0;
+  border-top:1px solid #eef2f7;
+  font-size:14px;
+}
+
+.infoRow span:first-child{
+  color:#64748b;
+}
+
+.infoRow strong{
+  text-align:right;
+}
+
+/* ================= BADGES ================= */
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.badgeBlue{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.badgeGreen{
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.badgeOrange{
+  background:#ffedd5;
+  color:#c2410c;
+}
+
+.badgeRed{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+/* ================= ACTIONS ================= */
+
+.cardActions{
+  display:flex;
+  gap:7px;
+  margin-top:14px;
+}
+
+.smallBtn{
+  border:0;
+  padding:8px 11px;
+  border-radius:9px;
+  color:white;
+  font-weight:bold;
+  font-size:12px;
+}
+
+.accept{background:#16a34a}
+.refuse{background:#dc2626}
+.edit{background:#2563eb}
+
+/* ================= RESULT ================= */
+
+.resultCard{
+  background:white;
+  border:1px solid #e5eaf1;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 5px 18px #00000008;
+}
+
+.scoreCircle{
+  width:82px;
+  height:82px;
+  border-radius:50%;
+  background:#eff6ff;
+  border:7px solid #bfdbfe;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#1d4ed8;
+  font-weight:bold;
+  font-size:18px;
+  margin-bottom:15px;
+}
+
+.comment{
+  background:#f8fafc;
+  padding:11px;
+  border-radius:10px;
+  margin-top:12px;
+  color:#475569;
+  font-size:14px;
+}
+
+/* ================= SUBMISSION ================= */
+
+.submissionCard{
+  background:white;
+  border:1px solid #e5eaf1;
+  border-radius:17px;
+  padding:18px;
+  box-shadow:0 5px 18px #00000008;
+}
+
+.submissionIcon{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+  text-align:center;
+  padding:35px 20px;
+  color:#64748b;
+  background:#f8fafc;
+  border-radius:14px;
+  grid-column:1/-1;
+}
+
+.emptyIcon{
+  font-size:35px;
+  margin-bottom:8px;
+}
+
+/* ================= TABLE FALLBACK ================= */
 
 .tableWrap{
   overflow-x:auto;
@@ -246,7 +585,6 @@ h2{
 table{
   width:100%;
   border-collapse:collapse;
-  background:white;
 }
 
 th,td{
@@ -259,63 +597,30 @@ th{
   background:#f8fafc;
 }
 
-.smallBtn{
-  border:0;
-  padding:7px 10px;
-  border-radius:7px;
-  margin:2px;
-  color:white;
-}
+/* ================= MOBILE ================= */
 
-.accept{background:#16a34a}
-.refuse{background:#dc2626}
-.edit{background:#2563eb}
+@media(max-width:1100px){
 
-.empty{
-  text-align:center;
-  padding:25px;
-  color:#64748b;
-}
-
-.formActions{
-  display:flex;
-  gap:10px;
-}
-
-.formActions button{
-  flex:1;
-}
-
-@media(max-width:900px){
-  .cards{
+  .statsGrid{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .sidebar{
-    width:190px;
+  .dataGrid{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .main{
-    margin-left:190px;
-    width:calc(100% - 190px);
-  }
 }
 
-@media(max-width:650px){
-  .header{
-    height:auto;
-    min-height:64px;
-    flex-wrap:wrap;
-    padding:8px;
-  }
+@media(max-width:750px){
 
-  .headerRight{
-    width:100%;
-    justify-content:flex-end;
+  .header{
+    position:relative;
+    min-height:auto;
   }
 
   .layout{
-    padding-top:100px;
+    padding-top:0;
+    display:block;
   }
 
   .sidebar{
@@ -325,8 +630,12 @@ th{
     height:auto;
     display:flex;
     overflow-x:auto;
-    gap:5px;
     padding:8px;
+    gap:5px;
+  }
+
+  .sidebarTitle{
+    display:none;
   }
 
   .sidebar button{
@@ -340,19 +649,67 @@ th{
     padding:15px;
   }
 
-  .cards{
-    grid-template-columns:1fr 1fr;
+  .header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:9px;
+    padding:12px;
   }
 
-  .grid{
+  .headerRight{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  .userBadge{
+    max-width:190px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .formGrid{
     grid-template-columns:1fr;
   }
+
 }
 
-@media(max-width:430px){
-  .cards{
+@media(max-width:560px){
+
+  .statsGrid,
+  .dataGrid{
     grid-template-columns:1fr;
   }
+
+  .hero{
+    padding:22px;
+  }
+
+  .hero h2{
+    font-size:23px;
+  }
+
+  .pageTitle h2{
+    font-size:21px;
+  }
+
+  .panel{
+    padding:15px;
+  }
+
+  .formActions{
+    flex-direction:column;
+  }
+
+  .headerRight{
+    gap:5px;
+  }
+
+  .headerBtn{
+    padding:8px;
+    font-size:12px;
+  }
+
 }
 </style>
 </head>
@@ -363,715 +720,663 @@ th{
 
 <div id="authPage" class="authPage">
 
-  <div class="authBox">
+<div class="authBox">
 
-    <div class="logo">📚</div>
+<div class="logo">📚</div>
 
-    <h1>Sistèm Aprantisaj</h1>
+<h1>Sistèm Aprantisaj</h1>
 
-    <p class="subtitle">
-      Platfòm aprantisaj sou entènèt
-    </p>
+<p class="subtitle">
+Platfòm aprantisaj sou entènèt
+</p>
 
-    <div class="field">
-      <label>Email</label>
-      <input id="loginEmail" type="email"
-             placeholder="Egzanp: non@email.com">
-    </div>
+<div class="field">
+<label>Email</label>
+<input id="loginEmail"
+type="email"
+placeholder="Egzanp: non@email.com">
+</div>
 
-    <div class="field">
-      <label>Modpas</label>
-      <input id="loginPassword" type="password"
-             placeholder="Modpas">
-    </div>
+<div class="field">
+<label>Modpas</label>
+<input id="loginPassword"
+type="password"
+placeholder="Modpas">
+</div>
 
-    <button class="btn" onclick="connecter()">
-      Konekte
-    </button>
+<button class="btn"
+onclick="connecter()">
+Konekte
+</button>
 
-    <button class="btn google" onclick="connecterAvecGoogle()">
-      Kontinye ak Google
-    </button>
+<button class="btn google"
+onclick="connecterAvecGoogle()">
+Kontinye ak Google
+</button>
 
-    <div class="divider">oswa kreye yon kont</div>
+<div class="divider">
+oswa kreye yon kont
+</div>
 
-    <div class="field">
-      <label>Non</label>
-      <input id="registerName"
-             placeholder="Non konplè">
-    </div>
+<div class="field">
+<label>Non</label>
+<input id="registerName"
+placeholder="Non konplè">
+</div>
 
-    <div class="field">
-      <label>Email</label>
-      <input id="registerEmail"
-             type="email"
-             placeholder="Email">
-    </div>
+<div class="field">
+<label>Email</label>
+<input id="registerEmail"
+type="email"
+placeholder="Email">
+</div>
 
-    <div class="field">
-      <label>Modpas</label>
-      <input id="registerPassword"
-             type="password"
-             placeholder="Omwen 6 karaktè">
-    </div>
+<div class="field">
+<label>Modpas</label>
+<input id="registerPassword"
+type="password"
+placeholder="Omwen 6 karaktè">
+</div>
 
-    <button class="btn" onclick="registerAccount()">
-      Kreye kont
-    </button>
+<button class="btn"
+onclick="registerAccount()">
+Kreye kont
+</button>
 
-    <button class="btn google"
-            onclick="registerGoogle()">
-      Enskri ak Google
-    </button>
+<button class="btn google"
+onclick="registerGoogle()">
+Enskri ak Google
+</button>
 
-    <div id="authMessage" class="message"></div>
+<div id="authMessage"
+class="message"></div>
 
-  </div>
+</div>
 </div>
 
 
-<!-- ================= APPLICATION ================= -->
+<!-- ================= APP ================= -->
 
 <div id="app" class="app hidden">
 
-  <header class="header">
+<header class="header">
 
-    <div class="brand">
-      📚 Sistèm Aprantisaj
-    </div>
+<div class="brand">
+📚 Sistèm Aprantisaj
+</div>
 
-    <div class="headerRight">
+<div class="headerRight">
 
-      <span id="userEmail"></span>
+<span id="userEmail"
+class="userBadge"></span>
 
-      <span id="userRole"></span>
+<span id="userRole"
+class="roleBadge"></span>
 
-      <select id="languageSelect"
-              onchange="changeLanguage(this.value)">
-        <option value="ht">Kreyòl</option>
-        <option value="fr">Français</option>
-      </select>
+<select id="languageSelect"
+onchange="changeLanguage(this.value)">
+<option value="ht">🇭🇹 Kreyòl</option>
+<option value="fr">🇫🇷 Français</option>
+</select>
 
-      <button id="installBtn"
-              class="headerBtn hidden"
-              onclick="installApp()">
-        📲 Enstale
-      </button>
+<button id="installBtn"
+class="headerBtn hidden"
+onclick="installApp()">
+📲 Enstale
+</button>
 
-      <button class="headerBtn"
-              onclick="logout()">
-        Dekonekte
-      </button>
+<button class="headerBtn logoutBtn"
+onclick="logout()">
+Dekonekte
+</button>
 
-    </div>
+</div>
+</header>
 
-  </header>
 
+<div class="layout">
 
-  <div class="layout">
+<!-- SIDEBAR -->
 
-    <!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <aside class="sidebar">
+<div class="sidebarTitle">
+Navigasyon
+</div>
 
-      <button class="menuBtn active"
-              onclick="showSection('home',this)">
-        🏠 Akèy
-      </button>
+<button class="menuBtn active"
+onclick="showSection('home',this)">
+🏠 <span>Akèy</span>
+</button>
 
-      <button class="menuBtn adminOnly"
-              onclick="showSection('eleves',this)">
-        👨‍🎓 Elèv
-      </button>
+<button class="menuBtn adminOnly"
+onclick="showSection('eleves',this)">
+👨‍🎓 <span>Elèv</span>
+</button>
 
-      <button class="menuBtn adminOnly"
-              onclick="showSection('professeurs',this)">
-        👨‍🏫 Pwofesè
-      </button>
+<button class="menuBtn adminOnly"
+onclick="showSection('professeurs',this)">
+👨‍🏫 <span>Pwofesè</span>
+</button>
 
-      <button class="menuBtn adminOnly"
-              onclick="showSection('classes',this)">
-        🏫 Klas
-      </button>
+<button class="menuBtn adminOnly"
+onclick="showSection('classes',this)">
+🏫 <span>Klas</span>
+</button>
 
-      <button class="menuBtn adminOnly"
-              onclick="showSection('matieres',this)">
-        📚 Matyè
-      </button>
+<button class="menuBtn adminOnly"
+onclick="showSection('matieres',this)">
+📚 <span>Matyè</span>
+</button>
 
-      <button class="menuBtn teacherOnly"
-              onclick="showSection('devoirs',this)">
-        📝 Devwa
-      </button>
+<button class="menuBtn teacherOnly"
+onclick="showSection('devoirs',this)">
+📝 <span>Devwa</span>
+</button>
 
-      <button class="menuBtn teacherOnly"
-              onclick="showSection('remises',this)">
-        📤 Remèt
-      </button>
+<button class="menuBtn teacherOnly"
+onclick="showSection('remises',this)">
+📤 <span>Remèt</span>
+</button>
 
-      <button class="menuBtn teacherOnly"
-              onclick="showSection('resultats',this)">
-        📊 Rezilta
-      </button>
+<button class="menuBtn teacherOnly"
+onclick="showSection('resultats',this)">
+🏆 <span>Rezilta</span>
+</button>
 
-      <button class="menuBtn"
-              onclick="showSection('statistiques',this)">
-        📈 Estatistik
-      </button>
+<button class="menuBtn"
+onclick="showSection('statistiques',this)">
+📈 <span>Estatistik</span>
+</button>
 
-      <button class="menuBtn adminOnly"
-              onclick="showSection('users',this)">
-        👥 Itilizatè
-      </button>
+<button class="menuBtn adminOnly"
+onclick="showSection('users',this)">
+👥 <span>Itilizatè</span>
+</button>
 
-    </aside>
+</aside>
 
 
-    <!-- MAIN -->
+<main class="main">
 
-    <main class="main">
 
+<!-- ================= HOME ================= -->
 
-      <!-- HOME -->
+<section id="home" class="section active">
 
-      <section id="home" class="section active">
+<div class="pageTitle">
+<h2>Akèy</h2>
+<p>Byenveni nan espas administrasyon ou.</p>
+</div>
 
-        <h2>Akèy</h2>
+<div class="hero">
 
-        <div class="panel">
+<h2>Byenveni nan Sistèm Aprantisaj 👋</h2>
 
-          <h3>
-            Byenveni nan Sistèm Aprantisaj
-          </h3>
+<p>
+Jere elèv, pwofesè, klas, matyè, devwa,
+travay remèt ak rezilta yo nan yon sèl espas.
+</p>
 
-          <p style="margin-top:8px;color:#64748b">
-            Jere elèv, pwofesè, klas, matyè,
-            devwa ak rezilta yo.
-          </p>
+</div>
 
-        </div>
+<div class="statsGrid">
 
-        <div class="cards">
+<div class="statCard adminOnly">
+<div class="statIcon">👨‍🎓</div>
+<div class="statLabel">Total elèv</div>
+<div id="statEleves"
+class="number">0</div>
+</div>
 
-          <div class="card adminOnly">
-            <div>Elèv</div>
-            <div id="statEleves"
-                 class="number">0</div>
-          </div>
+<div class="statCard adminOnly">
+<div class="statIcon">👨‍🏫</div>
+<div class="statLabel">Total pwofesè</div>
+<div id="statProfesseurs"
+class="number">0</div>
+</div>
 
-          <div class="card adminOnly">
-            <div>Pwofesè</div>
-            <div id="statProfesseurs"
-                 class="number">0</div>
-          </div>
+<div class="statCard adminOnly">
+<div class="statIcon">🏫</div>
+<div class="statLabel">Total klas</div>
+<div id="statClasses"
+class="number">0</div>
+</div>
 
-          <div class="card adminOnly">
-            <div>Klas</div>
-            <div id="statClasses"
-                 class="number">0</div>
-          </div>
+<div class="statCard">
+<div class="statIcon">📝</div>
+<div class="statLabel">Total devwa</div>
+<div id="statDevoirs"
+class="number">0</div>
+</div>
 
-          <div class="card">
-            <div>Devwa</div>
-            <div id="statDevoirs"
-                 class="number">0</div>
-          </div>
+</div>
 
-        </div>
+</section>
 
-      </section>
 
+<!-- ================= ELEVES ================= -->
 
-      <!-- ELEVES -->
+<section id="eleves" class="section">
 
-      <section id="eleves" class="section">
+<div class="pageTitle">
+<h2>👨‍🎓 Elèv</h2>
+<p>Jere lis elèv yo.</p>
+</div>
 
-        <h2>👨‍🎓 Elèv</h2>
+<div class="panel">
 
-        <div class="panel">
+<div class="panelTitle">
+➕ Ajoute yon nouvo elèv
+</div>
 
-          <div class="grid">
+<div class="formGrid">
 
-            <div class="field">
-              <label>Non elèv</label>
-              <input id="eleveNom"
-                     placeholder="Non elèv">
-            </div>
+<div class="field">
+<label>Non elèv</label>
+<input id="eleveNom"
+placeholder="Non konplè">
+</div>
 
-            <div class="field">
-              <label>Klas</label>
-              <input id="eleveClasse"
-                     placeholder="6e AF">
-            </div>
+<div class="field">
+<label>Klas</label>
+<input id="eleveClasse"
+placeholder="6e AF">
+</div>
 
-          </div>
+</div>
 
-          <button class="btn"
-                  onclick="ajouterEleve()">
-            ➕ Ajoute elèv
-          </button>
+<button class="btn"
+onclick="ajouterEleve()">
+➕ Ajoute elèv
+</button>
 
-        </div>
+</div>
 
-        <div class="panel tableWrap">
+<div class="searchBox">
+<span>🔎</span>
+<input id="searchEleves"
+oninput="filterCards('searchEleves','listeEleves')"
+placeholder="Chèche yon elèv...">
+</div>
 
-          <table>
+<div id="listeEleves"
+class="dataGrid"></div>
 
-            <thead>
-              <tr>
-                <th>Non</th>
-                <th>Klas</th>
-              </tr>
-            </thead>
+</section>
 
-            <tbody id="listeEleves"></tbody>
 
-          </table>
+<!-- ================= PROFESSEURS ================= -->
 
-        </div>
+<section id="professeurs" class="section">
 
-      </section>
+<div class="pageTitle">
+<h2>👨‍🏫 Pwofesè</h2>
+<p>Jere pwofesè ak matyè yo anseye.</p>
+</div>
 
+<div class="panel">
 
-      <!-- PROFESSEURS -->
+<div class="panelTitle">
+➕ Ajoute yon pwofesè
+</div>
 
-      <section id="professeurs"
-               class="section">
+<div class="formGrid">
 
-        <h2>👨‍🏫 Pwofesè</h2>
+<div class="field">
+<label>Non</label>
+<input id="profNom"
+placeholder="Non pwofesè">
+</div>
 
-        <div class="panel">
+<div class="field">
+<label>Email</label>
+<input id="profEmail"
+type="email"
+placeholder="Email">
+</div>
 
-          <div class="grid">
+<div class="field">
+<label>Matyè</label>
+<input id="profMatiere"
+placeholder="Mathématiques">
+</div>
 
-            <div class="field">
-              <label>Non</label>
-              <input id="profNom"
-                     placeholder="Non pwofesè">
-            </div>
+</div>
 
-            <div class="field">
-              <label>Email</label>
-              <input id="profEmail"
-                     type="email"
-                     placeholder="Email">
-            </div>
+<button class="btn"
+onclick="ajouterProfesseur()">
+➕ Ajoute pwofesè
+</button>
 
-            <div class="field">
-              <label>Matyè</label>
-              <input id="profMatiere"
-                     placeholder="Mathématiques">
-            </div>
+</div>
 
-          </div>
+<div class="searchBox">
+<span>🔎</span>
+<input id="searchProfesseurs"
+oninput="filterCards('searchProfesseurs','listeProfesseurs')"
+placeholder="Chèche yon pwofesè...">
+</div>
 
-          <button class="btn"
-                  onclick="ajouterProfesseur()">
-            ➕ Ajoute pwofesè
-          </button>
+<div id="listeProfesseurs"
+class="dataGrid"></div>
 
-        </div>
+</section>
 
-        <div class="panel tableWrap">
 
-          <table>
+<!-- ================= CLASSES ================= -->
 
-            <thead>
-              <tr>
-                <th>Non</th>
-                <th>Email</th>
-                <th>Matyè</th>
-              </tr>
-            </thead>
+<section id="classes" class="section">
 
-            <tbody id="listeProfesseurs"></tbody>
+<div class="pageTitle">
+<h2>🏫 Klas</h2>
+<p>Jere klas lekòl la.</p>
+</div>
 
-          </table>
+<div class="panel">
 
-        </div>
+<div class="panelTitle">
+➕ Ajoute yon klas
+</div>
 
-      </section>
+<div class="field">
+<label>Non klas</label>
+<input id="classeNom"
+placeholder="6e AF">
+</div>
 
+<button class="btn"
+onclick="ajouterClasse()">
+➕ Ajoute klas
+</button>
 
-      <!-- CLASSES -->
+</div>
 
-      <section id="classes"
-               class="section">
+<div id="listeClasses"
+class="dataGrid"></div>
 
-        <h2>🏫 Klas</h2>
+</section>
 
-        <div class="panel">
 
-          <div class="field">
-            <label>Non klas</label>
-            <input id="classeNom"
-                   placeholder="6e AF">
-          </div>
+<!-- ================= MATIERES ================= -->
 
-          <button class="btn"
-                  onclick="ajouterClasse()">
-            ➕ Ajoute klas
-          </button>
+<section id="matieres" class="section">
 
-        </div>
+<div class="pageTitle">
+<h2>📚 Matyè</h2>
+<p>Jere matyè yo.</p>
+</div>
 
-        <div class="panel tableWrap">
+<div class="panel">
 
-          <table>
+<div class="panelTitle">
+➕ Ajoute yon matyè
+</div>
 
-            <thead>
-              <tr>
-                <th>Non klas</th>
-              </tr>
-            </thead>
+<div class="field">
+<label>Non matyè</label>
+<input id="matiereNom"
+placeholder="Mathématiques">
+</div>
 
-            <tbody id="listeClasses"></tbody>
+<button class="btn"
+onclick="ajouterMatiere()">
+➕ Ajoute matyè
+</button>
 
-          </table>
+</div>
 
-        </div>
+<div id="listeMatieres"
+class="dataGrid"></div>
 
-      </section>
+</section>
 
 
-      <!-- MATIERES -->
+<!-- ================= DEVOIRS ================= -->
 
-      <section id="matieres"
-               class="section">
+<section id="devoirs" class="section">
 
-        <h2>📚 Matyè</h2>
+<div class="pageTitle">
+<h2>📝 Devwa</h2>
+<p>Kreye epi jere devwa yo.</p>
+</div>
 
-        <div class="panel">
+<div class="panel">
 
-          <div class="field">
-            <label>Non matyè</label>
-            <input id="matiereNom"
-                   placeholder="Mathématiques">
-          </div>
+<div class="panelTitle">
+➕ Kreye yon nouvo devwa
+</div>
 
-          <button class="btn"
-                  onclick="ajouterMatiere()">
-            ➕ Ajoute matyè
-          </button>
+<div class="formGrid">
 
-        </div>
+<div class="field">
+<label>Tit devwa</label>
+<input id="devoirTitre"
+placeholder="Devoir de Mathématiques">
+</div>
 
-        <div class="panel tableWrap">
+<div class="field">
+<label>Matyè</label>
+<input id="devoirMatiere"
+placeholder="Mathématiques">
+</div>
 
-          <table>
+<div class="field">
+<label>Klas</label>
+<input id="devoirClasse"
+placeholder="6e AF">
+</div>
 
-            <thead>
-              <tr>
-                <th>Non matyè</th>
-              </tr>
-            </thead>
+<div class="field">
+<label>Dire (minit)</label>
+<input id="devoirDuree"
+type="number"
+value="30">
+</div>
 
-            <tbody id="listeMatieres"></tbody>
+<div class="field">
+<label>Maksimòm tantativ</label>
+<select id="devoirTentatives">
+<option value="1">1</option>
+<option value="2" selected>2</option>
+<option value="3">3</option>
+</select>
+</div>
 
-          </table>
+</div>
 
-        </div>
+<button class="btn"
+onclick="ajouterDevoir()">
+➕ Kreye devwa
+</button>
 
-      </section>
+</div>
 
+<div class="searchBox">
+<span>🔎</span>
+<input id="searchDevoirs"
+oninput="filterCards('searchDevoirs','listeDevoirs')"
+placeholder="Chèche yon devwa...">
+</div>
 
-      <!-- DEVOIRS -->
+<div id="listeDevoirs"
+class="dataGrid"></div>
 
-      <section id="devoirs"
-               class="section">
+</section>
 
-        <h2>📝 Devwa</h2>
 
-        <div class="panel">
+<!-- ================= REMISES ================= -->
 
-          <div class="grid">
+<section id="remises" class="section">
 
-            <div class="field">
-              <label>Tit devwa</label>
-              <input id="devoirTitre"
-                     placeholder="Devoir de Mathématiques">
-            </div>
+<div class="pageTitle">
+<h2>📤 Travay remèt</h2>
+<p>Gade travay elèv yo soumèt.</p>
+</div>
 
-            <div class="field">
-              <label>Matyè</label>
-              <input id="devoirMatiere"
-                     placeholder="Mathématiques">
-            </div>
+<div id="listeRemises"
+class="dataGrid"></div>
 
-            <div class="field">
-              <label>Klas</label>
-              <input id="devoirClasse"
-                     placeholder="6e AF">
-            </div>
+</section>
 
-            <div class="field">
-              <label>Dire (minit)</label>
-              <input id="devoirDuree"
-                     type="number"
-                     value="30">
-            </div>
 
-            <div class="field">
-              <label>Maksimòm tantativ</label>
-              <select id="devoirTentatives">
-                <option value="1">1</option>
-                <option value="2" selected>2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
+<!-- ================= RESULTATS ================= -->
 
-          </div>
+<section id="resultats" class="section">
 
-          <button class="btn"
-                  onclick="ajouterDevoir()">
-            ➕ Kreye devwa
-          </button>
+<div class="pageTitle">
+<h2>🏆 Rezilta</h2>
+<p>Nòt ak kòmantè elèv yo.</p>
+</div>
 
-        </div>
+<div id="listeResultats"
+class="dataGrid"></div>
 
-        <div class="panel tableWrap">
+</section>
 
-          <table>
 
-            <thead>
-              <tr>
-                <th>Tit</th>
-                <th>Matyè</th>
-                <th>Klas</th>
-                <th>Dire</th>
-                <th>Tantativ</th>
-              </tr>
-            </thead>
+<!-- ================= STATISTIQUES ================= -->
 
-            <tbody id="listeDevoirs"></tbody>
+<section id="statistiques" class="section">
 
-          </table>
+<div class="pageTitle">
+<h2>📈 Estatistik</h2>
+<p>Yon rezime sou done sistèm nan.</p>
+</div>
 
-        </div>
+<div class="statsGrid">
 
-      </section>
+<div class="statCard">
+<div class="statIcon">👨‍🎓</div>
+<div class="statLabel">Elèv</div>
+<div id="stat2Eleves"
+class="number">0</div>
+</div>
 
+<div class="statCard">
+<div class="statIcon">👨‍🏫</div>
+<div class="statLabel">Pwofesè</div>
+<div id="stat2Professeurs"
+class="number">0</div>
+</div>
 
-      <!-- REMISES -->
+<div class="statCard">
+<div class="statIcon">🏫</div>
+<div class="statLabel">Klas</div>
+<div id="stat2Classes"
+class="number">0</div>
+</div>
 
-      <section id="remises"
-               class="section">
+<div class="statCard">
+<div class="statIcon">📝</div>
+<div class="statLabel">Devwa</div>
+<div id="stat2Devoirs"
+class="number">0</div>
+</div>
 
-        <h2>📤 Travay remèt</h2>
+</div>
 
-        <div class="panel tableWrap">
+</section>
 
-          <table>
 
-            <thead>
-              <tr>
-                <th>Elèv</th>
-                <th>Devwa</th>
-                <th>Nòt</th>
-                <th>Tan</th>
-                <th>Tantativ</th>
-              </tr>
-            </thead>
+<!-- ================= USERS ================= -->
 
-            <tbody id="listeRemises"></tbody>
+<section id="users" class="section">
 
-          </table>
+<div class="pageTitle">
+<h2>👥 Itilizatè</h2>
+<p>Jere kont ki mande aksè.</p>
+</div>
 
-        </div>
+<div id="listeUsers"
+class="dataGrid"></div>
 
-      </section>
+</section>
 
-
-      <!-- RESULTATS -->
-
-      <section id="resultats"
-               class="section">
-
-        <h2>📊 Rezilta</h2>
-
-        <div class="panel tableWrap">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>Elèv</th>
-                <th>Devwa</th>
-                <th>Score</th>
-                <th>Nòt /100</th>
-                <th>Komantè</th>
-              </tr>
-            </thead>
-
-            <tbody id="listeResultats"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- STATISTIQUES -->
-
-      <section id="statistiques"
-               class="section">
-
-        <h2>📈 Estatistik</h2>
-
-        <div class="cards">
-
-          <div class="card">
-            <div>Elèv</div>
-            <div id="stat2Eleves"
-                 class="number">0</div>
-          </div>
-
-          <div class="card">
-            <div>Pwofesè</div>
-            <div id="stat2Professeurs"
-                 class="number">0</div>
-          </div>
-
-          <div class="card">
-            <div>Klas</div>
-            <div id="stat2Classes"
-                 class="number">0</div>
-          </div>
-
-          <div class="card">
-            <div>Devwa</div>
-            <div id="stat2Devoirs"
-                 class="number">0</div>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- USERS -->
-
-      <section id="users"
-               class="section">
-
-        <h2>👥 Itilizatè</h2>
-
-        <div class="panel">
-
-          <p style="color:#64748b;margin-bottom:15px">
-            Aksepte oswa refize nouvo kont.
-          </p>
-
-          <div class="tableWrap">
-
-            <table>
-
-              <thead>
-                <tr>
-                  <th>Email</th>
-                  <th>Non</th>
-                  <th>Status</th>
-                  <th>Aksyon</th>
-                </tr>
-              </thead>
-
-              <tbody id="listeUsers"></tbody>
-
-            </table>
-
-          </div>
-
-        </div>
-
-      </section>
-
-    </main>
-
-  </div>
-
+</main>
+</div>
 </div>
 
 
 <script type="module">
 
 import {
-  initializeApp
+initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  setPersistence,
-  browserLocalPersistence
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+signInWithRedirect,
+getRedirectResult,
+signInWithEmailAndPassword,
+createUserWithEmailAndPassword,
+onAuthStateChanged,
+signOut,
+setPersistence,
+browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
-  getFirestore,
-  collection,
-  doc,
-  setDoc,
-  getDoc,
-  getDocs,
-  updateDoc,
-  deleteDoc,
-  serverTimestamp
+getFirestore,
+collection,
+doc,
+setDoc,
+getDoc,
+getDocs,
+updateDoc,
+deleteDoc,
+serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
 /* ================= FIREBASE ================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
-  authDomain: "sist-aprantisaj.firebaseapp.com",
-  projectId: "sist-aprantisaj",
-  storageBucket: "sist-aprantisaj.firebasestorage.app",
-  messagingSenderId: "517876142004",
-  appId: "1:517876142004:web:2771066976950b208dace1"
+apiKey:"AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
+authDomain:"sist-aprantisaj.firebaseapp.com",
+projectId:"sist-aprantisaj",
+storageBucket:"sist-aprantisaj.firebasestorage.app",
+messagingSenderId:"517876142004",
+appId:"1:517876142004:web:2771066976950b208dace1"
 };
 
-const app = initializeApp(firebaseConfig);
+const app=initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth=getAuth(app);
 
-const db = getFirestore(app);
+const db=getFirestore(app);
 
-const provider = new GoogleAuthProvider();
+const provider=new GoogleAuthProvider();
 
 provider.setCustomParameters({
-  prompt:"select_account"
+prompt:"select_account"
 });
 
 await setPersistence(
-  auth,
-  browserLocalPersistence
+auth,
+browserLocalPersistence
 );
 
 
 /* ================= VARIABLES ================= */
 
-let currentUser = null;
-let currentUserData = null;
-let deferredPrompt = null;
+let currentUser=null;
+let currentUserData=null;
+let deferredPrompt=null;
 
 
 /* ================= SECURITY ================= */
 
 function escapeHTML(value){
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
@@ -1080,443 +1385,446 @@ function escapeHTML(value){
 
 function showMessage(message){
 
-  const box =
-    document.getElementById("authMessage");
+const box=document.getElementById("authMessage");
 
-  box.textContent = message;
-  box.style.display = "block";
+box.textContent=message;
+box.style.display="block";
 
 }
 
 
-/* ================= EMAIL LOGIN ================= */
+/* ================= LOGIN ================= */
 
-window.connecter = async function(){
+window.connecter=async function(){
 
-  const email =
-    document.getElementById("loginEmail").value.trim();
+const email=document
+.getElementById("loginEmail")
+.value.trim();
 
-  const password =
-    document.getElementById("loginPassword").value;
+const password=document
+.getElementById("loginPassword")
+.value;
 
-  if(!email || !password){
+if(!email||!password){
 
-    showMessage(
-      "Tanpri antre email ak modpas ou."
-    );
+showMessage(
+"Tanpri antre email ak modpas ou."
+);
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+await signInWithEmailAndPassword(
+auth,email,password
+);
 
-  }catch(error){
+}catch(error){
 
-    console.error(error);
+console.error(error);
 
-    showMessage(
-      "Email oswa modpas la pa kòrèk."
-    );
+showMessage(
+"Email oswa modpas la pa kòrèk."
+);
 
-  }
-
-};
-
-
-/* ================= GOOGLE LOGIN ================= */
-
-window.connecterAvecGoogle = async function(){
-
-  try{
-
-    await signInWithPopup(
-      auth,
-      provider
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    try{
-
-      await signInWithRedirect(
-        auth,
-        provider
-      );
-
-    }catch(error2){
-
-      console.error(error2);
-
-      showMessage(
-        "Koneksyon Google pa reyisi."
-      );
-
-    }
-
-  }
+}
 
 };
 
 
-/* ================= REGISTER EMAIL ================= */
+/* ================= GOOGLE ================= */
 
-window.registerAccount = async function(){
+window.connecterAvecGoogle=async function(){
 
-  const nom =
-    document.getElementById("registerName")
-      .value.trim();
+try{
 
-  const email =
-    document.getElementById("registerEmail")
-      .value.trim();
+await signInWithPopup(
+auth,provider
+);
 
-  const password =
-    document.getElementById("registerPassword")
-      .value;
+}catch(error){
 
-  if(!nom || !email || !password){
+console.error(error);
 
-    showMessage(
-      "Tanpri ranpli tout chan yo."
-    );
+try{
 
-    return;
-  }
+await signInWithRedirect(
+auth,provider
+);
 
-  if(password.length < 6){
+}catch(error2){
 
-    showMessage(
-      "Modpas la dwe gen omwen 6 karaktè."
-    );
+console.error(error2);
 
-    return;
-  }
+showMessage(
+"Koneksyon Google pa reyisi."
+);
 
-  try{
+}
 
-    const credential =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-    const user =
-      credential.user;
-
-    await setDoc(
-      doc(db,"users",user.uid),
-      {
-        uid:user.uid,
-        email:user.email,
-        nom:nom,
-        role:"eleve",
-        status:"attente",
-        createdAt:serverTimestamp()
-      }
-    );
-
-    await signOut(auth);
-
-    showMessage(
-      "Kont la kreye. Administratè a dwe apwouve li."
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Nou pa kapab kreye kont sa a."
-    );
-
-  }
+}
 
 };
 
 
-/* ================= REGISTER GOOGLE ================= */
+/* ================= REGISTER ================= */
 
-window.registerGoogle = async function(){
+window.registerAccount=async function(){
 
-  try{
+const nom=document
+.getElementById("registerName")
+.value.trim();
 
-    const credential =
-      await signInWithPopup(
-        auth,
-        provider
-      );
+const email=document
+.getElementById("registerEmail")
+.value.trim();
 
-    const user =
-      credential.user;
+const password=document
+.getElementById("registerPassword")
+.value;
 
-    const userRef =
-      doc(db,"users",user.uid);
+if(!nom||!email||!password){
 
-    const existing =
-      await getDoc(userRef);
+showMessage(
+"Tanpri ranpli tout chan yo."
+);
 
-    if(!existing.exists()){
+return;
+}
 
-      await setDoc(
-        userRef,
-        {
-          uid:user.uid,
-          email:user.email,
-          nom:user.displayName || "",
-          role:"eleve",
-          status:"attente",
-          createdAt:serverTimestamp()
-        }
-      );
+if(password.length<6){
 
-    }
+showMessage(
+"Modpas la dwe gen omwen 6 karaktè."
+);
 
-    await signOut(auth);
+return;
+}
 
-    showMessage(
-      "Kont Google la kreye. Administratè a dwe apwouve li."
-    );
+try{
 
-  }catch(error){
+const credential=
+await createUserWithEmailAndPassword(
+auth,email,password
+);
 
-    console.error(error);
+const user=credential.user;
 
-    showMessage(
-      "Enskripsyon Google pa reyisi."
-    );
+await setDoc(
+doc(db,"users",user.uid),
+{
+uid:user.uid,
+email:user.email,
+nom:nom,
+role:"eleve",
+status:"attente",
+createdAt:serverTimestamp()
+}
+);
 
-  }
+await signOut(auth);
+
+showMessage(
+"Kont la kreye. Administratè a dwe apwouve li."
+);
+
+}catch(error){
+
+console.error(error);
+
+showMessage(
+"Nou pa kapab kreye kont sa a."
+);
+
+}
 
 };
 
 
-/* ================= USER PROFILE ================= */
+/* ================= GOOGLE REGISTER ================= */
+
+window.registerGoogle=async function(){
+
+try{
+
+const credential=
+await signInWithPopup(
+auth,provider
+);
+
+const user=credential.user;
+
+const ref=doc(
+db,"users",user.uid
+);
+
+const existing=await getDoc(ref);
+
+if(!existing.exists()){
+
+await setDoc(
+ref,
+{
+uid:user.uid,
+email:user.email,
+nom:user.displayName||"",
+role:"eleve",
+status:"attente",
+createdAt:serverTimestamp()
+}
+);
+
+}
+
+await signOut(auth);
+
+showMessage(
+"Kont Google la kreye. Administratè a dwe apwouve li."
+);
+
+}catch(error){
+
+console.error(error);
+
+showMessage(
+"Enskripsyon Google pa reyisi."
+);
+
+}
+
+};
+
+
+/* ================= PROFILE ================= */
 
 async function loadUserProfile(user){
 
-  try{
+try{
 
-    const ref =
-      doc(db,"users",user.uid);
+const ref=doc(
+db,"users",user.uid
+);
 
-    const snap =
-      await getDoc(ref);
+const snap=await getDoc(ref);
 
-    if(!snap.exists()){
+if(!snap.exists()){
 
-      await setDoc(
-        ref,
-        {
-          uid:user.uid,
-          email:user.email,
-          nom:user.displayName || "",
-          role:"eleve",
-          status:"attente",
-          createdAt:serverTimestamp()
-        }
-      );
+await setDoc(
+ref,
+{
+uid:user.uid,
+email:user.email,
+nom:user.displayName||"",
+role:"eleve",
+status:"attente",
+createdAt:serverTimestamp()
+}
+);
 
-      await signOut(auth);
+await signOut(auth);
 
-      showMessage(
-        "Kont ou anrejistre. Administratè a dwe apwouve li."
-      );
+showMessage(
+"Kont ou anrejistre. Administratè a dwe apwouve li."
+);
 
-      return;
-    }
+return;
+}
 
-    currentUserData =
-      snap.data();
+currentUserData=snap.data();
 
-    const role =
-      String(
-        currentUserData.role || ""
-      )
-      .trim()
-      .toLowerCase();
+const role=String(
+currentUserData.role||""
+).trim().toLowerCase();
 
-    const status =
-      String(
-        currentUserData.status || ""
-      )
-      .trim()
-      .toLowerCase();
+const status=String(
+currentUserData.status||""
+).trim().toLowerCase();
 
-    if(status !== "accepted"){
+if(status!=="accepted"){
 
-      await signOut(auth);
+await signOut(auth);
 
-      showMessage(
-        "Kont ou poko apwouve pa administratè a."
-      );
+showMessage(
+"Kont ou poko apwouve pa administratè a."
+);
 
-      return;
-    }
+return;
+}
 
-    if(
-      role !== "administrateur" &&
-      role !== "professeur" &&
-      role !== "eleve"
-    ){
+if(
+role!=="administrateur" &&
+role!=="professeur" &&
+role!=="eleve"
+){
 
-      await signOut(auth);
+await signOut(auth);
 
-      showMessage(
-        "Wòl kont lan pa rekonèt."
-      );
+showMessage(
+"Wòl kont lan pa rekonèt."
+);
 
-      return;
-    }
+return;
+}
 
-    openApp();
+openApp();
 
-  }catch(error){
+}catch(error){
 
-    console.error(
-      "ERÈ VERIFIKASYON:",
-      error
-    );
+console.error(error);
 
-    await signOut(auth);
+await signOut(auth);
 
-    showMessage(
-      "Nou pa kapab verifye kont ou kounye a."
-    );
+showMessage(
+"Nou pa kapab verifye kont ou kounye a."
+);
 
-  }
+}
 
 }
 
 
-/* ================= OPEN APP ================= */
+/* ================= OPEN ================= */
 
 async function openApp(){
 
-  document
-    .getElementById("authPage")
-    .classList.add("hidden");
+document
+.getElementById("authPage")
+.classList.add("hidden");
 
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
+document
+.getElementById("app")
+.classList.remove("hidden");
 
-  document
-    .getElementById("userEmail")
-    .textContent =
-    currentUser.email || "";
+document
+.getElementById("userEmail")
+.textContent=
+currentUser.email||"";
 
-  document
-    .getElementById("userRole")
-    .textContent =
-    "Wòl: " +
-    (currentUserData.role || "");
+document
+.getElementById("userRole")
+.textContent=
+"Wòl: "+
+(currentUserData.role||"");
 
-  applyRoleAccess();
+applyRoleAccess();
 
-  await loadAllData();
+await loadAllData();
 
 }
 
 
-/* ================= ROLE ACCESS ================= */
+/* ================= ACCESS ================= */
 
 function applyRoleAccess(){
 
-  const role =
-    String(
-      currentUserData.role || ""
-    )
-    .trim()
-    .toLowerCase();
+const role=String(
+currentUserData.role||""
+).trim().toLowerCase();
 
-  document
-    .querySelectorAll(".adminOnly")
-    .forEach(element=>{
+document
+.querySelectorAll(".adminOnly")
+.forEach(el=>{
 
-      element.style.display =
-        role === "administrateur"
-        ? ""
-        : "none";
+el.style.display=
+role==="administrateur"
+?"":"none";
 
-    });
+});
 
-  document
-    .querySelectorAll(".teacherOnly")
-    .forEach(element=>{
+document
+.querySelectorAll(".teacherOnly")
+.forEach(el=>{
 
-      element.style.display =
-        role === "administrateur" ||
-        role === "professeur"
-        ? ""
-        : "none";
+el.style.display=
+role==="administrateur"||
+role==="professeur"
+?"":"none";
 
-    });
+});
 
 }
 
 
 /* ================= SECTION ================= */
 
-window.showSection =
-function(id,button){
+window.showSection=function(id,button){
 
-  document
-    .querySelectorAll(".section")
-    .forEach(section=>{
-      section.classList.remove("active");
-    });
+document
+.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
 
-  const section =
-    document.getElementById(id);
+const section=
+document.getElementById(id);
 
-  if(section){
-    section.classList.add("active");
-  }
+if(section){
+section.classList.add("active");
+}
 
-  document
-    .querySelectorAll(".menuBtn")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
+document
+.querySelectorAll(".menuBtn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
-  if(button){
-    button.classList.add("active");
-  }
+if(button){
+button.classList.add("active");
+}
 
 };
 
 
-/* ================= LOAD ALL ================= */
+/* ================= LOAD ================= */
 
 async function loadAllData(){
 
-  await Promise.all([
-    loadEleves(),
-    loadProfesseurs(),
-    loadClasses(),
-    loadMatieres(),
-    loadDevoirs(),
-    loadRemises(),
-    loadResultats()
-  ]);
+const role=String(
+currentUserData.role||""
+).toLowerCase();
 
-  if(
-    currentUserData.role ===
-    "administrateur"
-  ){
-    await loadUsers();
-  }
+const tasks=[
+loadDevoirs(),
+loadResultats()
+];
 
-  updateStats();
+if(
+role==="administrateur"||
+role==="professeur"
+){
+
+tasks.push(loadEleves());
+tasks.push(loadRemises());
+
+}
+
+if(role==="administrateur"){
+
+tasks.push(loadProfesseurs());
+tasks.push(loadClasses());
+tasks.push(loadMatieres());
+tasks.push(loadUsers());
+
+}
+
+await Promise.all(tasks);
+
+await updateStats();
+
+}
+
+
+/* ================= EMPTY ================= */
+
+function emptyCard(icon,text){
+
+return `
+<div class="empty">
+<div class="emptyIcon">${icon}</div>
+<div>${text}</div>
+</div>
+`;
 
 }
 
@@ -1525,116 +1833,133 @@ async function loadAllData(){
 
 async function loadEleves(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"eleves")
-      );
+const snap=await getDocs(
+collection(db,"eleves")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeEleves"
-      );
+const box=document
+.getElementById("listeEleves");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    snap.forEach(item=>{
+if(!snap.size){
 
-      const data =
-        item.data();
+box.innerHTML=
+emptyCard("👨‍🎓","Pa gen elèv pou kounye a.");
 
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(data.nom || "")}</td>
-          <td>${escapeHTML(data.classe || "")}</td>
-        </tr>
-      `;
+return;
+}
 
-    });
+snap.forEach(item=>{
 
-    if(!snap.size){
+const data=item.data();
 
-      tbody.innerHTML =
-        `<tr>
-          <td colspan="2"
-              class="empty">
-            Pa gen elèv.
-          </td>
-        </tr>`;
+const nom=data.nom||"Elèv san non";
+const classe=data.classe||"Pa gen klas";
 
-    }
+box.innerHTML+=`
 
-  }catch(error){
+<div class="dataCard searchItem"
+data-search="${escapeHTML(
+(nom+" "+classe).toLowerCase()
+)}">
 
-    console.error(error);
+<div class="cardTop">
 
-  }
+<div class="avatar">👨‍🎓</div>
+
+<div>
+<div class="cardTitle">
+${escapeHTML(nom)}
+</div>
+
+<div class="cardSub">
+Elèv
+</div>
+</div>
+
+</div>
+
+<div class="infoRow">
+<span>Klas</span>
+<strong>
+${escapeHTML(classe)}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>ID</span>
+<strong>
+${escapeHTML(item.id)}
+</strong>
+</div>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Eleves:",error);
+
+}
 
 }
 
 
 /* ================= ADD ELEV ================= */
 
-window.ajouterEleve =
-async function(){
+window.ajouterEleve=async function(){
 
-  if(
-    currentUserData.role !==
-    "administrateur"
-  ) return;
+const nom=document
+.getElementById("eleveNom")
+.value.trim();
 
-  const nom =
-    document
-      .getElementById("eleveNom")
-      .value.trim();
+const classe=document
+.getElementById("eleveClasse")
+.value.trim();
 
-  const classe =
-    document
-      .getElementById("eleveClasse")
-      .value.trim();
+if(!nom){
 
-  if(!nom){
+alert("Antre non elèv la.");
 
-    alert("Antre non elèv la.");
+return;
+}
 
-    return;
-  }
+try{
 
-  try{
+const id="eleve_"+Date.now();
 
-    const id =
-      "eleve_" +
-      Date.now();
+await setDoc(
+doc(db,"eleves",id),
+{
+nom:nom,
+classe:classe,
+createdAt:serverTimestamp()
+}
+);
 
-    await setDoc(
-      doc(db,"eleves",id),
-      {
-        nom:nom,
-        classe:classe
-      }
-    );
+document.getElementById("eleveNom").value="";
+document.getElementById("eleveClasse").value="";
 
-    document
-      .getElementById("eleveNom")
-      .value = "";
+await loadEleves();
+await updateStats();
 
-    document
-      .getElementById("eleveClasse")
-      .value = "";
+alert("Elèv la ajoute avèk siksè.");
 
-    await loadEleves();
-    updateStats();
+}catch(error){
 
-  }catch(error){
+console.error(error);
 
-    console.error(error);
+alert(
+"Nou pa kapab ajoute elèv la."
+);
 
-    alert(
-      "Nou pa kapab ajoute elèv la."
-    );
-
-  }
+}
 
 };
 
@@ -1643,122 +1968,142 @@ async function(){
 
 async function loadProfesseurs(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"professeurs")
-      );
+const snap=await getDocs(
+collection(db,"professeurs")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeProfesseurs"
-      );
+const box=document
+.getElementById("listeProfesseurs");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    snap.forEach(item=>{
+if(!snap.size){
 
-      const data =
-        item.data();
+box.innerHTML=
+emptyCard("👨‍🏫","Pa gen pwofesè pou kounye a.");
 
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(data.nom || "")}</td>
-          <td>${escapeHTML(data.email || "")}</td>
-          <td>${escapeHTML(data.matiere || "")}</td>
-        </tr>
-      `;
+return;
+}
 
-    });
+snap.forEach(item=>{
 
-    if(!snap.size){
+const data=item.data();
 
-      tbody.innerHTML =
-        `<tr>
-          <td colspan="3"
-              class="empty">
-            Pa gen pwofesè.
-          </td>
-        </tr>`;
+const nom=data.nom||"Pwofesè";
+const email=data.email||"";
+const matiere=data.matiere||"Pa presize";
 
-    }
+box.innerHTML+=`
 
-  }catch(error){
+<div class="dataCard searchItem"
+data-search="${escapeHTML(
+(nom+" "+email+" "+matiere).toLowerCase()
+)}">
 
-    console.error(error);
+<div class="cardTop">
 
-  }
+<div class="avatar">👨‍🏫</div>
+
+<div>
+<div class="cardTitle">
+${escapeHTML(nom)}
+</div>
+
+<div class="cardSub">
+Pwofesè
+</div>
+</div>
+
+</div>
+
+<div class="infoRow">
+<span>Email</span>
+<strong>
+${escapeHTML(email)}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Matyè</span>
+<strong>
+<span class="badge badgeBlue">
+${escapeHTML(matiere)}
+</span>
+</strong>
+</div>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Professeurs:",error);
+
+}
 
 }
 
 
 /* ================= ADD PROF ================= */
 
-window.ajouterProfesseur =
-async function(){
+window.ajouterProfesseur=async function(){
 
-  const nom =
-    document
-      .getElementById("profNom")
-      .value.trim();
+const nom=document
+.getElementById("profNom")
+.value.trim();
 
-  const email =
-    document
-      .getElementById("profEmail")
-      .value.trim();
+const email=document
+.getElementById("profEmail")
+.value.trim();
 
-  const matiere =
-    document
-      .getElementById("profMatiere")
-      .value.trim();
+const matiere=document
+.getElementById("profMatiere")
+.value.trim();
 
-  if(!nom){
+if(!nom){
 
-    alert("Antre non pwofesè a.");
+alert("Antre non pwofesè a.");
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    const id =
-      "professeur_" +
-      Date.now();
+const id="professeur_"+Date.now();
 
-    await setDoc(
-      doc(db,"professeurs",id),
-      {
-        nom:nom,
-        email:email,
-        matiere:matiere
-      }
-    );
+await setDoc(
+doc(db,"professeurs",id),
+{
+nom:nom,
+email:email,
+matiere:matiere,
+createdAt:serverTimestamp()
+}
+);
 
-    document
-      .getElementById("profNom")
-      .value = "";
+document.getElementById("profNom").value="";
+document.getElementById("profEmail").value="";
+document.getElementById("profMatiere").value="";
 
-    document
-      .getElementById("profEmail")
-      .value = "";
+await loadProfesseurs();
+await updateStats();
 
-    document
-      .getElementById("profMatiere")
-      .value = "";
+alert("Pwofesè a ajoute avèk siksè.");
 
-    await loadProfesseurs();
-    updateStats();
+}catch(error){
 
-  }catch(error){
+console.error(error);
 
-    console.error(error);
+alert(
+"Nou pa kapab ajoute pwofesè a."
+);
 
-    alert(
-      "Nou pa kapab ajoute pwofesè a."
-    );
-
-  }
+}
 
 };
 
@@ -1767,99 +2112,123 @@ async function(){
 
 async function loadClasses(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"classes")
-      );
+const snap=await getDocs(
+collection(db,"classes")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeClasses"
-      );
+const box=document
+.getElementById("listeClasses");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    snap.forEach(item=>{
+if(!snap.size){
 
-      const data =
-        item.data();
+box.innerHTML=
+emptyCard("🏫","Pa gen klas pou kounye a.");
 
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(data.nom || "")}</td>
-        </tr>
-      `;
+return;
+}
 
-    });
+snap.forEach(item=>{
 
-    if(!snap.size){
+const data=item.data();
 
-      tbody.innerHTML =
-        `<tr>
-          <td class="empty">
-            Pa gen klas.
-          </td>
-        </tr>`;
+const nom=data.nom||"Klas";
 
-    }
+box.innerHTML+=`
 
-  }catch(error){
+<div class="dataCard searchItem"
+data-search="${escapeHTML(
+nom.toLowerCase()
+)}">
 
-    console.error(error);
+<div class="cardTop">
 
-  }
+<div class="avatar">🏫</div>
+
+<div>
+<div class="cardTitle">
+${escapeHTML(nom)}
+</div>
+
+<div class="cardSub">
+Klas lekòl
+</div>
+</div>
+
+</div>
+
+<div class="infoRow">
+<span>ID</span>
+<strong>
+${escapeHTML(item.id)}
+</strong>
+</div>
+
+<span class="badge badgeGreen">
+Aktif
+</span>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Classes:",error);
+
+}
 
 }
 
 
 /* ================= ADD CLASS ================= */
 
-window.ajouterClasse =
-async function(){
+window.ajouterClasse=async function(){
 
-  const nom =
-    document
-      .getElementById("classeNom")
-      .value.trim();
+const nom=document
+.getElementById("classeNom")
+.value.trim();
 
-  if(!nom){
+if(!nom){
 
-    alert("Antre non klas la.");
+alert("Antre non klas la.");
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    const id =
-      "classe_" +
-      Date.now();
+const id="classe_"+Date.now();
 
-    await setDoc(
-      doc(db,"classes",id),
-      {
-        nom:nom
-      }
-    );
+await setDoc(
+doc(db,"classes",id),
+{
+nom:nom,
+createdAt:serverTimestamp()
+}
+);
 
-    document
-      .getElementById("classeNom")
-      .value = "";
+document.getElementById("classeNom").value="";
 
-    await loadClasses();
-    updateStats();
+await loadClasses();
+await updateStats();
 
-  }catch(error){
+alert("Klas la ajoute avèk siksè.");
 
-    console.error(error);
+}catch(error){
 
-    alert(
-      "Nou pa kapab ajoute klas la."
-    );
+console.error(error);
 
-  }
+alert(
+"Nou pa kapab ajoute klas la."
+);
+
+}
 
 };
 
@@ -1868,99 +2237,123 @@ async function(){
 
 async function loadMatieres(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"matieres")
-      );
+const snap=await getDocs(
+collection(db,"matieres")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeMatieres"
-      );
+const box=document
+.getElementById("listeMatieres");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    snap.forEach(item=>{
+if(!snap.size){
 
-      const data =
-        item.data();
+box.innerHTML=
+emptyCard("📚","Pa gen matyè pou kounye a.");
 
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(data.nom || "")}</td>
-        </tr>
-      `;
+return;
+}
 
-    });
+snap.forEach(item=>{
 
-    if(!snap.size){
+const data=item.data();
 
-      tbody.innerHTML =
-        `<tr>
-          <td class="empty">
-            Pa gen matyè.
-          </td>
-        </tr>`;
+const nom=data.nom||"Matyè";
 
-    }
+box.innerHTML+=`
 
-  }catch(error){
+<div class="dataCard searchItem"
+data-search="${escapeHTML(
+nom.toLowerCase()
+)}">
 
-    console.error(error);
+<div class="cardTop">
 
-  }
+<div class="avatar">📚</div>
+
+<div>
+<div class="cardTitle">
+${escapeHTML(nom)}
+</div>
+
+<div class="cardSub">
+Matyè akademik
+</div>
+</div>
+
+</div>
+
+<div class="infoRow">
+<span>Non</span>
+<strong>
+${escapeHTML(nom)}
+</strong>
+</div>
+
+<span class="badge badgeBlue">
+Matyè aktif
+</span>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Matieres:",error);
+
+}
 
 }
 
 
 /* ================= ADD MATIERE ================= */
 
-window.ajouterMatiere =
-async function(){
+window.ajouterMatiere=async function(){
 
-  const nom =
-    document
-      .getElementById("matiereNom")
-      .value.trim();
+const nom=document
+.getElementById("matiereNom")
+.value.trim();
 
-  if(!nom){
+if(!nom){
 
-    alert("Antre non matyè a.");
+alert("Antre non matyè a.");
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    const id =
-      "matiere_" +
-      Date.now();
+const id="matiere_"+Date.now();
 
-    await setDoc(
-      doc(db,"matieres",id),
-      {
-        nom:nom
-      }
-    );
+await setDoc(
+doc(db,"matieres",id),
+{
+nom:nom,
+createdAt:serverTimestamp()
+}
+);
 
-    document
-      .getElementById("matiereNom")
-      .value = "";
+document.getElementById("matiereNom").value="";
 
-    await loadMatieres();
-    updateStats();
+await loadMatieres();
+await updateStats();
 
-  }catch(error){
+alert("Matyè a ajoute avèk siksè.");
 
-    console.error(error);
+}catch(error){
 
-    alert(
-      "Nou pa kapab ajoute matyè a."
-    );
+console.error(error);
 
-  }
+alert(
+"Nou pa kapab ajoute matyè a."
+);
+
+}
 
 };
 
@@ -1969,133 +2362,165 @@ async function(){
 
 async function loadDevoirs(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"devoirs")
-      );
+const snap=await getDocs(
+collection(db,"devoirs")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeDevoirs"
-      );
+const box=document
+.getElementById("listeDevoirs");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    snap.forEach(item=>{
+if(!snap.size){
 
-      const data =
-        item.data();
+box.innerHTML=
+emptyCard("📝","Pa gen devwa pou kounye a.");
 
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(data.titre || "")}</td>
-          <td>${escapeHTML(data.matiere || "")}</td>
-          <td>${escapeHTML(data.classe || "")}</td>
-          <td>${escapeHTML(data.duree || 0)} min</td>
-          <td>${escapeHTML(data.maxTentatives || 1)}</td>
-        </tr>
-      `;
+return;
+}
 
-    });
+snap.forEach(item=>{
 
-    if(!snap.size){
+const data=item.data();
 
-      tbody.innerHTML =
-        `<tr>
-          <td colspan="5"
-              class="empty">
-            Pa gen devwa.
-          </td>
-        </tr>`;
+const titre=data.titre||"Devwa";
+const matiere=data.matiere||"Pa presize";
+const classe=data.classe||"Pa presize";
+const duree=data.duree||0;
+const tent=data.maxTentatives||1;
 
-    }
+box.innerHTML+=`
 
-  }catch(error){
+<div class="dataCard searchItem"
+data-search="${escapeHTML(
+(titre+" "+matiere+" "+classe).toLowerCase()
+)}">
 
-    console.error(error);
+<div class="cardTop">
 
-  }
+<div class="avatar">📝</div>
+
+<div>
+<div class="cardTitle">
+${escapeHTML(titre)}
+</div>
+
+<div class="cardSub">
+${escapeHTML(matiere)}
+</div>
+</div>
+
+</div>
+
+<div class="infoRow">
+<span>Klas</span>
+<strong>
+${escapeHTML(classe)}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Dire</span>
+<strong>
+${escapeHTML(duree)} min
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Tantativ</span>
+<strong>
+${escapeHTML(tent)}
+</strong>
+</div>
+
+<div style="margin-top:12px">
+<span class="badge badgeBlue">
+${escapeHTML(matiere)}
+</span>
+</div>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Devoirs:",error);
+
+}
 
 }
 
 
 /* ================= ADD DEVOIR ================= */
 
-window.ajouterDevoir =
-async function(){
+window.ajouterDevoir=async function(){
 
-  const titre =
-    document
-      .getElementById("devoirTitre")
-      .value.trim();
+const titre=document
+.getElementById("devoirTitre")
+.value.trim();
 
-  const matiere =
-    document
-      .getElementById("devoirMatiere")
-      .value.trim();
+const matiere=document
+.getElementById("devoirMatiere")
+.value.trim();
 
-  const classe =
-    document
-      .getElementById("devoirClasse")
-      .value.trim();
+const classe=document
+.getElementById("devoirClasse")
+.value.trim();
 
-  const duree =
-    Number(
-      document
-        .getElementById("devoirDuree")
-        .value
-    ) || 30;
+const duree=Number(
+document.getElementById("devoirDuree").value
+)||30;
 
-  const maxTentatives =
-    Number(
-      document
-        .getElementById("devoirTentatives")
-        .value
-    ) || 1;
+const maxTentatives=Number(
+document.getElementById("devoirTentatives").value
+)||1;
 
-  if(!titre){
+if(!titre){
 
-    alert("Antre tit devwa a.");
+alert("Antre tit devwa a.");
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    const id =
-      "devoir_" +
-      Date.now();
+const id="devoir_"+Date.now();
 
-    await setDoc(
-      doc(db,"devoirs",id),
-      {
-        titre:titre,
-        matiere:matiere,
-        classe:classe,
-        duree:duree,
-        maxTentatives:maxTentatives,
-        createdAt:serverTimestamp()
-      }
-    );
+await setDoc(
+doc(db,"devoirs",id),
+{
+titre:titre,
+matiere:matiere,
+classe:classe,
+duree:duree,
+maxTentatives:maxTentatives,
+createdAt:serverTimestamp()
+}
+);
 
-    document
-      .getElementById("devoirTitre")
-      .value = "";
+document.getElementById("devoirTitre").value="";
+document.getElementById("devoirMatiere").value="";
+document.getElementById("devoirClasse").value="";
 
-    await loadDevoirs();
-    updateStats();
+await loadDevoirs();
+await updateStats();
 
-  }catch(error){
+alert("Devwa a kreye avèk siksè.");
 
-    console.error(error);
+}catch(error){
 
-    alert(
-      "Nou pa kapab kreye devwa a."
-    );
+console.error(error);
 
-  }
+alert(
+"Nou pa kapab kreye devwa a."
+);
+
+}
 
 };
 
@@ -2104,18 +2529,95 @@ async function(){
 
 async function loadRemises(){
 
-  const tbody =
-    document.getElementById(
-      "listeRemises"
-    );
+const box=document
+.getElementById("listeRemises");
 
-  tbody.innerHTML =
-    `<tr>
-      <td colspan="5"
-          class="empty">
-        Pa gen travay remèt pou kounye a.
-      </td>
-    </tr>`;
+try{
+
+const snap=await getDocs(
+collection(db,"tentatives")
+);
+
+box.innerHTML="";
+
+if(!snap.size){
+
+box.innerHTML=
+emptyCard("📤","Pa gen travay remèt pou kounye a.");
+
+return;
+}
+
+snap.forEach(item=>{
+
+const data=item.data();
+
+box.innerHTML+=`
+
+<div class="submissionCard">
+
+<div class="submissionIcon">📤</div>
+
+<div class="cardTitle">
+Travay elèv
+</div>
+
+<div class="infoRow">
+<span>Elèv</span>
+<strong>
+${escapeHTML(data.eleveId||"")}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Devwa</span>
+<strong>
+${escapeHTML(data.devoirId||"")}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Tantativ</span>
+<strong>
+${escapeHTML(data.numeroTentative||1)}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Score</span>
+<strong>
+${escapeHTML(data.score||0)}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Tan</span>
+<strong>
+${escapeHTML(data.temps||0)} min
+</strong>
+</div>
+
+<span class="badge badgeGreen">
+Remèt
+</span>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Remises:",error);
+
+box.innerHTML=
+emptyCard(
+"⚠️",
+"Pa kapab chaje travay remèt yo."
+);
+
+}
 
 }
 
@@ -2124,76 +2626,92 @@ async function loadRemises(){
 
 async function loadResultats(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"resultats")
-      );
+const snap=await getDocs(
+collection(db,"resultats")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeResultats"
-      );
+const box=document
+.getElementById("listeResultats");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    snap.forEach(item=>{
+if(!snap.size){
 
-      const data =
-        item.data();
+box.innerHTML=
+emptyCard("🏆","Pa gen rezilta pou kounye a.");
 
-      let note = 0;
+return;
+}
 
-      if(
-        data.noteFinale !== undefined
-      ){
+snap.forEach(item=>{
 
-        note =
-          Number(
-            data.noteFinale
-          );
+const data=item.data();
 
-      }else if(
-        data.score !== undefined
-      ){
+let note=0;
 
-        note =
-          Number(
-            data.score
-          );
+if(data.noteFinale!==undefined){
 
-      }
+note=Number(data.noteFinale)||0;
 
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(data.eleveId || "")}</td>
-          <td>${escapeHTML(data.devoirId || "")}</td>
-          <td>${escapeHTML(data.score || 0)}</td>
-          <td><strong>${note}/100</strong></td>
-          <td>${escapeHTML(data.commentaire || "")}</td>
-        </tr>
-      `;
+}else if(data.score!==undefined){
 
-    });
+note=Number(data.score)||0;
 
-    if(!snap.size){
+}
 
-      tbody.innerHTML =
-        `<tr>
-          <td colspan="5"
-              class="empty">
-            Pa gen rezilta.
-          </td>
-        </tr>`;
+box.innerHTML+=`
 
-    }
+<div class="resultCard">
 
-  }catch(error){
+<div class="scoreCircle">
+${escapeHTML(note)}/100
+</div>
 
-    console.error(error);
+<div class="cardTitle">
+Rezilta elèv
+</div>
 
-  }
+<div class="infoRow">
+<span>Elèv</span>
+<strong>
+${escapeHTML(data.eleveId||"")}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Devwa</span>
+<strong>
+${escapeHTML(data.devoirId||"")}
+</strong>
+</div>
+
+<div class="infoRow">
+<span>Score</span>
+<strong>
+${escapeHTML(data.score||0)}
+</strong>
+</div>
+
+<div class="comment">
+<strong>💬 Kòmantè:</strong><br>
+${escapeHTML(
+data.commentaire||"Pa gen kòmantè."
+)}
+</div>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error("Resultats:",error);
+
+}
 
 }
 
@@ -2202,154 +2720,197 @@ async function loadResultats(){
 
 async function loadUsers(){
 
-  try{
+try{
 
-    const snap =
-      await getDocs(
-        collection(db,"users")
-      );
+const snap=await getDocs(
+collection(db,"users")
+);
 
-    const tbody =
-      document.getElementById(
-        "listeUsers"
-      );
+const box=document
+.getElementById("listeUsers");
 
-    tbody.innerHTML = "";
+box.innerHTML="";
 
-    let count = 0;
+let count=0;
 
-    snap.forEach(item=>{
+snap.forEach(item=>{
 
-      const data =
-        item.data();
+const data=item.data();
 
-      if(
-        String(data.status || "")
-          .trim()
-          .toLowerCase()
-        === "attente"
-      ){
+const status=String(
+data.status||""
+).trim().toLowerCase();
 
-        count++;
+if(status==="attente"){
 
-        tbody.innerHTML += `
-          <tr>
+count++;
 
-            <td>
-              ${escapeHTML(data.email || "")}
-            </td>
+box.innerHTML+=`
 
-            <td>
-              ${escapeHTML(data.nom || "")}
-            </td>
+<div class="dataCard">
 
-            <td>
-              ⏳ An atant
-            </td>
+<div class="cardTop">
 
-            <td>
+<div class="avatar">👤</div>
 
-              <button
-                class="smallBtn accept"
-                onclick="acceptUser('${item.id}')">
-                Aksepte
-              </button>
+<div>
+<div class="cardTitle">
+${escapeHTML(
+data.nom||"Itilizatè"
+)}
+</div>
 
-              <button
-                class="smallBtn refuse"
-                onclick="refuseUser('${item.id}')">
-                Refize
-              </button>
+<div class="cardSub">
+${escapeHTML(
+data.email||""
+)}
+</div>
+</div>
 
-            </td>
+</div>
 
-          </tr>
-        `;
+<div class="infoRow">
+<span>Status</span>
+<strong>
+<span class="badge badgeOrange">
+⏳ An atant
+</span>
+</strong>
+</div>
 
-      }
+<div class="infoRow">
+<span>Wòl aktyèl</span>
+<strong>
+${escapeHTML(
+data.role||"eleve"
+)}
+</strong>
+</div>
 
-    });
+<div class="field">
 
-    if(count === 0){
+<label>Chwazi wòl</label>
 
-      tbody.innerHTML =
-        `<tr>
-          <td colspan="4"
-              class="empty">
-            Pa gen itilizatè an atant.
-          </td>
-        </tr>`;
+<select id="role_${item.id}">
+<option value="eleve">Elèv</option>
+<option value="professeur">Pwofesè</option>
+<option value="administrateur">Administratè</option>
+</select>
 
-    }
+</div>
 
-  }catch(error){
+<div class="cardActions">
 
-    console.error(error);
+<button
+class="smallBtn accept"
+onclick="acceptUser('${item.id}')">
+✓ Aksepte
+</button>
 
-  }
+<button
+class="smallBtn refuse"
+onclick="refuseUser('${item.id}')">
+✕ Refize
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+});
+
+if(count===0){
+
+box.innerHTML=
+emptyCard(
+"👥",
+"Pa gen itilizatè an atant."
+);
+
+}
+
+}catch(error){
+
+console.error("Users:",error);
+
+}
 
 }
 
 
-/* ================= ACCEPT USER ================= */
+/* ================= ACCEPT ================= */
 
-window.acceptUser =
-async function(uid){
+window.acceptUser=async function(uid){
 
-  try{
+try{
 
-    await updateDoc(
-      doc(db,"users",uid),
-      {
-        status:"accepted"
-      }
-    );
+const select=document
+.getElementById("role_"+uid);
 
-    await loadUsers();
+const role=select
+?select.value
+:"eleve";
 
-    alert(
-      "Itilizatè a aksepte."
-    );
+await updateDoc(
+doc(db,"users",uid),
+{
+status:"accepted",
+role:role
+}
+);
 
-  }catch(error){
+await loadUsers();
 
-    console.error(error);
+alert(
+"Itilizatè a aksepte avèk wòl: "+role
+);
 
-    alert(
-      "Nou pa kapab aksepte itilizatè a."
-    );
+}catch(error){
 
-  }
+console.error(error);
+
+alert(
+"Nou pa kapab aksepte itilizatè a."
+);
+
+}
 
 };
 
 
-/* ================= REFUSE USER ================= */
+/* ================= REFUSE ================= */
 
-window.refuseUser =
-async function(uid){
+window.refuseUser=async function(uid){
 
-  try{
+if(!confirm(
+"Èske ou sèten ou vle refize kont sa a?"
+)) return;
 
-    await deleteDoc(
-      doc(db,"users",uid)
-    );
+try{
 
-    await loadUsers();
+await deleteDoc(
+doc(db,"users",uid)
+);
 
-    alert(
-      "Itilizatè a refize."
-    );
+await loadUsers();
 
-  }catch(error){
+alert(
+"Itilizatè a refize."
+);
 
-    console.error(error);
+}catch(error){
 
-    alert(
-      "Nou pa kapab refize itilizatè a."
-    );
+console.error(error);
 
-  }
+alert(
+"Nou pa kapab refize itilizatè a."
+);
+
+}
 
 };
 
@@ -2358,191 +2919,226 @@ async function(uid){
 
 async function updateStats(){
 
-  try{
+try{
 
-    const [
-      eleves,
-      professeurs,
-      classes,
-      devoirs
-    ] = await Promise.all([
+const role=String(
+currentUserData.role||""
+).toLowerCase();
 
-      getDocs(
-        collection(db,"eleves")
-      ),
+const devoirs=await getDocs(
+collection(db,"devoirs")
+);
 
-      getDocs(
-        collection(db,"professeurs")
-      ),
+document.getElementById(
+"statDevoirs"
+).textContent=devoirs.size;
 
-      getDocs(
-        collection(db,"classes")
-      ),
+document.getElementById(
+"stat2Devoirs"
+).textContent=devoirs.size;
 
-      getDocs(
-        collection(db,"devoirs")
-      )
+if(
+role==="administrateur"||
+role==="professeur"
+){
 
-    ]);
+const eleves=await getDocs(
+collection(db,"eleves")
+);
 
-    const values = {
+document.getElementById(
+"statEleves"
+).textContent=eleves.size;
 
-      statEleves:
-        eleves.size,
+document.getElementById(
+"stat2Eleves"
+).textContent=eleves.size;
 
-      statProfesseurs:
-        professeurs.size,
+}
 
-      statClasses:
-        classes.size,
+if(role==="administrateur"){
 
-      statDevoirs:
-        devoirs.size,
+const [
+professeurs,
+classes
+]=await Promise.all([
 
-      stat2Eleves:
-        eleves.size,
+getDocs(
+collection(db,"professeurs")
+),
 
-      stat2Professeurs:
-        professeurs.size,
+getDocs(
+collection(db,"classes")
+)
 
-      stat2Classes:
-        classes.size,
+]);
 
-      stat2Devoirs:
-        devoirs.size
+document.getElementById(
+"statProfesseurs"
+).textContent=
+professeurs.size;
 
-    };
+document.getElementById(
+"stat2Professeurs"
+).textContent=
+professeurs.size;
 
-    Object.keys(values)
-      .forEach(id=>{
+document.getElementById(
+"statClasses"
+).textContent=
+classes.size;
 
-        const element =
-          document.getElementById(id);
+document.getElementById(
+"stat2Classes"
+).textContent=
+classes.size;
 
-        if(element){
-          element.textContent =
-            values[id];
-        }
+}
 
-      });
+}catch(error){
 
-  }catch(error){
+console.error("Stats:",error);
 
-    console.error(error);
-
-  }
+}
 
 }
 
 
+/* ================= SEARCH ================= */
+
+window.filterCards=function(
+inputId,
+containerId
+){
+
+const input=document
+.getElementById(inputId);
+
+const value=input.value
+.toLowerCase()
+.trim();
+
+const container=document
+.getElementById(containerId);
+
+const cards=container
+.querySelectorAll(".searchItem");
+
+cards.forEach(card=>{
+
+const text=
+card.dataset.search||"";
+
+card.style.display=
+text.includes(value)
+?""
+:"none";
+
+});
+
+};
+
+
 /* ================= LANGUAGE ================= */
 
-window.changeLanguage =
-function(lang){
+window.changeLanguage=function(lang){
 
-  localStorage.setItem(
-    "language",
-    lang
-  );
+localStorage.setItem(
+"language",
+lang
+);
 
-  if(lang === "fr"){
+const brand=document
+.querySelector(".brand");
 
-    document
-      .querySelector(".brand")
-      .textContent =
-      "📚 Système d'Apprentissage";
+if(lang==="fr"){
 
-  }else{
+brand.textContent=
+"📚 Système d'Apprentissage";
 
-    document
-      .querySelector(".brand")
-      .textContent =
-      "📚 Sistèm Aprantisaj";
+}else{
 
-  }
+brand.textContent=
+"📚 Sistèm Aprantisaj";
+
+}
 
 };
 
 
 /* ================= LOGOUT ================= */
 
-window.logout =
-async function(){
-
-  try{
-
-    await signOut(auth);
-
-    location.reload();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-};
-
-
-/* ================= PWA INSTALL ================= */
-
-window.addEventListener(
-  "beforeinstallprompt",
-  event=>{
-
-    event.preventDefault();
-
-    deferredPrompt = event;
-
-    const button =
-      document.getElementById(
-        "installBtn"
-      );
-
-    button.classList.remove("hidden");
-
-  }
-);
-
-
-window.installApp =
-async function(){
-
-  if(!deferredPrompt){
-
-    alert(
-      "Navigatè a poko prepare enstalasyon an."
-    );
-
-    return;
-
-  }
-
-  deferredPrompt.prompt();
-
-  await deferredPrompt.userChoice;
-
-  deferredPrompt = null;
-
-  document
-    .getElementById("installBtn")
-    .classList.add("hidden");
-
-};
-
-
-/* ================= REDIRECT RESULT ================= */
+window.logout=async function(){
 
 try{
 
-  await getRedirectResult(auth);
+await signOut(auth);
+
+location.reload();
 
 }catch(error){
 
-  console.error(
-    "Redirect Google:",
-    error
-  );
+console.error(error);
+
+}
+
+};
+
+
+/* ================= PWA ================= */
+
+window.addEventListener(
+"beforeinstallprompt",
+event=>{
+
+event.preventDefault();
+
+deferredPrompt=event;
+
+document
+.getElementById("installBtn")
+.classList.remove("hidden");
+
+}
+);
+
+
+window.installApp=async function(){
+
+if(!deferredPrompt){
+
+alert(
+"Navigatè a poko prepare enstalasyon an."
+);
+
+return;
+}
+
+deferredPrompt.prompt();
+
+await deferredPrompt.userChoice;
+
+deferredPrompt=null;
+
+document
+.getElementById("installBtn")
+.classList.add("hidden");
+
+};
+
+
+/* ================= REDIRECT ================= */
+
+try{
+
+await getRedirectResult(auth);
+
+}catch(error){
+
+console.error(
+"Redirect Google:",
+error
+);
 
 }
 
@@ -2550,32 +3146,31 @@ try{
 /* ================= AUTH STATE ================= */
 
 onAuthStateChanged(
-  auth,
-  async user=>{
+auth,
+async user=>{
 
-    if(user){
+if(user){
 
-      currentUser = user;
+currentUser=user;
 
-      await loadUserProfile(user);
+await loadUserProfile(user);
 
-    }
+}
 
-  }
+}
 );
 
 
-/* ================= START LANGUAGE ================= */
+/* ================= LANGUAGE START ================= */
 
-const savedLanguage =
-  localStorage.getItem("language");
+const savedLanguage=
+localStorage.getItem("language");
 
 if(savedLanguage){
 
-  document
-    .getElementById("languageSelect")
-    .value =
-    savedLanguage;
+document
+.getElementById("languageSelect")
+.value=savedLanguage;
 
 }
 
