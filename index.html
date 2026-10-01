@@ -2107,8 +2107,8 @@ async function loadAllData(){
 const role=String(
 currentUserData.role||""
 )
+.trim()
 .toLowerCase();
-
 
 const tasks=[
 
@@ -4286,206 +4286,111 @@ emptyCard(
 }
 
 
-/* ================= USERS ================= */
-
 async function loadUsers(){
 
-const box=document
-.getElementById(
-"listeUsers"
-);
+  const box = document.getElementById("listeUsers");
 
+  if(!box){
+    console.error("listeUsers pa jwenn.");
+    return;
+  }
 
-try{
+  box.innerHTML = `
+    <div class="empty-card">
+      <div class="empty-icon">⏳</div>
+      <h3>Chaje demann yo...</h3>
+    </div>
+  `;
 
-const snap=
-await getDocs(
-collection(db,"users")
-);
+  try{
 
+    const snap = await getDocs(collection(db,"users"));
 
-box.innerHTML="";
+    console.log("Kantite users:", snap.size);
 
+    box.innerHTML = "";
 
-let count=0;
+    let count = 0;
 
+    snap.forEach(item => {
 
-snap.forEach(item=>{
+      const data = item.data();
 
-const data=item.data();
+      console.log("USER:", item.id, data);
 
+      const status = String(data.status || "")
+        .trim()
+        .toLowerCase();
 
-const status=String(
-data.status||""
-)
-.trim()
-.toLowerCase();
+      if(status === "attente"){
 
+        count++;
 
-if(status==="attente"){
+        const nom = data.nom || "San non";
+        const email = data.email || "San email";
+        const uid = item.id;
 
-count++;
+        box.innerHTML += `
+          <div class="card" style="margin-bottom:15px;">
+            <h3>👤 ${nom}</h3>
 
+            <p>
+              <strong>Email:</strong> ${email}
+            </p>
 
-box.innerHTML+=`
+            <p>
+              <strong>Status:</strong> An atant
+            </p>
 
-<div class="dataCard">
+            <select id="role_${uid}" style="padding:10px;margin-top:10px;">
+              <option value="eleve">Elèv</option>
+              <option value="professeur">Pwofesè</option>
+            </select>
 
+            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
 
-<div class="cardTop">
+              <button
+                onclick="acceptUser('${uid}')"
+                class="btn-primary">
+                ✅ Aksepte
+              </button>
 
-<div class="avatar">
-👤
-</div>
+              <button
+                onclick="refuseUser('${uid}')"
+                class="btn-danger">
+                ❌ Refize
+              </button>
 
+            </div>
+          </div>
+        `;
+      }
+    });
 
-<div>
+    if(count === 0){
 
-<div class="cardTitle">
+      box.innerHTML = `
+        <div class="empty-card">
+          <div class="empty-icon">👥</div>
+          <h3>Pa gen demann an atant.</h3>
+          <p>Lè yon moun kreye kont, demann li ap parèt isit la.</p>
+        </div>
+      `;
+    }
 
-${escapeHTML(
-data.nom||
-"Itilizatè"
-)}
+  }catch(error){
 
-</div>
+    console.error("ERÈ USERS:", error);
 
-
-<div class="cardSub">
-
-${escapeHTML(
-data.email||
-""
-)}
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Status
-</span>
-
-<strong>
-
-<span class="badge badgeOrange">
-
-⏳ An atant
-
-</span>
-
-</strong>
-
-</div>
-
-
-<div class="infoRow">
-
-<span>
-Wòl aktyèl
-</span>
-
-<strong>
-
-${escapeHTML(
-data.role||
-"eleve"
-)}
-
-</strong>
-
-</div>
-
-
-<div class="field">
-
-<label>
-Chwazi wòl
-</label>
-
-
-<select id="role_${item.id}">
-
-<option value="eleve">
-Elèv
-</option>
-
-<option value="professeur">
-Pwofesè
-</option>
-
-<option value="administrateur">
-Administratè
-</option>
-
-</select>
-
-</div>
-
-
-<div class="cardActions">
-
-<button
-class="smallBtn accept"
-onclick="acceptUser('${item.id}')">
-
-✓ Aksepte
-
-</button>
-
-
-<button
-class="smallBtn refuse"
-onclick="refuseUser('${item.id}')">
-
-✕ Refize
-
-</button>
-
-</div>
-
-
-</div>
-
-`;
-
-}
-
-});
-
-
-if(count===0){
-
-box.innerHTML=
-emptyCard(
-"👥",
-"Pa gen itilizatè an atant."
-);
-
-}
-
-
-}catch(error){
-
-console.error(
-"Users:",
-error
-);
-
-
-box.innerHTML=
-emptyCard(
-"⚠️",
-"Nou pa kapab chaje demann itilizatè yo. Verifye Rules ak kont admin lan."
-);
-
-}
-
+    box.innerHTML = `
+      <div class="empty-card">
+        <div class="empty-icon">⚠️</div>
+        <h3>Erè pandan chajman</h3>
+        <p>${error.code || ""}</p>
+        <p>${error.message || "Nou pa kapab chaje demann yo."}</p>
+      </div>
+    `;
+  }
 }
 
 
