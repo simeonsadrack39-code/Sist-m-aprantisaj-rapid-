@@ -5,1979 +5,429 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#2563eb">
 <link rel="manifest" href="./manifest.json">
-
 <title>Sistèm Aprantisaj</title>
-
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,sans-serif;
-  background:#f4f7fb;
-  color:#0f172a;
-}
-
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* ================= AUTH ================= */
-
-.authPage{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:
-    linear-gradient(
-      135deg,
-      #2563eb,
-      #1e3a8a,
-      #0f172a
-    );
-}
-
-.authBox{
-  width:100%;
-  max-width:430px;
-  background:white;
-  border-radius:24px;
-  padding:30px;
-  box-shadow:0 25px 60px #0005;
-}
-
-.logo{
-  width:72px;
-  height:72px;
-  margin:0 auto 12px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#eff6ff;
-  font-size:38px;
-}
-
-.authBox h1{
-  text-align:center;
-  color:#2563eb;
-  margin-bottom:8px;
-}
-
-.subtitle{
-  text-align:center;
-  color:#64748b;
-  margin-bottom:22px;
-}
-
-.field{
-  margin-bottom:14px;
-}
-
-.field label{
-  display:block;
-  margin-bottom:7px;
-  font-weight:bold;
-  color:#334155;
-}
-
-.field input,
-.field select,
-.field textarea{
-  width:100%;
-  border:1px solid #dbe3ef;
-  border-radius:12px;
-  padding:13px;
-  outline:none;
-  background:#f8fafc;
-}
-
-.field textarea{
-  resize:vertical;
-  line-height:1.5;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:#2563eb;
-  background:white;
-  box-shadow:0 0 0 3px #2563eb18;
-}
-
-.btn{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  color:white;
-  background:#2563eb;
-  font-weight:bold;
-  margin-top:8px;
-}
-
-.btn:hover{
-  opacity:.92;
-}
-
-.google{
-  background:#111827;
-}
-
-.divider{
-  text-align:center;
-  margin:20px 0;
-  color:#94a3b8;
-}
-
-.message{
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  background:#eff6ff;
-  color:#1d4ed8;
-  display:none;
-  line-height:1.5;
-}
-
-/* ================= HEADER ================= */
-
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  min-height:68px;
-  background:white;
-  border-bottom:1px solid #e2e8f0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 20px;
-  z-index:1000;
-  box-shadow:0 3px 15px #0000000b;
-}
-
-.brand{
-  color:#1e3a8a;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.headerRight{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.userBadge{
-  background:#eff6ff;
-  color:#1d4ed8;
-  padding:7px 10px;
-  border-radius:9px;
-  font-size:13px;
-  font-weight:bold;
-}
-
-.roleBadge{
-  background:#f1f5f9;
-  color:#475569;
-  padding:7px 10px;
-  border-radius:9px;
-  font-size:13px;
-}
-
-.headerRight select{
-  border:1px solid #dbe3ef;
-  border-radius:9px;
-  padding:7px;
-  background:white;
-}
-
-.headerBtn{
-  border:0;
-  border-radius:9px;
-  padding:9px 11px;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-}
-
-.logoutBtn{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-/* ================= SIDEBAR ================= */
-
-.layout{
-  display:flex;
-  padding-top:68px;
-}
-
-.sidebar{
-  position:fixed;
-  top:68px;
-  bottom:0;
-  left:0;
-  width:245px;
-  background:#0f172a;
-  padding:15px 10px;
-  overflow-y:auto;
-}
-
-.sidebarTitle{
-  color:#64748b;
-  font-size:11px;
-  text-transform:uppercase;
-  font-weight:bold;
-  padding:10px 12px;
-  letter-spacing:1px;
-}
-
-.sidebar button{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  width:100%;
-  text-align:left;
-  border:0;
-  background:transparent;
-  color:#cbd5e1;
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:4px;
-}
-
-.sidebar button:hover,
-.sidebar button.active{
-  background:#2563eb;
-  color:white;
-}
-
-/* ================= MAIN ================= */
-
-.main{
-  margin-left:245px;
-  width:calc(100% - 245px);
-  padding:26px;
-}
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
-
-.pageTitle{
-  margin-bottom:18px;
-}
-
-.pageTitle h2{
-  font-size:25px;
-}
-
-.pageTitle p{
-  color:#64748b;
-  margin-top:5px;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-  background:
-    linear-gradient(
-      135deg,
-      #2563eb,
-      #1e40af
-    );
-  color:white;
-  border-radius:20px;
-  padding:28px;
-  margin-bottom:20px;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero:after{
-  content:"📚";
-  position:absolute;
-  right:30px;
-  bottom:-20px;
-  font-size:100px;
-  opacity:.12;
-}
-
-.hero h2{
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-.hero p{
-  color:#dbeafe;
-  max-width:600px;
-  line-height:1.6;
-}
-
-/* ================= STATS ================= */
-
-.statsGrid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.statCard{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:20px;
-  box-shadow:0 5px 18px #00000008;
-  position:relative;
-  overflow:hidden;
-}
-
-.statIcon{
-  width:45px;
-  height:45px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:13px;
-  background:#eff6ff;
-  font-size:22px;
-  margin-bottom:13px;
-}
-
-.statLabel{
-  color:#64748b;
-  font-size:14px;
-}
-
-.number{
-  font-size:30px;
-  font-weight:bold;
-  color:#1d4ed8;
-  margin-top:5px;
-}
-
-/* ================= PANELS ================= */
-
-.panel{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 5px 18px #00000008;
-}
-
-.panelTitle{
-  font-size:17px;
-  font-weight:bold;
-  margin-bottom:16px;
-}
-
-.formGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:5px 15px;
-}
-
-.formActions{
-  display:flex;
-  gap:10px;
-}
-
-.formActions button{
-  flex:1;
-}
-
-/* ================= SEARCH ================= */
-
-.searchBox{
-  position:relative;
-  margin-bottom:18px;
-}
-
-.searchBox input{
-  width:100%;
-  padding:14px 16px 14px 44px;
-  border:1px solid #dbe3ef;
-  border-radius:13px;
-  outline:none;
-  background:white;
-}
-
-.searchBox span{
-  position:absolute;
-  left:15px;
-  top:13px;
-}
-
-/* ================= CARDS ================= */
-
-.dataGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.dataCard,
-.submissionCard,
-.resultCard{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:18px;
-  box-shadow:0 5px 18px #00000008;
-}
-
-.dataCard:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 25px #00000010;
-}
-
-.cardTop{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:15px;
-}
-
-.avatar{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#eff6ff;
-  color:#2563eb;
-  font-size:22px;
-  font-weight:bold;
-}
-
-.cardTitle{
-  font-size:16px;
-  font-weight:bold;
-}
-
-.cardSub{
-  color:#64748b;
-  font-size:13px;
-  margin-top:3px;
-}
-
-.infoRow{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:9px 0;
-  border-top:1px solid #eef2f7;
-  font-size:14px;
-}
-
-.infoRow span:first-child{
-  color:#64748b;
-}
-
-.infoRow strong{
-  text-align:right;
-  word-break:break-word;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  padding:5px 9px;
-  border-radius:8px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.badgeBlue{
-  background:#dbeafe;
-  color:#1d4ed8;
-}
-
-.badgeGreen{
-  background:#dcfce7;
-  color:#15803d;
-}
-
-.badgeOrange{
-  background:#ffedd5;
-  color:#c2410c;
-}
-
-.badgeRed{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.cardActions{
-  display:flex;
-  gap:7px;
-  margin-top:14px;
-}
-
-.smallBtn{
-  border:0;
-  padding:8px 11px;
-  border-radius:9px;
-  color:white;
-  font-weight:bold;
-  font-size:12px;
-}
-
-.accept{
-  background:#16a34a;
-}
-
-.refuse{
-  background:#dc2626;
-}
-
-.edit{
-  background:#2563eb;
-}
-
-/* ================= EMPTY ================= */
-
-.empty{
-  text-align:center;
-  padding:35px 20px;
-  color:#64748b;
-  background:#f8fafc;
-  border-radius:14px;
-  grid-column:1/-1;
-}
-
-.emptyIcon{
-  font-size:35px;
-  margin-bottom:8px;
-}
-
-/* ================= TABLE ================= */
-
-.tableWrap{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-th,
-td{
-  padding:12px;
-  border-bottom:1px solid #e2e8f0;
-  text-align:left;
-}
-
-th{
-  background:#f8fafc;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:5000;
-  padding:20px;
-  overflow:auto;
-}
-
-.modalBox{
-  max-width:600px;
-  margin:40px auto;
-  background:white;
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 20px 60px #0008;
-}
-
-.modalTitle{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:18px;
-}
-
-.closeModal{
-  background:#64748b;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:1100px){
-
-.statsGrid{
-  grid-template-columns:repeat(2,1fr);
-}
-
-.dataGrid{
-  grid-template-columns:repeat(2,1fr);
-}
-
-}
-
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;background:#f4f7fb;color:#0f172a;}
+button,input,select,textarea{font:inherit;}
+button{cursor:pointer;}
+.hidden{display:none!important;}
+.authPage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#2563eb,#1e3a8a,#0f172a);}
+.authBox{width:100%;max-width:430px;background:#fff;border-radius:24px;padding:30px;box-shadow:0 25px 60px #0005;}
+.logo{width:72px;height:72px;margin:0 auto 12px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:#eff6ff;font-size:38px;}
+.authBox h1{text-align:center;color:#2563eb;margin-bottom:8px;}
+.subtitle{text-align:center;color:#64748b;margin-bottom:22px;}
+.field{margin-bottom:14px;}
+.field label{display:block;margin-bottom:7px;font-weight:700;color:#334155;}
+.field input,.field select,.field textarea{width:100%;border:1px solid #dbe3ef;border-radius:12px;padding:13px;outline:none;background:#f8fafc;}
+.field textarea{resize:vertical;line-height:1.5;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#2563eb;background:#fff;box-shadow:0 0 0 3px #2563eb18;}
+.btn{width:100%;border:0;border-radius:12px;padding:13px;color:#fff;background:#2563eb;font-weight:700;margin-top:8px;}
+.btn:hover{opacity:.92;}
+.google{background:#111827;}
+.divider{text-align:center;margin:20px 0;color:#94a3b8;}
+.message{margin-top:15px;padding:12px;border-radius:10px;background:#eff6ff;color:#1d4ed8;display:none;line-height:1.5;}
+.header{position:fixed;top:0;left:0;right:0;min-height:68px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;z-index:1000;box-shadow:0 3px 15px #0000000b;}
+.brand{color:#1e3a8a;font-size:20px;font-weight:700;}
+.headerRight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+.userBadge{background:#eff6ff;color:#1d4ed8;padding:7px 10px;border-radius:9px;font-size:13px;font-weight:700;}
+.roleBadge{background:#f1f5f9;color:#475569;padding:7px 10px;border-radius:9px;font-size:13px;}
+.headerRight select{border:1px solid #dbe3ef;border-radius:9px;padding:7px;background:#fff;}
+.headerBtn{border:0;border-radius:9px;padding:9px 11px;background:#2563eb;color:#fff;font-weight:700;}
+.logoutBtn{background:#fee2e2;color:#b91c1c;}
+.layout{display:flex;padding-top:68px;}
+.sidebar{position:fixed;top:68px;bottom:0;left:0;width:245px;background:#0f172a;padding:15px 10px;overflow-y:auto;}
+.sidebarTitle{color:#64748b;font-size:11px;text-transform:uppercase;font-weight:700;padding:10px 12px;letter-spacing:1px;}
+.sidebar button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:transparent;color:#cbd5e1;padding:12px;border-radius:10px;margin-bottom:4px;}
+.sidebar button:hover,.sidebar button.active{background:#2563eb;color:#fff;}
+.main{margin-left:245px;width:calc(100% - 245px);padding:26px;}
+.section{display:none;}
+.section.active{display:block;}
+.pageTitle{margin-bottom:18px;}
+.pageTitle h2{font-size:25px;}
+.pageTitle p{color:#64748b;margin-top:5px;}
+.hero{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;border-radius:20px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden;}
+.hero:after{content:"📚";position:absolute;right:30px;bottom:-20px;font-size:100px;opacity:.12;}
+.hero h2{font-size:28px;margin-bottom:8px;}
+.hero p{color:#dbeafe;max-width:600px;line-height:1.6;}
+.statsGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px;}
+.statCard{background:#fff;border:1px solid #e5eaf1;border-radius:17px;padding:20px;box-shadow:0 5px 18px #00000008;position:relative;overflow:hidden;}
+.statIcon{width:45px;height:45px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:#eff6ff;font-size:22px;margin-bottom:13px;}
+.statLabel{color:#64748b;font-size:14px;}
+.number{font-size:30px;font-weight:700;color:#1d4ed8;margin-top:5px;}
+.panel{background:#fff;border:1px solid #e5eaf1;border-radius:17px;padding:20px;margin-bottom:20px;box-shadow:0 5px 18px #00000008;}
+.panelTitle{font-size:17px;font-weight:700;margin-bottom:16px;}
+.formGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:5px 15px;}
+.formActions{display:flex;gap:10px;}
+.formActions button{flex:1;}
+.searchBox{position:relative;margin-bottom:18px;}
+.searchBox input{width:100%;padding:14px 16px 14px 44px;border:1px solid #dbe3ef;border-radius:13px;outline:none;background:#fff;}
+.searchBox span{position:absolute;left:15px;top:13px;}
+.dataGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.dataCard,.submissionCard,.resultCard{background:#fff;border:1px solid #e5eaf1;border-radius:17px;padding:18px;box-shadow:0 5px 18px #00000008;}
+.dataCard:hover{transform:translateY(-2px);box-shadow:0 10px 25px #00000010;}
+.cardTop{display:flex;align-items:center;gap:12px;margin-bottom:15px;}
+.avatar{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#eff6ff;color:#2563eb;font-size:22px;font-weight:700;}
+.cardTitle{font-size:16px;font-weight:700;}
+.cardSub{color:#64748b;font-size:13px;margin-top:3px;}
+.infoRow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #eef2f7;font-size:14px;}
+.infoRow span:first-child{color:#64748b;}
+.infoRow strong{text-align:right;word-break:break-word;}
+.badge{display:inline-flex;align-items:center;padding:5px 9px;border-radius:8px;font-size:12px;font-weight:700;}
+.badgeBlue{background:#dbeafe;color:#1d4ed8;}
+.badgeGreen{background:#dcfce7;color:#15803d;}
+.badgeOrange{background:#ffedd5;color:#c2410c;}
+.badgeRed{background:#fee2e2;color:#b91c1c;}
+.cardActions{display:flex;gap:7px;margin-top:14px;}
+.smallBtn{border:0;padding:8px 11px;border-radius:9px;color:#fff;font-weight:700;font-size:12px;}
+.accept{background:#16a34a;}
+.refuse{background:#dc2626;}
+.edit{background:#2563eb;}
+.empty{text-align:center;padding:35px 20px;color:#64748b;background:#f8fafc;border-radius:14px;grid-column:1/-1;}
+.emptyIcon{font-size:35px;margin-bottom:8px;}
+.tableWrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th,td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:left;}
+th{background:#f8fafc;}
+.modal{position:fixed;inset:0;background:#0008;z-index:5000;padding:20px;overflow:auto;}
+.modalBox{max-width:600px;margin:40px auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 60px #0008;}
+.modalTitle{font-size:20px;font-weight:700;margin-bottom:18px;}
+.closeModal{background:#64748b;}
+@media(max-width:1100px){.statsGrid,.dataGrid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:750px){
-
-.header{
-  position:relative;
-  min-height:auto;
+  .header{position:relative;min-height:auto;flex-direction:column;align-items:flex-start;gap:9px;padding:12px;}
+  .layout{padding-top:0;display:block;}
+  .sidebar{position:relative;top:0;width:100%;height:auto;display:flex;overflow-x:auto;padding:8px;gap:5px;}
+  .sidebarTitle{display:none;}
+  .sidebar button{min-width:max-content;margin:0;}
+  .main{margin-left:0;width:100%;padding:15px;}
+  .headerRight{width:100%;justify-content:flex-start;gap:5px;}
+  .userBadge{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .formGrid{grid-template-columns:1fr;}
 }
-
-.layout{
-  padding-top:0;
-  display:block;
-}
-
-.sidebar{
-  position:relative;
-  top:0;
-  width:100%;
-  height:auto;
-  display:flex;
-  overflow-x:auto;
-  padding:8px;
-  gap:5px;
-}
-
-.sidebarTitle{
-  display:none;
-}
-
-.sidebar button{
-  min-width:max-content;
-  margin:0;
-}
-
-.main{
-  margin-left:0;
-  width:100%;
-  padding:15px;
-}
-
-.header{
-  flex-direction:column;
-  align-items:flex-start;
-  gap:9px;
-  padding:12px;
-}
-
-.headerRight{
-  width:100%;
-  justify-content:flex-start;
-}
-
-.userBadge{
-  max-width:190px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.formGrid{
-  grid-template-columns:1fr;
-}
-
-}
-
 @media(max-width:560px){
-
-.statsGrid,
-.dataGrid{
-  grid-template-columns:1fr;
-}
-
-.hero{
-  padding:22px;
-}
-
-.hero h2{
-  font-size:23px;
-}
-
-.pageTitle h2{
-  font-size:21px;
-}
-
-.panel{
-  padding:15px;
-}
-
-.formActions{
-  flex-direction:column;
-}
-
-.headerRight{
-  gap:5px;
-}
-
-.headerBtn{
-  padding:8px;
-  font-size:12px;
-}
-
+  .statsGrid,.dataGrid{grid-template-columns:1fr;}
+  .hero{padding:22px;}
+  .hero h2{font-size:23px;}
+  .pageTitle h2{font-size:21px;}
+  .panel{padding:15px;}
+  .formActions{flex-direction:column;}
+  .headerBtn{padding:8px;font-size:12px;}
 }
 </style>
 </head>
 <body>
-<!-- ================= AUTH PAGE ================= -->
 
 <div id="authPage" class="authPage">
-
   <div class="authBox">
-
-    <div class="logo">
-      📚
-    </div>
-
-    <h1>
-      Sistèm Aprantisaj
-    </h1>
-
-    <p class="subtitle">
-      Platfòm aprantisaj sou entènèt
-    </p>
-
-
-    <!-- LOGIN -->
+    <div class="logo">📚</div>
+    <h1>Sistèm Aprantisaj</h1>
+    <p class="subtitle">Platfòm aprantisaj sou entènèt</p>
 
     <div class="field">
-
-      <label>
-        Email
-      </label>
-
-      <input
-        id="loginEmail"
-        type="email"
-        placeholder="Egzanp: non@email.com"
-      >
-
+      <label>Email</label>
+      <input id="loginEmail" type="email" placeholder="Egzanp: non@email.com">
     </div>
+    <div class="field">
+      <label>Modpas</label>
+      <input id="loginPassword" type="password" placeholder="Modpas">
+    </div>
+    <button class="btn" onclick="connecter()">Konekte</button>
+    <button class="btn google" onclick="connecterAvecGoogle()">Kontinye ak Google</button>
 
+    <div class="divider">oswa kreye yon kont</div>
 
     <div class="field">
-
-      <label>
-        Modpas
-      </label>
-
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="Modpas"
-      >
-
+      <label>Non</label>
+      <input id="registerName" placeholder="Non konplè">
     </div>
-
-
-    <button
-      class="btn"
-      onclick="connecter()"
-    >
-      Konekte
-    </button>
-
-
-    <button
-      class="btn google"
-      onclick="connecterAvecGoogle()"
-    >
-      Kontinye ak Google
-    </button>
-
-
-    <div class="divider">
-      oswa kreye yon kont
-    </div>
-
-
-    <!-- REGISTER -->
-
     <div class="field">
-
-      <label>
-        Non
-      </label>
-
-      <input
-        id="registerName"
-        placeholder="Non konplè"
-      >
-
+      <label>Email</label>
+      <input id="registerEmail" type="email" placeholder="Email">
     </div>
-
-
     <div class="field">
-
-      <label>
-        Email
-      </label>
-
-      <input
-        id="registerEmail"
-        type="email"
-        placeholder="Email"
-      >
-
+      <label>Modpas</label>
+      <input id="registerPassword" type="password" placeholder="Omwen 6 karaktè">
     </div>
+    <button class="btn" onclick="registerAccount()">Kreye kont</button>
+    <button class="btn google" onclick="registerGoogle()">Enskri ak Google</button>
 
-
-    <div class="field">
-
-      <label>
-        Modpas
-      </label>
-
-      <input
-        id="registerPassword"
-        type="password"
-        placeholder="Omwen 6 karaktè"
-      >
-
-    </div>
-
-
-    <button
-      class="btn"
-      onclick="registerAccount()"
-    >
-      Kreye kont
-    </button>
-
-
-    <button
-      class="btn google"
-      onclick="registerGoogle()"
-    >
-      Enskri ak Google
-    </button>
-
-
-    <div
-      id="authMessage"
-      class="message"
-    ></div>
-
+    <div id="authMessage" class="message"></div>
   </div>
-
 </div>
 
-
-<!-- ================= APPLICATION ================= -->
-
-<div
-  id="app"
-  class="app hidden"
->
-
-
-  <!-- HEADER -->
-
+<div id="app" class="app hidden">
   <header class="header">
-
-    <div class="brand">
-      📚 Sistèm Aprantisaj
-    </div>
-
-
+    <div class="brand">📚 Sistèm Aprantisaj</div>
     <div class="headerRight">
-
-      <span
-        id="userEmail"
-        class="userBadge"
-      ></span>
-
-
-      <span
-        id="userRole"
-        class="roleBadge"
-      ></span>
-
-
-      <select
-        id="languageSelect"
-        onchange="changeLanguage(this.value)"
-      >
-
-        <option value="ht">
-          🇭🇹 Kreyòl
-        </option>
-
-        <option value="fr">
-          🇫🇷 Français
-        </option>
-
+      <span id="userEmail" class="userBadge"></span>
+      <span id="userRole" class="roleBadge"></span>
+      <select id="languageSelect" onchange="changeLanguage(this.value)">
+        <option value="ht">🇭🇹 Kreyòl</option>
+        <option value="fr">🇫🇷 Français</option>
       </select>
-
-
-      <button
-        id="installBtn"
-        class="headerBtn hidden"
-        onclick="installApp()"
-      >
-        📲 Enstale
-      </button>
-
-
-      <button
-        class="headerBtn logoutBtn"
-        onclick="logout()"
-      >
-        Dekonekte
-      </button>
-
+      <button id="installBtn" class="headerBtn hidden" onclick="installApp()">📲 Enstale</button>
+      <button class="headerBtn logoutBtn" onclick="logout()">Dekonekte</button>
     </div>
-
   </header>
 
-
-  <!-- ================= LAYOUT ================= -->
-
   <div class="layout">
-
-
-    <!-- ================= SIDEBAR ================= -->
-
     <aside class="sidebar">
-
-      <div class="sidebarTitle">
-        Navigasyon
-      </div>
-
-
-      <button
-        class="menuBtn active"
-        onclick="showSection('home',this)"
-      >
-        🏠
-        <span>
-          Akèy
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn adminOnly"
-        onclick="showSection('eleves',this)"
-      >
-        👨‍🎓
-        <span>
-          Elèv
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn adminOnly"
-        onclick="showSection('professeurs',this)"
-      >
-        👨‍🏫
-        <span>
-          Pwofesè
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn adminOnly"
-        onclick="showSection('classes',this)"
-      >
-        🏫
-        <span>
-          Klas
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn adminOnly"
-        onclick="showSection('matieres',this)"
-      >
-        📚
-        <span>
-          Matyè
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn"
-        onclick="showSection('devoirs',this)"
-      >
-        📝
-        <span>
-          Devwa
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn teacherOnly"
-        onclick="showSection('remises',this)"
-      >
-        📤
-        <span>
-          Remèt elèv yo
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn"
-        onclick="showSection('resultats',this)"
-      >
-        🏆
-        <span>
-          Rezilta
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn"
-        onclick="showSection('statistiques',this)"
-      >
-        📈
-        <span>
-          Estatistik
-        </span>
-      </button>
-
-
-      <button
-        class="menuBtn adminOnly"
-        onclick="showSection('users',this)"
-      >
-        👥
-        <span>
-          Itilizatè
-        </span>
-      </button>
-
+      <div class="sidebarTitle">Navigasyon</div>
+      <button class="menuBtn active" onclick="showSection('home',this)">🏠<span>Akèy</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('eleves',this)">👨‍🎓<span>Elèv</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('professeurs',this)">👨‍🏫<span>Pwofesè</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('classes',this)">🏫<span>Klas</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('matieres',this)">📚<span>Matyè</span></button>
+      <button class="menuBtn" onclick="showSection('devoirs',this)">📝<span>Devwa</span></button>
+      <button class="menuBtn teacherOnly" onclick="showSection('remises',this)">📤<span>Remèt elèv yo</span></button>
+      <button class="menuBtn" onclick="showSection('resultats',this)">🏆<span>Rezilta</span></button>
+      <button class="menuBtn" onclick="showSection('statistiques',this)">📈<span>Estatistik</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('users',this)">👥<span>Itilizatè</span></button>
     </aside>
 
-
-    <!-- ================= MAIN ================= -->
-
     <main class="main">
-
-
-      <!-- ================= HOME ================= -->
-
-      <section
-        id="home"
-        class="section active"
-      >
-
+      <section id="home" class="section active">
         <div class="pageTitle">
-
-          <h2>
-            Akèy
-          </h2>
-
-          <p>
-            Byenveni nan Sistèm Aprantisaj.
-          </p>
-
+          <h2>Akèy</h2>
+          <p>Byenveni nan Sistèm Aprantisaj.</p>
         </div>
-
-
         <div class="hero">
-
-          <h2>
-            Byenveni nan Sistèm Aprantisaj 👋
-          </h2>
-
-          <p>
-            Jere elèv, pwofesè, klas, matyè,
-            devwa, travay remèt ak rezilta yo
-            nan yon sèl espas.
-          </p>
-
+          <h2>Byenveni nan Sistèm Aprantisaj 👋</h2>
+          <p>Jere elèv, pwofesè, klas, matyè, devwa, travay remèt ak rezilta yo nan yon sèl espas.</p>
         </div>
-
-
         <div class="statsGrid">
-
-
           <div class="statCard adminOnly">
-
-            <div class="statIcon">
-              👨‍🎓
-            </div>
-
-            <div class="statLabel">
-              Total elèv
-            </div>
-
-            <div
-              id="statEleves"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">👨‍🎓</div>
+            <div class="statLabel">Total elèv</div>
+            <div id="statEleves" class="number">0</div>
           </div>
-
-
           <div class="statCard adminOnly">
-
-            <div class="statIcon">
-              👨‍🏫
-            </div>
-
-            <div class="statLabel">
-              Total pwofesè
-            </div>
-
-            <div
-              id="statProfesseurs"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">👨‍🏫</div>
+            <div class="statLabel">Total pwofesè</div>
+            <div id="statProfesseurs" class="number">0</div>
           </div>
-
-
           <div class="statCard adminOnly">
-
-            <div class="statIcon">
-              🏫
-            </div>
-
-            <div class="statLabel">
-              Total klas
-            </div>
-
-            <div
-              id="statClasses"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">🏫</div>
+            <div class="statLabel">Total klas</div>
+            <div id="statClasses" class="number">0</div>
           </div>
-
-
           <div class="statCard">
-
-            <div class="statIcon">
-              📝
-            </div>
-
-            <div class="statLabel">
-              Total devwa
-            </div>
-
-            <div
-              id="statDevoirs"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">📝</div>
+            <div class="statLabel">Total devwa</div>
+            <div id="statDevoirs" class="number">0</div>
           </div>
-
-
         </div>
-
       </section>
 
-
-      <!-- ================= ELEVES ================= -->
-
-      <section
-        id="eleves"
-        class="section"
-      >
-
+      <section id="eleves" class="section">
         <div class="pageTitle">
-
-          <h2>
-            👨‍🎓 Elèv
-          </h2>
-
-          <p>
-            Jere lis elèv yo.
-          </p>
-
+          <h2>👨‍🎓 Elèv</h2>
+          <p>Jere lis elèv yo.</p>
         </div>
-
-
         <div class="panel">
-
-          <div class="panelTitle">
-            ➕ Ajoute yon nouvo elèv
-          </div>
-
-
+          <div class="panelTitle">➕ Ajoute yon nouvo elèv</div>
           <div class="formGrid">
-
             <div class="field">
-
-              <label>
-                Non elèv
-              </label>
-
-              <input
-                id="eleveNom"
-                placeholder="Non konplè"
-              >
-
+              <label>Non elèv</label>
+              <input id="eleveNom" placeholder="Non konplè">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Klas
-              </label>
-
-              <input
-                id="eleveClasse"
-                placeholder="6e AF"
-              >
-
+              <label>Klas</label>
+              <input id="eleveClasse" placeholder="6e AF">
             </div>
-
           </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterEleve()"
-          >
-            ➕ Ajoute elèv
-          </button>
-
+          <button class="btn" onclick="ajouterEleve()">➕ Ajoute elèv</button>
         </div>
-
-
         <div class="searchBox">
-
-          <span>
-            🔎
-          </span>
-
-          <input
-            id="searchEleves"
-            oninput="filterCards('searchEleves','listeEleves')"
-            placeholder="Chèche yon elèv..."
-          >
-
+          <span>🔎</span>
+          <input id="searchEleves" oninput="filterCards('searchEleves','listeEleves')" placeholder="Chèche yon elèv...">
         </div>
-
-
-        <div
-          id="listeEleves"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeEleves" class="dataGrid"></div>
       </section>
 
-
-      <!-- ================= PROFESSEURS ================= -->
-
-      <section
-        id="professeurs"
-        class="section"
-      >
-
+      <section id="professeurs" class="section">
         <div class="pageTitle">
-
-          <h2>
-            👨‍🏫 Pwofesè
-          </h2>
-
-          <p>
-            Jere pwofesè ak matyè yo anseye.
-          </p>
-
+          <h2>👨‍🏫 Pwofesè</h2>
+          <p>Jere pwofesè ak matyè yo anseye.</p>
         </div>
-
-
         <div class="panel">
-
-          <div class="panelTitle">
-            ➕ Ajoute yon pwofesè
-          </div>
-
-
+          <div class="panelTitle">➕ Ajoute yon pwofesè</div>
           <div class="formGrid">
-
-
             <div class="field">
-
-              <label>
-                Non
-              </label>
-
-              <input
-                id="profNom"
-                placeholder="Non pwofesè"
-              >
-
+              <label>Non</label>
+              <input id="profNom" placeholder="Non pwofesè">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Email
-              </label>
-
-              <input
-                id="profEmail"
-                type="email"
-                placeholder="Email"
-              >
-
+              <label>Email</label>
+              <input id="profEmail" type="email" placeholder="Email">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Matyè
-              </label>
-
-              <input
-                id="profMatiere"
-                placeholder="Mathématiques"
-              >
-
+              <label>Matyè</label>
+              <input id="profMatiere" placeholder="Mathématiques">
             </div>
-
-
           </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterProfesseur()"
-          >
-            ➕ Ajoute pwofesè
-          </button>
-
+          <button class="btn" onclick="ajouterProfesseur()">➕ Ajoute pwofesè</button>
         </div>
-
-
         <div class="searchBox">
-
-          <span>
-            🔎
-          </span>
-
-          <input
-            id="searchProfesseurs"
-            oninput="filterCards('searchProfesseurs','listeProfesseurs')"
-            placeholder="Chèche yon pwofesè..."
-          >
-
+          <span>🔎</span>
+          <input id="searchProfesseurs" oninput="filterCards('searchProfesseurs','listeProfesseurs')" placeholder="Chèche yon pwofesè...">
         </div>
-
-
-        <div
-          id="listeProfesseurs"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeProfesseurs" class="dataGrid"></div>
       </section>
 
-      <!-- ================= KLAS ================= -->
-
-      <section
-        id="classes"
-        class="section"
-      >
-
+      <section id="classes" class="section">
         <div class="pageTitle">
-
-          <h2>
-            🏫 Klas
-          </h2>
-
-          <p>
-            Jere klas lekòl la.
-          </p>
-
+          <h2>🏫 Klas</h2>
+          <p>Jere klas lekòl la.</p>
         </div>
-
-
         <div class="panel">
-
-          <div class="panelTitle">
-            ➕ Ajoute yon klas
-          </div>
-
-
+          <div class="panelTitle">➕ Ajoute yon klas</div>
           <div class="field">
-
-            <label>
-              Non klas
-            </label>
-
-            <input
-              id="classeNom"
-              placeholder="6e AF"
-            >
-
+            <label>Non klas</label>
+            <input id="classeNom" placeholder="6e AF">
           </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterClasse()"
-          >
-            ➕ Ajoute klas
-          </button>
-
+          <button class="btn" onclick="ajouterClasse()">➕ Ajoute klas</button>
         </div>
-
-
-        <div
-          id="listeClasses"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeClasses" class="dataGrid"></div>
       </section>
 
-
-      <!-- ================= MATIERES ================= -->
-
-      <section
-        id="matieres"
-        class="section"
-      >
-
+      <section id="matieres" class="section">
         <div class="pageTitle">
-
-          <h2>
-            📚 Matyè
-          </h2>
-
-          <p>
-            Jere matyè yo.
-          </p>
-
+          <h2>📚 Matyè</h2>
+          <p>Jere matyè yo.</p>
         </div>
-
-
         <div class="panel">
-
-          <div class="panelTitle">
-            ➕ Ajoute yon matyè
-          </div>
-
-
+          <div class="panelTitle">➕ Ajoute yon matyè</div>
           <div class="field">
-
-            <label>
-              Non matyè
-            </label>
-
-            <input
-              id="matiereNom"
-              placeholder="Mathématiques"
-            >
-
+            <label>Non matyè</label>
+            <input id="matiereNom" placeholder="Mathématiques">
           </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterMatiere()"
-          >
-            ➕ Ajoute matyè
-          </button>
-
+          <button class="btn" onclick="ajouterMatiere()">➕ Ajoute matyè</button>
         </div>
-
-
-        <div
-          id="listeMatieres"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeMatieres" class="dataGrid"></div>
       </section>
 
-
-      <!-- ================= DEVOIRS ================= -->
-
-      <section
-        id="devoirs"
-        class="section"
-      >
-
+      <section id="devoirs" class="section">
         <div class="pageTitle">
-
-          <h2>
-            📝 Devwa
-          </h2>
-
-          <p>
-            Kreye devwa oswa fè devwa ou resevwa yo.
-          </p>
-
+          <h2>📝 Devwa</h2>
+          <p>Kreye devwa oswa fè devwa ou resevwa yo.</p>
         </div>
-
-
-        <div
-          id="createDevoirPanel"
-          class="panel"
-        >
-
-          <div class="panelTitle">
-            ➕ Kreye yon nouvo devwa
-          </div>
-
-
+        <div id="createDevoirPanel" class="panel">
+          <div class="panelTitle">➕ Kreye yon nouvo devwa</div>
           <div class="formGrid">
-
-
             <div class="field">
-
-              <label>
-                Tit devwa
-              </label>
-
-              <input
-                id="devoirTitre"
-                placeholder="Devoir de Mathématiques"
-              >
-
+              <label>Tit devwa</label>
+              <input id="devoirTitre" placeholder="Devoir de Mathématiques">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Matyè
-              </label>
-
-              <input
-                id="devoirMatiere"
-                placeholder="Mathématiques"
-              >
-
+              <label>Matyè</label>
+              <input id="devoirMatiere" placeholder="Mathématiques">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Klas
-              </label>
-
-              <input
-                id="devoirClasse"
-                placeholder="6e AF"
-              >
-
+              <label>Klas</label>
+              <input id="devoirClasse" placeholder="6e AF">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Dire (minit)
-              </label>
-
-              <input
-                id="devoirDuree"
-                type="number"
-                value="30"
-              >
-
+              <label>Dire (minit)</label>
+              <input id="devoirDuree" type="number" value="30">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Maksimòm tantativ
-              </label>
-
+              <label>Maksimòm tantativ</label>
               <select id="devoirTentatives">
-
-                <option value="1">
-                  1
-                </option>
-
-                <option
-                  value="2"
-                  selected
-                >
-                  2
-                </option>
-
-                <option value="3">
-                  3
-                </option>
-
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
               </select>
-
             </div>
-
-
           </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterDevoir()"
-          >
-            ➕ Kreye devwa
-          </button>
-
+          <button class="btn" onclick="ajouterDevoir()">➕ Kreye devwa</button>
         </div>
-
-
         <div class="searchBox">
-
-          <span>
-            🔎
-          </span>
-
-          <input
-            id="searchDevoirs"
-            oninput="filterCards('searchDevoirs','listeDevoirs')"
-            placeholder="Chèche yon devwa..."
-          >
-
+          <span>🔎</span>
+          <input id="searchDevoirs" oninput="filterCards('searchDevoirs','listeDevoirs')" placeholder="Chèche yon devwa...">
         </div>
-
-
-        <div
-          id="listeDevoirs"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeDevoirs" class="dataGrid"></div>
       </section>
 
-
-      <!-- ================= REMISES ================= -->
-
-      <section
-        id="remises"
-        class="section"
-      >
-
+      <section id="remises" class="section">
         <div class="pageTitle">
-
-          <h2>
-            📤 Travay remèt
-          </h2>
-
-          <p>
-            Gade travay elèv yo soumèt,
-            epi korije yo.
-          </p>
-
+          <h2>📤 Travay remèt</h2>
+          <p>Gade travay elèv yo soumèt, epi korije yo.</p>
         </div>
-
-
-        <div
-          id="listeRemises"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeRemises" class="dataGrid"></div>
       </section>
 
-
-      <!-- ================= RESULTATS ================= -->
-
-      <section
-        id="resultats"
-        class="section"
-      >
-
+      <section id="resultats" class="section">
         <div class="pageTitle">
-
-          <h2>
-            🏆 Rezilta
-          </h2>
-
-          <p>
-            Nòt ak kòmantè elèv yo.
-          </p>
-
+          <h2>🏆 Rezilta</h2>
+          <p>Nòt ak kòmantè elèv yo.</p>
         </div>
-
-
-        <div
-          id="listeResultats"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeResultats" class="dataGrid"></div>
       </section>
 
-
-      <!-- ================= STATISTIQUES ================= -->
-
-      <section
-        id="statistiques"
-        class="section"
-      >
-
+      <section id="statistiques" class="section">
         <div class="pageTitle">
-
-          <h2>
-            📈 Estatistik
-          </h2>
-
-          <p>
-            Yon rezime sou done sistèm nan.
-          </p>
-
+          <h2>📈 Estatistik</h2>
+          <p>Yon rezime sou done sistèm nan.</p>
         </div>
-
-
         <div class="statsGrid">
-
-
           <div class="statCard">
-
-            <div class="statIcon">
-              👨‍🎓
-            </div>
-
-            <div class="statLabel">
-              Elèv
-            </div>
-
-            <div
-              id="stat2Eleves"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">👨‍🎓</div>
+            <div class="statLabel">Elèv</div>
+            <div id="stat2Eleves" class="number">0</div>
           </div>
-
-
           <div class="statCard">
-
-            <div class="statIcon">
-              👨‍🏫
-            </div>
-
-            <div class="statLabel">
-              Pwofesè
-            </div>
-
-            <div
-              id="stat2Professeurs"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">👨‍🏫</div>
+            <div class="statLabel">Pwofesè</div>
+            <div id="stat2Professeurs" class="number">0</div>
           </div>
-
-
           <div class="statCard">
-
-            <div class="statIcon">
-              🏫
-            </div>
-
-            <div class="statLabel">
-              Klas
-            </div>
-
-            <div
-              id="stat2Classes"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">🏫</div>
+            <div class="statLabel">Klas</div>
+            <div id="stat2Classes" class="number">0</div>
           </div>
-
-
           <div class="statCard">
-
-            <div class="statIcon">
-              📝
-            </div>
-
-            <div class="statLabel">
-              Devwa
-            </div>
-
-            <div
-              id="stat2Devoirs"
-              class="number"
-            >
-              0
-            </div>
-
+            <div class="statIcon">📝</div>
+            <div class="statLabel">Devwa</div>
+            <div id="stat2Devoirs" class="number">0</div>
           </div>
-
-
         </div>
-
       </section>
 
-
-      <!-- ================= USERS ================= -->
-
-      <section
-        id="users"
-        class="section"
-      >
-
+      <section id="users" class="section">
         <div class="pageTitle">
-
-          <h2>
-            👥 Itilizatè
-          </h2>
-
-          <p>
-            Jere kont ki mande aksè.
-          </p>
-
+          <h2>👥 Itilizatè</h2>
+          <p>Jere kont ki mande aksè.</p>
         </div>
-
-
-        <div
-          id="listeUsers"
-          class="dataGrid"
-        ></div>
-
+        <div id="listeUsers" class="dataGrid"></div>
       </section>
-
-
     </main>
-
   </div>
-
 </div>
 
-
-<!-- ================= MODAL REMET DEVWA ================= -->
-
-<div
-  id="remetModal"
-  class="modal hidden"
->
-
+<div id="remetModal" class="modal hidden">
   <div class="modalBox">
-
-
-    <div class="modalTitle">
-      📤 Remèt devwa
-    </div>
-
-
-    <div
-      id="remetDevoirInfo"
-    ></div>
-
-
-    <input
-      type="hidden"
-      id="remetDevoirId"
-    >
-
-
+    <div class="modalTitle">📤 Remèt devwa</div>
+    <div id="remetDevoirInfo"></div>
+    <input type="hidden" id="remetDevoirId">
     <div class="field">
-
-      <label>
-        Repons / Travay ou
-      </label>
-
-      <textarea
-        id="remetReponse"
-        rows="8"
-        placeholder="Ekri repons ou oswa travay ou la..."
-      ></textarea>
-
+      <label>Repons / Travay ou</label>
+      <textarea id="remetReponse" rows="8" placeholder="Ekri repons ou oswa travay ou la..."></textarea>
     </div>
-
-
     <div class="field">
-
-      <label>
-        Tan ou itilize (minit)
-      </label>
-
-      <input
-        id="remetTemps"
-        type="number"
-        min="0"
-        placeholder="30"
-      >
-
+      <label>Tan ou itilize (minit)</label>
+      <input id="remetTemps" type="number" min="0" placeholder="30">
     </div>
-
-
     <div class="formActions">
-
-      <button
-        class="btn"
-        onclick="envoyerRemise()"
-      >
-        📤 Remèt devwa
-      </button>
-
-
-      <button
-        class="btn closeModal"
-        onclick="fermerRemetModal()"
-      >
-        Anile
-      </button>
-
+      <button class="btn" onclick="envoyerRemise()">📤 Remèt devwa</button>
+      <button class="btn closeModal" onclick="fermerRemetModal()">Anile</button>
     </div>
-
-
   </div>
-
 </div>
-
-
-<!-- ================= FIREBASE SCRIPT ================= -->
 
 <script type="module">
-
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -1991,8 +441,6 @@ import {
   setPersistence,
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-
 import {
   getFirestore,
   collection,
@@ -2000,7 +448,6 @@ import {
   setDoc,
   getDoc,
   getDocs,
-  addDoc,
   updateDoc,
   deleteDoc,
   serverTimestamp,
@@ -2008,4183 +455,845 @@ import {
   where
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-
-/* ================= FIREBASE CONFIG ================= */
-
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
-
-  authDomain:
-    "sist-aprantisaj.firebaseapp.com",
-
-  projectId:
-    "sist-aprantisaj",
-
-  storageBucket:
-    "sist-aprantisaj.firebasestorage.app",
-
-  messagingSenderId:
-    "517876142004",
-
-  appId:
-    "1:517876142004:web:2771066976950b208dace1"
-
+  apiKey: "AIzaSyCaFe8LGgyTfhLSVpqfHjEd_z0U12SBuvg",
+  authDomain: "sist-aprantisaj.firebaseapp.com",
+  projectId: "sist-aprantisaj",
+  storageBucket: "sist-aprantisaj.firebasestorage.app",
+  messagingSenderId: "517876142004",
+  appId: "1:517876142004:web:2771066976950b208dace1"
 };
 
-
-/* ================= INITIALIZE ================= */
-
-const app =
-  initializeApp(firebaseConfig);
-
-const auth =
-  getAuth(app);
-
-const db =
-  getFirestore(app);
-
-const provider =
-  new GoogleAuthProvider();
-
-
-provider.setCustomParameters({
-  prompt: "select_account"
-});
-
-
-/* ================= VARIABLES ================= */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
 
 let currentUser = null;
-
 let currentUserData = null;
-
 let deferredPrompt = null;
 
+setPersistence(auth, browserLocalPersistence).catch(console.error);
 
-/* ================= PERSISTENCE ================= */
-
-await setPersistence(
-  auth,
-  browserLocalPersistence
-);
-
-
-/* ================= HELPERS ================= */
-
-function escapeHTML(value){
-
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
+function escapeHTML(v){
+  return String(v ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
 }
 
-
-function showMessage(message){
-
-  const box =
-    document.getElementById("authMessage");
-
+function showMessage(m){
+  const box = document.getElementById("authMessage");
   if(!box) return;
-
-  box.textContent = message;
-
+  box.textContent = m;
   box.style.display = "block";
-
 }
 
-
-function role(){
-
-  return String(
-    currentUserData?.role || ""
-  )
-  .trim()
-  .toLowerCase();
-
-}
-
-
-function isAdmin(){
-
-  return role() === "administrateur";
-
-}
-
-
-function isTeacher(){
-
-  return (
-    role() === "administrateur" ||
-    role() === "professeur"
-  );
-
-}
-
-
-/* ================= LOGIN EMAIL ================= */
+function role(){ return String(currentUserData?.role || "").trim().toLowerCase(); }
+function isAdmin(){ return role() === "administrateur"; }
+function isTeacher(){ return role() === "administrateur" || role() === "professeur"; }
 
 window.connecter = async function(){
-
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
-
-
-  if(!email || !password){
-
-    showMessage(
-      "Tanpri antre email ak modpas ou."
-    );
-
-    return;
-  }
-
-
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  if(!email || !password){ showMessage("Tanpri antre email ak modpas ou."); return; }
   try{
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Email oswa modpas la pa kòrèk."
-    );
-
+    await signInWithEmailAndPassword(auth, email, password);
+  }catch(e){
+    console.error(e);
+    showMessage("Email oswa modpas la pa kòrèk.");
   }
-
 };
-
-
-/* ================= GOOGLE LOGIN ================= */
 
 window.connecterAvecGoogle = async function(){
-
   try{
-
-    await signInWithPopup(
-      auth,
-      provider
-    );
-
-  }catch(error){
-
-    console.error(
-      "Google Popup:",
-      error
-    );
-
-
+    await signInWithPopup(auth, provider);
+  }catch(e){
+    console.error("Google Popup:", e);
     try{
-
-      await signInWithRedirect(
-        auth,
-        provider
-      );
-
-    }catch(error2){
-
-      console.error(
-        "Google Redirect:",
-        error2
-      );
-
-      showMessage(
-        "Koneksyon Google pa reyisi."
-      );
-
+      await signInWithRedirect(auth, provider);
+    }catch(e2){
+      console.error("Google Redirect:", e2);
+      showMessage("Koneksyon Google pa reyisi.");
     }
-
   }
-
 };
-
-
-/* ================= REGISTER EMAIL ================= */
 
 window.registerAccount = async function(){
-
-  const nom =
-    document
-      .getElementById("registerName")
-      .value
-      .trim();
-
-  const email =
-    document
-      .getElementById("registerEmail")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("registerPassword")
-      .value;
-
-
-  if(!nom || !email || !password){
-
-    showMessage(
-      "Tanpri ranpli tout chan yo."
-    );
-
-    return;
-
-  }
-
-
-  if(password.length < 6){
-
-    showMessage(
-      "Modpas la dwe gen omwen 6 karaktè."
-    );
-
-    return;
-
-  }
-
-
+  const nom = document.getElementById("registerName").value.trim();
+  const email = document.getElementById("registerEmail").value.trim();
+  const password = document.getElementById("registerPassword").value;
+  if(!nom || !email || !password){ showMessage("Tanpri ranpli tout chan yo."); return; }
+  if(password.length < 6){ showMessage("Modpas la dwe gen omwen 6 karaktè."); return; }
   try{
-
-    const credential =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-
-    const user =
-      credential.user;
-
-
-    await setDoc(
-      doc(
-        db,
-        "users",
-        user.uid
-      ),
-      {
-
-        uid: user.uid,
-
-        email: user.email,
-
-        nom: nom,
-
-        role: "eleve",
-
-        status: "attente",
-
-        createdAt:
-          serverTimestamp()
-
-      }
-    );
-
-
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    await setDoc(doc(db, "users", credential.user.uid), {
+      uid: credential.user.uid,
+      email: credential.user.email,
+      nom: nom,
+      role: "eleve",
+      status: "attente",
+      createdAt: serverTimestamp()
+    });
     await signOut(auth);
-
-
-    showMessage(
-      "Kont la kreye. Administratè a dwe apwouve li."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Nou pa kapab kreye kont sa a."
-    );
-
+    showMessage("Kont la kreye. Administratè a dwe apwouve li.");
+  }catch(e){
+    console.error(e);
+    showMessage("Nou pa kapab kreye kont sa a.");
   }
-
 };
-
-
-/* ================= REGISTER GOOGLE ================= */
 
 window.registerGoogle = async function(){
-
   try{
-
-    const credential =
-      await signInWithPopup(
-        auth,
-        provider
-      );
-
-
-    const user =
-      credential.user;
-
-
-    const ref =
-      doc(
-        db,
-        "users",
-        user.uid
-      );
-
-
-    const old =
-      await getDoc(ref);
-
-
+    const credential = await signInWithPopup(auth, provider);
+    const ref = doc(db, "users", credential.user.uid);
+    const old = await getDoc(ref);
     if(!old.exists()){
-
-      await setDoc(
-        ref,
-        {
-
-          uid: user.uid,
-
-          email: user.email,
-
-          nom:
-            user.displayName || "",
-
-          role: "eleve",
-
-          status: "attente",
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
+      await setDoc(ref, {
+        uid: credential.user.uid,
+        email: credential.user.email,
+        nom: credential.user.displayName || "",
+        role: "eleve",
+        status: "attente",
+        createdAt: serverTimestamp()
+      });
     }
-
-
     await signOut(auth);
-
-
-    showMessage(
-      "Kont Google la kreye. Administratè a dwe apwouve li."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Enskripsyon Google pa reyisi."
-    );
-
+    showMessage("Kont Google la kreye. Administratè a dwe apwouve li.");
+  }catch(e){
+    console.error(e);
+    showMessage("Enskripsyon Google pa reyisi.");
   }
-
 };
-
-
-/* ================= USER PROFILE ================= */
 
 async function loadUserProfile(user){
-
   try{
-
-    const ref =
-      doc(
-        db,
-        "users",
-        user.uid
-      );
-
-
-    const snap =
-      await getDoc(ref);
-
-
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
     if(!snap.exists()){
-
-      await setDoc(
-        ref,
-        {
-
-          uid: user.uid,
-
-          email: user.email,
-
-          nom:
-            user.displayName || "",
-
-          role: "eleve",
-
-          status: "attente",
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-
+      await setDoc(ref, {
+        uid: user.uid,
+        email: user.email,
+        nom: user.displayName || "",
+        role: "eleve",
+        status: "attente",
+        createdAt: serverTimestamp()
+      });
       await signOut(auth);
-
-
-      showMessage(
-        "Kont ou anrejistre. Administratè a dwe apwouve li."
-      );
-
+      showMessage("Kont ou anrejistre. Administratè a dwe apwouve li.");
       return;
-
     }
-
-
-    currentUserData =
-      snap.data();
-
-
-    const r =
-      role();
-
-
-    const s =
-      String(
-        currentUserData.status || ""
-      )
-      .trim()
-      .toLowerCase();
-
-
+    currentUserData = snap.data();
+    const r = role();
+    const s = String(currentUserData.status || "").trim().toLowerCase();
     if(s !== "accepted"){
-
       await signOut(auth);
-
-
-      showMessage(
-        "Kont ou poko apwouve pa administratè a."
-      );
-
+      showMessage("Kont ou poko apwouve pa administratè a.");
       return;
-
     }
-
-
-    if(
-      ![
-        "administrateur",
-        "professeur",
-        "eleve"
-      ].includes(r)
-    ){
-
+    if(!["administrateur", "professeur", "eleve"].includes(r)){
       await signOut(auth);
-
-
-      showMessage(
-        "Wòl kont lan pa rekonèt."
-      );
-
+      showMessage("Wòl kont lan pa rekonèt.");
       return;
-
     }
-
-
     openApp();
-
-
-  }catch(error){
-
-    console.error(error);
-
+  }catch(e){
+    console.error(e);
     await signOut(auth);
-
-    showMessage(
-      "Nou pa kapab verifye kont ou kounye a."
-    );
-
+    showMessage("Nou pa kapab verifye kont ou kounye a.");
   }
-
 }
-
-
-/* ================= OPEN APP ================= */
 
 async function openApp(){
-
-  document
-    .getElementById("authPage")
-    .classList
-    .add("hidden");
-
-
-  document
-    .getElementById("app")
-    .classList
-    .remove("hidden");
-
-
-  document
-    .getElementById("userEmail")
-    .textContent =
-      currentUser.email || "";
-
-
-  document
-    .getElementById("userRole")
-    .textContent =
-      "Wòl: " +
-      (currentUserData.role || "");
-
-
+  document.getElementById("authPage").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  document.getElementById("userEmail").textContent = currentUser.email || "";
+  document.getElementById("userRole").textContent = "Wòl: " + (currentUserData.role || "");
   applyRoleAccess();
-
-
   await loadAllData();
-
 }
-
-
-/* ================= ROLE ACCESS ================= */
 
 function applyRoleAccess(){
-
-  document
-    .querySelectorAll(".adminOnly")
-    .forEach(element => {
-
-      element.style.display =
-        isAdmin()
-          ? ""
-          : "none";
-
-    });
-
-
-  document
-    .querySelectorAll(".teacherOnly")
-    .forEach(element => {
-
-      element.style.display =
-        isTeacher()
-          ? ""
-          : "none";
-
-    });
-
-
-  const panel =
-    document.getElementById(
-      "createDevoirPanel"
-    );
-
-
-  if(panel){
-
-    panel.style.display =
-      isTeacher()
-        ? ""
-        : "none";
-
-  }
-
+  document.querySelectorAll(".adminOnly").forEach(e => e.style.display = isAdmin() ? "" : "none");
+  document.querySelectorAll(".teacherOnly").forEach(e => e.style.display = isTeacher() ? "" : "none");
+  const panel = document.getElementById("createDevoirPanel");
+  if(panel) panel.style.display = isTeacher() ? "" : "none";
 }
 
-
-/* ================= NAVIGATION ================= */
-
-window.showSection =
-function(id,button){
-
-  document
-    .querySelectorAll(".section")
-    .forEach(section => {
-
-      section.classList
-        .remove("active");
-
-    });
-
-
-  const section =
-    document.getElementById(id);
-
-
-  if(section){
-
-    section.classList
-      .add("active");
-
-  }
-
-
-  document
-    .querySelectorAll(".menuBtn")
-    .forEach(btn => {
-
-      btn.classList
-        .remove("active");
-
-    });
-
-
-  if(button){
-
-    button.classList
-      .add("active");
-
-  }
-
+window.showSection = function(id, button){
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  const section = document.getElementById(id);
+  if(section) section.classList.add("active");
+  document.querySelectorAll(".menuBtn").forEach(b => b.classList.remove("active"));
+  if(button) button.classList.add("active");
 };
-
-
-/* ================= LOAD ALL ================= */
 
 async function loadAllData(){
-
   const r = role();
-
-
-  const tasks = [
-
-    loadDevoirs(),
-
-    loadResultats()
-
-  ];
-
-
-  if(
-    r === "administrateur" ||
-    r === "professeur"
-  ){
-
-    tasks.push(
-      loadEleves()
-    );
-
-    tasks.push(
-      loadRemises()
-    );
-
+  const tasks = [loadDevoirs(), loadResultats()];
+  if(r === "administrateur" || r === "professeur"){
+    tasks.push(loadEleves(), loadRemises());
   }
-
-
   if(r === "administrateur"){
-
-    tasks.push(
-      loadProfesseurs()
-    );
-
-    tasks.push(
-      loadClasses()
-    );
-
-    tasks.push(
-      loadMatieres()
-    );
-
-    tasks.push(
-      loadUsers()
-    );
-
+    tasks.push(loadProfesseurs(), loadClasses(), loadMatieres(), loadUsers());
   }
-
-
   await Promise.all(tasks);
-
-
   await updateStats();
-
 }
 
-
-/* ================= EMPTY CARD ================= */
-
-function emptyCard(icon,text){
-
-  return `
-
-    <div class="empty">
-
-      <div class="emptyIcon">
-        ${icon}
-      </div>
-
-      <div>
-        ${escapeHTML(text)}
-      </div>
-
-    </div>
-
-  `;
-
+function emptyCard(icon, text){
+  return `<div class="empty"><div class="emptyIcon">${icon}</div><div>${escapeHTML(text)}</div></div>`;
 }
-
-
-/* ================= LOGOUT ================= */
 
 window.logout = async function(){
-
-  try{
-
-    await signOut(auth);
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
+  try{ await signOut(auth); }catch(e){ console.error(e); }
 };
 
-
-/* ================= AUTH STATE ================= */
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if(user){
-
-      currentUser =
-        user;
-
-      await loadUserProfile(
-        user
-      );
-
-    }else{
-
-      currentUser =
-        null;
-
-      currentUserData =
-        null;
-
-
-      document
-        .getElementById("authPage")
-        .classList
-        .remove("hidden");
-
-
-      document
-        .getElementById("app")
-        .classList
-        .add("hidden");
-
-    }
-
-  }
-);
-
-
-/* ================= REDIRECT RESULT ================= */
-
-getRedirectResult(auth)
-  .then(async result => {
-
-    if(result?.user){
-
-      currentUser =
-        result.user;
-
-      await loadUserProfile(
-        result.user
-      );
-
-    }
-
-  })
-  .catch(error => {
-
-    console.error(
-      "Redirect:",
-      error
-    );
-
-  });
-
-
-/* ================= PWA INSTALL ================= */
-
-window.addEventListener(
-  "beforeinstallprompt",
-  event => {
-
-    event.preventDefault();
-
-    deferredPrompt =
-      event;
-
-
-    const button =
-      document.getElementById(
-        "installBtn"
-      );
-
-
-    if(button){
-
-      button.classList
-        .remove("hidden");
-
-    }
-
-  }
-);
-
-
-window.installApp =
-async function(){
-
-  if(!deferredPrompt){
-
-    alert(
-      "Aplikasyon an poko pare pou enstalasyon sou navigatè sa a."
-    );
-
-    return;
-
-  }
-
-
-  deferredPrompt.prompt();
-
-
-  const result =
-    await deferredPrompt.userChoice;
-
-
-  console.log(
-    "Installation:",
-    result.outcome
-  );
-
-
-  deferredPrompt =
-    null;
-
-
-  const button =
-    document.getElementById(
-      "installBtn"
-    );
-
-
-  if(button){
-
-    button.classList
-      .add("hidden");
-
-  }
-
-};
-
-
-/* ================= LANGUAGE ================= */
-
-window.changeLanguage =
-function(lang){
-
-  localStorage.setItem(
-    "language",
-    lang
-  );
-
-
-  const brand =
-    document.querySelector(
-      ".brand"
-    );
-
-
-  if(!brand) return;
-
-
-  if(lang === "fr"){
-
-    brand.textContent =
-      "📚 Système d'Apprentissage";
-
+onAuthStateChanged(auth, async user => {
+  if(user){
+    currentUser = user;
+    await loadUserProfile(user);
   }else{
-
-    brand.textContent =
-      "📚 Sistèm Aprantisaj";
-
+    currentUser = null;
+    currentUserData = null;
+    document.getElementById("authPage").classList.remove("hidden");
+    document.getElementById("app").classList.add("hidden");
   }
+});
 
-};
-
-
-/* ================= RESTORE LANGUAGE ================= */
-
-const savedLanguage =
-  localStorage.getItem(
-    "language"
-  );
-
-
-if(savedLanguage){
-
-  const select =
-    document.getElementById(
-      "languageSelect"
-    );
-
-
-  if(select){
-
-    select.value =
-      savedLanguage;
-
+getRedirectResult(auth).then(async result => {
+  if(result?.user){
+    currentUser = result.user;
+    await loadUserProfile(result.user);
   }
+}).catch(console.error);
 
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById("installBtn");
+  if(btn) btn.classList.remove("hidden");
+});
 
-  changeLanguage(
-    savedLanguage
-  );
-
-}
-
-
-/* ================= FILTER CARDS ================= */
-
-window.filterCards =
-function(inputId,listId){
-
-  const input =
-    document.getElementById(
-      inputId
-    );
-
-
-  const list =
-    document.getElementById(
-      listId
-    );
-
-
-  if(!input || !list)
+window.installApp = async function(){
+  if(!deferredPrompt){
+    alert("Aplikasyon an poko pare pou enstalasyon sou navigatè sa a.");
     return;
-
-
-  const search =
-    input.value
-      .trim()
-      .toLowerCase();
-
-
-  list
-    .querySelectorAll(".dataCard")
-    .forEach(card => {
-
-      const text =
-        card.textContent
-          .toLowerCase();
-
-
-      card.style.display =
-        text.includes(search)
-          ? ""
-          : "none";
-
-    });
-
+  }
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  const btn = document.getElementById("installBtn");
+  if(btn) btn.classList.add("hidden");
 };
 
+window.changeLanguage = function(lang){
+  localStorage.setItem("language", lang);
+  const brand = document.querySelector(".brand");
+  if(!brand) return;
+  brand.textContent = lang === "fr" ? "📚 Système d'Apprentissage" : "📚 Sistèm Aprantisaj";
+};
 
-/* ================= SERVICE WORKER ================= */
-
-if(
-  "serviceWorker" in navigator
-){
-
-  window.addEventListener(
-    "load",
-    () => {
-
-      navigator.serviceWorker
-        .register(
-          "./service-worker.js"
-        )
-        .catch(error => {
-
-          console.log(
-            "Service Worker:",
-            error
-          );
-
-        });
-
-    }
-  );
-
+const savedLanguage = localStorage.getItem("language");
+if(savedLanguage){
+  const select = document.getElementById("languageSelect");
+  if(select) select.value = savedLanguage;
+  changeLanguage(savedLanguage);
 }
 
-/* ================= ELEVES ================= */
+window.filterCards = function(inputId, listId){
+  const input = document.getElementById(inputId);
+  const list = document.getElementById(listId);
+  if(!input || !list) return;
+  const search = input.value.trim().toLowerCase();
+  list.querySelectorAll(".dataCard").forEach(card => {
+    card.style.display = card.textContent.toLowerCase().includes(search) ? "" : "none";
+  });
+};
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(console.error);
+  });
+}
 
 async function loadEleves(){
-
-  const box =
-    document.getElementById("listeEleves");
-
+  const box = document.getElementById("listeEleves");
   if(!box) return;
-
-  box.innerHTML =
-    emptyCard("⏳","Chaje elèv yo...");
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje elèv yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(db,"eleves")
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "👨‍🎓",
-          "Pa gen elèv pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = await getDocs(collection(db, "eleves"));
+    box.innerHTML = snap.empty ? emptyCard("👨‍🎓", "Pa gen elèv pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
+      const data = item.data(), id = item.id;
       box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            (data.nom || "") +
-            " " +
-            (data.classe || "")
-          )}"
-        >
-
-          <div class="cardIcon">
-            👨‍🎓
-          </div>
-
+        <div class="dataCard">
+          <div class="cardIcon">👨‍🎓</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <strong>Klas:</strong>
-              ${escapeHTML(
-                data.classe || "Pa defini"
-              )}
-            </p>
-
-            <p>
-              <strong>ID:</strong>
-              ${escapeHTML(id)}
-            </p>
-
+            <h3>${escapeHTML(data.nom || "San non")}</h3>
+            <p><strong>Klas:</strong> ${escapeHTML(data.classe || "Pa defini")}</p>
+            <p><strong>ID:</strong> ${escapeHTML(id)}</p>
           </div>
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteEleve('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteEleve('${id}')">🗑️ Efase</button></div>` : ""}
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ ELEVES:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje elèv yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje elèv yo.");
   }
-
 }
 
-
-/* ================= AJOUTER ELEVE ================= */
-
-window.ajouterEleve =
-async function(){
-  console.log("AJOUTER ELEVE AP KOURI");
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute elèv."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("eleveNom")
-      .value
-      .trim();
-
-
-  const classe =
-    document
-      .getElementById("eleveClasse")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non elèv la."
-    );
-
-    return;
-
-  }
-
-
+window.ajouterEleve = async function(){
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute elèv."); return; }
+  const nom = document.getElementById("eleveNom").value.trim();
+  const classe = document.getElementById("eleveClasse").value.trim();
+  if(!nom){ alert("Tanpri antre non elèv la."); return; }
   try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "eleves",
-        "eleve_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        classe: classe,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("eleveNom")
-      .value = "";
-
-
-    document
-      .getElementById("eleveClasse")
-      .value = "";
-
-
+    await setDoc(doc(db, "eleves", "eleve_" + Date.now()), {
+      nom: nom,
+      classe: classe,
+      createdAt: serverTimestamp(),
+      createdBy: currentUser.uid
+    });
+    document.getElementById("eleveNom").value = "";
+    document.getElementById("eleveClasse").value = "";
     await loadEleves();
-
     await updateStats();
-
-
-    alert(
-      "✅ Elèv la ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute elèv la."
-    );
-
+    alert("✅ Elèv la ajoute avèk siksè.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab ajoute elèv la.");
   }
-
 };
-
-
-/* ================= PROFESSEURS ================= */
 
 async function loadProfesseurs(){
-
-  const box =
-    document.getElementById(
-      "listeProfesseurs"
-    );
-
+  const box = document.getElementById("listeProfesseurs");
   if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje pwofesè yo..."
-    );
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje pwofesè yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "professeurs"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "👨‍🏫",
-          "Pa gen pwofesè pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = await getDocs(collection(db, "professeurs"));
+    box.innerHTML = snap.empty ? emptyCard("👨‍🏫", "Pa gen pwofesè pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
+      const data = item.data(), id = item.id;
       box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            (data.nom || "") +
-            " " +
-            (data.email || "") +
-            " " +
-            (data.matiere || "")
-          )}"
-        >
-
-          <div class="cardIcon">
-            👨‍🏫
-          </div>
-
+        <div class="dataCard">
+          <div class="cardIcon">👨‍🏫</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <strong>Email:</strong>
-              ${escapeHTML(
-                data.email || "Pa gen email"
-              )}
-            </p>
-
-            <p>
-              <strong>Matyè:</strong>
-              ${escapeHTML(
-                data.matiere || "Pa defini"
-              )}
-            </p>
-
+            <h3>${escapeHTML(data.nom || "San non")}</h3>
+            <p><strong>Email:</strong> ${escapeHTML(data.email || "Pa gen email")}</p>
+            <p><strong>Matyè:</strong> ${escapeHTML(data.matiere || "Pa defini")}</p>
           </div>
-
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteProfesseur('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteProfesseur('${id}')">🗑️ Efase</button></div>` : ""}
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ PROFESSEURS:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje pwofesè yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje pwofesè yo.");
   }
-
 }
 
-
-/* ================= AJOUTER PROFESSEUR ================= */
-
-window.ajouterProfesseur =
-async function(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute pwofesè."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("profNom")
-      .value
-      .trim();
-
-
-  const email =
-    document
-      .getElementById("profEmail")
-      .value
-      .trim();
-
-
-  const matiere =
-    document
-      .getElementById("profMatiere")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non pwofesè a."
-    );
-
-    return;
-
-  }
-
-
+window.ajouterProfesseur = async function(){
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute pwofesè."); return; }
+  const nom = document.getElementById("profNom").value.trim();
+  const email = document.getElementById("profEmail").value.trim();
+  const matiere = document.getElementById("profMatiere").value.trim();
+  if(!nom){ alert("Tanpri antre non pwofesè a."); return; }
   try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "professeurs",
-        "professeur_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        email: email,
-
-        matiere: matiere,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("profNom")
-      .value = "";
-
-
-    document
-      .getElementById("profEmail")
-      .value = "";
-
-
-    document
-      .getElementById("profMatiere")
-      .value = "";
-
-
+    await setDoc(doc(db, "professeurs", "professeur_" + Date.now()), {
+      nom: nom, email: email, matiere: matiere, createdAt: serverTimestamp(), createdBy: currentUser.uid
+    });
+    document.getElementById("profNom").value = "";
+    document.getElementById("profEmail").value = "";
+    document.getElementById("profMatiere").value = "";
     await loadProfesseurs();
-
     await updateStats();
-
-
-    alert(
-      "✅ Pwofesè a ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute pwofesè a."
-    );
-
+    alert("✅ Pwofesè a ajoute avèk siksè.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab ajoute pwofesè a.");
   }
-
 };
-
-
-/* ================= KLAS ================= */
 
 async function loadClasses(){
-
-  const box =
-    document.getElementById(
-      "listeClasses"
-    );
-
+  const box = document.getElementById("listeClasses");
   if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje klas yo..."
-    );
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje klas yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "classes"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "🏫",
-          "Pa gen klas pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = await getDocs(collection(db, "classes"));
+    box.innerHTML = snap.empty ? emptyCard("🏫", "Pa gen klas pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
+      const data = item.data(), id = item.id;
       box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            data.nom || ""
-          )}"
-        >
-
-          <div class="cardIcon">
-            🏫
-          </div>
-
+        <div class="dataCard">
+          <div class="cardIcon">🏫</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <strong>ID:</strong>
-              ${escapeHTML(id)}
-            </p>
-
-            <p>
-              <span class="badge">
-                Aktif
-              </span>
-            </p>
-
+            <h3>${escapeHTML(data.nom || "San non")}</h3>
+            <p><strong>ID:</strong> ${escapeHTML(id)}</p>
+            <p><span class="badge badgeBlue">Aktif</span></p>
           </div>
-
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteClasse('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteClasse('${id}')">🗑️ Efase</button></div>` : ""}
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ CLASSES:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje klas yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje klas yo.");
   }
-
 }
 
-
-/* ================= AJOUTER KLAS ================= */
-
-window.ajouterClasse =
-async function(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute klas."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("classeNom")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non klas la."
-    );
-
-    return;
-
-  }
-
-
+window.ajouterClasse = async function(){
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute klas."); return; }
+  const nom = document.getElementById("classeNom").value.trim();
+  if(!nom){ alert("Tanpri antre non klas la."); return; }
   try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "classes",
-        "classe_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        active: true,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("classeNom")
-      .value = "";
-
-
+    await setDoc(doc(db, "classes", "classe_" + Date.now()), {
+      nom: nom, active: true, createdAt: serverTimestamp(), createdBy: currentUser.uid
+    });
+    document.getElementById("classeNom").value = "";
     await loadClasses();
-
     await updateStats();
-
-
-    alert(
-      "✅ Klas la ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute klas la."
-    );
-
+    alert("✅ Klas la ajoute avèk siksè.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab ajoute klas la.");
   }
-
 };
-
-
-/* ================= MATIERES ================= */
 
 async function loadMatieres(){
-
-  const box =
-    document.getElementById(
-      "listeMatieres"
-    );
-
+  const box = document.getElementById("listeMatieres");
   if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje matyè yo..."
-    );
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje matyè yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "matieres"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "📚",
-          "Pa gen matyè pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = await getDocs(collection(db, "matieres"));
+    box.innerHTML = snap.empty ? emptyCard("📚", "Pa gen matyè pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
+      const data = item.data(), id = item.id;
       box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            data.nom || ""
-          )}"
-        >
-
-          <div class="cardIcon">
-            📚
-          </div>
-
+        <div class="dataCard">
+          <div class="cardIcon">📚</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <span class="badge">
-                Aktif
-              </span>
-            </p>
-
+            <h3>${escapeHTML(data.nom || "San non")}</h3>
+            <p><span class="badge badgeBlue">Aktif</span></p>
           </div>
-
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteMatiere('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteMatiere('${id}')">🗑️ Efase</button></div>` : ""}
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ MATIERES:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje matyè yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje matyè yo.");
   }
-
 }
 
-
-/* ================= AJOUTER MATIERE ================= */
-
-window.ajouterMatiere =
-async function(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute matyè."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("matiereNom")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non matyè a."
-    );
-
-    return;
-
-  }
-
-
+window.ajouterMatiere = async function(){
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute matyè."); return; }
+  const nom = document.getElementById("matiereNom").value.trim();
+  if(!nom){ alert("Tanpri antre non matyè a."); return; }
   try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "matieres",
-        "matiere_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        active: true,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("matiereNom")
-      .value = "";
-
-
+    await setDoc(doc(db, "matieres", "matiere_" + Date.now()), {
+      nom: nom, active: true, createdAt: serverTimestamp(), createdBy: currentUser.uid
+    });
+    document.getElementById("matiereNom").value = "";
     await loadMatieres();
-
     await updateStats();
-
-
-    alert(
-      "✅ Matyè a ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute matyè a."
-    );
-
+    alert("✅ Matyè a ajoute avèk siksè.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab ajoute matyè a.");
   }
-
 };
-
-/* ================= DEVOIRS ================= */
 
 async function loadDevoirs(){
-
-  const box =
-    document.getElementById(
-      "listeDevoirs"
-    );
-
+  const box = document.getElementById("listeDevoirs");
   if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje devwa yo..."
-    );
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje devwa yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "devoirs"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "📝",
-          "Pa gen devwa pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = await getDocs(collection(db, "devoirs"));
+    box.innerHTML = snap.empty ? emptyCard("📝", "Pa gen devwa pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
-      const title =
-        data.titre ||
-        "San tit";
-
-
-      const matiere =
-        data.matiere ||
-        "Pa defini";
-
-
-      const classe =
-        data.classe ||
-        "Pa defini";
-
-
-      const duree =
-        data.duree ||
-        0;
-
-
-      const tentatives =
-        data.maxTentatives ||
-        1;
-
-
+      const data = item.data(), id = item.id;
       let action = "";
-
-
       if(role() === "eleve"){
-
-        action = `
-
-          <button
-            class="smallBtn edit"
-            onclick="ouvrirRemetDevoir('${id}')"
-          >
-            📤 Fè epi remèt
-          </button>
-
-        `;
-
+        action += `<button class="smallBtn edit" onclick="ouvrirRemetDevoir('${id}')">📤 Fè epi remèt</button>`;
       }
-
-
       if(isAdmin() || role() === "professeur"){
-
-        action += `
-
-          <button
-            class="smallBtn refuse"
-            onclick="deleteDevoir('${id}')"
-          >
-            🗑️ Efase
-          </button>
-
-        `;
-
+        action += `<button class="smallBtn refuse" onclick="deleteDevoir('${id}')">🗑️ Efase</button>`;
       }
-
-
       box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            title +
-            " " +
-            matiere +
-            " " +
-            classe
-          )}"
-        >
-
-          <div class="cardIcon">
-            📝
-          </div>
-
-
+        <div class="dataCard">
+          <div class="cardIcon">📝</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(title)}
-            </h3>
-
-
-            <p>
-              <strong>Matyè:</strong>
-              ${escapeHTML(matiere)}
-            </p>
-
-
-            <p>
-              <strong>Klas:</strong>
-              ${escapeHTML(classe)}
-            </p>
-
-
-            <p>
-              <strong>Dire:</strong>
-              ${escapeHTML(duree)} minit
-            </p>
-
-
-            <p>
-              <strong>Tantativ:</strong>
-              ${escapeHTML(tentatives)}
-            </p>
-
-
-            <div class="cardActions">
-
-              ${action}
-
-            </div>
-
+            <h3>${escapeHTML(data.titre || "San tit")}</h3>
+            <p><strong>Matyè:</strong> ${escapeHTML(data.matiere || "Pa defini")}</p>
+            <p><strong>Klas:</strong> ${escapeHTML(data.classe || "Pa defini")}</p>
+            <p><strong>Dire:</strong> ${escapeHTML(data.duree || 0)} minit</p>
+            <p><strong>Tantativ:</strong> ${escapeHTML(data.maxTentatives || 1)}</p>
+            <div class="cardActions">${action}</div>
           </div>
-
-        </div>
-
-      `;
-
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ DEVOIRS:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje devwa yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje devwa yo.");
   }
-
 }
 
-
-/* ================= AJOUTER DEVOIR ================= */
-
-window.ajouterDevoir =
-async function(){
-
-  if(!isTeacher()){
-
-    alert(
-      "Se pwofesè oswa administratè sèlman ki ka kreye devwa."
-    );
-
-    return;
-
-  }
-
-
-  const titre =
-    document
-      .getElementById("devoirTitre")
-      .value
-      .trim();
-
-
-  const matiere =
-    document
-      .getElementById("devoirMatiere")
-      .value
-      .trim();
-
-
-  const classe =
-    document
-      .getElementById("devoirClasse")
-      .value
-      .trim();
-
-
-  const duree =
-    Number(
-      document
-        .getElementById("devoirDuree")
-        .value
-    ) || 30;
-
-
-  const maxTentatives =
-    Number(
-      document
-        .getElementById("devoirTentatives")
-        .value
-    ) || 1;
-
-
-  if(!titre){
-
-    alert(
-      "Tanpri antre tit devwa a."
-    );
-
-    return;
-
-  }
-
-
+window.ajouterDevoir = async function(){
+  if(!isTeacher()){ alert("Se pwofesè oswa administratè sèlman ki ka kreye devwa."); return; }
+  const titre = document.getElementById("devoirTitre").value.trim();
+  const matiere = document.getElementById("devoirMatiere").value.trim();
+  const classe = document.getElementById("devoirClasse").value.trim();
+  const duree = Number(document.getElementById("devoirDuree").value) || 30;
+  const maxTentatives = Number(document.getElementById("devoirTentatives").value) || 1;
+  if(!titre){ alert("Tanpri antre tit devwa a."); return; }
   try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "devoirs",
-        "devoir_" + Date.now()
-      ),
-
-      {
-
-        titre: titre,
-
-        matiere: matiere,
-
-        classe: classe,
-
-        duree: duree,
-
-        maxTentatives:
-          maxTentatives,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("devoirTitre")
-      .value = "";
-
-
-    document
-      .getElementById("devoirMatiere")
-      .value = "";
-
-
-    document
-      .getElementById("devoirClasse")
-      .value = "";
-
-
+    await setDoc(doc(db, "devoirs", "devoir_" + Date.now()), {
+      titre: titre, matiere: matiere, classe: classe, duree: duree, maxTentatives: maxTentatives, createdAt: serverTimestamp(), createdBy: currentUser.uid
+    });
+    document.getElementById("devoirTitre").value = "";
+    document.getElementById("devoirMatiere").value = "";
+    document.getElementById("devoirClasse").value = "";
     await loadDevoirs();
-
     await updateStats();
-
-
-    alert(
-      "✅ Devwa a kreye avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab kreye devwa a."
-    );
-
+    alert("✅ Devwa a kreye avèk siksè.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab kreye devwa a.");
   }
-
 };
 
-
-/* ================= OUVRI REMET DEVWA ================= */
-
-window.ouvrirRemetDevoir =
-async function(devoirId){
-
-  if(role() !== "eleve"){
-
-    return;
-
-  }
-
-
+window.ouvrirRemetDevoir = async function(devoirId){
+  if(role() !== "eleve") return;
   try{
-
-    const ref =
-      doc(
-        db,
-        "devoirs",
-        devoirId
-      );
-
-
-    const snap =
-      await getDoc(ref);
-
-
-    if(!snap.exists()){
-
-      alert(
-        "Devwa sa a pa egziste ankò."
-      );
-
-      return;
-
-    }
-
-
-    const data =
-      snap.data();
-
-
-    document
-      .getElementById(
-        "remetDevoirId"
-      )
-      .value =
-        devoirId;
-
-
-    document
-      .getElementById(
-        "remetDevoirInfo"
-      )
-      .innerHTML = `
-
-        <div class="infoBox">
-
-          <h3>
-            ${escapeHTML(
-              data.titre || "Devwa"
-            )}
-          </h3>
-
-          <p>
-            <strong>Matyè:</strong>
-            ${escapeHTML(
-              data.matiere || "Pa defini"
-            )}
-          </p>
-
-          <p>
-            <strong>Klas:</strong>
-            ${escapeHTML(
-              data.classe || "Pa defini"
-            )}
-          </p>
-
-          <p>
-            <strong>Dire:</strong>
-            ${escapeHTML(
-              data.duree || 0
-            )} minit
-          </p>
-
-        </div>
-
-      `;
-
-
-    document
-      .getElementById(
-        "remetReponse"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "remetTemps"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "remetModal"
-      )
-      .classList
-      .remove("hidden");
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ouvri devwa sa a."
-    );
-
+    const snap = await getDoc(doc(db, "devoirs", devoirId));
+    if(!snap.exists()){ alert("Devwa sa a pa egziste ankò."); return; }
+    const data = snap.data();
+    document.getElementById("remetDevoirId").value = devoirId;
+    document.getElementById("remetDevoirInfo").innerHTML = `
+      <div class="infoBox">
+        <h3>${escapeHTML(data.titre || "Devwa")}</h3>
+        <p><strong>Matyè:</strong> ${escapeHTML(data.matiere || "Pa defini")}</p>
+        <p><strong>Klas:</strong> ${escapeHTML(data.classe || "Pa defini")}</p>
+        <p><strong>Dire:</strong> ${escapeHTML(data.duree || 0)} minit</p>
+      </div>`;
+    document.getElementById("remetReponse").value = "";
+    document.getElementById("remetTemps").value = "";
+    document.getElementById("remetModal").classList.remove("hidden");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab ouvri devwa sa a.");
   }
-
 };
 
-
-/* ================= FERMER MODAL ================= */
-
-window.fermerRemetModal =
-function(){
-
-  document
-    .getElementById(
-      "remetModal"
-    )
-    .classList
-    .add("hidden");
-
+window.fermerRemetModal = function(){
+  document.getElementById("remetModal").classList.add("hidden");
 };
 
-
-/* ================= ENVOYE REMISE ================= */
-
-window.envoyerRemise =
-async function(){
-
-  if(role() !== "eleve"){
-
-    alert(
-      "Se elèv yo sèlman ki ka remèt devwa."
-    );
-
-    return;
-
-  }
-
-
-  const devoirId =
-    document
-      .getElementById(
-        "remetDevoirId"
-      )
-      .value;
-
-
-  const reponse =
-    document
-      .getElementById(
-        "remetReponse"
-      )
-      .value
-      .trim();
-
-
-  const temps =
-    Number(
-      document
-        .getElementById(
-          "remetTemps"
-        )
-        .value
-    ) || 0;
-
-
-  if(!devoirId){
-
-    alert(
-      "Devwa a pa idantifye."
-    );
-
-    return;
-
-  }
-
-
-  if(!reponse){
-
-    alert(
-      "Tanpri ekri repons oswa travay ou."
-    );
-
-    return;
-
-  }
-
-
+window.envoyerRemise = async function(){
+  if(role() !== "eleve"){ alert("Se elèv yo sèlman ki ka remèt devwa."); return; }
+  const devoirId = document.getElementById("remetDevoirId").value;
+  const reponse = document.getElementById("remetReponse").value.trim();
+  const temps = Number(document.getElementById("remetTemps").value) || 0;
+  if(!devoirId || !reponse){ alert("Tanpri ranpli repons lan kòrèkteman."); return; }
   try{
-
-    const devoirSnap =
-      await getDoc(
-        doc(
-          db,
-          "devoirs",
-          devoirId
-        )
-      );
-
-
-    if(!devoirSnap.exists()){
-
-      alert(
-        "Devwa sa a pa egziste ankò."
-      );
-
+    const devoirSnap = await getDoc(doc(db, "devoirs", devoirId));
+    if(!devoirSnap.exists()){ alert("Devwa sa a pa egziste ankò."); return; }
+    const devoir = devoirSnap.data();
+    const tentativesSnap = await getDocs(query(collection(db, "tentatives"), where("eleveId", "==", currentUser.uid), where("devoirId", "==", devoirId)));
+    if(tentativesSnap.size >= Number(devoir.maxTentatives || 1)){
+      alert("Ou rive nan kantite tantativ ki pèmèt pou devwa sa a.");
       return;
-
     }
-
-
-    const devoir =
-      devoirSnap.data();
-
-
-    const tentativesSnap =
-      await getDocs(
-
-        query(
-
-          collection(
-            db,
-            "tentatives"
-          ),
-
-          where(
-            "eleveId",
-            "==",
-            currentUser.uid
-          ),
-
-          where(
-            "devoirId",
-            "==",
-            devoirId
-          )
-
-        )
-
-      );
-
-
-    const maxTentatives =
-      Number(
-        devoir.maxTentatives || 1
-      );
-
-
-    if(
-      tentativesSnap.size >=
-      maxTentatives
-    ){
-
-      alert(
-        "Ou rive nan kantite tantativ ki pèmèt pou devwa sa a."
-      );
-
-      return;
-
-    }
-
-
-    const tentativeId =
-      "tentative_" +
-      Date.now();
-
-
-    await setDoc(
-
-      doc(
-        db,
-        "tentatives",
-        tentativeId
-      ),
-
-      {
-
-        devoirId:
-          devoirId,
-
-        devoirTitre:
-          devoir.titre || "",
-
-        eleveId:
-          currentUser.uid,
-
-        eleveEmail:
-          currentUser.email || "",
-
-        reponse:
-          reponse,
-
-        temps:
-          temps,
-
-        numeroTentative:
-          tentativesSnap.size + 1,
-
-        status:
-          "soumis",
-
-        score:
-          null,
-
-        noteFinale:
-          null,
-
-        commentaire:
-          "",
-
-        submittedAt:
-          serverTimestamp(),
-
-        correctedAt:
-          null,
-
-        correctedBy:
-          null
-
-      }
-
-    );
-
-
-    document
-      .getElementById(
-        "remetReponse"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "remetTemps"
-      )
-      .value = "";
-
-
+    await setDoc(doc(db, "tentatives", "tentative_" + Date.now()), {
+      devoirId: devoirId,
+      devoirTitre: devoir.titre || "",
+      eleveId: currentUser.uid,
+      eleveEmail: currentUser.email || "",
+      reponse: reponse,
+      temps: temps,
+      numeroTentative: tentativesSnap.size + 1,
+      status: "soumis",
+      score: null, noteFinale: null, commentaire: "",
+      submittedAt: serverTimestamp(), correctedAt: null, correctedBy: null
+    });
     fermerRemetModal();
-
-
-    alert(
-      "✅ Travay la voye avèk siksè."
-    );
-
-
+    alert("✅ Travay la voye avèk siksè.");
     await loadResultats();
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ REMISE:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab voye travay la."
-    );
-
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab voye travay la.");
   }
-
 };
-
-
-/* ================= REMISES ================= */
 
 async function loadRemises(){
-
-  const box =
-    document.getElementById(
-      "listeRemises"
-    );
-
+  const box = document.getElementById("listeRemises");
   if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje travay elèv yo..."
-    );
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje travay elèv yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "tentatives"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "📤",
-          "Pa gen travay remèt pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = await getDocs(collection(db, "tentatives"));
+    box.innerHTML = snap.empty ? emptyCard("📤", "Pa gen travay remèt pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-
-      const id =
-        item.id;
-
-
-      const score =
-        data.noteFinale ??
-        data.score;
-
-
-      const status =
-        String(
-          data.status || "soumis"
-        );
-
-
+      const data = item.data(), id = item.id;
+      const score = data.noteFinale ?? data.score;
       box.innerHTML += `
-
         <div class="dataCard">
-
-          <div class="cardIcon">
-            📤
-          </div>
-
-
+          <div class="cardIcon">📤</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.devoirTitre ||
-                "Devwa"
-              )}
-            </h3>
-
-
-            <p>
-              <strong>Elèv:</strong>
-              ${escapeHTML(
-                data.eleveEmail ||
-                data.eleveId ||
-                "Pa defini"
-              )}
-            </p>
-
-
-            <p>
-              <strong>Repons:</strong>
-            </p>
-
-
-            <div class="responseBox">
-              ${escapeHTML(
-                data.reponse || ""
-              )}
-            </div>
-
-
-            <p>
-              <strong>Tan:</strong>
-              ${escapeHTML(
-                data.temps || 0
-              )} minit
-            </p>
-
-
-            <p>
-              <strong>Status:</strong>
-              ${escapeHTML(status)}
-            </p>
-
-
+            <h3>${escapeHTML(data.devoirTitre || "Devwa")}</h3>
+            <p><strong>Elèv:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || "Pa defini")}</p>
+            <p><strong>Repons:</strong></p>
+            <div style="background:#f8fafc;padding:10px;border-radius:8px;margin:5px 0;">${escapeHTML(data.reponse || "")}</div>
+            <p><strong>Tan:</strong> ${escapeHTML(data.temps || 0)} minit</p>
+            <p><strong>Status:</strong> ${escapeHTML(data.status || "soumis")}</p>
             <div class="field">
-
-              <label>
-                Nòt /100
-              </label>
-
-              <input
-                id="score_${id}"
-                type="number"
-                min="0"
-                max="100"
-                value="${
-                  score === null ||
-                  score === undefined
-                    ? ""
-                    : escapeHTML(score)
-                }"
-                placeholder="Egzanp: 15"
-              >
-
+              <label>Nòt /100</label>
+              <input id="score_${id}" type="number" min="0" max="100" value="${score ?? ""}" placeholder="Egzanp: 15">
             </div>
-
-
             <div class="field">
-
-              <label>
-                Kòmantè pwofesè
-              </label>
-
-              <textarea
-                id="comment_${id}"
-                rows="4"
-                placeholder="Ekri yon kòmantè..."
-              >${escapeHTML(
-                data.commentaire || ""
-              )}</textarea>
-
+              <label>Kòmantè pwofesè</label>
+              <textarea id="comment_${id}" rows="3" placeholder="Ekri yon kòmantè...">${escapeHTML(data.commentaire || "")}</textarea>
             </div>
-
-
             <div class="cardActions">
-
-              <button
-                class="smallBtn edit"
-                onclick="corrigerRemise('${id}')"
-              >
-                💾 Sove koreksyon
-              </button>
-
-
-              ${
-                isAdmin()
-                ? `
-
-                  <button
-                    class="smallBtn refuse"
-                    onclick="deleteRemise('${id}')"
-                  >
-                    🗑️ Efase
-                  </button>
-
-                `
-                : ""
-              }
-
+              <button class="smallBtn edit" onclick="corrigerRemise('${id}')">💾 Sove koreksyon</button>
+              ${isAdmin() ? `<button class="smallBtn refuse" onclick="deleteRemise('${id}')">🗑️ Efase</button>` : ""}
             </div>
-
           </div>
-
-        </div>
-
-      `;
-
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ REMISES:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje travay yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje travay yo.");
   }
-
 }
 
-
-/* ================= CORRIGER REMISE ================= */
-
-window.corrigerRemise =
-async function(id){
-
-  if(!isTeacher()){
-
-    alert(
-      "Se pwofesè oswa administratè sèlman ki ka korije travay."
-    );
-
-    return;
-
-  }
-
-
-  const scoreInput =
-    document.getElementById(
-      "score_" + id
-    );
-
-
-  const commentInput =
-    document.getElementById(
-      "comment_" + id
-    );
-
-
-  if(!scoreInput){
-
-    alert(
-      "Chan nòt la pa jwenn."
-    );
-
-    return;
-
-  }
-
-
-  let score =
-    Number(
-      scoreInput.value
-    );
-
-
-  if(
-    Number.isNaN(score) ||
-    score < 0 ||
-    score > 100
-  ){
-
-    alert(
-      "Nòt la dwe ant 0 ak 100."
-    );
-
-    return;
-
-  }
-
-
-  const commentaire =
-    commentInput
-      ? commentInput.value.trim()
-      : "";
-
-
+window.corrigerRemise = async function(id){
+  if(!isTeacher()){ alert("Se pwofesè oswa administratè sèlman ki ka korije travay."); return; }
+  const scoreInput = document.getElementById("score_" + id);
+  const commentInput = document.getElementById("comment_" + id);
+  let score = Number(scoreInput?.value);
+  if(isNaN(score) || score < 0 || score > 100){ alert("Nòt la dwe ant 0 ak 100."); return; }
+  const commentaire = commentInput ? commentInput.value.trim() : "";
   try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "tentatives",
-        id
-      ),
-
-      {
-
-        score:
-          score,
-
-        noteFinale:
-          score,
-
-        commentaire:
-          commentaire,
-
-        status:
-          "corrige",
-
-        correctedAt:
-          serverTimestamp(),
-
-        correctedBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    await setDoc(
-
-      doc(
-        db,
-        "resultats",
-        id
-      ),
-
-      {
-
-        tentativeId:
-          id,
-
-        devoirId:
-          "",
-
-        eleveId:
-          "",
-
-        score:
-          score,
-
-        note:
-          score,
-
-        noteFinale:
-          score,
-
-        commentaire:
-          commentaire,
-
-        updatedAt:
-          serverTimestamp(),
-
-        updatedBy:
-          currentUser.uid
-
-      },
-
-      {
-        merge: true
-      }
-
-    );
-
-
-    alert(
-      "✅ Koreksyon an sove."
-    );
-
-
+    await updateDoc(doc(db, "tentatives", id), {
+      score: score, noteFinale: score, commentaire: commentaire, status: "corrige", correctedAt: serverTimestamp(), correctedBy: currentUser.uid
+    });
+    await setDoc(doc(db, "resultats", id), {
+      tentativeId: id, score: score, note: score, noteFinale: score, commentaire: commentaire, updatedAt: serverTimestamp(), updatedBy: currentUser.uid
+    }, { merge: true });
+    alert("✅ Koreksyon an sove.");
     await loadRemises();
-
     await loadResultats();
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ KOREKSYON:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab sove koreksyon an."
-    );
-
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab sove koreksyon an.");
   }
-
 };
-
-/* ================= RESULTATS ================= */
 
 async function loadResultats(){
-
-  const box =
-    document.getElementById(
-      "listeResultats"
-    );
-
+  const box = document.getElementById("listeResultats");
   if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje rezilta yo..."
-    );
-
-
+  box.innerHTML = emptyCard("⏳", "Chaje rezilta yo...");
   try{
-
     const r = role();
-
-    let snap;
-
-
-    /*
-      Elèv la pa bezwen li tout rezilta
-      lòt elèv yo.
-    */
-
-    if(r === "eleve"){
-
-      snap =
-        await getDocs(
-
-          query(
-
-            collection(
-              db,
-              "resultats"
-            ),
-
-            where(
-              "eleveId",
-              "==",
-              currentUser.uid
-            )
-
-          )
-
-        );
-
-    }else{
-
-      snap =
-        await getDocs(
-          collection(
-            db,
-            "resultats"
-          )
-        );
-
-    }
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "🏆",
-          "Pa gen rezilta pou kounye a."
-        );
-
-      return;
-
-    }
-
-
+    const snap = r === "eleve"
+      ? await getDocs(query(collection(db, "resultats"), where("eleveId", "==", currentUser.uid)))
+      : await getDocs(collection(db, "resultats"));
+    box.innerHTML = snap.empty ? emptyCard("🏆", "Pa gen rezilta pou kounye a.") : "";
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-
-      const id =
-        item.id;
-
-
-      const note =
-        data.noteFinale ??
-        data.note ??
-        data.score;
-
-
-      const noteText =
-        note === null ||
-        note === undefined ||
-        note === ""
-          ? "Pa korije"
-          : Number(note).toFixed(0) + "/100";
-
-
+      const data = item.data(), id = item.id;
+      const note = data.noteFinale ?? data.note ?? data.score;
+      const noteText = (note === null || note === undefined || note === "") ? "Pa korije" : Number(note).toFixed(0) + "/100";
       box.innerHTML += `
-
         <div class="dataCard">
-
-          <div class="cardIcon">
-            🏆
-          </div>
-
-
+          <div class="cardIcon">🏆</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.devoirTitre ||
-                "Rezilta devwa"
-              )}
-            </h3>
-
-
-            ${
-              r !== "eleve"
-              ? `
-
-                <p>
-                  <strong>Elèv:</strong>
-                  ${escapeHTML(
-                    data.eleveEmail ||
-                    data.eleveId ||
-                    "Pa defini"
-                  )}
-                </p>
-
-              `
-              : ""
-            }
-
-
-            <div
-              style="
-                font-size:28px;
-                font-weight:800;
-                margin:12px 0;
-              "
-            >
-              ${escapeHTML(noteText)}
-            </div>
-
-
-            <p>
-              <strong>Kòmantè:</strong>
-              ${
-                escapeHTML(
-                  data.commentaire ||
-                  "Pa gen kòmantè."
-                )
-              }
-            </p>
-
-
-            ${
-              isAdmin()
-              ? `
-
-                <div class="cardActions">
-
-                  <button
-                    class="smallBtn refuse"
-                    onclick="deleteResultat('${id}')"
-                  >
-                    🗑️ Efase
-                  </button>
-
-                </div>
-
-              `
-              : ""
-            }
-
+            <h3>${escapeHTML(data.devoirTitre || "Rezilta devwa")}</h3>
+            ${r !== "eleve" ? `<p><strong>Elèv:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || "Pa defini")}</p>` : ""}
+            <div style="font-size:28px;font-weight:800;margin:12px 0;">${escapeHTML(noteText)}</div>
+            <p><strong>Kòmantè:</strong> ${escapeHTML(data.commentaire || "Pa gen kòmantè.")}</p>
+            ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteResultat('${id}')">🗑️️ Efase</button></div>` : ""}
           </div>
-
-        </div>
-
-      `;
-
+        </div>`;
     });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ RESULTATS:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️️",
-        "Nou pa kapab chaje rezilta yo."
-      );
-
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje rezilta yo.");
   }
-
-};
-
-
-/* ================= USERS ================= */
+}
 
 async function loadUsers(){
-
-  const box =
-    document.getElementById(
-      "listeUsers"
-    );
-
+  const box = document.getElementById("listeUsers");
   if(!box) return;
-
-
-  if(!isAdmin()){
-
-    box.innerHTML =
-      emptyCard(
-        "🔒",
-        "Se administratè a sèlman ki ka wè itilizatè yo."
-      );
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje demann yo..."
-    );
-
-
+  if(!isAdmin()){ box.innerHTML = emptyCard("🔒", "Se administratè a sèlman ki ka wè itilizatè yo."); return; }
+  box.innerHTML = emptyCard("⏳", "Chaje demann yo...");
   try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "users"
-        )
-      );
-
-
+    const snap = await getDocs(collection(db, "users"));
     box.innerHTML = "";
-
-
     let count = 0;
-
-
     snap.forEach(item => {
-
-      const data =
-        item.data();
-
-
-      const status =
-        String(
-          data.status || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-      if(status !== "attente"){
-
-        return;
-
-      }
-
-
+      const data = item.data();
+      if(String(data.status || "").trim().toLowerCase() !== "attente") return;
       count++;
-
-
-      const uid =
-        item.id;
-
-
-      const nom =
-        data.nom ||
-        "San non";
-
-
-      const email =
-        data.email ||
-        "San email";
-
-
+      const uid = item.id;
       box.innerHTML += `
-
         <div class="dataCard">
-
-          <div class="cardIcon">
-            👤
-          </div>
-
-
+          <div class="cardIcon">👤</div>
           <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(nom)}
-            </h3>
-
-
-            <p>
-              <strong>Email:</strong>
-              ${escapeHTML(email)}
-            </p>
-
-
-            <p>
-              <strong>Status:</strong>
-              <span class="badge">
-                An atant
-              </span>
-            </p>
-
-
+            <h3>${escapeHTML(data.nom || "San non")}</h3>
+            <p><strong>Email:</strong> ${escapeHTML(data.email || "San email")}</p>
+            <p><strong>Status:</strong> <span class="badge badgeOrange">An atant</span></p>
             <div class="field">
-
-              <label>
-                Chwazi wòl
-              </label>
-
-              <select
-                id="role_${uid}"
-              >
-
-                <option value="eleve">
-                  Elèv
-                </option>
-
-                <option value="professeur">
-                  Pwofesè
-                </option>
-
+              <label>Chwazi wòl</label>
+              <select id="role_${uid}">
+                <option value="eleve">Elèv</option>
+                <option value="professeur">Pwofesè</option>
               </select>
-
             </div>
-
-
             <div class="cardActions">
-
-              <button
-                class="smallBtn accept"
-                onclick="acceptUser('${uid}')"
-              >
-                ✅ Aksepte
-              </button>
-
-
-              <button
-                class="smallBtn refuse"
-                onclick="refuseUser('${uid}')"
-              >
-                ❌ Refize
-              </button>
-
+              <button class="smallBtn accept" onclick="acceptUser('${uid}')">✅ Aksepte</button>
+              <button class="smallBtn refuse" onclick="refuseUser('${uid}')">❌ Refize</button>
             </div>
-
           </div>
-
-        </div>
-
-      `;
-
+        </div>`;
     });
-
-
-    if(count === 0){
-
-      box.innerHTML =
-        emptyCard(
-          "👥",
-          "Pa gen demann an atant."
-        );
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ USERS:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje itilizatè yo."
-      );
-
+    if(count === 0) box.innerHTML = emptyCard("👥", "Pa gen demann an atant.");
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje itilizatè yo.");
   }
-
 }
 
-
-/* ================= AKSEPTE USER ================= */
-
-window.acceptUser =
-async function(uid){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka aksepte itilizatè."
-    );
-
-    return;
-
-  }
-
-
-  const select =
-    document.getElementById(
-      "role_" + uid
-    );
-
-
-  const selectedRole =
-    select
-      ? select.value
-      : "eleve";
-
-
-  if(
-    selectedRole !== "eleve" &&
-    selectedRole !== "professeur"
-  ){
-
-    alert(
-      "Wòl la pa valab."
-    );
-
-    return;
-
-  }
-
-
+window.acceptUser = async function(uid){
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka aksepte itilizatè."); return; }
+  const select = document.getElementById("role_" + uid);
+  const selectedRole = select ? select.value : "eleve";
   try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "users",
-        uid
-      ),
-
-      {
-
-        role:
-          selectedRole,
-
-        status:
-          "accepted",
-
-        approvedAt:
-          serverTimestamp(),
-
-        approvedBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
+    await updateDoc(doc(db, "users", uid), {
+      role: selectedRole, status: "accepted", approvedAt: serverTimestamp(), approvedBy: currentUser.uid
+    });
     await loadUsers();
-
-
-    alert(
-      "✅ Itilizatè a aksepte avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ ACCEPT USER:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab aksepte itilizatè sa a."
-    );
-
+    alert("✅ Itilizatè a aksepte avèk siksè.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab aksepte itilizatè sa a.");
   }
-
 };
 
-
-/* ================= REFIZE USER ================= */
-
-window.refuseUser =
-async function(uid){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka refize itilizatè."
-    );
-
-    return;
-
-  }
-
-
-  const ok =
-    confirm(
-      "Èske ou sèten ou vle refize epi efase demann sa a?"
-    );
-
-
-  if(!ok) return;
-
-
+window.refuseUser = async function(uid){
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka refize itilizatè."); return; }
+  if(!confirm("Èske ou sèten ou vle refize epi efase demann sa a?")) return;
   try{
-
-    await deleteDoc(
-
-      doc(
-        db,
-        "users",
-        uid
-      )
-
-    );
-
-
+    await deleteDoc(doc(db, "users", uid));
     await loadUsers();
-
-
-    alert(
-      "✅ Demann lan efase."
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ REFIZE USER:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab efase demann lan."
-    );
-
+    alert("✅ Demann lan efase.");
+  }catch(e){
+    console.error(e);
+    alert("❌ Nou pa kapab efase demann lan.");
   }
-
 };
-
-
-/* ================= ADMIN DELETE ================= */
 
 async function verifyAdmin(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka fè operasyon sa a."
-    );
-
-    return false;
-
-  }
-
-
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka fè operasyon sa a."); return false; }
   return true;
-
 }
 
-
-async function confirmDelete(message){
-
-  return confirm(message);
-
-}
-
-
-/* ================= DELETE ELEVE ================= */
-
-window.deleteEleve =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase elèv sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteEleve = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase elèv sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "eleves",
-        id
-      )
-    );
-
-
+    await deleteDoc(doc(db, "eleves", id));
     await loadEleves();
-
     await updateStats();
-
-
-    alert(
-      "✅ Elèv la efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase elèv la."
-    );
-
-  }
-
+    alert("✅ Elèv la efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase elèv la."); }
 };
 
-
-/* ================= DELETE PROFESSEUR ================= */
-
-window.deleteProfesseur =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase pwofesè sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteProfesseur = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase pwofesè sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "professeurs",
-        id
-      )
-    );
-
-
+    await deleteDoc(doc(db, "professeurs", id));
     await loadProfesseurs();
-
     await updateStats();
-
-
-    alert(
-      "✅ Pwofesè a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase pwofesè a."
-    );
-
-  }
-
+    alert("✅ Pwofesè a efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase pwofesè a."); }
 };
 
-
-/* ================= DELETE KLAS ================= */
-
-window.deleteClasse =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase klas sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteClasse = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase klas sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "classes",
-        id
-      )
-    );
-
-
+    await deleteDoc(doc(db, "classes", id));
     await loadClasses();
-
     await updateStats();
-
-
-    alert(
-      "✅ Klas la efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase klas la."
-    );
-
-  }
-
+    alert("✅ Klas la efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase klas la."); }
 };
 
-
-/* ================= DELETE MATIERE ================= */
-
-window.deleteMatiere =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase matyè sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteMatiere = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase matyè sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "matieres",
-        id
-      )
-    );
-
-
+    await deleteDoc(doc(db, "matieres", id));
     await loadMatieres();
-
     await updateStats();
-
-
-    alert(
-      "✅ Matyè a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase matyè a."
-    );
-
-  }
-
+    alert("✅ Matyè a efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase matyè a."); }
 };
 
-
-/* ================= DELETE DEVOIR ================= */
-
-window.deleteDevoir =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase devwa sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteDevoir = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase devwa sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "devoirs",
-        id
-      )
-    );
-
-
+    await deleteDoc(doc(db, "devoirs", id));
     await loadDevoirs();
-
     await updateStats();
-
-
-    alert(
-      "✅ Devwa a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase devwa a."
-    );
-
-  }
-
+    alert("✅ Devwa a efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase devwa a."); }
 };
 
-
-/* ================= DELETE REMISE ================= */
-
-window.deleteRemise =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase travay elèv sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteRemise = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase travay elèv sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "tentatives",
-        id
-      )
-    );
-
-
-    /*
-      Nou efase rezilta ki gen menm ID
-      si li egziste.
-    */
-
-    try{
-
-      await deleteDoc(
-        doc(
-          db,
-          "resultats",
-          id
-        )
-      );
-
-    }catch(resultError){
-
-      console.log(
-        "Rezilta a pa jwenn:",
-        resultError
-      );
-
-    }
-
-
+    await deleteDoc(doc(db, "tentatives", id));
+    try{ await deleteDoc(doc(db, "resultats", id)); }catch(e){}
     await loadRemises();
-
     await loadResultats();
-
-
-    alert(
-      "✅ Travay la efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase travay sa a."
-    );
-
-  }
-
+    alert("✅ Travay la efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase travay sa a."); }
 };
 
-
-/* ================= DELETE RESULTAT ================= */
-
-window.deleteResultat =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase rezilta sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
+window.deleteResultat = async function(id){
+  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase rezilta sa a?")) return;
   try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "resultats",
-        id
-      )
-    );
-
-
+    await deleteDoc(doc(db, "resultats", id));
     await loadResultats();
-
-
-    alert(
-      "✅ Rezilta a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase rezilta a."
-    );
-
-  }
-
+    alert("✅ Rezilta a efase avèk siksè.");
+  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase rezilta a."); }
 };
-
-
-/* ================= STATISTIQUES ================= */
 
 async function updateStats(){
-
   try{
+    const devoirsSnap = await getDocs(collection(db, "devoirs"));
+    const devoirsCount = devoirsSnap.size;
+    const d1 = document.getElementById("statDevoirs");
+    const d2 = document.getElementById("stat2Devoirs");
+    if(d1) d1.textContent = devoirsCount;
+    if(d2) d2.textContent = devoirsCount;
 
-    const devoirsSnap =
-      await getDocs(
-        collection(
-          db,
-          "devoirs"
-        )
-      );
+    if(!isAdmin()) return;
 
+    const [elevesSnap, professeursSnap, classesSnap] = await Promise.all([
+      getDocs(collection(db, "eleves")),
+      getDocs(collection(db, "professeurs")),
+      getDocs(collection(db, "classes"))
+    ]);
 
-    const devoirsCount =
-      devoirsSnap.size;
+    const el1 = document.getElementById("statEleves"), el2 = document.getElementById("stat2Eleves");
+    const pr1 = document.getElementById("statProfesseurs"), pr2 = document.getElementById("stat2Professeurs");
+    const cl1 = document.getElementById("statClasses"), cl2 = document.getElementById("stat2Classes");
 
-
-    document
-      .getElementById(
-        "statDevoirs"
-      )
-      ?.textContent =
-        devoirsCount;
-
-
-    document
-      .getElementById(
-        "stat2Devoirs"
-      )
-      ?.textContent =
-        devoirsCount;
-
-
-    if(!isAdmin()){
-
-      return;
-
-    }
-
-
-    const [
-      elevesSnap,
-      professeursSnap,
-      classesSnap
-    ] =
-      await Promise.all([
-
-        getDocs(
-          collection(
-            db,
-            "eleves"
-          )
-        ),
-
-        getDocs(
-          collection(
-            db,
-            "professeurs"
-          )
-        ),
-
-        getDocs(
-          collection(
-            db,
-            "classes"
-          )
-        )
-
-      ]);
-
-
-    const elevesCount =
-      elevesSnap.size;
-
-
-    const professeursCount =
-      professeursSnap.size;
-
-
-    const classesCount =
-      classesSnap.size;
-
-
-    document
-      .getElementById(
-        "statEleves"
-      )
-      ?.textContent =
-        elevesCount;
-
-
-    document
-      .getElementById(
-        "statProfesseurs"
-      )
-      ?.textContent =
-        professeursCount;
-
-
-    document
-      .getElementById(
-        "statClasses"
-      )
-      ?.textContent =
-        classesCount;
-
-
-    document
-      .getElementById(
-        "stat2Eleves"
-      )
-      ?.textContent =
-        elevesCount;
-
-
-    document
-      .getElementById(
-        "stat2Professeurs"
-      )
-      ?.textContent =
-        professeursCount;
-
-
-    document
-      .getElementById(
-        "stat2Classes"
-      )
-      ?.textContent =
-        classesCount;
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ STATS:",
-      error
-    );
-
+    if(el1) el1.textContent = elevesSnap.size;
+    if(el2) el2.textContent = elevesSnap.size;
+    if(pr1) pr1.textContent = professeursSnap.size;
+    if(pr2) pr2.textContent = professeursSnap.size;
+    if(cl1) cl1.textContent = classesSnap.size;
+    if(cl2) cl2.textContent = classesSnap.size;
+  }catch(e){
+    console.error(e);
   }
-
 }
-
 </script>
-
 </body>
 </html>
