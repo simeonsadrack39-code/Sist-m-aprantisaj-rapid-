@@ -198,7 +198,7 @@ th{background:#f8fafc;}
         </div>
         <div class="statsGrid">
           <div class="statCard adminOnly">
-            <div class="statIcon">👨‍🎓</div>
+            <div class="statIcon">👨‍‍🎓</div>
             <div class="statLabel">Total elèv</div>
             <div id="statEleves" class="number">0</div>
           </div>
@@ -378,7 +378,7 @@ th{background:#f8fafc;}
             <div id="stat2Eleves" class="number">0</div>
           </div>
           <div class="statCard">
-            <div class="statIcon">👨‍🏫</div>
+            <div class="statIcon">👨‍‍🏫</div>
             <div class="statLabel">Pwofesè</div>
             <div id="stat2Professeurs" class="number">0</div>
           </div>
@@ -613,7 +613,7 @@ async function openApp(){
 
 function applyRoleAccess(){
   document.querySelectorAll(".adminOnly").forEach(e => e.style.display = isAdmin() ? "" : "none");
-  document.querySelectorAll(".teacherOnly").forEach(e => e.style.display = isTeacher() ? "" : "none");
+  document.querySelectorAll(".teacherOnly").forEach(e => e.style.display = (role() === "professeur") ? "" : "none");
   const panel = document.getElementById("createDevoirPanel");
   if(panel) panel.style.display = isTeacher() ? "" : "none";
 }
@@ -1107,7 +1107,7 @@ async function loadResultats(){
             ${r !== "eleve" ? `<p><strong>Elèv:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || "Pa defini")}</p>` : ""}
             <div style="font-size:28px;font-weight:800;margin:12px 0;">${escapeHTML(noteText)}</div>
             <p><strong>Kòmantè:</strong> ${escapeHTML(data.commentaire || "Pa gen kòmantè.")}</p>
-            ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteResultat('${id}')">🗑️️ Efase</button></div>` : ""}
+            ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteResultat('${id}')">🗑 Efase</button></div>` : ""}
           </div>
         </div>`;
     });
@@ -1120,7 +1120,7 @@ async function loadResultats(){
 async function loadUsers(){
   const box = document.getElementById("listeUsers");
   if(!box) return;
-  if(!isAdmin()){ box.innerHTML = emptyCard("🔒", "Se administratè a sèlman ki ka wè itilizatè yo."); return; }
+  if(!isAdmin()){ alert("Se administratè a sèlman ki ka gade itilizatè yo."); box.innerHTML = emptyCard("🔒", "Se administratè a sèlman ki ka wè itilizatè yo."); return; }
   box.innerHTML = emptyCard("⏳", "Chaje demann yo...");
   try{
     const snap = await getDocs(collection(db, "users"));
@@ -1247,7 +1247,7 @@ window.deleteRemise = async function(id){
   if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase travay elèv sa a?")) return;
   try{
     await deleteDoc(doc(db, "tentatives", id));
-    try{ await deleteDoc(doc(db, "resultats", id)); }catch(e){}
+    try{ await deleteDoc(doc(doc(db, "resultats", id))); }catch(e){}
     await loadRemises();
     await loadResultats();
     alert("✅ Travay la efase avèk siksè.");
