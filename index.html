@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#2563eb">
 <link rel="manifest" href="./manifest.json">
-<title>Sistèm Aprantisaj</title>
+<title data-i18n="appName">Sistèm Aprantisaj</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:Arial,sans-serif;background:#f4f7fb;color:#0f172a;}
@@ -121,36 +121,36 @@ th{background:#f8fafc;}
 <div id="authPage" class="authPage">
   <div class="authBox">
     <div class="logo">📚</div>
-    <h1>Sistèm Aprantisaj</h1>
-    <p class="subtitle">Platfòm aprantisaj sou entènèt</p>
+    <h1 data-i18n="appName">Sistèm Aprantisaj</h1>
+    <p class="subtitle" data-i18n="authSubtitle">Platfòm aprantisaj sou entènèt</p>
 
     <div class="field">
-      <label>Email</label>
-      <input id="loginEmail" type="email" placeholder="Egzanp: non@email.com">
+      <label data-i18n="labelEmail">Email</label>
+      <input id="loginEmail" type="email" data-i18n-placeholder="phLoginEmail" placeholder="Egzanp: non@email.com">
     </div>
     <div class="field">
-      <label>Modpas</label>
-      <input id="loginPassword" type="password" placeholder="Modpas">
+      <label data-i18n="labelPassword">Modpas</label>
+      <input id="loginPassword" type="password" data-i18n-placeholder="phPassword" placeholder="Modpas">
     </div>
-    <button class="btn" onclick="connecter()">Konekte</button>
-    <button class="btn google" onclick="connecterAvecGoogle()">Kontinye ak Google</button>
+    <button class="btn" onclick="connecter()" data-i18n="btnLogin">Konekte</button>
+    <button class="btn google" onclick="connecterAvecGoogle()" data-i18n="btnGoogleLogin">Kontinye ak Google</button>
 
-    <div class="divider">oswa kreye yon kont</div>
+    <div class="divider" data-i18n="orDivider">oswa kreye yon kont</div>
 
     <div class="field">
-      <label>Non</label>
-      <input id="registerName" placeholder="Non konplè">
+      <label data-i18n="labelName">Non</label>
+      <input id="registerName" data-i18n-placeholder="phFullName" placeholder="Non konplè">
     </div>
     <div class="field">
-      <label>Email</label>
-      <input id="registerEmail" type="email" placeholder="Email">
+      <label data-i18n="labelEmail">Email</label>
+      <input id="registerEmail" type="email" data-i18n-placeholder="labelEmail" placeholder="Email">
     </div>
     <div class="field">
-      <label>Modpas</label>
-      <input id="registerPassword" type="password" placeholder="Omwen 6 karaktè">
+      <label data-i18n="labelPassword">Modpas</label>
+      <input id="registerPassword" type="password" data-i18n-placeholder="phPassLength" placeholder="Omwen 6 karaktè">
     </div>
-    <button class="btn" onclick="registerAccount()">Kreye kont</button>
-    <button class="btn google" onclick="registerGoogle()">Enskri ak Google</button>
+    <button class="btn" onclick="registerAccount()" data-i18n="btnRegister">Kreye kont</button>
+    <button class="btn google" onclick="registerGoogle()" data-i18n="btnGoogleRegister">Enskri ak Google</button>
 
     <div id="authMessage" class="message"></div>
   </div>
@@ -158,63 +158,63 @@ th{background:#f8fafc;}
 
 <div id="app" class="app hidden">
   <header class="header">
-    <div class="brand">📚 Sistèm Aprantisaj</div>
+    <div class="brand" data-i18n="brand">📚 Sistèm Aprantisaj</div>
     <div class="headerRight">
       <span id="userEmail" class="userBadge"></span>
       <span id="userRole" class="roleBadge"></span>
-      <select id="languageSelect" onchange="changeLanguage(this.value)">
+      <select id="languageSelect" class="hidden" onchange="changeLanguage(this.value)">
         <option value="ht">🇭🇹 Kreyòl</option>
         <option value="fr">🇫🇷 Français</option>
       </select>
-      <button id="installBtn" class="headerBtn hidden" onclick="installApp()">📲 Enstale</button>
-      <button class="headerBtn logoutBtn" onclick="logout()">Dekonekte</button>
+      <button id="installBtn" class="headerBtn hidden" onclick="installApp()" data-i18n="btnInstall">📲 Enstale</button>
+      <button class="headerBtn logoutBtn" onclick="logout()" data-i18n="btnLogout">Dekonekte</button>
     </div>
   </header>
 
   <div class="layout">
     <aside class="sidebar">
-      <div class="sidebarTitle">Navigasyon</div>
-      <button class="menuBtn active" onclick="showSection('home',this)">🏠<span>Akèy</span></button>
-      <button class="menuBtn adminOnly" onclick="showSection('eleves',this)">👨‍🎓<span>Elèv</span></button>
-      <button class="menuBtn adminOnly" onclick="showSection('professeurs',this)">👨‍🏫<span>Pwofesè</span></button>
-      <button class="menuBtn adminOnly" onclick="showSection('classes',this)">🏫<span>Klas</span></button>
-      <button class="menuBtn adminOnly" onclick="showSection('matieres',this)">📚<span>Matyè</span></button>
-      <button class="menuBtn" onclick="showSection('devoirs',this)">📝<span>Devwa</span></button>
-      <button class="menuBtn teacherOnly" onclick="showSection('remises',this)">📤<span>Remèt elèv yo</span></button>
-      <button class="menuBtn" onclick="showSection('resultats',this)">🏆<span>Rezilta</span></button>
-      <button class="menuBtn" onclick="showSection('statistiques',this)">📈<span>Estatistik</span></button>
-      <button class="menuBtn adminOnly" onclick="showSection('users',this)">👥<span>Itilizatè</span></button>
+      <div class="sidebarTitle" data-i18n="navTitle">Navigasyon</div>
+      <button class="menuBtn active" onclick="showSection('home',this)">🏠<span data-i18n="menuHome">Akèy</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('eleves',this)">👨‍🎓<span data-i18n="menuEleves">Elèv</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('professeurs',this)">👨‍🏫<span data-i18n="menuProfesseurs">Pwofesè</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('classes',this)">🏫<span data-i18n="menuClasses">Klas</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('matieres',this)">📚<span data-i18n="menuMatieres">Matyè</span></button>
+      <button class="menuBtn" onclick="showSection('devoirs',this)">📝<span data-i18n="menuDevoirs">Devwa</span></button>
+      <button class="menuBtn teacherOnly" onclick="showSection('remises',this)">📤<span data-i18n="menuRemises">Remèt elèv yo</span></button>
+      <button class="menuBtn" onclick="showSection('resultats',this)">🏆<span data-i18n="menuResultats">Rezilta</span></button>
+      <button class="menuBtn" onclick="showSection('statistiques',this)">📈<span data-i18n="menuStatistiques">Estatistik</span></button>
+      <button class="menuBtn adminOnly" onclick="showSection('users',this)">👥<span data-i18n="menuUsers">Itilizatè</span></button>
     </aside>
 
     <main class="main">
       <section id="home" class="section active">
         <div class="pageTitle">
-          <h2>Akèy</h2>
-          <p>Byenveni nan Sistèm Aprantisaj.</p>
+          <h2 data-i18n="menuHome">Akèy</h2>
+          <p data-i18n="homeSubtitle">Byenveni nan Sistèm Aprantisaj.</p>
         </div>
         <div class="hero">
-          <h2>Byenveni nan Sistèm Aprantisaj 👋</h2>
-          <p>Jere elèv, pwofesè, klas, matyè, devwa, travay remèt ak rezilta yo nan yon sèl espas.</p>
+          <h2 data-i18n="heroTitle">Byenveni nan Sistèm Aprantisaj 👋</h2>
+          <p data-i18n="heroDesc">Jere elèv, pwofesè, klas, matyè, devwa, travay remèt ak rezilta yo nan yon sèl espas.</p>
         </div>
         <div class="statsGrid">
           <div class="statCard adminOnly">
-            <div class="statIcon">👨‍‍🎓</div>
-            <div class="statLabel">Total elèv</div>
+            <div class="statIcon">👨‍🎓</div>
+            <div class="statLabel" data-i18n="statTotalStudents">Total elèv</div>
             <div id="statEleves" class="number">0</div>
           </div>
           <div class="statCard adminOnly">
             <div class="statIcon">👨‍🏫</div>
-            <div class="statLabel">Total pwofesè</div>
+            <div class="statLabel" data-i18n="statTotalTeachers">Total pwofesè</div>
             <div id="statProfesseurs" class="number">0</div>
           </div>
           <div class="statCard adminOnly">
             <div class="statIcon">🏫</div>
-            <div class="statLabel">Total klas</div>
+            <div class="statLabel" data-i18n="statTotalClasses">Total klas</div>
             <div id="statClasses" class="number">0</div>
           </div>
           <div class="statCard">
             <div class="statIcon">📝</div>
-            <div class="statLabel">Total devwa</div>
+            <div class="statLabel" data-i18n="statTotalHomeworks">Total devwa</div>
             <div id="statDevoirs" class="number">0</div>
           </div>
         </div>
@@ -222,118 +222,118 @@ th{background:#f8fafc;}
 
       <section id="eleves" class="section">
         <div class="pageTitle">
-          <h2>👨‍🎓 Elèv</h2>
-          <p>Jere lis elèv yo.</p>
+          <h2 data-i18n="titleEleves">👨‍🎓 Elèv</h2>
+          <p data-i18n="subEleves">Jere lis elèv yo.</p>
         </div>
         <div class="panel">
-          <div class="panelTitle">➕ Ajoute yon nouvo elèv</div>
+          <div class="panelTitle" data-i18n="panelAddEleve">➕ Ajoute yon nouvo elèv</div>
           <div class="formGrid">
             <div class="field">
-              <label>Non elèv</label>
-              <input id="eleveNom" placeholder="Non konplè">
+              <label data-i18n="labelEleveNom">Non elèv</label>
+              <input id="eleveNom" data-i18n-placeholder="phFullName" placeholder="Non konplè">
             </div>
             <div class="field">
-              <label>Klas</label>
+              <label data-i18n="labelClasse">Klas</label>
               <input id="eleveClasse" placeholder="6e AF">
             </div>
           </div>
-          <button class="btn" onclick="ajouterEleve()">➕ Ajoute elèv</button>
+          <button class="btn" onclick="ajouterEleve()" data-i18n="btnAddEleve">➕ Ajoute elèv</button>
         </div>
         <div class="searchBox">
           <span>🔎</span>
-          <input id="searchEleves" oninput="filterCards('searchEleves','listeEleves')" placeholder="Chèche yon elèv...">
+          <input id="searchEleves" oninput="filterCards('searchEleves','listeEleves')" data-i18n-placeholder="phSearchEleve" placeholder="Chèche yon elèv...">
         </div>
         <div id="listeEleves" class="dataGrid"></div>
       </section>
 
       <section id="professeurs" class="section">
         <div class="pageTitle">
-          <h2>👨‍🏫 Pwofesè</h2>
-          <p>Jere pwofesè ak matyè yo anseye.</p>
+          <h2 data-i18n="titleProfesseurs">👨‍🏫 Pwofesè</h2>
+          <p data-i18n="subProfesseurs">Jere pwofesè ak matyè yo anseye.</p>
         </div>
         <div class="panel">
-          <div class="panelTitle">➕ Ajoute yon pwofesè</div>
+          <div class="panelTitle" data-i18n="panelAddProf">➕ Ajoute yon pwofesè</div>
           <div class="formGrid">
             <div class="field">
-              <label>Non</label>
-              <input id="profNom" placeholder="Non pwofesè">
+              <label data-i18n="labelName">Non</label>
+              <input id="profNom" data-i18n-placeholder="phProfNom" placeholder="Non pwofesè">
             </div>
             <div class="field">
-              <label>Email</label>
-              <input id="profEmail" type="email" placeholder="Email">
+              <label data-i18n="labelEmail">Email</label>
+              <input id="profEmail" type="email" data-i18n-placeholder="labelEmail" placeholder="Email">
             </div>
             <div class="field">
-              <label>Matyè</label>
+              <label data-i18n="labelMatiere">Matyè</label>
               <input id="profMatiere" placeholder="Mathématiques">
             </div>
           </div>
-          <button class="btn" onclick="ajouterProfesseur()">➕ Ajoute pwofesè</button>
+          <button class="btn" onclick="ajouterProfesseur()" data-i18n="btnAddProf">➕ Ajoute pwofesè</button>
         </div>
         <div class="searchBox">
           <span>🔎</span>
-          <input id="searchProfesseurs" oninput="filterCards('searchProfesseurs','listeProfesseurs')" placeholder="Chèche yon pwofesè...">
+          <input id="searchProfesseurs" oninput="filterCards('searchProfesseurs','listeProfesseurs')" data-i18n-placeholder="phSearchProf" placeholder="Chèche yon pwofesè...">
         </div>
         <div id="listeProfesseurs" class="dataGrid"></div>
       </section>
 
       <section id="classes" class="section">
         <div class="pageTitle">
-          <h2>🏫 Klas</h2>
-          <p>Jere klas lekòl la.</p>
+          <h2 data-i18n="titleClasses">🏫 Klas</h2>
+          <p data-i18n="subClasses">Jere klas lekòl la.</p>
         </div>
         <div class="panel">
-          <div class="panelTitle">➕ Ajoute yon klas</div>
+          <div class="panelTitle" data-i18n="panelAddClasse">➕ Ajoute yon klas</div>
           <div class="field">
-            <label>Non klas</label>
+            <label data-i18n="labelClasseNom">Non klas</label>
             <input id="classeNom" placeholder="6e AF">
           </div>
-          <button class="btn" onclick="ajouterClasse()">➕ Ajoute klas</button>
+          <button class="btn" onclick="ajouterClasse()" data-i18n="btnAddClasse">➕ Ajoute klas</button>
         </div>
         <div id="listeClasses" class="dataGrid"></div>
       </section>
 
       <section id="matieres" class="section">
         <div class="pageTitle">
-          <h2>📚 Matyè</h2>
-          <p>Jere matyè yo.</p>
+          <h2 data-i18n="titleMatieres">📚 Matyè</h2>
+          <p data-i18n="subMatieres">Jere matyè yo.</p>
         </div>
         <div class="panel">
-          <div class="panelTitle">➕ Ajoute yon matyè</div>
+          <div class="panelTitle" data-i18n="panelAddMatiere">➕ Ajoute yon matyè</div>
           <div class="field">
-            <label>Non matyè</label>
+            <label data-i18n="labelMatiereNom">Non matyè</label>
             <input id="matiereNom" placeholder="Mathématiques">
           </div>
-          <button class="btn" onclick="ajouterMatiere()">➕ Ajoute matyè</button>
+          <button class="btn" onclick="ajouterMatiere()" data-i18n="btnAddMatiere">➕ Ajoute matyè</button>
         </div>
         <div id="listeMatieres" class="dataGrid"></div>
       </section>
 
       <section id="devoirs" class="section">
         <div class="pageTitle">
-          <h2>📝 Devwa</h2>
-          <p>Kreye devwa oswa fè devwa ou resevwa yo.</p>
+          <h2 data-i18n="titleDevoirs">📝 Devwa</h2>
+          <p data-i18n="subDevoirs">Kreye devwa oswa fè devwa ou resevwa yo.</p>
         </div>
         <div id="createDevoirPanel" class="panel">
-          <div class="panelTitle">➕ Kreye yon nouvo devwa</div>
+          <div class="panelTitle" data-i18n="panelAddDevoir">➕ Kreye yon nouvo devwa</div>
           <div class="formGrid">
             <div class="field">
-              <label>Tit devwa</label>
+              <label data-i18n="labelDevoirTitre">Tit devwa</label>
               <input id="devoirTitre" placeholder="Devoir de Mathématiques">
             </div>
             <div class="field">
-              <label>Matyè</label>
+              <label data-i18n="labelMatiere">Matyè</label>
               <input id="devoirMatiere" placeholder="Mathématiques">
             </div>
             <div class="field">
-              <label>Klas</label>
+              <label data-i18n="labelClasse">Klas</label>
               <input id="devoirClasse" placeholder="6e AF">
             </div>
             <div class="field">
-              <label>Dire (minit)</label>
+              <label data-i18n="labelDuree">Dire (minit)</label>
               <input id="devoirDuree" type="number" value="30">
             </div>
             <div class="field">
-              <label>Maksimòm tantativ</label>
+              <label data-i18n="labelMaxTentatives">Maksimòm tantativ</label>
               <select id="devoirTentatives">
                 <option value="1">1</option>
                 <option value="2" selected>2</option>
@@ -341,55 +341,55 @@ th{background:#f8fafc;}
               </select>
             </div>
           </div>
-          <button class="btn" onclick="ajouterDevoir()">➕ Kreye devwa</button>
+          <button class="btn" onclick="ajouterDevoir()" data-i18n="btnAddDevoir">➕ Kreye devwa</button>
         </div>
         <div class="searchBox">
           <span>🔎</span>
-          <input id="searchDevoirs" oninput="filterCards('searchDevoirs','listeDevoirs')" placeholder="Chèche yon devwa...">
+          <input id="searchDevoirs" oninput="filterCards('searchDevoirs','listeDevoirs')" data-i18n-placeholder="phSearchDevoir" placeholder="Chèche yon devwa...">
         </div>
         <div id="listeDevoirs" class="dataGrid"></div>
       </section>
 
       <section id="remises" class="section">
         <div class="pageTitle">
-          <h2>📤 Travay remèt</h2>
-          <p>Gade travay elèv yo soumèt, epi korije yo.</p>
+          <h2 data-i18n="titleRemises">📤 Travay remèt</h2>
+          <p data-i18n="subRemises">Gade travay elèv yo soumèt, epi korije yo.</p>
         </div>
         <div id="listeRemises" class="dataGrid"></div>
       </section>
 
       <section id="resultats" class="section">
         <div class="pageTitle">
-          <h2>🏆 Rezilta</h2>
-          <p>Nòt ak kòmantè elèv yo.</p>
+          <h2 data-i18n="titleResultats">🏆 Rezilta</h2>
+          <p data-i18n="subResultats">Nòt ak kòmantè elèv yo.</p>
         </div>
         <div id="listeResultats" class="dataGrid"></div>
       </section>
 
       <section id="statistiques" class="section">
         <div class="pageTitle">
-          <h2>📈 Estatistik</h2>
-          <p>Yon rezime sou done sistèm nan.</p>
+          <h2 data-i18n="titleStatistiques">📈 Estatistik</h2>
+          <p data-i18n="subStatistiques">Yon rezime sou done sistèm nan.</p>
         </div>
         <div class="statsGrid">
           <div class="statCard">
             <div class="statIcon">👨‍🎓</div>
-            <div class="statLabel">Elèv</div>
+            <div class="statLabel" data-i18n="menuEleves">Elèv</div>
             <div id="stat2Eleves" class="number">0</div>
           </div>
           <div class="statCard">
-            <div class="statIcon">👨‍‍🏫</div>
-            <div class="statLabel">Pwofesè</div>
+            <div class="statIcon">👨‍🏫</div>
+            <div class="statLabel" data-i18n="menuProfesseurs">Pwofesè</div>
             <div id="stat2Professeurs" class="number">0</div>
           </div>
           <div class="statCard">
             <div class="statIcon">🏫</div>
-            <div class="statLabel">Klas</div>
+            <div class="statLabel" data-i18n="menuClasses">Klas</div>
             <div id="stat2Classes" class="number">0</div>
           </div>
           <div class="statCard">
             <div class="statIcon">📝</div>
-            <div class="statLabel">Devwa</div>
+            <div class="statLabel" data-i18n="menuDevoirs">Devwa</div>
             <div id="stat2Devoirs" class="number">0</div>
           </div>
         </div>
@@ -397,8 +397,8 @@ th{background:#f8fafc;}
 
       <section id="users" class="section">
         <div class="pageTitle">
-          <h2>👥 Itilizatè</h2>
-          <p>Jere kont ki mande aksè.</p>
+          <h2 data-i18n="titleUsers">👥 Itilizatè</h2>
+          <p data-i18n="subUsers">Jere kont ki mande aksè.</p>
         </div>
         <div id="listeUsers" class="dataGrid"></div>
       </section>
@@ -408,20 +408,20 @@ th{background:#f8fafc;}
 
 <div id="remetModal" class="modal hidden">
   <div class="modalBox">
-    <div class="modalTitle">📤 Remèt devwa</div>
+    <div class="modalTitle" data-i18n="modalSubmitTitle">📤 Remèt devwa</div>
     <div id="remetDevoirInfo"></div>
     <input type="hidden" id="remetDevoirId">
     <div class="field">
-      <label>Repons / Travay ou</label>
-      <textarea id="remetReponse" rows="8" placeholder="Ekri repons ou oswa travay ou la..."></textarea>
+      <label data-i18n="labelYourAnswer">Repons / Travay ou</label>
+      <textarea id="remetReponse" rows="8" data-i18n-placeholder="phYourAnswer" placeholder="Ekri repons ou oswa travay ou la..."></textarea>
     </div>
     <div class="field">
-      <label>Tan ou itilize (minit)</label>
+      <label data-i18n="labelTimeUsed">Tan ou itilize (minit)</label>
       <input id="remetTemps" type="number" min="0" placeholder="30">
     </div>
     <div class="formActions">
-      <button class="btn" onclick="envoyerRemise()">📤 Remèt devwa</button>
-      <button class="btn closeModal" onclick="fermerRemetModal()">Anile</button>
+      <button class="btn" onclick="envoyerRemise()" data-i18n="btnSubmitWork">📤 Remèt devwa</button>
+      <button class="btn closeModal" onclick="fermerRemetModal()" data-i18n="btnCancel">Anile</button>
     </div>
   </div>
 </div>
@@ -473,6 +473,449 @@ provider.setCustomParameters({ prompt: "select_account" });
 let currentUser = null;
 let currentUserData = null;
 let deferredPrompt = null;
+let currentLang = "ht";
+
+const translations = {
+  ht: {
+    appName: "Sistèm Aprantisaj",
+    brand: "📚 Sistèm Aprantisaj",
+    authSubtitle: "Platfòm aprantisaj sou entènèt",
+    labelEmail: "Email",
+    labelPassword: "Modpas",
+    labelName: "Non",
+    phLoginEmail: "Egzanp: non@email.com",
+    phPassword: "Modpas",
+    phFullName: "Non konplè",
+    phPassLength: "Omwen 6 karaktè",
+    btnLogin: "Konekte",
+    btnGoogleLogin: "Kontinye ak Google",
+    orDivider: "oswa kreye yon kont",
+    btnRegister: "Kreye kont",
+    btnGoogleRegister: "Enskri ak Google",
+    btnInstall: "📲 Enstale",
+    btnLogout: "Dekonekte",
+    navTitle: "Navigasyon",
+    menuHome: "Akèy",
+    menuEleves: "Elèv",
+    menuProfesseurs: "Pwofesè",
+    menuClasses: "Klas",
+    menuMatieres: "Matyè",
+    menuDevoirs: "Devwa",
+    menuRemises: "Remèt elèv yo",
+    menuResultats: "Rezilta",
+    menuStatistiques: "Estatistik",
+    menuUsers: "Itilizatè",
+    homeSubtitle: "Byenveni nan Sistèm Aprantisaj.",
+    heroTitle: "Byenveni nan Sistèm Aprantisaj 👋",
+    heroDesc: "Jere elèv, pwofesè, klas, matyè, devwa, travay remèt ak rezilta yo nan yon sèl espas.",
+    statTotalStudents: "Total elèv",
+    statTotalTeachers: "Total pwofesè",
+    statTotalClasses: "Total klas",
+    statTotalHomeworks: "Total devwa",
+    titleEleves: "👨‍🎓 Elèv",
+    subEleves: "Jere lis elèv yo.",
+    panelAddEleve: "➕ Ajoute yon nouvo elèv",
+    labelEleveNom: "Non elèv",
+    labelClasse: "Klas",
+    btnAddEleve: "➕ Ajoute elèv",
+    phSearchEleve: "Chèche yon elèv...",
+    titleProfesseurs: "👨‍🏫 Pwofesè",
+    subProfesseurs: "Jere pwofesè ak matyè yo anseye.",
+    panelAddProf: "➕ Ajoute yon pwofesè",
+    phProfNom: "Non pwofesè",
+    labelMatiere: "Matyè",
+    btnAddProf: "➕ Ajoute pwofesè",
+    phSearchProf: "Chèche yon pwofesè...",
+    titleClasses: "🏫 Klas",
+    subClasses: "Jere klas lekòl la.",
+    panelAddClasse: "➕ Ajoute yon klas",
+    labelClasseNom: "Non klas",
+    btnAddClasse: "➕ Ajoute klas",
+    titleMatieres: "📚 Matyè",
+    subMatieres: "Jere matyè yo.",
+    panelAddMatiere: "➕ Ajoute yon matyè",
+    labelMatiereNom: "Non matyè",
+    btnAddMatiere: "➕ Ajoute matyè",
+    titleDevoirs: "📝 Devwa",
+    subDevoirs: "Kreye devwa oswa fè devwa ou resevwa yo.",
+    panelAddDevoir: "➕ Kreye yon nouvo devwa",
+    labelDevoirTitre: "Tit devwa",
+    labelDuree: "Dire (minit)",
+    labelMaxTentatives: "Maksimòm tantativ",
+    btnAddDevoir: "➕ Kreye devwa",
+    phSearchDevoir: "Chèche yon devwa...",
+    titleRemises: "📤 Travay remèt",
+    subRemises: "Gade travay elèv yo soumèt, epi korije yo.",
+    titleResultats: "🏆 Rezilta",
+    subResultats: "Nòt ak kòmantè elèv yo.",
+    titleStatistiques: "📈 Estatistik",
+    subStatistiques: "Yon rezime sou done sistèm nan.",
+    titleUsers: "👥 Itilizatè",
+    subUsers: "Jere kont ki mande aksè.",
+    modalSubmitTitle: "📤 Remèt devwa",
+    labelYourAnswer: "Repons / Travay ou",
+    phYourAnswer: "Ekri repons ou oswa travay ou la...",
+    labelTimeUsed: "Tan ou itilize (minit)",
+    btnSubmitWork: "📤 Remèt devwa",
+    btnCancel: "Anile",
+    msgFillFields: "Tanpri ranpli tout chan yo.",
+    msgPassMin: "Modpas la dwe gen omwen 6 karaktè.",
+    msgEmailPassReq: "Tanpri antre email ak modpas ou.",
+    msgWrongCreds: "Email oswa modpas la pa kòrèk.",
+    msgGoogleFail: "Koneksyon Google pa reyisi.",
+    msgAccCreatedApprove: "Kont la kreye. Administratè a dwe apwouve li.",
+    msgAccFail: "Nou pa kapab kreye kont sa a.",
+    msgGoogleAccCreated: "Kont Google la kreye. Administratè a dwe apwouve li.",
+    msgGoogleRegFail: "Enskripsyon Google pa reyisi.",
+    msgAccRegApprove: "Kont ou anrejistre. Administratè a dwe apwouve li.",
+    msgAccNotApproved: "Kont ou poko apwouve pa administratè a.",
+    msgRoleUnk: "Wòl kont lan pa rekonèt.",
+    msgVerifyErr: "Nou pa kapab verifye kont ou kounye a.",
+    msgInstallNotReady: "Aplikasyon an poko pare pou enstalasyon sou navigatè sa a.",
+    loadingEleves: "Chaje elèv yo...",
+    emptyEleves: "Pa gen elèv pou kounye a.",
+    errEleves: "Nou pa kapab chaje elèv yo.",
+    msgAdminOnlyAddEleve: "Se administratè a sèlman ki ka ajoute elèv.",
+    msgEnterEleveNom: "Tanpri antre non elèv la.",
+    msgEleveAddSuccess: "✅ Elèv la ajoute avèk siksè.",
+    msgEleveAddFail: "❌ Nou pa kapab ajoute elèv la.",
+    loadingProfs: "Chaje pwofesè yo...",
+    emptyProfs: "Pa gen pwofesè pou kounye a.",
+    errProfs: "Nou pa kapab chaje pwofesè yo.",
+    msgAdminOnlyAddProf: "Se administratè a sèlman ki ka ajoute pwofesè.",
+    msgEnterProfNom: "Tanpri antre non pwofesè a.",
+    msgProfAddSuccess: "✅ Pwofesè a ajoute avèk siksè.",
+    msgProfAddFail: "❌ Nou pa kapab ajoute pwofesè a.",
+    loadingClasses: "Chaje klas yo...",
+    emptyClasses: "Pa gen klas pou kounye a.",
+    errClasses: "Nou pa kapab chaje klas yo.",
+    msgAdminOnlyAddClasse: "Se administratè a sèlman ki ka ajoute klas.",
+    msgEnterClasseNom: "Tanpri antre non klas la.",
+    msgClasseAddSuccess: "✅ Klas la ajoute avèk siksè.",
+    msgClasseAddFail: "❌ Nou pa kapab ajoute klas la.",
+    loadingMatieres: "Chaje matyè yo...",
+    emptyMatieres: "Pa gen matyè pou kounye a.",
+    errMatieres: "Nou pa kapab chaje matyè yo.",
+    msgAdminOnlyAddMatiere: "Se administratè a sèlman ki ka ajoute matyè.",
+    msgEnterMatiereNom: "Tanpri antre non matyè a.",
+    msgMatiereAddSuccess: "✅ Matyè a ajoute avèk siksè.",
+    msgMatiereAddFail: "❌ Nou pa kapab ajoute matyè a.",
+    loadingDevoirs: "Chaje devwa yo...",
+    emptyDevoirs: "Pa gen devwa pou kounye a.",
+    errDevoirs: "Nou pa kapab chaje devwa yo.",
+    msgTeacherOnlyDevoir: "Se pwofesè oswa administratè sèlman ki ka kreye devwa.",
+    msgEnterDevoirTitre: "Tanpri antre tit devwa a.",
+    msgDevoirAddSuccess: "✅ Devwa a kreye avèk siksè.",
+    msgDevoirAddFail: "❌ Nou pa kapab kreye devwa a.",
+    msgDevoirNotExist: "Devwa sa a pa egziste ankò.",
+    msgOpenDevoirFail: "❌ Nou pa kapab ouvri devwa sa a.",
+    msgStudentOnlySubmit: "Se elèv yo sèlman ki ka remèt devwa.",
+    msgFillAnswer: "Tanpri ranpli repons lan kòrèkteman.",
+    msgMaxAttemptsReached: "Ou rive nan kantite tantativ ki pèmèt pou devwa sa a.",
+    msgSubmitSuccess: "✅ Travay la voye avèk siksè.",
+    msgSubmitFail: "❌ Nou pa kapab voye travay la.",
+    loadingRemises: "Chaje travay elèv yo...",
+    emptyRemises: "Pa gen travay remèt pou kounye a.",
+    errRemises: "Nou pa kapab chaje travay yo.",
+    msgTeacherOnlyCorrect: "Se pwofesè oswa administratè sèlman ki ka korije travay.",
+    msgScoreRange: "Nòt la dwe ant 0 ak 100.",
+    msgCorrectionSuccess: "✅ Koreksyon an sove.",
+    msgCorrectionFail: "❌ Nou pa kapab sove koreksyon an.",
+    loadingResultats: "Chaje rezilta yo...",
+    emptyResultats: "Pa gen rezilta pou kounye a.",
+    errResultats: "Nou pa kapab chaje rezilta yo.",
+    loadingUsers: "Chaje demann yo...",
+    emptyUsers: "Pa gen demann an atant.",
+    errUsers: "Nou pa kapab chaje itilizatè yo.",
+    msgAdminOnlyUsersView: "Se administratè a sèlman ki ka gade itilizatè yo.",
+    msgAdminOnlyUsersAccept: "Se administratè a sèlman ki ka aksepte itilizatè.",
+    msgUserAcceptSuccess: "✅ Itilizatè a aksepte avèk siksè.",
+    msgUserAcceptFail: "❌ Nou pa kapab aksepte itilizatè sa a.",
+    msgAdminOnlyUsersRefuse: "Se administratè a sèlman ki ka refize itilizatè.",
+    confirmRefuseUser: "Èske ou sèten ou vle refize epi efase demann sa a?",
+    msgUserRefuseSuccess: "✅ Demann lan efase.",
+    msgUserRefuseFail: "❌ Nou pa kapab efase demann lan.",
+    msgAdminOnlyOp: "Se administratè a sèlman ki ka fè operasyon sa a.",
+    confirmDelEleve: "Èske ou sèten ou vle efase elèv sa a?",
+    msgEleveDelSuccess: "✅ Elèv la efase avèk siksè.",
+    msgEleveDelFail: "❌ Nou pa kapab efase elèv la.",
+    confirmDelProf: "Èske ou sèten ou vle efase pwofesè sa a?",
+    msgProfDelSuccess: "✅ Pwofesè a efase avèk siksè.",
+    msgProfDelFail: "❌ Nou pa kapab efase pwofesè a.",
+    confirmDelClasse: "Èske ou sèten ou vle efase klas sa a?",
+    msgClasseDelSuccess: "✅ Klas la efase avèk siksè.",
+    msgClasseDelFail: "❌ Nou pa kapab efase klas la.",
+    confirmDelMatiere: "Èske ou sèten ou vle efase matyè sa a?",
+    msgMatiereDelSuccess: "✅ Matyè a efase avèk siksè.",
+    msgMatiereDelFail: "❌ Nou pa kapab efase matyè a.",
+    confirmDelDevoir: "Èske ou sèten ou vle efase devwa sa a?",
+    msgDevoirDelSuccess: "✅ Devwa a efase avèk siksè.",
+    msgDevoirDelFail: "❌ Nou pa kapab efase devwa a.",
+    confirmDelRemise: "Èske ou sèten ou vle efase travay elèv sa a?",
+    msgRemiseDelSuccess: "✅ Travay la efase avèk siksè.",
+    msgRemiseDelFail: "❌ Nou pa kapab efase travay sa a.",
+    confirmDelResultat: "Èske ou sèten ou vle efase rezilta sa a?",
+    msgResultatDelSuccess: "✅ Rezilta a efase avèk siksè.",
+    msgResultatDelFail: "❌ Nou pa kapab efase rezilta a.",
+    lblRole: "Wòl: ",
+    btnDelete: "🗑️ Efase",
+    btnDoAndSubmit: "📤 Fè epi remèt",
+    lblScore100: "Nòt /100",
+    lblTeacherComment: "Kòmantè pwofesè",
+    btnSaveCorrection: "💾 Sove koreksyon",
+    lblNotGraded: "Pa korije",
+    lblPending: "An atant",
+    lblSelectRole: "Chwazi wòl",
+    btnAccept: "✅ Aksepte",
+    btnRefuse: "❌ Refize",
+    lblNoEmail: "Pa gen email",
+    lblNoName: "San non",
+    lblNoTitle: "San tit",
+    lblActive: "Aktif",
+    lblMinutes: "minit",
+    lblAttempts: "Tantativ",
+    lblStudent: "Elèv",
+    lblAnswer: "Repons",
+    lblTime: "Tan",
+    lblStatus: "Status",
+    lblComment: "Kòmantè",
+    lblNoComment: "Pa gen kòmantè.",
+    lblNotDefined: "Pa defini",
+    lblSubmitted: "soumis",
+    lblResultTitle: "Rezilta devwa",
+    phExScore: "Egzanp: 15",
+    phWriteComment: "Ekri yon kòmantè..."
+  },
+  fr: {
+    appName: "Système d'Apprentissage",
+    brand: "📚 Système d'Apprentissage",
+    authSubtitle: "Plateforme d'apprentissage en ligne",
+    labelEmail: "E-mail",
+    labelPassword: "Mot de passe",
+    labelName: "Nom",
+    phLoginEmail: "Exemple: nom@email.com",
+    phPassword: "Mot de passe",
+    phFullName: "Nom complet",
+    phPassLength: "Au moins 6 caractères",
+    btnLogin: "Se connecter",
+    btnGoogleLogin: "Continuer avec Google",
+    orDivider: "ou créer un compte",
+    btnRegister: "Créer un compte",
+    btnGoogleRegister: "S'inscrire avec Google",
+    btnInstall: "📲 Installer",
+    btnLogout: "Se déconnecter",
+    navTitle: "Navigation",
+    menuHome: "Accueil",
+    menuEleves: "Élèves",
+    menuProfesseurs: "Professeurs",
+    menuClasses: "Classes",
+    menuMatieres: "Matières",
+    menuDevoirs: "Devoirs",
+    menuRemises: "Devoirs rendus",
+    menuResultats: "Résultats",
+    menuStatistiques: "Statistiques",
+    menuUsers: "Utilisateurs",
+    homeSubtitle: "Bienvenue dans le Système d'Apprentissage.",
+    heroTitle: "Bienvenue dans le Système d'Apprentissage 👋",
+    heroDesc: "Gérez les élèves, professeurs, classes, matières, devoirs, travaux rendus et résultats dans un seul espace.",
+    statTotalStudents: "Total élèves",
+    statTotalTeachers: "Total professeurs",
+    statTotalClasses: "Total classes",
+    statTotalHomeworks: "Total devoirs",
+    titleEleves: "👨‍‍🎓 Élèves",
+    subEleves: "Gérer la liste des élèves.",
+    panelAddEleve: "➕ Ajouter un nouvel élève",
+    labelEleveNom: "Nom de l'élève",
+    labelClasse: "Classe",
+    btnAddEleve: "➕ Ajouter un élève",
+    phSearchEleve: "Chercher un élève...",
+    titleProfesseurs: "👨‍🏫 Professeurs",
+    subProfesseurs: "Gérer les professeurs et leurs matières.",
+    panelAddProf: "➕ Ajouter un professeur",
+    phProfNom: "Nom du professeur",
+    labelMatiere: "Matière",
+    btnAddProf: "➕ Ajouter un professeur",
+    phSearchProf: "Chercher un professeur...",
+    titleClasses: "🏫 Classes",
+    subClasses: "Gérer les classes de l'école.",
+    panelAddClasse: "➕ Ajouter une classe",
+    labelClasseNom: "Nom de la classe",
+    btnAddClasse: "➕ Ajouter une classe",
+    titleMatieres: "📚 Matières",
+    subMatieres: "Gérer les matières.",
+    panelAddMatiere: "➕ Ajouter une matière",
+    labelMatiereNom: "Nom de la matière",
+    btnAddMatiere: "➕ Ajouter une matière",
+    titleDevoirs: "📝 Devoirs",
+    subDevoirs: "Créer des devoirs ou effectuer vos devoirs reçus.",
+    panelAddDevoir: "➕ Créer un nouveau devoir",
+    labelDevoirTitre: "Titre du devoir",
+    labelDuree: "Durée (minutes)",
+    labelMaxTentatives: "Tentatives maximum",
+    btnAddDevoir: "➕ Créer le devoir",
+    phSearchDevoir: "Chercher un devoir...",
+    titleRemises: "📤 Devoirs rendus",
+    subRemises: "Consulter les travaux soumis par les élèves et les corriger.",
+    titleResultats: "🏆 Résultats",
+    subResultats: "Notes et commentaires des élèves.",
+    titleStatistiques: "📈 Statistiques",
+    subStatistiques: "Un résumé des données du système.",
+    titleUsers: "👥 Utilisateurs",
+    subUsers: "Gérer les comptes en attente d'accès.",
+    modalSubmitTitle: "📤 Rendre le devoir",
+    labelYourAnswer: "Votre réponse / Travail",
+    phYourAnswer: "Écrivez votre réponse ou travail ici...",
+    labelTimeUsed: "Temps utilisé (minutes)",
+    btnSubmitWork: "📤 Rendre le devoir",
+    btnCancel: "Annuler",
+    msgFillFields: "Veuillez remplir tous les champs.",
+    msgPassMin: "Le mot de passe doit contenir au moins 6 caractères.",
+    msgEmailPassReq: "Veuillez entrer votre e-mail et votre mot de passe.",
+    msgWrongCreds: "E-mail ou mot de passe incorrect.",
+    msgGoogleFail: "La connexion Google a échoué.",
+    msgAccCreatedApprove: "Compte créé. L'administrateur doit l'approuver.",
+    msgAccFail: "Impossible de créer ce compte.",
+    msgGoogleAccCreated: "Compte Google créé. L'administrateur doit l'approuver.",
+    msgGoogleRegFail: "L'inscription Google a échoué.",
+    msgAccRegApprove: "Compte enregistré. L'administrateur doit l'approuver.",
+    msgAccNotApproved: "Votre compte n'est pas encore approuvé par l'administrateur.",
+    msgRoleUnk: "Rôle du compte non reconnu.",
+    msgVerifyErr: "Impossible de vérifier votre compte pour le moment.",
+    msgInstallNotReady: "L'application n'est pas encore prête à être installée sur ce navigateur.",
+    loadingEleves: "Chargement des élèves...",
+    emptyEleves: "Aucun élève pour le moment.",
+    errEleves: "Impossible de charger les élèves.",
+    msgAdminOnlyAddEleve: "Seul l'administrateur peut ajouter des élèves.",
+    msgEnterEleveNom: "Veuillez entrer le nom de l'élève.",
+    msgEleveAddSuccess: "✅ Élève ajouté avec succès.",
+    msgEleveAddFail: "❌ Impossible d'ajouter l'élève.",
+    loadingProfs: "Chargement des professeurs...",
+    emptyProfs: "Aucun professeur pour le moment.",
+    errProfs: "Impossible de charger les professeurs.",
+    msgAdminOnlyAddProf: "Seul l'administrateur peut ajouter des professeurs.",
+    msgEnterProfNom: "Veuillez entrer le nom du professeur.",
+    msgProfAddSuccess: "✅ Professeur ajouté avec succès.",
+    msgProfAddFail: "❌ Impossible d'ajouter le professeur.",
+    loadingClasses: "Chargement des classes...",
+    emptyClasses: "Aucune classe pour le moment.",
+    errClasses: "Impossible de charger les classes.",
+    msgAdminOnlyAddClasse: "Seul l'administrateur peut ajouter des classes.",
+    msgEnterClasseNom: "Veuillez entrer le nom de la classe.",
+    msgClasseAddSuccess: "✅ Classe ajoutée avec succès.",
+    msgClasseAddFail: "❌ Impossible d'ajouter la classe.",
+    loadingMatieres: "Chargement des matières...",
+    emptyMatieres: "Aucune matière pour le moment.",
+    errMatieres: "Impossible de charger les matières.",
+    msgAdminOnlyAddMatiere: "Seul l'administrateur peut ajouter des matières.",
+    msgEnterMatiereNom: "Veuillez entrer le nom de la matière.",
+    msgMatiereAddSuccess: "✅ Matière ajoutée avec succès.",
+    msgMatiereAddFail: "❌ Impossible d'ajouter la matière.",
+    loadingDevoirs: "Chargement des devoirs...",
+    emptyDevoirs: "Aucun devoir pour le moment.",
+    errDevoirs: "Impossible de charger les devoirs.",
+    msgTeacherOnlyDevoir: "Seul un professeur ou administrateur peut créer un devoir.",
+    msgEnterDevoirTitre: "Veuillez entrer le titre du devoir.",
+    msgDevoirAddSuccess: "✅ Devoir créé avec succès.",
+    msgDevoirAddFail: "❌ Impossible de créer le devoir.",
+    msgDevoirNotExist: "Ce devoir n'existe plus.",
+    msgOpenDevoirFail: "❌ Impossible d'ouvrir ce devoir.",
+    msgStudentOnlySubmit: "Seuls les élèves peuvent rendre les devoirs.",
+    msgFillAnswer: "Veuillez remplir correctement la réponse.",
+    msgMaxAttemptsReached: "Vous avez atteint le nombre maximum de tentatives pour ce devoir.",
+    msgSubmitSuccess: "✅ Travail envoyé avec succès.",
+    msgSubmitFail: "❌ Impossible d'envoyer le travail.",
+    loadingRemises: "Chargement des travaux des élèves...",
+    emptyRemises: "Aucun devoir rendu pour le moment.",
+    errRemises: "Impossible de charger les travaux.",
+    msgTeacherOnlyCorrect: "Seul un professeur ou administrateur peut corriger les travaux.",
+    msgScoreRange: "La note doit être comprise entre 0 et 100.",
+    msgCorrectionSuccess: "✅ Correction enregistrée.",
+    msgCorrectionFail: "❌ Impossible d'enregistrer la correction.",
+    loadingResultats: "Chargement des résultats...",
+    emptyResultats: "Aucun résultat pour le moment.",
+    errResultats: "Impossible de charger les résultats.",
+    loadingUsers: "Chargement des demandes...",
+    emptyUsers: "Aucune demande en attente.",
+    errUsers: "Impossible de charger les utilisateurs.",
+    msgAdminOnlyUsersView: "Seul l'administrateur peut consulter les utilisateurs.",
+    msgAdminOnlyUsersAccept: "Seul l'administrateur peut accepter les utilisateurs.",
+    msgUserAcceptSuccess: "✅ Utilisateur accepté avec succès.",
+    msgUserAcceptFail: "❌ Impossible d'accepter cet utilisateur.",
+    msgAdminOnlyUsersRefuse: "Seul l'administrateur peut refuser les utilisateurs.",
+    confirmRefuseUser: "Êtes-vous sûr de vouloir refuser et supprimer cette demande ?",
+    msgUserRefuseSuccess: "✅ Demande supprimée.",
+    msgUserRefuseFail: "❌ Impossible de supprimer la demande.",
+    msgAdminOnlyOp: "Seul l'administrateur peut effectuer cette opération.",
+    confirmDelEleve: "Êtes-vous sûr de vouloir supprimer cet élève ?",
+    msgEleveDelSuccess: "✅ Élève supprimé avec succès.",
+    msgEleveDelFail: "❌ Impossible de supprimer l'élève.",
+    confirmDelProf: "Êtes-vous sûr de vouloir supprimer ce professeur ?",
+    msgProfDelSuccess: "✅ Professeur supprimé avec succès.",
+    msgProfDelFail: "❌ Impossible de supprimer le professeur.",
+    confirmDelClasse: "Êtes-vous sûr de vouloir supprimer cette classe ?",
+    msgClasseDelSuccess: "✅ Classe supprimée avec succès.",
+    msgClasseDelFail: "❌ Impossible de supprimer la classe.",
+    confirmDelMatiere: "Êtes-vous sûr de vouloir supprimer cette matière ?",
+    msgMatiereDelSuccess: "✅ Matière supprimée avec succès.",
+    msgMatiereDelFail: "❌ Impossible de supprimer la matière.",
+    confirmDelDevoir: "Êtes-vous sûr de vouloir supprimer ce devoir ?",
+    msgDevoirDelSuccess: "✅ Devoir supprimé avec succès.",
+    msgDevoirDelFail: "❌ Impossible de supprimer le devoir.",
+    confirmDelRemise: "Êtes-vous sûr de vouloir supprimer le travail de cet élève ?",
+    msgRemiseDelSuccess: "✅ Travail supprimé avec succès.",
+    msgRemiseDelFail: "❌ Impossible de supprimer ce travail.",
+    confirmDelResultat: "Êtes-vous sûr de vouloir supprimer ce résultat ?",
+    msgResultatDelSuccess: "✅ Résultat supprimé avec succès.",
+    msgResultatDelFail: "❌ Impossible de supprimer ce résultat.",
+    lblRole: "Rôle: ",
+    btnDelete: "🗑️ Supprimer",
+    btnDoAndSubmit: "📤 Faire et rendre",
+    lblScore100: "Note /100",
+    lblTeacherComment: "Commentaire du professeur",
+    btnSaveCorrection: "💾 Enregistrer la correction",
+    lblNotGraded: "Non corrigé",
+    lblPending: "En attente",
+    lblSelectRole: "Choisir un rôle",
+    btnAccept: "✅ Accepter",
+    btnRefuse: "❌ Refuser",
+    lblNoEmail: "Pas d'e-mail",
+    lblNoName: "Sans nom",
+    lblNoTitle: "Sans titre",
+    lblActive: "Actif",
+    lblMinutes: "minutes",
+    lblAttempts: "Tentatives",
+    lblStudent: "Élève",
+    lblAnswer: "Réponse",
+    lblTime: "Temps",
+    lblStatus: "Statut",
+    lblComment: "Commentaire",
+    lblNoComment: "Aucun commentaire.",
+    lblNotDefined: "Non défini",
+    lblSubmitted: "soumis",
+    lblResultTitle: "Résultat du devoir",
+    phExScore: "Exemple: 15",
+    phWriteComment: "Écrire un commentaire..."
+  }
+};
+
+function t(key){
+  return (translations[currentLang] && translations[currentLang][key]) || (translations.ht && translations.ht[key]) || key;
+}
+
+function updateUIStrings(){
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if(key) el.textContent = t(key);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if(key) el.placeholder = t(key);
+  });
+  const roleSpan = document.getElementById("userRole");
+  if(roleSpan && currentUserData) {
+    roleSpan.textContent = t("lblRole") + (currentUserData.role || "");
+  }
+}
 
 setPersistence(auth, browserLocalPersistence).catch(console.error);
 
@@ -494,12 +937,12 @@ function isTeacher(){ return role() === "administrateur" || role() === "professe
 window.connecter = async function(){
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value;
-  if(!email || !password){ showMessage("Tanpri antre email ak modpas ou."); return; }
+  if(!email || !password){ showMessage(t("msgEmailPassReq")); return; }
   try{
     await signInWithEmailAndPassword(auth, email, password);
   }catch(e){
     console.error(e);
-    showMessage("Email oswa modpas la pa kòrèk.");
+    showMessage(t("msgWrongCreds"));
   }
 };
 
@@ -512,7 +955,7 @@ window.connecterAvecGoogle = async function(){
       await signInWithRedirect(auth, provider);
     }catch(e2){
       console.error("Google Redirect:", e2);
-      showMessage("Koneksyon Google pa reyisi.");
+      showMessage(t("msgGoogleFail"));
     }
   }
 };
@@ -521,8 +964,8 @@ window.registerAccount = async function(){
   const nom = document.getElementById("registerName").value.trim();
   const email = document.getElementById("registerEmail").value.trim();
   const password = document.getElementById("registerPassword").value;
-  if(!nom || !email || !password){ showMessage("Tanpri ranpli tout chan yo."); return; }
-  if(password.length < 6){ showMessage("Modpas la dwe gen omwen 6 karaktè."); return; }
+  if(!nom || !email || !password){ showMessage(t("msgFillFields")); return; }
+  if(password.length < 6){ showMessage(t("msgPassMin")); return; }
   try{
     const credential = await createUserWithEmailAndPassword(auth, email, password);
     await setDoc(doc(db, "users", credential.user.uid), {
@@ -534,10 +977,10 @@ window.registerAccount = async function(){
       createdAt: serverTimestamp()
     });
     await signOut(auth);
-    showMessage("Kont la kreye. Administratè a dwe apwouve li.");
+    showMessage(t("msgAccCreatedApprove"));
   }catch(e){
     console.error(e);
-    showMessage("Nou pa kapab kreye kont sa a.");
+    showMessage(t("msgAccFail"));
   }
 };
 
@@ -557,10 +1000,10 @@ window.registerGoogle = async function(){
       });
     }
     await signOut(auth);
-    showMessage("Kont Google la kreye. Administratè a dwe apwouve li.");
+    showMessage(t("msgGoogleAccCreated"));
   }catch(e){
     console.error(e);
-    showMessage("Enskripsyon Google pa reyisi.");
+    showMessage(t("msgGoogleRegFail"));
   }
 };
 
@@ -578,7 +1021,7 @@ async function loadUserProfile(user){
         createdAt: serverTimestamp()
       });
       await signOut(auth);
-      showMessage("Kont ou anrejistre. Administratè a dwe apwouve li.");
+      showMessage(t("msgAccRegApprove"));
       return;
     }
     currentUserData = snap.data();
@@ -586,19 +1029,19 @@ async function loadUserProfile(user){
     const s = String(currentUserData.status || "").trim().toLowerCase();
     if(s !== "accepted"){
       await signOut(auth);
-      showMessage("Kont ou poko apwouve pa administratè a.");
+      showMessage(t("msgAccNotApproved"));
       return;
     }
     if(!["administrateur", "professeur", "eleve"].includes(r)){
       await signOut(auth);
-      showMessage("Wòl kont lan pa rekonèt.");
+      showMessage(t("msgRoleUnk"));
       return;
     }
     openApp();
   }catch(e){
     console.error(e);
     await signOut(auth);
-    showMessage("Nou pa kapab verifye kont ou kounye a.");
+    showMessage(t("msgVerifyErr"));
   }
 }
 
@@ -606,7 +1049,22 @@ async function openApp(){
   document.getElementById("authPage").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
   document.getElementById("userEmail").textContent = currentUser.email || "";
-  document.getElementById("userRole").textContent = "Wòl: " + (currentUserData.role || "");
+  
+  if(currentUserData && currentUserData.preferredLanguage && (currentUserData.preferredLanguage === "ht" || currentUserData.preferredLanguage === "fr")){
+    currentLang = currentUserData.preferredLanguage;
+  }
+  
+  const select = document.getElementById("languageSelect");
+  if(select) {
+    select.value = currentLang;
+    if(isAdmin()){
+      select.classList.remove("hidden");
+    } else {
+      select.classList.add("hidden");
+    }
+  }
+
+  updateUIStrings();
   applyRoleAccess();
   await loadAllData();
 }
@@ -675,7 +1133,7 @@ window.addEventListener("beforeinstallprompt", e => {
 
 window.installApp = async function(){
   if(!deferredPrompt){
-    alert("Aplikasyon an poko pare pou enstalasyon sou navigatè sa a.");
+    alert(t("msgInstallNotReady"));
     return;
   }
   deferredPrompt.prompt();
@@ -685,19 +1143,27 @@ window.installApp = async function(){
   if(btn) btn.classList.add("hidden");
 };
 
-window.changeLanguage = function(lang){
-  localStorage.setItem("language", lang);
-  const brand = document.querySelector(".brand");
-  if(!brand) return;
-  brand.textContent = lang === "fr" ? "📚 Système d'Apprentissage" : "📚 Sistèm Aprantisaj";
+window.changeLanguage = async function(lang){
+  if(!isAdmin()){
+    const select = document.getElementById("languageSelect");
+    if(select) select.value = currentLang;
+    return;
+  }
+  if(lang !== "ht" && lang !== "fr") return;
+  currentLang = lang;
+  updateUIStrings();
+  if(currentUser){
+    try{
+      await updateDoc(doc(db, "users", currentUser.uid), {
+        preferredLanguage: lang
+      });
+      if(currentUserData) currentUserData.preferredLanguage = lang;
+    }catch(e){
+      console.error(e);
+    }
+  }
+  await loadAllData();
 };
-
-const savedLanguage = localStorage.getItem("language");
-if(savedLanguage){
-  const select = document.getElementById("languageSelect");
-  if(select) select.value = savedLanguage;
-  changeLanguage(savedLanguage);
-}
 
 window.filterCards = function(inputId, listId){
   const input = document.getElementById(inputId);
@@ -718,34 +1184,34 @@ if("serviceWorker" in navigator){
 async function loadEleves(){
   const box = document.getElementById("listeEleves");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje elèv yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingEleves"));
   try{
     const snap = await getDocs(collection(db, "eleves"));
-    box.innerHTML = snap.empty ? emptyCard("👨‍🎓", "Pa gen elèv pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("👨‍🎓", t("emptyEleves")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       box.innerHTML += `
         <div class="dataCard">
           <div class="cardIcon">👨‍🎓</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.nom || "San non")}</h3>
-            <p><strong>Klas:</strong> ${escapeHTML(data.classe || "Pa defini")}</p>
+            <h3>${escapeHTML(data.nom || t("lblNoName"))}</h3>
+            <p><strong>${escapeHTML(t("labelClasse"))}:</strong> ${escapeHTML(data.classe || t("lblNotDefined"))}</p>
             <p><strong>ID:</strong> ${escapeHTML(id)}</p>
           </div>
-          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteEleve('${id}')">🗑️ Efase</button></div>` : ""}
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteEleve('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje elèv yo.");
+    box.innerHTML = emptyCard("⚠️", t("errEleves"));
   }
 }
 
 window.ajouterEleve = async function(){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute elèv."); return; }
+  if(!isAdmin()){ alert(t("msgAdminOnlyAddEleve")); return; }
   const nom = document.getElementById("eleveNom").value.trim();
   const classe = document.getElementById("eleveClasse").value.trim();
-  if(!nom){ alert("Tanpri antre non elèv la."); return; }
+  if(!nom){ alert(t("msgEnterEleveNom")); return; }
   try{
     await setDoc(doc(db, "eleves", "eleve_" + Date.now()), {
       nom: nom,
@@ -757,45 +1223,45 @@ window.ajouterEleve = async function(){
     document.getElementById("eleveClasse").value = "";
     await loadEleves();
     await updateStats();
-    alert("✅ Elèv la ajoute avèk siksè.");
+    alert(t("msgEleveAddSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab ajoute elèv la.");
+    alert(t("msgEleveAddFail"));
   }
 };
 
 async function loadProfesseurs(){
   const box = document.getElementById("listeProfesseurs");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje pwofesè yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingProfs"));
   try{
     const snap = await getDocs(collection(db, "professeurs"));
-    box.innerHTML = snap.empty ? emptyCard("👨‍🏫", "Pa gen pwofesè pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("👨‍🏫", t("emptyProfs")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       box.innerHTML += `
         <div class="dataCard">
           <div class="cardIcon">👨‍🏫</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.nom || "San non")}</h3>
-            <p><strong>Email:</strong> ${escapeHTML(data.email || "Pa gen email")}</p>
-            <p><strong>Matyè:</strong> ${escapeHTML(data.matiere || "Pa defini")}</p>
+            <h3>${escapeHTML(data.nom || t("lblNoName"))}</h3>
+            <p><strong>${escapeHTML(t("labelEmail"))}:</strong> ${escapeHTML(data.email || t("lblNoEmail"))}</p>
+            <p><strong>${escapeHTML(t("labelMatiere"))}:</strong> ${escapeHTML(data.matiere || t("lblNotDefined"))}</p>
           </div>
-          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteProfesseur('${id}')">🗑️ Efase</button></div>` : ""}
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteProfesseur('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje pwofesè yo.");
+    box.innerHTML = emptyCard("⚠️", t("errProfs"));
   }
 }
 
 window.ajouterProfesseur = async function(){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute pwofesè."); return; }
+  if(!isAdmin()){ alert(t("msgAdminOnlyAddProf")); return; }
   const nom = document.getElementById("profNom").value.trim();
   const email = document.getElementById("profEmail").value.trim();
   const matiere = document.getElementById("profMatiere").value.trim();
-  if(!nom){ alert("Tanpri antre non pwofesè a."); return; }
+  if(!nom){ alert(t("msgEnterProfNom")); return; }
   try{
     await setDoc(doc(db, "professeurs", "professeur_" + Date.now()), {
       nom: nom, email: email, matiere: matiere, createdAt: serverTimestamp(), createdBy: currentUser.uid
@@ -805,43 +1271,43 @@ window.ajouterProfesseur = async function(){
     document.getElementById("profMatiere").value = "";
     await loadProfesseurs();
     await updateStats();
-    alert("✅ Pwofesè a ajoute avèk siksè.");
+    alert(t("msgProfAddSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab ajoute pwofesè a.");
+    alert(t("msgProfAddFail"));
   }
 };
 
 async function loadClasses(){
   const box = document.getElementById("listeClasses");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje klas yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingClasses"));
   try{
     const snap = await getDocs(collection(db, "classes"));
-    box.innerHTML = snap.empty ? emptyCard("🏫", "Pa gen klas pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("🏫", t("emptyClasses")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       box.innerHTML += `
         <div class="dataCard">
           <div class="cardIcon">🏫</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.nom || "San non")}</h3>
+            <h3>${escapeHTML(data.nom || t("lblNoName"))}</h3>
             <p><strong>ID:</strong> ${escapeHTML(id)}</p>
-            <p><span class="badge badgeBlue">Aktif</span></p>
+            <p><span class="badge badgeBlue">${escapeHTML(t("lblActive"))}</span></p>
           </div>
-          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteClasse('${id}')">🗑️ Efase</button></div>` : ""}
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteClasse('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje klas yo.");
+    box.innerHTML = emptyCard("⚠️", t("errClasses"));
   }
 }
 
 window.ajouterClasse = async function(){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute klas."); return; }
+  if(!isAdmin()){ alert(t("msgAdminOnlyAddClasse")); return; }
   const nom = document.getElementById("classeNom").value.trim();
-  if(!nom){ alert("Tanpri antre non klas la."); return; }
+  if(!nom){ alert(t("msgEnterClasseNom")); return; }
   try{
     await setDoc(doc(db, "classes", "classe_" + Date.now()), {
       nom: nom, active: true, createdAt: serverTimestamp(), createdBy: currentUser.uid
@@ -849,42 +1315,42 @@ window.ajouterClasse = async function(){
     document.getElementById("classeNom").value = "";
     await loadClasses();
     await updateStats();
-    alert("✅ Klas la ajoute avèk siksè.");
+    alert(t("msgClasseAddSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab ajoute klas la.");
+    alert(t("msgClasseAddFail"));
   }
 };
 
 async function loadMatieres(){
   const box = document.getElementById("listeMatieres");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje matyè yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingMatieres"));
   try{
     const snap = await getDocs(collection(db, "matieres"));
-    box.innerHTML = snap.empty ? emptyCard("📚", "Pa gen matyè pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("📚", t("emptyMatieres")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       box.innerHTML += `
         <div class="dataCard">
           <div class="cardIcon">📚</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.nom || "San non")}</h3>
-            <p><span class="badge badgeBlue">Aktif</span></p>
+            <h3>${escapeHTML(data.nom || t("lblNoName"))}</h3>
+            <p><span class="badge badgeBlue">${escapeHTML(t("lblActive"))}</span></p>
           </div>
-          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteMatiere('${id}')">🗑️ Efase</button></div>` : ""}
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteMatiere('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje matyè yo.");
+    box.innerHTML = emptyCard("⚠️", t("errMatieres"));
   }
 }
 
 window.ajouterMatiere = async function(){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka ajoute matyè."); return; }
+  if(!isAdmin()){ alert(t("msgAdminOnlyAddMatiere")); return; }
   const nom = document.getElementById("matiereNom").value.trim();
-  if(!nom){ alert("Tanpri antre non matyè a."); return; }
+  if(!nom){ alert(t("msgEnterMatiereNom")); return; }
   try{
     await setDoc(doc(db, "matieres", "matiere_" + Date.now()), {
       nom: nom, active: true, createdAt: serverTimestamp(), createdBy: currentUser.uid
@@ -892,56 +1358,56 @@ window.ajouterMatiere = async function(){
     document.getElementById("matiereNom").value = "";
     await loadMatieres();
     await updateStats();
-    alert("✅ Matyè a ajoute avèk siksè.");
+    alert(t("msgMatiereAddSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab ajoute matyè a.");
+    alert(t("msgMatiereAddFail"));
   }
 };
 
 async function loadDevoirs(){
   const box = document.getElementById("listeDevoirs");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje devwa yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingDevoirs"));
   try{
     const snap = await getDocs(collection(db, "devoirs"));
-    box.innerHTML = snap.empty ? emptyCard("📝", "Pa gen devwa pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("📝", t("emptyDevoirs")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       let action = "";
       if(role() === "eleve"){
-        action += `<button class="smallBtn edit" onclick="ouvrirRemetDevoir('${id}')">📤 Fè epi remèt</button>`;
+        action += `<button class="smallBtn edit" onclick="ouvrirRemetDevoir('${id}')">${escapeHTML(t("btnDoAndSubmit"))}</button>`;
       }
       if(isAdmin() || role() === "professeur"){
-        action += `<button class="smallBtn refuse" onclick="deleteDevoir('${id}')">🗑️ Efase</button>`;
+        action += `<button class="smallBtn refuse" onclick="deleteDevoir('${id}')">${escapeHTML(t("btnDelete"))}</button>`;
       }
       box.innerHTML += `
         <div class="dataCard">
           <div class="cardIcon">📝</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.titre || "San tit")}</h3>
-            <p><strong>Matyè:</strong> ${escapeHTML(data.matiere || "Pa defini")}</p>
-            <p><strong>Klas:</strong> ${escapeHTML(data.classe || "Pa defini")}</p>
-            <p><strong>Dire:</strong> ${escapeHTML(data.duree || 0)} minit</p>
-            <p><strong>Tantativ:</strong> ${escapeHTML(data.maxTentatives || 1)}</p>
+            <h3>${escapeHTML(data.titre || t("lblNoTitle"))}</h3>
+            <p><strong>${escapeHTML(t("labelMatiere"))}:</strong> ${escapeHTML(data.matiere || t("lblNotDefined"))}</p>
+            <p><strong>${escapeHTML(t("labelClasse"))}:</strong> ${escapeHTML(data.classe || t("lblNotDefined"))}</p>
+            <p><strong>${escapeHTML(t("labelDuree"))}:</strong> ${escapeHTML(data.duree || 0)} ${escapeHTML(t("lblMinutes"))}</p>
+            <p><strong>${escapeHTML(t("lblAttempts"))}:</strong> ${escapeHTML(data.maxTentatives || 1)}</p>
             <div class="cardActions">${action}</div>
           </div>
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje devwa yo.");
+    box.innerHTML = emptyCard("⚠️", t("errDevoirs"));
   }
 }
 
 window.ajouterDevoir = async function(){
-  if(!isTeacher()){ alert("Se pwofesè oswa administratè sèlman ki ka kreye devwa."); return; }
+  if(!isTeacher()){ alert(t("msgTeacherOnlyDevoir")); return; }
   const titre = document.getElementById("devoirTitre").value.trim();
   const matiere = document.getElementById("devoirMatiere").value.trim();
   const classe = document.getElementById("devoirClasse").value.trim();
   const duree = Number(document.getElementById("devoirDuree").value) || 30;
   const maxTentatives = Number(document.getElementById("devoirTentatives").value) || 1;
-  if(!titre){ alert("Tanpri antre tit devwa a."); return; }
+  if(!titre){ alert(t("msgEnterDevoirTitre")); return; }
   try{
     await setDoc(doc(db, "devoirs", "devoir_" + Date.now()), {
       titre: titre, matiere: matiere, classe: classe, duree: duree, maxTentatives: maxTentatives, createdAt: serverTimestamp(), createdBy: currentUser.uid
@@ -951,10 +1417,10 @@ window.ajouterDevoir = async function(){
     document.getElementById("devoirClasse").value = "";
     await loadDevoirs();
     await updateStats();
-    alert("✅ Devwa a kreye avèk siksè.");
+    alert(t("msgDevoirAddSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab kreye devwa a.");
+    alert(t("msgDevoirAddFail"));
   }
 };
 
@@ -962,22 +1428,22 @@ window.ouvrirRemetDevoir = async function(devoirId){
   if(role() !== "eleve") return;
   try{
     const snap = await getDoc(doc(db, "devoirs", devoirId));
-    if(!snap.exists()){ alert("Devwa sa a pa egziste ankò."); return; }
+    if(!snap.exists()){ alert(t("msgDevoirNotExist")); return; }
     const data = snap.data();
     document.getElementById("remetDevoirId").value = devoirId;
     document.getElementById("remetDevoirInfo").innerHTML = `
       <div class="infoBox">
-        <h3>${escapeHTML(data.titre || "Devwa")}</h3>
-        <p><strong>Matyè:</strong> ${escapeHTML(data.matiere || "Pa defini")}</p>
-        <p><strong>Klas:</strong> ${escapeHTML(data.classe || "Pa defini")}</p>
-        <p><strong>Dire:</strong> ${escapeHTML(data.duree || 0)} minit</p>
+        <h3>${escapeHTML(data.titre || t("titleDevoirs"))}</h3>
+        <p><strong>${escapeHTML(t("labelMatiere"))}:</strong> ${escapeHTML(data.matiere || t("lblNotDefined"))}</p>
+        <p><strong>${escapeHTML(t("labelClasse"))}:</strong> ${escapeHTML(data.classe || t("lblNotDefined"))}</p>
+        <p><strong>${escapeHTML(t("labelDuree"))}:</strong> ${escapeHTML(data.duree || 0)} ${escapeHTML(t("lblMinutes"))}</p>
       </div>`;
     document.getElementById("remetReponse").value = "";
     document.getElementById("remetTemps").value = "";
     document.getElementById("remetModal").classList.remove("hidden");
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab ouvri devwa sa a.");
+    alert(t("msgOpenDevoirFail"));
   }
 };
 
@@ -986,18 +1452,18 @@ window.fermerRemetModal = function(){
 };
 
 window.envoyerRemise = async function(){
-  if(role() !== "eleve"){ alert("Se elèv yo sèlman ki ka remèt devwa."); return; }
+  if(role() !== "eleve"){ alert(t("msgStudentOnlySubmit")); return; }
   const devoirId = document.getElementById("remetDevoirId").value;
   const reponse = document.getElementById("remetReponse").value.trim();
   const temps = Number(document.getElementById("remetTemps").value) || 0;
-  if(!devoirId || !reponse){ alert("Tanpri ranpli repons lan kòrèkteman."); return; }
+  if(!devoirId || !reponse){ alert(t("msgFillAnswer")); return; }
   try{
     const devoirSnap = await getDoc(doc(db, "devoirs", devoirId));
-    if(!devoirSnap.exists()){ alert("Devwa sa a pa egziste ankò."); return; }
+    if(!devoirSnap.exists()){ alert(t("msgDevoirNotExist")); return; }
     const devoir = devoirSnap.data();
     const tentativesSnap = await getDocs(query(collection(db, "tentatives"), where("eleveId", "==", currentUser.uid), where("devoirId", "==", devoirId)));
     if(tentativesSnap.size >= Number(devoir.maxTentatives || 1)){
-      alert("Ou rive nan kantite tantativ ki pèmèt pou devwa sa a.");
+      alert(t("msgMaxAttemptsReached"));
       return;
     }
     await setDoc(doc(db, "tentatives", "tentative_" + Date.now()), {
@@ -1013,21 +1479,21 @@ window.envoyerRemise = async function(){
       submittedAt: serverTimestamp(), correctedAt: null, correctedBy: null
     });
     fermerRemetModal();
-    alert("✅ Travay la voye avèk siksè.");
+    alert(t("msgSubmitSuccess"));
     await loadResultats();
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab voye travay la.");
+    alert(t("msgSubmitFail"));
   }
 };
 
 async function loadRemises(){
   const box = document.getElementById("listeRemises");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje travay elèv yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingRemises"));
   try{
     const snap = await getDocs(collection(db, "tentatives"));
-    box.innerHTML = snap.empty ? emptyCard("📤", "Pa gen travay remèt pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("📤", t("emptyRemises")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       const score = data.noteFinale ?? data.score;
@@ -1035,39 +1501,39 @@ async function loadRemises(){
         <div class="dataCard">
           <div class="cardIcon">📤</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.devoirTitre || "Devwa")}</h3>
-            <p><strong>Elèv:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || "Pa defini")}</p>
-            <p><strong>Repons:</strong></p>
+            <h3>${escapeHTML(data.devoirTitre || t("titleDevoirs"))}</h3>
+            <p><strong>${escapeHTML(t("lblStudent"))}:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || t("lblNotDefined"))}</p>
+            <p><strong>${escapeHTML(t("lblAnswer"))}:</strong></p>
             <div style="background:#f8fafc;padding:10px;border-radius:8px;margin:5px 0;">${escapeHTML(data.reponse || "")}</div>
-            <p><strong>Tan:</strong> ${escapeHTML(data.temps || 0)} minit</p>
-            <p><strong>Status:</strong> ${escapeHTML(data.status || "soumis")}</p>
+            <p><strong>${escapeHTML(t("lblTime"))}:</strong> ${escapeHTML(data.temps || 0)} ${escapeHTML(t("lblMinutes"))}</p>
+            <p><strong>${escapeHTML(t("lblStatus"))}:</strong> ${escapeHTML(data.status || t("lblSubmitted"))}</p>
             <div class="field">
-              <label>Nòt /100</label>
-              <input id="score_${id}" type="number" min="0" max="100" value="${score ?? ""}" placeholder="Egzanp: 15">
+              <label>${escapeHTML(t("lblScore100"))}</label>
+              <input id="score_${id}" type="number" min="0" max="100" value="${score ?? ""}" placeholder="${escapeHTML(t("phExScore"))}">
             </div>
             <div class="field">
-              <label>Kòmantè pwofesè</label>
-              <textarea id="comment_${id}" rows="3" placeholder="Ekri yon kòmantè...">${escapeHTML(data.commentaire || "")}</textarea>
+              <label>${escapeHTML(t("lblTeacherComment"))}</label>
+              <textarea id="comment_${id}" rows="3" placeholder="${escapeHTML(t("phWriteComment"))}">${escapeHTML(data.commentaire || "")}</textarea>
             </div>
             <div class="cardActions">
-              <button class="smallBtn edit" onclick="corrigerRemise('${id}')">💾 Sove koreksyon</button>
-              ${isAdmin() ? `<button class="smallBtn refuse" onclick="deleteRemise('${id}')">🗑️ Efase</button>` : ""}
+              <button class="smallBtn edit" onclick="corrigerRemise('${id}')">${escapeHTML(t("btnSaveCorrection"))}</button>
+              ${isAdmin() ? `<button class="smallBtn refuse" onclick="deleteRemise('${id}')">${escapeHTML(t("btnDelete"))}</button>` : ""}
             </div>
           </div>
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje travay yo.");
+    box.innerHTML = emptyCard("⚠️", t("errRemises"));
   }
 }
 
 window.corrigerRemise = async function(id){
-  if(!isTeacher()){ alert("Se pwofesè oswa administratè sèlman ki ka korije travay."); return; }
+  if(!isTeacher()){ alert(t("msgTeacherOnlyCorrect")); return; }
   const scoreInput = document.getElementById("score_" + id);
   const commentInput = document.getElementById("comment_" + id);
   let score = Number(scoreInput?.value);
-  if(isNaN(score) || score < 0 || score > 100){ alert("Nòt la dwe ant 0 ak 100."); return; }
+  if(isNaN(score) || score < 0 || score > 100){ alert(t("msgScoreRange")); return; }
   const commentaire = commentInput ? commentInput.value.trim() : "";
   try{
     await updateDoc(doc(db, "tentatives", id), {
@@ -1076,52 +1542,52 @@ window.corrigerRemise = async function(id){
     await setDoc(doc(db, "resultats", id), {
       tentativeId: id, score: score, note: score, noteFinale: score, commentaire: commentaire, updatedAt: serverTimestamp(), updatedBy: currentUser.uid
     }, { merge: true });
-    alert("✅ Koreksyon an sove.");
+    alert(t("msgCorrectionSuccess"));
     await loadRemises();
     await loadResultats();
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab sove koreksyon an.");
+    alert(t("msgCorrectionFail"));
   }
 };
 
 async function loadResultats(){
   const box = document.getElementById("listeResultats");
   if(!box) return;
-  box.innerHTML = emptyCard("⏳", "Chaje rezilta yo...");
+  box.innerHTML = emptyCard("⏳", t("loadingResultats"));
   try{
     const r = role();
     const snap = r === "eleve"
       ? await getDocs(query(collection(db, "resultats"), where("eleveId", "==", currentUser.uid)))
       : await getDocs(collection(db, "resultats"));
-    box.innerHTML = snap.empty ? emptyCard("🏆", "Pa gen rezilta pou kounye a.") : "";
+    box.innerHTML = snap.empty ? emptyCard("🏆", t("emptyResultats")) : "";
     snap.forEach(item => {
       const data = item.data(), id = item.id;
       const note = data.noteFinale ?? data.note ?? data.score;
-      const noteText = (note === null || note === undefined || note === "") ? "Pa korije" : Number(note).toFixed(0) + "/100";
+      const noteText = (note === null || note === undefined || note === "") ? t("lblNotGraded") : Number(note).toFixed(0) + "/100";
       box.innerHTML += `
         <div class="dataCard">
           <div class="cardIcon">🏆</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.devoirTitre || "Rezilta devwa")}</h3>
-            ${r !== "eleve" ? `<p><strong>Elèv:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || "Pa defini")}</p>` : ""}
+            <h3>${escapeHTML(data.devoirTitre || t("lblResultTitle"))}</h3>
+            ${r !== "eleve" ? `<p><strong>${escapeHTML(t("lblStudent"))}:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || t("lblNotDefined"))}</p>` : ""}
             <div style="font-size:28px;font-weight:800;margin:12px 0;">${escapeHTML(noteText)}</div>
-            <p><strong>Kòmantè:</strong> ${escapeHTML(data.commentaire || "Pa gen kòmantè.")}</p>
-            ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteResultat('${id}')">🗑 Efase</button></div>` : ""}
+            <p><strong>${escapeHTML(t("lblComment"))}:</strong> ${escapeHTML(data.commentaire || t("lblNoComment"))}</p>
+            ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteResultat('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
           </div>
         </div>`;
     });
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje rezilta yo.");
+    box.innerHTML = emptyCard("⚠️", t("errResultats"));
   }
 }
 
 async function loadUsers(){
   const box = document.getElementById("listeUsers");
   if(!box) return;
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka gade itilizatè yo."); box.innerHTML = emptyCard("🔒", "Se administratè a sèlman ki ka wè itilizatè yo."); return; }
-  box.innerHTML = emptyCard("⏳", "Chaje demann yo...");
+  if(!isAdmin()){ alert(t("msgAdminOnlyUsersView")); box.innerHTML = emptyCard("🔒", t("msgAdminOnlyUsersView")); return; }
+  box.innerHTML = emptyCard("⏳", t("loadingUsers"));
   try{
     const snap = await getDocs(collection(db, "users"));
     box.innerHTML = "";
@@ -1135,32 +1601,32 @@ async function loadUsers(){
         <div class="dataCard">
           <div class="cardIcon">👤</div>
           <div class="cardContent">
-            <h3>${escapeHTML(data.nom || "San non")}</h3>
-            <p><strong>Email:</strong> ${escapeHTML(data.email || "San email")}</p>
-            <p><strong>Status:</strong> <span class="badge badgeOrange">An atant</span></p>
+            <h3>${escapeHTML(data.nom || t("lblNoName"))}</h3>
+            <p><strong>${escapeHTML(t("labelEmail"))}:</strong> ${escapeHTML(data.email || t("lblNoEmail"))}</p>
+            <p><strong>${escapeHTML(t("lblStatus"))}:</strong> <span class="badge badgeOrange">${escapeHTML(t("lblPending"))}</span></p>
             <div class="field">
-              <label>Chwazi wòl</label>
+              <label>${escapeHTML(t("lblSelectRole"))}</label>
               <select id="role_${uid}">
-                <option value="eleve">Elèv</option>
-                <option value="professeur">Pwofesè</option>
+                <option value="eleve">${escapeHTML(t("menuEleves"))}</option>
+                <option value="professeur">${escapeHTML(t("menuProfesseurs"))}</option>
               </select>
             </div>
             <div class="cardActions">
-              <button class="smallBtn accept" onclick="acceptUser('${uid}')">✅ Aksepte</button>
-              <button class="smallBtn refuse" onclick="refuseUser('${uid}')">❌ Refize</button>
+              <button class="smallBtn accept" onclick="acceptUser('${uid}')">${escapeHTML(t("btnAccept"))}</button>
+              <button class="smallBtn refuse" onclick="refuseUser('${uid}')">${escapeHTML(t("btnRefuse"))}</button>
             </div>
           </div>
         </div>`;
     });
-    if(count === 0) box.innerHTML = emptyCard("👥", "Pa gen demann an atant.");
+    if(count === 0) box.innerHTML = emptyCard("👥", t("emptyUsers"));
   }catch(e){
     console.error(e);
-    box.innerHTML = emptyCard("⚠️", "Nou pa kapab chaje itilizatè yo.");
+    box.innerHTML = emptyCard("⚠️", t("errUsers"));
   }
 }
 
 window.acceptUser = async function(uid){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka aksepte itilizatè."); return; }
+  if(!isAdmin()){ alert(t("msgAdminOnlyUsersAccept")); return; }
   const select = document.getElementById("role_" + uid);
   const selectedRole = select ? select.value : "eleve";
   try{
@@ -1168,99 +1634,99 @@ window.acceptUser = async function(uid){
       role: selectedRole, status: "accepted", approvedAt: serverTimestamp(), approvedBy: currentUser.uid
     });
     await loadUsers();
-    alert("✅ Itilizatè a aksepte avèk siksè.");
+    alert(t("msgUserAcceptSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab aksepte itilizatè sa a.");
+    alert(t("msgUserAcceptFail"));
   }
 };
 
 window.refuseUser = async function(uid){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka refize itilizatè."); return; }
-  if(!confirm("Èske ou sèten ou vle refize epi efase demann sa a?")) return;
+  if(!isAdmin()){ alert(t("msgAdminOnlyUsersRefuse")); return; }
+  if(!confirm(t("confirmRefuseUser"))) return;
   try{
     await deleteDoc(doc(db, "users", uid));
     await loadUsers();
-    alert("✅ Demann lan efase.");
+    alert(t("msgUserRefuseSuccess"));
   }catch(e){
     console.error(e);
-    alert("❌ Nou pa kapab efase demann lan.");
+    alert(t("msgUserRefuseFail"));
   }
 };
 
 async function verifyAdmin(){
-  if(!isAdmin()){ alert("Se administratè a sèlman ki ka fè operasyon sa a."); return false; }
+  if(!isAdmin()){ alert(t("msgAdminOnlyOp")); return false; }
   return true;
 }
 
 window.deleteEleve = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase elèv sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelEleve"))) return;
   try{
     await deleteDoc(doc(db, "eleves", id));
     await loadEleves();
     await updateStats();
-    alert("✅ Elèv la efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase elèv la."); }
+    alert(t("msgEleveDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgEleveDelFail")); }
 };
 
 window.deleteProfesseur = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase pwofesè sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelProf"))) return;
   try{
     await deleteDoc(doc(db, "professeurs", id));
     await loadProfesseurs();
     await updateStats();
-    alert("✅ Pwofesè a efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase pwofesè a."); }
+    alert(t("msgProfDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgProfDelFail")); }
 };
 
 window.deleteClasse = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase klas sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelClasse"))) return;
   try{
     await deleteDoc(doc(db, "classes", id));
     await loadClasses();
     await updateStats();
-    alert("✅ Klas la efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase klas la."); }
+    alert(t("msgClasseDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgClasseDelFail")); }
 };
 
 window.deleteMatiere = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase matyè sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelMatiere"))) return;
   try{
     await deleteDoc(doc(db, "matieres", id));
     await loadMatieres();
     await updateStats();
-    alert("✅ Matyè a efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase matyè a."); }
+    alert(t("msgMatiereDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgMatiereDelFail")); }
 };
 
 window.deleteDevoir = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase devwa sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelDevoir"))) return;
   try{
     await deleteDoc(doc(db, "devoirs", id));
     await loadDevoirs();
     await updateStats();
-    alert("✅ Devwa a efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase devwa a."); }
+    alert(t("msgDevoirDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgDevoirDelFail")); }
 };
 
 window.deleteRemise = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase travay elèv sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelRemise"))) return;
   try{
     await deleteDoc(doc(db, "tentatives", id));
-    try{ await deleteDoc(doc(doc(db, "resultats", id))); }catch(e){}
+    try{ await deleteDoc(doc(db, "resultats", id)); }catch(e){}
     await loadRemises();
     await loadResultats();
-    alert("✅ Travay la efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase travay sa a."); }
+    alert(t("msgRemiseDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgRemiseDelFail")); }
 };
 
 window.deleteResultat = async function(id){
-  if(!(await verifyAdmin()) || !confirm("Èske ou sèten ou vle efase rezilta sa a?")) return;
+  if(!(await verifyAdmin()) || !confirm(t("confirmDelResultat"))) return;
   try{
     await deleteDoc(doc(db, "resultats", id));
     await loadResultats();
-    alert("✅ Rezilta a efase avèk siksè.");
-  }catch(e){ console.error(e); alert("❌ Nou pa kapab efase rezilta a."); }
+    alert(t("msgResultatDelSuccess"));
+  }catch(e){ console.error(e); alert(t("msgResultatDelFail")); }
 };
 
 async function updateStats(){
