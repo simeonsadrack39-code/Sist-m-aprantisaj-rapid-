@@ -1,0 +1,15 @@
+{
+  "name": "Sistèm Aprantisaj",
+  "short_name": "Aprantisaj",
+  "description": "Platfòm aprantisaj sou entènèt",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "lang": "ht",
+  "categories": [
+    "education"
+  ]
+}
