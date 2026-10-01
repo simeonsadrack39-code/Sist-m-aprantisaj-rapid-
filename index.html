@@ -1,285 +1,236 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#2563eb">
-<link rel="manifest" href="./manifest.json">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Sistèm Aprantisaj</title>
 
+<link rel="manifest" href="./manifest.json">
+
+<meta name="theme-color" content="#2563eb">
+
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
+  font-family:Arial,sans-serif;
 }
 
 body{
-  font-family:Arial,sans-serif;
   background:#f4f7fb;
-  color:#0f172a;
+  color:#172033;
 }
 
-button,
-input,
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:#2563eb;
+  color:white;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.logoTitle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logoTitle span{
+  font-size:28px;
+}
+
+.logoTitle h1{
+  font-size:20px;
+}
+
+.userArea{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.userInfo{
+  font-size:13px;
+}
+
 select,
+input,
 textarea{
-  font:inherit;
+  width:100%;
+  padding:11px;
+  border:1px solid #d7deea;
+  border-radius:9px;
+  outline:none;
+  background:white;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
 }
 
 button{
+  border:0;
+  border-radius:9px;
+  padding:10px 14px;
   cursor:pointer;
+  font-weight:bold;
 }
 
-.hidden{
-  display:none!important;
+.installBtn{
+  background:white;
+  color:#2563eb;
 }
 
-/* ================= AUTH ================= */
+.logoutBtn{
+  background:#dc2626;
+  color:white;
+}
 
-.authPage{
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:
-    linear-gradient(
-      135deg,
-      #2563eb,
-      #1e3a8a,
-      #0f172a
-    );
+  background:linear-gradient(135deg,#2563eb,#60a5fa);
 }
 
-.authBox{
+.loginCard{
   width:100%;
   max-width:430px;
   background:white;
-  border-radius:24px;
-  padding:30px;
-  box-shadow:0 25px 60px #0005;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 15px 40px rgba(0,0,0,.18);
 }
 
-.logo{
-  width:72px;
-  height:72px;
-  margin:0 auto 12px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#eff6ff;
-  font-size:38px;
-}
-
-.authBox h1{
+.loginLogo{
   text-align:center;
+  margin-bottom:20px;
+}
+
+.loginLogo div{
+  font-size:50px;
+}
+
+.loginLogo h2{
   color:#2563eb;
-  margin-bottom:8px;
+  margin-top:8px;
 }
 
-.subtitle{
-  text-align:center;
+.loginLogo p{
   color:#64748b;
-  margin-bottom:22px;
+  margin-top:5px;
 }
 
-.field{
+.formGroup{
   margin-bottom:14px;
 }
 
-.field label{
+.formGroup label{
   display:block;
-  margin-bottom:7px;
+  margin-bottom:6px;
   font-weight:bold;
   color:#334155;
 }
 
-.field input,
-.field select,
-.field textarea{
+.primaryBtn{
   width:100%;
-  border:1px solid #dbe3ef;
-  border-radius:12px;
-  padding:13px;
-  outline:none;
-  background:#f8fafc;
-}
-
-.field textarea{
-  resize:vertical;
-  line-height:1.5;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:#2563eb;
-  background:white;
-  box-shadow:0 0 0 3px #2563eb18;
-}
-
-.btn{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  color:white;
   background:#2563eb;
-  font-weight:bold;
-  margin-top:8px;
+  color:white;
+  margin-top:5px;
 }
 
-.btn:hover{
-  opacity:.92;
+.googleBtn{
+  width:100%;
+  background:#fff;
+  color:#1f2937;
+  border:1px solid #d1d5db;
+  margin-top:10px;
 }
 
-.google{
-  background:#111827;
+.switchBtn{
+  background:none;
+  color:#2563eb;
+  padding:5px;
 }
 
-.divider{
-  text-align:center;
-  margin:20px 0;
-  color:#94a3b8;
-}
-
-.message{
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  background:#eff6ff;
-  color:#1d4ed8;
+.authMessage{
+  margin-top:12px;
+  padding:10px;
+  border-radius:8px;
   display:none;
-  line-height:1.5;
+  font-size:14px;
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   APP
+========================= */
 
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  min-height:68px;
-  background:white;
-  border-bottom:1px solid #e2e8f0;
+#appScreen{
+  display:none;
+  min-height:100vh;
+}
+
+.appLayout{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 20px;
-  z-index:1000;
-  box-shadow:0 3px 15px #0000000b;
-}
-
-.brand{
-  color:#1e3a8a;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.headerRight{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.userBadge{
-  background:#eff6ff;
-  color:#1d4ed8;
-  padding:7px 10px;
-  border-radius:9px;
-  font-size:13px;
-  font-weight:bold;
-}
-
-.roleBadge{
-  background:#f1f5f9;
-  color:#475569;
-  padding:7px 10px;
-  border-radius:9px;
-  font-size:13px;
-}
-
-.headerRight select{
-  border:1px solid #dbe3ef;
-  border-radius:9px;
-  padding:7px;
-  background:white;
-}
-
-.headerBtn{
-  border:0;
-  border-radius:9px;
-  padding:9px 11px;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-}
-
-.logoutBtn{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-/* ================= SIDEBAR ================= */
-
-.layout{
-  display:flex;
-  padding-top:68px;
+  min-height:calc(100vh - 70px);
 }
 
 .sidebar{
-  position:fixed;
-  top:68px;
-  bottom:0;
-  left:0;
-  width:245px;
-  background:#0f172a;
-  padding:15px 10px;
-  overflow-y:auto;
+  width:235px;
+  background:#fff;
+  border-right:1px solid #e2e8f0;
+  padding:15px;
 }
 
-.sidebarTitle{
-  color:#64748b;
-  font-size:11px;
-  text-transform:uppercase;
-  font-weight:bold;
-  padding:10px 12px;
-  letter-spacing:1px;
-}
-
-.sidebar button{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.navBtn{
   width:100%;
   text-align:left;
-  border:0;
   background:transparent;
-  color:#cbd5e1;
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:4px;
+  color:#334155;
+  margin-bottom:6px;
 }
 
-.sidebar button:hover,
-.sidebar button.active{
-  background:#2563eb;
-  color:white;
+.navBtn:hover,
+.navBtn.active{
+  background:#eff6ff;
+  color:#2563eb;
 }
 
-/* ================= MAIN ================= */
-
-.main{
-  margin-left:245px;
-  width:calc(100% - 245px);
-  padding:26px;
+.mainContent{
+  flex:1;
+  padding:20px;
+  overflow-x:hidden;
 }
+
+/* =========================
+   SECTION
+========================= */
 
 .section{
   display:none;
@@ -294,52 +245,33 @@ button{
 }
 
 .pageTitle h2{
-  font-size:25px;
+  color:#1e3a8a;
+  margin-bottom:5px;
 }
 
 .pageTitle p{
   color:#64748b;
-  margin-top:5px;
 }
 
-/* ================= HERO ================= */
+/* =========================
+   HOME
+========================= */
 
 .hero{
-  background:
-    linear-gradient(
-      135deg,
-      #2563eb,
-      #1e40af
-    );
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
   color:white;
-  border-radius:20px;
-  padding:28px;
+  border-radius:18px;
+  padding:25px;
   margin-bottom:20px;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero:after{
-  content:"📚";
-  position:absolute;
-  right:30px;
-  bottom:-20px;
-  font-size:100px;
-  opacity:.12;
 }
 
 .hero h2{
-  font-size:28px;
   margin-bottom:8px;
 }
 
 .hero p{
-  color:#dbeafe;
-  max-width:600px;
-  line-height:1.6;
+  opacity:.95;
 }
-
-/* ================= STATS ================= */
 
 .statsGrid{
   display:grid;
@@ -350,542 +282,406 @@ button{
 
 .statCard{
   background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:20px;
-  box-shadow:0 5px 18px #00000008;
-  position:relative;
-  overflow:hidden;
-}
-
-.statIcon{
-  width:45px;
-  height:45px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:13px;
-  background:#eff6ff;
-  font-size:22px;
-  margin-bottom:13px;
-}
-
-.statLabel{
-  color:#64748b;
-  font-size:14px;
-}
-
-.number{
-  font-size:30px;
-  font-weight:bold;
-  color:#1d4ed8;
-  margin-top:5px;
-}
-
-/* ================= PANELS ================= */
-
-.panel{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 5px 18px #00000008;
-}
-
-.panelTitle{
-  font-size:17px;
-  font-weight:bold;
-  margin-bottom:16px;
-}
-
-.formGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:5px 15px;
-}
-
-.formActions{
-  display:flex;
-  gap:10px;
-}
-
-.formActions button{
-  flex:1;
-}
-
-/* ================= SEARCH ================= */
-
-.searchBox{
-  position:relative;
-  margin-bottom:18px;
-}
-
-.searchBox input{
-  width:100%;
-  padding:14px 16px 14px 44px;
-  border:1px solid #dbe3ef;
-  border-radius:13px;
-  outline:none;
-  background:white;
-}
-
-.searchBox span{
-  position:absolute;
-  left:15px;
-  top:13px;
-}
-
-/* ================= CARDS ================= */
-
-.dataGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.dataCard,
-.submissionCard,
-.resultCard{
-  background:white;
-  border:1px solid #e5eaf1;
-  border-radius:17px;
-  padding:18px;
-  box-shadow:0 5px 18px #00000008;
-}
-
-.dataCard:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 25px #00000010;
-}
-
-.cardTop{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:15px;
-}
-
-.avatar{
-  width:48px;
-  height:48px;
   border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#eff6ff;
-  color:#2563eb;
-  font-size:22px;
-  font-weight:bold;
+  padding:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
-.cardTitle{
-  font-size:16px;
-  font-weight:bold;
-}
-
-.cardSub{
+.statCard h3{
   color:#64748b;
-  font-size:13px;
-  margin-top:3px;
-}
-
-.infoRow{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:9px 0;
-  border-top:1px solid #eef2f7;
   font-size:14px;
+  margin-bottom:8px;
 }
 
-.infoRow span:first-child{
+.statCard strong{
+  font-size:28px;
+  color:#2563eb;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:17px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.card h3{
+  color:#1e3a8a;
+  margin-bottom:8px;
+}
+
+.card p{
   color:#64748b;
-}
-
-.infoRow strong{
-  text-align:right;
-  word-break:break-word;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  padding:5px 9px;
-  border-radius:8px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.badgeBlue{
-  background:#dbeafe;
-  color:#1d4ed8;
-}
-
-.badgeGreen{
-  background:#dcfce7;
-  color:#15803d;
-}
-
-.badgeOrange{
-  background:#ffedd5;
-  color:#c2410c;
-}
-
-.badgeRed{
-  background:#fee2e2;
-  color:#b91c1c;
+  margin:5px 0;
+  line-height:1.5;
 }
 
 .cardActions{
   display:flex;
   gap:7px;
-  margin-top:14px;
+  flex-wrap:wrap;
+  margin-top:13px;
 }
 
 .smallBtn{
-  border:0;
-  padding:8px 11px;
-  border-radius:9px;
+  padding:8px 10px;
+  font-size:13px;
+}
+
+.deleteBtn,
+.refuse{
+  background:#dc2626;
   color:white;
-  font-weight:bold;
-  font-size:12px;
 }
 
 .accept{
   background:#16a34a;
+  color:white;
 }
 
-.refuse{
-  background:#dc2626;
+.editBtn{
+  background:#f59e0b;
+  color:white;
 }
 
-.edit{
+.infoBtn{
   background:#2563eb;
+  color:white;
 }
 
-/* ================= EMPTY ================= */
+/* =========================
+   FORMS
+========================= */
 
-.empty{
-  text-align:center;
-  padding:35px 20px;
-  color:#64748b;
-  background:#f8fafc;
-  border-radius:14px;
-  grid-column:1/-1;
-}
-
-.emptyIcon{
-  font-size:35px;
-  margin-bottom:8px;
-}
-
-/* ================= TABLE ================= */
-
-.tableWrap{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-th,
-td{
-  padding:12px;
-  border-bottom:1px solid #e2e8f0;
-  text-align:left;
-}
-
-th{
-  background:#f8fafc;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:5000;
-  padding:20px;
-  overflow:auto;
-}
-
-.modalBox{
-  max-width:600px;
-  margin:40px auto;
+.formCard{
   background:white;
-  border-radius:18px;
+  border-radius:14px;
   padding:20px;
-  box-shadow:0 20px 60px #0008;
-}
-
-.modalTitle{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:18px;
-}
-
-.closeModal{
-  background:#64748b;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:1100px){
-
-.statsGrid{
-  grid-template-columns:repeat(2,1fr);
-}
-
-.dataGrid{
-  grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-@media(max-width:750px){
-
-.header{
-  position:relative;
-  min-height:auto;
-}
-
-.layout{
-  padding-top:0;
-  display:block;
-}
-
-.sidebar{
-  position:relative;
-  top:0;
-  width:100%;
-  height:auto;
-  display:flex;
-  overflow-x:auto;
-  padding:8px;
-  gap:5px;
-}
-
-.sidebarTitle{
-  display:none;
-}
-
-.sidebar button{
-  min-width:max-content;
-  margin:0;
-}
-
-.main{
-  margin-left:0;
-  width:100%;
-  padding:15px;
-}
-
-.header{
-  flex-direction:column;
-  align-items:flex-start;
-  gap:9px;
-  padding:12px;
-}
-
-.headerRight{
-  width:100%;
-  justify-content:flex-start;
-}
-
-.userBadge{
-  max-width:190px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .formGrid{
-  grid-template-columns:1fr;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
+.full{
+  grid-column:1/-1;
 }
 
-@media(max-width:560px){
-
-.statsGrid,
-.dataGrid{
-  grid-template-columns:1fr;
+.saveBtn{
+  background:#2563eb;
+  color:white;
 }
 
-.hero{
-  padding:22px;
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+  background:white;
+  border-radius:14px;
+  padding:30px;
+  text-align:center;
+  color:#64748b;
+  box-shadow:0 3px 12px rgba(0,0,0,.05);
 }
 
-.hero h2{
-  font-size:23px;
+.empty strong{
+  display:block;
+  font-size:30px;
+  margin-bottom:8px;
 }
 
-.pageTitle h2{
-  font-size:21px;
+/* =========================
+   MESSAGE
+========================= */
+
+#messageBox{
+  position:fixed;
+  top:80px;
+  right:15px;
+  z-index:9999;
+  max-width:350px;
 }
 
-.panel{
+.message{
+  background:#16a34a;
+  color:white;
+  padding:13px 16px;
+  border-radius:10px;
+  margin-bottom:8px;
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.message.error{
+  background:#dc2626;
+}
+
+.message.warning{
+  background:#f59e0b;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:5000;
+  align-items:center;
+  justify-content:center;
   padding:15px;
 }
 
-.formActions{
-  flex-direction:column;
+.modal.show{
+  display:flex;
 }
 
-.headerRight{
-  gap:5px;
+.modalContent{
+  width:100%;
+  max-width:550px;
+  max-height:90vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:16px;
+  padding:22px;
 }
 
-.headerBtn{
-  padding:8px;
-  font-size:12px;
+.modalHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
 }
 
+.closeBtn{
+  background:#e5e7eb;
+  color:#111827;
+  font-size:18px;
 }
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .statsGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .sidebar{
+    width:200px;
+  }
+
+}
+
+@media(max-width:700px){
+
+  header{
+    padding:12px;
+  }
+
+  .appLayout{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+    border-right:0;
+    border-bottom:1px solid #e2e8f0;
+    display:flex;
+    overflow-x:auto;
+    gap:5px;
+  }
+
+  .navBtn{
+    width:auto;
+    min-width:max-content;
+    margin-bottom:0;
+  }
+
+  .mainContent{
+    padding:14px;
+  }
+
+  .statsGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .formGrid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+}
+
+@media(max-width:450px){
+
+  .statsGrid{
+    grid-template-columns:1fr;
+  }
+
+  .userInfo{
+    width:100%;
+  }
+
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.adminOnly,
+.teacherOnly{
+  display:none;
+}
+
 </style>
 </head>
+
 <body>
-  <!-- ================= AUTH PAGE ================= -->
 
-<div id="authPage" class="authPage">
+<!-- =========================
+     LOGIN SCREEN
+========================= -->
 
-  <div class="authBox">
+<div id="loginScreen">
 
-    <div class="logo">
-      📚
+  <div class="loginCard">
+
+    <div class="loginLogo">
+      <div>📚</div>
+      <h2>Sistèm Aprantisaj</h2>
+      <p>Platfòm aprantisaj lekòl la</p>
     </div>
 
-    <h1>
-      Sistèm Aprantisaj
-    </h1>
+    <div id="loginForm">
 
-    <p class="subtitle">
-      Platfòm aprantisaj sou entènèt
-    </p>
+      <div class="formGroup">
+        <label for="loginEmail">
+          Imèl
+        </label>
 
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Antre imèl ou"
+        >
+      </div>
 
-    <!-- LOGIN -->
+      <div class="formGroup">
+        <label for="loginPassword">
+          Modpas
+        </label>
 
-    <div class="field">
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Antre modpas ou"
+        >
+      </div>
 
-      <label>
-        Email
-      </label>
-
-      <input
-        id="loginEmail"
-        type="email"
-        placeholder="Egzanp: non@email.com"
+      <button
+        class="primaryBtn"
+        onclick="connecter()"
       >
+        Konekte
+      </button>
 
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        Modpas
-      </label>
-
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="Modpas"
+      <button
+        class="googleBtn"
+        onclick="connecterAvecGoogle()"
       >
+        🔵 Konekte ak Google
+      </button>
+
+      <p style="text-align:center;margin-top:15px;color:#64748b">
+        Ou poko gen kont?
+        <button
+          class="switchBtn"
+          onclick="showRegister()"
+        >
+          Kreye kont
+        </button>
+      </p>
 
     </div>
 
+    <div id="registerForm" style="display:none">
 
-    <button
-      class="btn"
-      onclick="connecter()"
-    >
-      Konekte
-    </button>
+      <div class="formGroup">
+        <label for="regEmail">
+          Imèl
+        </label>
 
+        <input
+          id="regEmail"
+          type="email"
+          placeholder="Antre imèl ou"
+        >
+      </div>
 
-    <button
-      class="btn google"
-      onclick="connecterAvecGoogle()"
-    >
-      Kontinye ak Google
-    </button>
+      <div class="formGroup">
+        <label for="regPassword">
+          Modpas
+        </label>
 
+        <input
+          id="regPassword"
+          type="password"
+          placeholder="Kreye yon modpas"
+        >
+      </div>
 
-    <div class="divider">
-      oswa kreye yon kont
-    </div>
-
-
-    <!-- REGISTER -->
-
-    <div class="field">
-
-      <label>
-        Non
-      </label>
-
-      <input
-        id="registerName"
-        placeholder="Non konplè"
+      <button
+        class="primaryBtn"
+        onclick="registerAccount()"
       >
+        Kreye kont
+      </button>
 
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        Email
-      </label>
-
-      <input
-        id="registerEmail"
-        type="email"
-        placeholder="Email"
+      <button
+        class="googleBtn"
+        onclick="registerGoogle()"
       >
+        🔵 Kreye kont ak Google
+      </button>
+
+      <p style="text-align:center;margin-top:15px;color:#64748b">
+        Ou deja gen kont?
+        <button
+          class="switchBtn"
+          onclick="showLogin()"
+        >
+          Konekte
+        </button>
+      </p>
 
     </div>
-
-
-    <div class="field">
-
-      <label>
-        Modpas
-      </label>
-
-      <input
-        id="registerPassword"
-        type="password"
-        placeholder="Omwen 6 karaktè"
-      >
-
-    </div>
-
-
-    <button
-      class="btn"
-      onclick="registerAccount()"
-    >
-      Kreye kont
-    </button>
-
-
-    <button
-      class="btn google"
-      onclick="registerGoogle()"
-    >
-      Enskri ak Google
-    </button>
-
 
     <div
       id="authMessage"
-      class="message"
+      class="authMessage"
     ></div>
 
   </div>
@@ -893,42 +689,40 @@ th{
 </div>
 
 
-<!-- ================= APPLICATION ================= -->
+<!-- =========================
+     APP SCREEN
+========================= -->
 
-<div
-  id="app"
-  class="app hidden"
->
-
+<div id="appScreen">
 
   <!-- HEADER -->
 
-  <header class="header">
+  <header>
 
-    <div class="brand">
-      📚 Sistèm Aprantisaj
+    <div class="logoTitle">
+
+      <span>📚</span>
+
+      <h1>
+        Sistèm Aprantisaj
+      </h1>
+
     </div>
 
+    <div class="userArea">
 
-    <div class="headerRight">
-
-      <span
-        id="userEmail"
-        class="userBadge"
-      ></span>
-
-
-      <span
-        id="userRole"
-        class="roleBadge"
-      ></span>
-
+      <div
+        id="userInfo"
+        class="userInfo"
+      >
+        Chaje...
+      </div>
 
       <select
         id="languageSelect"
         onchange="changeLanguage(this.value)"
+        style="width:auto"
       >
-
         <option value="ht">
           🇭🇹 Kreyòl
         </option>
@@ -936,22 +730,20 @@ th{
         <option value="fr">
           🇫🇷 Français
         </option>
-
       </select>
-
 
       <button
         id="installBtn"
-        class="headerBtn hidden"
+        class="installBtn"
         onclick="installApp()"
+        style="display:none"
       >
-        📲 Enstale
+        📲 Enstale aplikasyon an
       </button>
 
-
       <button
-        class="headerBtn logoutBtn"
-        onclick="logout()"
+        class="logoutBtn"
+        onclick="deconnecter()"
       >
         Dekonekte
       </button>
@@ -961,135 +753,98 @@ th{
   </header>
 
 
-  <!-- ================= LAYOUT ================= -->
+  <div class="appLayout">
 
-  <div class="layout">
-
-
-    <!-- ================= SIDEBAR ================= -->
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
-      <div class="sidebarTitle">
-        Navigasyon
-      </div>
-
-
       <button
-        class="menuBtn active"
+        class="navBtn active"
+        data-section="home"
         onclick="showSection('home',this)"
       >
-        🏠
-        <span>
-          Akèy
-        </span>
+        🏠 Akèy
       </button>
 
-
       <button
-        class="menuBtn adminOnly"
+        class="navBtn"
+        data-section="eleves"
         onclick="showSection('eleves',this)"
       >
-        👨‍🎓
-        <span>
-          Elèv
-        </span>
+        👨‍🎓 Elèv
       </button>
 
-
       <button
-        class="menuBtn adminOnly"
+        class="navBtn adminOnly"
+        data-section="professeurs"
         onclick="showSection('professeurs',this)"
       >
-        👨‍🏫
-        <span>
-          Pwofesè
-        </span>
+        👨‍🏫 Pwofesè
       </button>
 
-
       <button
-        class="menuBtn adminOnly"
+        class="navBtn adminOnly"
+        data-section="classes"
         onclick="showSection('classes',this)"
       >
-        🏫
-        <span>
-          Klas
-        </span>
+        🏫 Klas
       </button>
 
-
       <button
-        class="menuBtn adminOnly"
+        class="navBtn adminOnly"
+        data-section="matieres"
         onclick="showSection('matieres',this)"
       >
-        📚
-        <span>
-          Matyè
-        </span>
+        📚 Matyè
       </button>
 
-
       <button
-        class="menuBtn"
+        class="navBtn"
+        data-section="devoirs"
         onclick="showSection('devoirs',this)"
       >
-        📝
-        <span>
-          Devwa
-        </span>
+        📝 Devwa
       </button>
 
-
       <button
-        class="menuBtn teacherOnly"
+        class="navBtn teacherOnly"
+        data-section="remises"
         onclick="showSection('remises',this)"
       >
-        📤
-        <span>
-          Remèt elèv yo
-        </span>
+        📤 Remèt
       </button>
 
-
       <button
-        class="menuBtn"
+        class="navBtn"
+        data-section="resultats"
         onclick="showSection('resultats',this)"
       >
-        🏆
-        <span>
-          Rezilta
-        </span>
+        📊 Rezilta
       </button>
 
-
       <button
-        class="menuBtn"
+        class="navBtn"
+        data-section="statistiques"
         onclick="showSection('statistiques',this)"
       >
-        📈
-        <span>
-          Estatistik
-        </span>
+        📈 Estatistik
       </button>
 
-
       <button
-        class="menuBtn adminOnly"
+        class="navBtn adminOnly"
+        data-section="users"
         onclick="showSection('users',this)"
       >
-        👥
-        <span>
-          Itilizatè
-        </span>
+        👥 Itilizatè
       </button>
 
     </aside>
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- MAIN -->
 
-    <main class="main">
+    <main class="mainContent">
 
 
       <!-- ================= HOME ================= -->
@@ -1099,29 +854,15 @@ th{
         class="section active"
       >
 
-        <div class="pageTitle">
-
-          <h2>
-            Akèy
-          </h2>
-
-          <p>
-            Byenveni nan Sistèm Aprantisaj.
-          </p>
-
-        </div>
-
-
         <div class="hero">
 
           <h2>
-            Byenveni nan Sistèm Aprantisaj 👋
+            Byenveni sou Sistèm Aprantisaj
           </h2>
 
           <p>
             Jere elèv, pwofesè, klas, matyè,
-            devwa, travay remèt ak rezilta yo
-            nan yon sèl espas.
+            devwa ak rezilta yo fasil.
           </p>
 
         </div>
@@ -1129,86 +870,76 @@ th{
 
         <div class="statsGrid">
 
+          <div class="statCard">
 
-          <div class="statCard adminOnly">
+            <h3>
+              Elèv
+            </h3>
 
-            <div class="statIcon">
-              👨‍🎓
-            </div>
-
-            <div class="statLabel">
-              Total elèv
-            </div>
-
-            <div
-              id="statEleves"
-              class="number"
-            >
+            <strong id="statEleves">
               0
-            </div>
-
-          </div>
-
-
-          <div class="statCard adminOnly">
-
-            <div class="statIcon">
-              👨‍🏫
-            </div>
-
-            <div class="statLabel">
-              Total pwofesè
-            </div>
-
-            <div
-              id="statProfesseurs"
-              class="number"
-            >
-              0
-            </div>
-
-          </div>
-
-
-          <div class="statCard adminOnly">
-
-            <div class="statIcon">
-              🏫
-            </div>
-
-            <div class="statLabel">
-              Total klas
-            </div>
-
-            <div
-              id="statClasses"
-              class="number"
-            >
-              0
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="statCard">
 
-            <div class="statIcon">
-              📝
-            </div>
+            <h3>
+              Pwofesè
+            </h3>
 
-            <div class="statLabel">
-              Total devwa
-            </div>
-
-            <div
-              id="statDevoirs"
-              class="number"
-            >
+            <strong id="statProfesseurs">
               0
-            </div>
+            </strong>
 
           </div>
 
+
+          <div class="statCard">
+
+            <h3>
+              Klas
+            </h3>
+
+            <strong id="statClasses">
+              0
+            </strong>
+
+          </div>
+
+
+          <div class="statCard">
+
+            <h3>
+              Devwa
+            </h3>
+
+            <strong id="statDevoirs">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            📚 Sistèm Aprantisaj
+          </h3>
+
+          <p>
+            Tout enfòmasyon aplikasyon an
+            sove nan Firebase.
+          </p>
+
+          <p>
+            Kont ki fèk kreye yo rete
+            an atant jiskaske administratè a
+            valide yo.
+          </p>
 
         </div>
 
@@ -1229,36 +960,66 @@ th{
           </h2>
 
           <p>
-            Jere lis elèv yo.
+            Jere elèv yo.
           </p>
 
         </div>
 
 
-        <div class="panel">
+        <div class="formCard adminOnly">
 
-          <div class="panelTitle">
-            ➕ Ajoute yon nouvo elèv
-          </div>
-
+          <h3 style="margin-bottom:15px">
+            ➕ Ajoute yon elèv
+          </h3>
 
           <div class="formGrid">
 
-            <div class="field">
+            <div class="formGroup">
 
               <label>
-                Non elèv
+                Non
               </label>
 
               <input
                 id="eleveNom"
-                placeholder="Non konplè"
+                type="text"
+                placeholder="Non elèv la"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup">
+
+              <label>
+                Prénom
+              </label>
+
+              <input
+                id="elevePrenom"
+                type="text"
+                placeholder="Prénom elèv la"
+              >
+
+            </div>
+
+
+            <div class="formGroup">
+
+              <label>
+                Imèl
+              </label>
+
+              <input
+                id="eleveEmail"
+                type="email"
+                placeholder="Imèl elèv la"
+              >
+
+            </div>
+
+
+            <div class="formGroup">
 
               <label>
                 Klas
@@ -1266,43 +1027,35 @@ th{
 
               <input
                 id="eleveClasse"
-                placeholder="6e AF"
+                type="text"
+                placeholder="Klas elèv la"
               >
+
+            </div>
+
+
+            <div class="full">
+
+              <button
+                class="saveBtn"
+                onclick="ajouterEleve()"
+              >
+                💾 Anrejistre elèv
+              </button>
 
             </div>
 
           </div>
 
-
-          <button
-            class="btn"
-            onclick="ajouterEleve()"
-          >
-            ➕ Ajoute elèv
-          </button>
-
         </div>
 
 
-        <div class="searchBox">
-
-          <span>
-            🔎
-          </span>
-
-          <input
-            id="searchEleves"
-            oninput="filterCards('searchEleves','listeEleves')"
-            placeholder="Chèche yon elèv..."
-          >
-
+        <div id="listeEleves">
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje elèv yo...
+          </div>
         </div>
-
-
-        <div
-          id="listeEleves"
-          class="dataGrid"
-        ></div>
 
       </section>
 
@@ -1321,23 +1074,21 @@ th{
           </h2>
 
           <p>
-            Jere pwofesè ak matyè yo anseye.
+            Jere pwofesè yo.
           </p>
 
         </div>
 
 
-        <div class="panel">
+        <div class="formCard adminOnly">
 
-          <div class="panelTitle">
+          <h3 style="margin-bottom:15px">
             ➕ Ajoute yon pwofesè
-          </div>
-
+          </h3>
 
           <div class="formGrid">
 
-
-            <div class="field">
+            <div class="formGroup">
 
               <label>
                 Non
@@ -1345,28 +1096,44 @@ th{
 
               <input
                 id="profNom"
-                placeholder="Non pwofesè"
+                type="text"
+                placeholder="Non pwofesè a"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup">
 
               <label>
-                Email
+                Prénom
+              </label>
+
+              <input
+                id="profPrenom"
+                type="text"
+                placeholder="Prénom pwofesè a"
+              >
+
+            </div>
+
+
+            <div class="formGroup">
+
+              <label>
+                Imèl
               </label>
 
               <input
                 id="profEmail"
                 type="email"
-                placeholder="Email"
+                placeholder="Imèl pwofesè a"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup">
 
               <label>
                 Matyè
@@ -1374,47 +1141,42 @@ th{
 
               <input
                 id="profMatiere"
-                placeholder="Mathématiques"
+                type="text"
+                placeholder="Matyè"
               >
 
             </div>
 
 
+            <div class="full">
+
+              <button
+                class="saveBtn"
+                onclick="ajouterProfesseur()"
+              >
+                💾 Anrejistre pwofesè
+              </button>
+
+            </div>
+
           </div>
 
-
-          <button
-            class="btn"
-            onclick="ajouterProfesseur()"
-          >
-            ➕ Ajoute pwofesè
-          </button>
-
         </div>
 
 
-        <div class="searchBox">
+        <div id="listeProfesseurs">
 
-          <span>
-            🔎
-          </span>
-
-          <input
-            id="searchProfesseurs"
-            oninput="filterCards('searchProfesseurs','listeProfesseurs')"
-            placeholder="Chèche yon pwofesè..."
-          >
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje pwofesè yo...
+          </div>
 
         </div>
-
-
-        <div
-          id="listeProfesseurs"
-          class="dataGrid"
-        ></div>
 
       </section>
-            <!-- ================= KLAS ================= -->
+
+
+      <!-- ================= CLASSES ================= -->
 
       <section
         id="classes"
@@ -1428,47 +1190,74 @@ th{
           </h2>
 
           <p>
-            Jere klas lekòl la.
+            Jere klas yo.
           </p>
 
         </div>
 
 
-        <div class="panel">
+        <div class="formCard adminOnly">
 
-          <div class="panelTitle">
+          <h3 style="margin-bottom:15px">
             ➕ Ajoute yon klas
+          </h3>
+
+          <div class="formGrid">
+
+            <div class="formGroup">
+
+              <label>
+                Non klas la
+              </label>
+
+              <input
+                id="classeNom"
+                type="text"
+                placeholder="Egzanp: 7AF"
+              >
+
+            </div>
+
+
+            <div class="formGroup">
+
+              <label>
+                Nivo
+              </label>
+
+              <input
+                id="classeNiveau"
+                type="text"
+                placeholder="Egzanp: 7èm ane"
+              >
+
+            </div>
+
+
+            <div class="full">
+
+              <button
+                class="saveBtn"
+                onclick="ajouterClasse()"
+              >
+                💾 Anrejistre klas
+              </button>
+
+            </div>
+
           </div>
-
-
-          <div class="field">
-
-            <label>
-              Non klas
-            </label>
-
-            <input
-              id="classeNom"
-              placeholder="6e AF"
-            >
-
-          </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterClasse()"
-          >
-            ➕ Ajoute klas
-          </button>
 
         </div>
 
 
-        <div
-          id="listeClasses"
-          class="dataGrid"
-        ></div>
+        <div id="listeClasses">
+
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje klas yo...
+          </div>
+
+        </div>
 
       </section>
 
@@ -1493,41 +1282,68 @@ th{
         </div>
 
 
-        <div class="panel">
+        <div class="formCard adminOnly">
 
-          <div class="panelTitle">
+          <h3 style="margin-bottom:15px">
             ➕ Ajoute yon matyè
+          </h3>
+
+          <div class="formGrid">
+
+            <div class="formGroup">
+
+              <label>
+                Non matyè a
+              </label>
+
+              <input
+                id="matiereNom"
+                type="text"
+                placeholder="Egzanp: Matematik"
+              >
+
+            </div>
+
+
+            <div class="formGroup">
+
+              <label>
+                Kòd
+              </label>
+
+              <input
+                id="matiereCode"
+                type="text"
+                placeholder="Egzanp: MAT"
+              >
+
+            </div>
+
+
+            <div class="full">
+
+              <button
+                class="saveBtn"
+                onclick="ajouterMatiere()"
+              >
+                💾 Anrejistre matyè
+              </button>
+
+            </div>
+
           </div>
-
-
-          <div class="field">
-
-            <label>
-              Non matyè
-            </label>
-
-            <input
-              id="matiereNom"
-              placeholder="Mathématiques"
-            >
-
-          </div>
-
-
-          <button
-            class="btn"
-            onclick="ajouterMatiere()"
-          >
-            ➕ Ajoute matyè
-          </button>
 
         </div>
 
 
-        <div
-          id="listeMatieres"
-          class="dataGrid"
-        ></div>
+        <div id="listeMatieres">
+
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje matyè yo...
+          </div>
+
+        </div>
 
       </section>
 
@@ -1546,40 +1362,36 @@ th{
           </h2>
 
           <p>
-            Kreye devwa oswa fè devwa ou resevwa yo.
+            Kreye ak jere devwa yo.
           </p>
 
         </div>
 
 
-        <div
-          id="createDevoirPanel"
-          class="panel"
-        >
+        <div class="formCard teacherOnly">
 
-          <div class="panelTitle">
-            ➕ Kreye yon nouvo devwa
-          </div>
-
+          <h3 style="margin-bottom:15px">
+            ➕ Kreye yon devwa
+          </h3>
 
           <div class="formGrid">
 
-
-            <div class="field">
+            <div class="formGroup">
 
               <label>
-                Tit devwa
+                Tit devwa a
               </label>
 
               <input
                 id="devoirTitre"
-                placeholder="Devoir de Mathématiques"
+                type="text"
+                placeholder="Tit devwa a"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup">
 
               <label>
                 Matyè
@@ -1587,13 +1399,14 @@ th{
 
               <input
                 id="devoirMatiere"
-                placeholder="Mathématiques"
+                type="text"
+                placeholder="Matyè"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup">
 
               <label>
                 Klas
@@ -1601,87 +1414,65 @@ th{
 
               <input
                 id="devoirClasse"
-                placeholder="6e AF"
+                type="text"
+                placeholder="Klas"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup">
 
               <label>
-                Dire (minit)
+                Dat limit
               </label>
 
               <input
-                id="devoirDuree"
-                type="number"
-                value="30"
+                id="devoirDate"
+                type="date"
               >
 
             </div>
 
 
-            <div class="field">
+            <div class="formGroup full">
 
               <label>
-                Maksimòm tantativ
+                Enstriksyon
               </label>
 
-              <select id="devoirTentatives">
-
-                <option value="1">
-                  1
-                </option>
-
-                <option
-                  value="2"
-                  selected
-                >
-                  2
-                </option>
-
-                <option value="3">
-                  3
-                </option>
-
-              </select>
+              <textarea
+                id="devoirDescription"
+                placeholder="Ekri enstriksyon devwa a..."
+              ></textarea>
 
             </div>
 
 
+            <div class="full">
+
+              <button
+                class="saveBtn"
+                onclick="ajouterDevoir()"
+              >
+                💾 Kreye devwa
+              </button>
+
+            </div>
+
           </div>
 
-
-          <button
-            class="btn"
-            onclick="ajouterDevoir()"
-          >
-            ➕ Kreye devwa
-          </button>
-
         </div>
 
 
-        <div class="searchBox">
+        <div id="listeDevoirs">
 
-          <span>
-            🔎
-          </span>
-
-          <input
-            id="searchDevoirs"
-            oninput="filterCards('searchDevoirs','listeDevoirs')"
-            placeholder="Chèche yon devwa..."
-          >
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje devwa yo...
+          </div>
 
         </div>
-
-
-        <div
-          id="listeDevoirs"
-          class="dataGrid"
-        ></div>
 
       </section>
 
@@ -1696,21 +1487,24 @@ th{
         <div class="pageTitle">
 
           <h2>
-            📤 Travay remèt
+            📤 Remèt
           </h2>
 
           <p>
-            Gade travay elèv yo soumèt,
-            epi korije yo.
+            Jere travay elèv yo remèt.
           </p>
 
         </div>
 
 
-        <div
-          id="listeRemises"
-          class="dataGrid"
-        ></div>
+        <div id="listeRemises">
+
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje remèt yo...
+          </div>
+
+        </div>
 
       </section>
 
@@ -1725,20 +1519,24 @@ th{
         <div class="pageTitle">
 
           <h2>
-            🏆 Rezilta
+            📊 Rezilta
           </h2>
 
           <p>
-            Nòt ak kòmantè elèv yo.
+            Gade rezilta ak nòt yo.
           </p>
 
         </div>
 
 
-        <div
-          id="listeResultats"
-          class="dataGrid"
-        ></div>
+        <div id="listeResultats">
+
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje rezilta yo...
+          </div>
+
+        </div>
 
       </section>
 
@@ -1757,7 +1555,7 @@ th{
           </h2>
 
           <p>
-            Yon rezime sou done sistèm nan.
+            Rezime done aplikasyon an.
           </p>
 
         </div>
@@ -1765,86 +1563,56 @@ th{
 
         <div class="statsGrid">
 
-
           <div class="statCard">
 
-            <div class="statIcon">
-              👨‍🎓
-            </div>
+            <h3>
+              Total elèv
+            </h3>
 
-            <div class="statLabel">
-              Elèv
-            </div>
-
-            <div
-              id="stat2Eleves"
-              class="number"
-            >
+            <strong id="statEleves2">
               0
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="statCard">
 
-            <div class="statIcon">
-              👨‍🏫
-            </div>
+            <h3>
+              Total pwofesè
+            </h3>
 
-            <div class="statLabel">
-              Pwofesè
-            </div>
-
-            <div
-              id="stat2Professeurs"
-              class="number"
-            >
+            <strong id="statProfesseurs2">
               0
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="statCard">
 
-            <div class="statIcon">
-              🏫
-            </div>
+            <h3>
+              Total klas
+            </h3>
 
-            <div class="statLabel">
-              Klas
-            </div>
-
-            <div
-              id="stat2Classes"
-              class="number"
-            >
+            <strong id="statClasses2">
               0
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="statCard">
 
-            <div class="statIcon">
-              📝
-            </div>
+            <h3>
+              Total devwa
+            </h3>
 
-            <div class="statLabel">
-              Devwa
-            </div>
-
-            <div
-              id="stat2Devoirs"
-              class="number"
-            >
+            <strong id="statDevoirs2">
               0
-            </div>
+            </strong>
 
           </div>
-
 
         </div>
 
@@ -1865,16 +1633,20 @@ th{
           </h2>
 
           <p>
-            Jere kont ki mande aksè.
+            Apwouve oswa refize nouvo itilizatè yo.
           </p>
 
         </div>
 
 
-        <div
-          id="listeUsers"
-          class="dataGrid"
-        ></div>
+        <div id="listeUsers">
+
+          <div class="empty">
+            <strong>⏳</strong>
+            Chaje itilizatè yo...
+          </div>
+
+        </div>
 
       </section>
 
@@ -1886,24 +1658,31 @@ th{
 </div>
 
 
-<!-- ================= MODAL REMET DEVWA ================= -->
+<!-- =========================
+     REMISE MODAL
+========================= -->
 
 <div
   id="remetModal"
-  class="modal hidden"
+  class="modal"
 >
 
-  <div class="modalBox">
+  <div class="modalContent">
 
+    <div class="modalHeader">
 
-    <div class="modalTitle">
-      📤 Remèt devwa
+      <h3>
+        📤 Remèt devwa
+      </h3>
+
+      <button
+        class="closeBtn"
+        onclick="fermerRemetModal()"
+      >
+        ✕
+      </button>
+
     </div>
-
-
-    <div
-      id="remetDevoirInfo"
-    ></div>
 
 
     <input
@@ -1912,63 +1691,42 @@ th{
     >
 
 
-    <div class="field">
+    <div class="formGroup">
 
       <label>
-        Repons / Travay ou
+        Travay ou
       </label>
 
       <textarea
-        id="remetReponse"
-        rows="8"
-        placeholder="Ekri repons ou oswa travay ou la..."
+        id="remetRepons"
+        placeholder="Ekri repons oswa travay ou la..."
       ></textarea>
 
     </div>
 
 
-    <div class="field">
-
-      <label>
-        Tan ou itilize (minit)
-      </label>
-
-      <input
-        id="remetTemps"
-        type="number"
-        min="0"
-        placeholder="30"
-      >
-
-    </div>
-
-
-    <div class="formActions">
-
-      <button
-        class="btn"
-        onclick="envoyerRemise()"
-      >
-        📤 Remèt devwa
-      </button>
-
-
-      <button
-        class="btn closeModal"
-        onclick="fermerRemetModal()"
-      >
-        Anile
-      </button>
-
-    </div>
-
+    <button
+      class="primaryBtn"
+      onclick="envoyerRemise()"
+    >
+      📤 Voye travay la
+    </button>
 
   </div>
 
 </div>
 
 
-<!-- ================= FIREBASE SCRIPT ================= -->
+<!-- =========================
+     MESSAGE BOX
+========================= -->
+
+<div id="messageBox"></div>
+
+
+<!-- =========================
+     FIREBASE + APP SCRIPT
+========================= -->
 
 <script type="module">
 
@@ -1976,21 +1734,19 @@ import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-
 import {
   getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
   setPersistence,
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
 
 import {
   getFirestore,
@@ -1999,16 +1755,17 @@ import {
   setDoc,
   getDoc,
   getDocs,
-  addDoc,
   updateDoc,
   deleteDoc,
-  serverTimestamp,
   query,
-  where
+  where,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* ================= FIREBASE CONFIG ================= */
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
@@ -2033,8 +1790,6 @@ const firebaseConfig = {
 };
 
 
-/* ================= INITIALIZE ================= */
-
 const app =
   initializeApp(firebaseConfig);
 
@@ -2044,113 +1799,201 @@ const auth =
 const db =
   getFirestore(app);
 
-const provider =
+const googleProvider =
   new GoogleAuthProvider();
 
-
-provider.setCustomParameters({
-  prompt: "select_account"
+googleProvider.setCustomParameters({
+  prompt:"select_account"
 });
 
 
-/* ================= VARIABLES ================= */
+/* =========================
+   GLOBAL VARIABLES
+========================= */
 
 let currentUser = null;
 
-let currentUserData = null;
+let currentProfile = null;
 
 let deferredPrompt = null;
 
 
-/* ================= PERSISTENCE ================= */
+/* =========================
+   AUTH PERSISTENCE
+========================= */
 
-await setPersistence(
+setPersistence(
   auth,
   browserLocalPersistence
-);
+).catch(error => {
+
+  console.error(
+    "Persistence error:",
+    error
+  );
+
+});
 
 
-/* ================= HELPERS ================= */
+/* =========================
+   BASIC HELPERS
+========================= */
 
 function escapeHTML(value){
 
-  return String(value ?? "")
+  if(value === null ||
+     value === undefined){
+
+    return "";
+
+  }
+
+  return String(value)
+
     .replaceAll("&","&amp;")
+
     .replaceAll("<","&lt;")
+
     .replaceAll(">","&gt;")
+
     .replaceAll('"',"&quot;")
+
     .replaceAll("'","&#039;");
 
 }
 
 
-function showMessage(message){
+function showMessage(
+  message,
+  type="success"
+){
 
   const box =
-    document.getElementById("authMessage");
+    document.getElementById(
+      "messageBox"
+    );
 
   if(!box) return;
 
-  box.textContent = message;
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "message " +
+    (type === "error"
+      ? "error"
+      : type === "warning"
+        ? "warning"
+        : "");
+
+  div.textContent = message;
+
+  box.appendChild(div);
+
+  setTimeout(() => {
+
+    div.remove();
+
+  },4000);
+
+}
+
+
+function authMessage(
+  message,
+  type="error"
+){
+
+  const box =
+    document.getElementById(
+      "authMessage"
+    );
+
+  if(!box) return;
 
   box.style.display = "block";
 
-}
+  box.textContent = message;
 
+  box.style.background =
+    type === "success"
+      ? "#dcfce7"
+      : "#fee2e2";
 
-function role(){
-
-  return String(
-    currentUserData?.role || ""
-  )
-  .trim()
-  .toLowerCase();
-
-}
-
-
-function isAdmin(){
-
-  return role() === "administrateur";
+  box.style.color =
+    type === "success"
+      ? "#166534"
+      : "#991b1b";
 
 }
 
 
-function isTeacher(){
+/* =========================
+   SHOW LOGIN / REGISTER
+========================= */
 
-  return (
-    role() === "administrateur" ||
-    role() === "professeur"
-  );
+window.showRegister =
+function(){
 
-}
+  document.getElementById(
+    "loginForm"
+  ).style.display = "none";
+
+  document.getElementById(
+    "registerForm"
+  ).style.display = "block";
+
+  document.getElementById(
+    "authMessage"
+  ).style.display = "none";
+
+};
 
 
-/* ================= LOGIN EMAIL ================= */
+window.showLogin =
+function(){
 
-window.connecter = async function(){
+  document.getElementById(
+    "registerForm"
+  ).style.display = "none";
+
+  document.getElementById(
+    "loginForm"
+  ).style.display = "block";
+
+  document.getElementById(
+    "authMessage"
+  ).style.display = "none";
+
+};
+
+
+/* =========================
+   EMAIL LOGIN
+========================= */
+
+window.connecter =
+async function(){
 
   const email =
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim();
+    document.getElementById(
+      "loginEmail"
+    ).value.trim();
 
   const password =
-    document
-      .getElementById("loginPassword")
-      .value;
-
+    document.getElementById(
+      "loginPassword"
+    ).value;
 
   if(!email || !password){
 
-    showMessage(
-      "Tanpri antre email ak modpas ou."
+    authMessage(
+      "Tanpri antre imèl ak modpas ou."
     );
 
     return;
-  }
 
+  }
 
   try{
 
@@ -2164,8 +2007,8 @@ window.connecter = async function(){
 
     console.error(error);
 
-    showMessage(
-      "Email oswa modpas la pa kòrèk."
+    authMessage(
+      "Imèl oswa modpas la pa kòrèk."
     );
 
   }
@@ -2173,41 +2016,58 @@ window.connecter = async function(){
 };
 
 
-/* ================= GOOGLE LOGIN ================= */
+/* =========================
+   GOOGLE LOGIN
+========================= */
 
-window.connecterAvecGoogle = async function(){
+window.connecterAvecGoogle =
+async function(){
 
   try{
 
     await signInWithPopup(
       auth,
-      provider
+      googleProvider
     );
 
   }catch(error){
 
     console.error(
-      "Google Popup:",
+      "Google popup error:",
       error
     );
 
+    if(
+      error.code ===
+      "auth/popup-blocked" ||
 
-    try{
+      error.code ===
+      "auth/popup-closed-by-user"
+    ){
 
-      await signInWithRedirect(
-        auth,
-        provider
-      );
+      try{
 
-    }catch(error2){
+        await signInWithRedirect(
+          auth,
+          googleProvider
+        );
 
-      console.error(
-        "Google Redirect:",
-        error2
-      );
+      }catch(redirectError){
 
-      showMessage(
-        "Koneksyon Google pa reyisi."
+        console.error(
+          redirectError
+        );
+
+        authMessage(
+          "Koneksyon Google echwe."
+        );
+
+      }
+
+    }else{
+
+      authMessage(
+        "Koneksyon Google echwe."
       );
 
     }
@@ -2217,31 +2077,26 @@ window.connecterAvecGoogle = async function(){
 };
 
 
-/* ================= REGISTER EMAIL ================= */
+/* =========================
+   REGISTER EMAIL
+========================= */
 
-window.registerAccount = async function(){
-
-  const nom =
-    document
-      .getElementById("registerName")
-      .value
-      .trim();
+window.registerAccount =
+async function(){
 
   const email =
-    document
-      .getElementById("registerEmail")
-      .value
-      .trim();
+    document.getElementById(
+      "regEmail"
+    ).value.trim();
 
   const password =
-    document
-      .getElementById("registerPassword")
-      .value;
+    document.getElementById(
+      "regPassword"
+    ).value;
 
+  if(!email || !password){
 
-  if(!nom || !email || !password){
-
-    showMessage(
+    authMessage(
       "Tanpri ranpli tout chan yo."
     );
 
@@ -2249,17 +2104,15 @@ window.registerAccount = async function(){
 
   }
 
-
   if(password.length < 6){
 
-    showMessage(
+    authMessage(
       "Modpas la dwe gen omwen 6 karaktè."
     );
 
     return;
 
   }
-
 
   try{
 
@@ -2270,10 +2123,8 @@ window.registerAccount = async function(){
         password
       );
 
-
     const user =
       credential.user;
-
 
     await setDoc(
       doc(
@@ -2283,15 +2134,13 @@ window.registerAccount = async function(){
       ),
       {
 
-        uid: user.uid,
+        uid:user.uid,
 
-        email: user.email,
+        email:user.email,
 
-        nom: nom,
+        role:"eleve",
 
-        role: "eleve",
-
-        status: "attente",
+        status:"attente",
 
         createdAt:
           serverTimestamp()
@@ -2299,73 +2148,78 @@ window.registerAccount = async function(){
       }
     );
 
-
-    await signOut(auth);
-
-
-    showMessage(
-      "Kont la kreye. Administratè a dwe apwouve li."
+    authMessage(
+      "Kont ou kreye. Tanpri tann administratè a valide li.",
+      "success"
     );
-
 
   }catch(error){
 
     console.error(error);
 
-    showMessage(
-      "Nou pa kapab kreye kont sa a."
-    );
+    if(
+      error.code ===
+      "auth/email-already-in-use"
+    ){
+
+      authMessage(
+        "Imèl sa a deja gen yon kont."
+      );
+
+    }else{
+
+      authMessage(
+        "Nou pa kapab kreye kont lan."
+      );
+
+    }
 
   }
 
 };
 
 
-/* ================= REGISTER GOOGLE ================= */
+/* =========================
+   REGISTER GOOGLE
+========================= */
 
-window.registerGoogle = async function(){
+window.registerGoogle =
+async function(){
 
   try{
 
-    const credential =
+    const result =
       await signInWithPopup(
         auth,
-        provider
+        googleProvider
       );
 
-
     const user =
-      credential.user;
+      result.user;
 
-
-    const ref =
+    const userRef =
       doc(
         db,
         "users",
         user.uid
       );
 
+    const userSnap =
+      await getDoc(userRef);
 
-    const old =
-      await getDoc(ref);
-
-
-    if(!old.exists()){
+    if(!userSnap.exists()){
 
       await setDoc(
-        ref,
+        userRef,
         {
 
-          uid: user.uid,
+          uid:user.uid,
 
-          email: user.email,
+          email:user.email,
 
-          nom:
-            user.displayName || "",
+          role:"eleve",
 
-          role: "eleve",
-
-          status: "attente",
+          status:"attente",
 
           createdAt:
             serverTimestamp()
@@ -2375,21 +2229,12 @@ window.registerGoogle = async function(){
 
     }
 
-
-    await signOut(auth);
-
-
-    showMessage(
-      "Kont Google la kreye. Administratè a dwe apwouve li."
-    );
-
-
   }catch(error){
 
     console.error(error);
 
-    showMessage(
-      "Enskripsyon Google pa reyisi."
+    authMessage(
+      "Nou pa kapab kreye kont Google la."
     );
 
   }
@@ -2397,40 +2242,71 @@ window.registerGoogle = async function(){
 };
 
 
-/* ================= USER PROFILE ================= */
+/* =========================
+   LOGOUT
+========================= */
 
-async function loadUserProfile(user){
+window.deconnecter =
+async function(){
 
   try{
 
-    const ref =
+    await signOut(auth);
+
+    currentUser = null;
+
+    currentProfile = null;
+
+    document.getElementById(
+      "appScreen"
+    ).style.display = "none";
+
+    document.getElementById(
+      "loginScreen"
+    ).style.display = "flex";
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* =========================
+   USER PROFILE
+========================= */
+
+async function loadUserProfile(user){
+
+  if(!user) return;
+
+  try{
+
+    const userRef =
       doc(
         db,
         "users",
         user.uid
       );
 
-
     const snap =
-      await getDoc(ref);
-
+      await getDoc(userRef);
 
     if(!snap.exists()){
 
       await setDoc(
-        ref,
+        userRef,
         {
 
-          uid: user.uid,
+          uid:user.uid,
 
-          email: user.email,
+          email:user.email,
 
-          nom:
-            user.displayName || "",
+          role:"eleve",
 
-          role: "eleve",
-
-          status: "attente",
+          status:"attente",
 
           createdAt:
             serverTimestamp()
@@ -2438,41 +2314,29 @@ async function loadUserProfile(user){
         }
       );
 
-
       await signOut(auth);
 
-
-      showMessage(
-        "Kont ou anrejistre. Administratè a dwe apwouve li."
+      authMessage(
+        "Kont ou anrejistre. Tann administratè a apwouve li."
       );
 
       return;
 
     }
 
-
-    currentUserData =
+    const data =
       snap.data();
 
+    currentProfile = data;
 
-    const r =
-      role();
-
-
-    const s =
-      String(
-        currentUserData.status || ""
-      )
-      .trim()
-      .toLowerCase();
-
-
-    if(s !== "accepted"){
+    if(
+      data.status !==
+      "accepted"
+    ){
 
       await signOut(auth);
 
-
-      showMessage(
+      authMessage(
         "Kont ou poko apwouve pa administratè a."
       );
 
@@ -2480,38 +2344,35 @@ async function loadUserProfile(user){
 
     }
 
-
     if(
       ![
         "administrateur",
         "professeur",
         "eleve"
-      ].includes(r)
+      ].includes(data.role)
     ){
 
       await signOut(auth);
 
-
-      showMessage(
-        "Wòl kont lan pa rekonèt."
+      authMessage(
+        "Wòl kont lan pa valide."
       );
 
       return;
 
     }
 
-
     openApp();
-
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Profile error:",
+      error
+    );
 
-    await signOut(auth);
-
-    showMessage(
-      "Nou pa kapab verifye kont ou kounye a."
+    authMessage(
+      "Gen yon pwoblèm pandan verifikasyon kont lan."
     );
 
   }
@@ -2519,52 +2380,89 @@ async function loadUserProfile(user){
 }
 
 
-/* ================= OPEN APP ================= */
+/* =========================
+   ROLE HELPERS
+========================= */
 
-async function openApp(){
+function role(){
 
-  document
-    .getElementById("authPage")
-    .classList
-    .add("hidden");
-
-
-  document
-    .getElementById("app")
-    .classList
-    .remove("hidden");
-
-
-  document
-    .getElementById("userEmail")
-    .textContent =
-      currentUser.email || "";
-
-
-  document
-    .getElementById("userRole")
-    .textContent =
-      "Wòl: " +
-      (currentUserData.role || "");
-
-
-  applyRoleAccess();
-
-
-  await loadAllData();
+  return currentProfile?.role || "";
 
 }
 
 
-/* ================= ROLE ACCESS ================= */
+function isAdmin(){
+
+  return role() ===
+    "administrateur";
+
+}
+
+
+function isTeacher(){
+
+  return role() ===
+    "professeur";
+
+}
+
+
+function isStudent(){
+
+  return role() ===
+    "eleve";
+
+}
+
+
+/* =========================
+   OPEN APP
+========================= */
+
+function openApp(){
+
+  document.getElementById(
+    "loginScreen"
+  ).style.display = "none";
+
+  document.getElementById(
+    "appScreen"
+  ).style.display = "block";
+
+  const info =
+    document.getElementById(
+      "userInfo"
+    );
+
+  if(info){
+
+    info.innerHTML =
+      escapeHTML(
+        currentUser?.email || ""
+      ) +
+      " · Wòl: " +
+      escapeHTML(role());
+
+  }
+
+  applyRoleAccess();
+
+  loadAllData();
+
+}
+
+
+/* =========================
+   ROLE ACCESS
+========================= */
 
 function applyRoleAccess(){
 
   document
     .querySelectorAll(".adminOnly")
-    .forEach(element => {
+    .forEach(el => {
 
-      element.style.display =
+      el.style.display =
         isAdmin()
           ? ""
           : "none";
@@ -2574,502 +2472,177 @@ function applyRoleAccess(){
 
   document
     .querySelectorAll(".teacherOnly")
-    .forEach(element => {
+    .forEach(el => {
 
-      element.style.display =
-        isTeacher()
+      el.style.display =
+        isAdmin() || isTeacher()
           ? ""
           : "none";
 
     });
 
-
-  const panel =
-    document.getElementById(
-      "createDevoirPanel"
-    );
-
-
-  if(panel){
-
-    panel.style.display =
-      isTeacher()
-        ? ""
-        : "none";
-
-  }
-
 }
 
 
-/* ================= NAVIGATION ================= */
+/* =========================
+   NAVIGATION
+========================= */
 
 window.showSection =
-function(id,button){
+function(
+  sectionId,
+  button
+){
 
   document
     .querySelectorAll(".section")
     .forEach(section => {
 
-      section.classList
-        .remove("active");
+      section.classList.remove(
+        "active"
+      );
 
     });
 
 
   const section =
-    document.getElementById(id);
-
+    document.getElementById(
+      sectionId
+    );
 
   if(section){
 
-    section.classList
-      .add("active");
+    section.classList.add(
+      "active"
+    );
 
   }
 
 
   document
-    .querySelectorAll(".menuBtn")
+    .querySelectorAll(".navBtn")
     .forEach(btn => {
 
-      btn.classList
-        .remove("active");
+      btn.classList.remove(
+        "active"
+      );
 
     });
 
 
   if(button){
 
-    button.classList
-      .add("active");
+    button.classList.add(
+      "active"
+    );
 
   }
 
 };
 
 
-/* ================= LOAD ALL ================= */
+/* =========================
+   LOAD ALL DATA
+========================= */
 
 async function loadAllData(){
 
-  const r = role();
-
-
-  const tasks = [
-
-    loadDevoirs(),
-
-    loadResultats()
-
-  ];
-
-
-  if(
-    r === "administrateur" ||
-    r === "professeur"
-  ){
-
-    tasks.push(
-      loadEleves()
-    );
-
-    tasks.push(
-      loadRemises()
-    );
-
-  }
-
-
-  if(r === "administrateur"){
-
-    tasks.push(
-      loadProfesseurs()
-    );
-
-    tasks.push(
-      loadClasses()
-    );
-
-    tasks.push(
-      loadMatieres()
-    );
-
-    tasks.push(
-      loadUsers()
-    );
-
-  }
-
-
-  await Promise.all(tasks);
-
-
-  await updateStats();
-
-}
-
-
-/* ================= EMPTY CARD ================= */
-
-function emptyCard(icon,text){
-
-  return `
-
-    <div class="empty">
-
-      <div class="emptyIcon">
-        ${icon}
-      </div>
-
-      <div>
-        ${escapeHTML(text)}
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* ================= LOGOUT ================= */
-
-window.logout = async function(){
-
   try{
 
-    await signOut(auth);
+    if(
+      isAdmin() ||
+      isTeacher()
+    ){
+
+      await loadEleves();
+
+      await loadRemises();
+
+    }
+
+    if(isAdmin()){
+
+      await loadProfesseurs();
+
+      await loadClasses();
+
+      await loadMatieres();
+
+      await loadUsers();
+
+    }
+
+    await loadDevoirs();
+
+    await loadResultats();
+
+    await updateStats();
 
   }catch(error){
 
-    console.error(error);
-
-  }
-
-};
-
-
-/* ================= AUTH STATE ================= */
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if(user){
-
-      currentUser =
-        user;
-
-      await loadUserProfile(
-        user
-      );
-
-    }else{
-
-      currentUser =
-        null;
-
-      currentUserData =
-        null;
-
-
-      document
-        .getElementById("authPage")
-        .classList
-        .remove("hidden");
-
-
-      document
-        .getElementById("app")
-        .classList
-        .add("hidden");
-
-    }
-
-  }
-);
-
-
-/* ================= REDIRECT RESULT ================= */
-
-getRedirectResult(auth)
-  .then(async result => {
-
-    if(result?.user){
-
-      currentUser =
-        result.user;
-
-      await loadUserProfile(
-        result.user
-      );
-
-    }
-
-  })
-  .catch(error => {
-
     console.error(
-      "Redirect:",
+      "Load all data error:",
       error
     );
 
-  });
-
-
-/* ================= PWA INSTALL ================= */
-
-window.addEventListener(
-  "beforeinstallprompt",
-  event => {
-
-    event.preventDefault();
-
-    deferredPrompt =
-      event;
-
-
-    const button =
-      document.getElementById(
-        "installBtn"
-      );
-
-
-    if(button){
-
-      button.classList
-        .remove("hidden");
-
-    }
-
   }
-);
-
-
-window.installApp =
-async function(){
-
-  if(!deferredPrompt){
-
-    alert(
-      "Aplikasyon an poko pare pou enstalasyon sou navigatè sa a."
-    );
-
-    return;
-
-  }
-
-
-  deferredPrompt.prompt();
-
-
-  const result =
-    await deferredPrompt.userChoice;
-
-
-  console.log(
-    "Installation:",
-    result.outcome
-  );
-
-
-  deferredPrompt =
-    null;
-
-
-  const button =
-    document.getElementById(
-      "installBtn"
-    );
-
-
-  if(button){
-
-    button.classList
-      .add("hidden");
-
-  }
-
-};
-
-
-/* ================= LANGUAGE ================= */
-
-window.changeLanguage =
-function(lang){
-
-  localStorage.setItem(
-    "language",
-    lang
-  );
-
-
-  const brand =
-    document.querySelector(
-      ".brand"
-    );
-
-
-  if(!brand) return;
-
-
-  if(lang === "fr"){
-
-    brand.textContent =
-      "📚 Système d'Apprentissage";
-
-  }else{
-
-    brand.textContent =
-      "📚 Sistèm Aprantisaj";
-
-  }
-
-};
-
-
-/* ================= RESTORE LANGUAGE ================= */
-
-const savedLanguage =
-  localStorage.getItem(
-    "language"
-  );
-
-
-if(savedLanguage){
-
-  const select =
-    document.getElementById(
-      "languageSelect"
-    );
-
-
-  if(select){
-
-    select.value =
-      savedLanguage;
-
-  }
-
-
-  changeLanguage(
-    savedLanguage
-  );
 
 }
 
 
-/* ================= FILTER CARDS ================= */
-
-window.filterCards =
-function(inputId,listId){
-
-  const input =
-    document.getElementById(
-      inputId
-    );
-
-
-  const list =
-    document.getElementById(
-      listId
-    );
-
-
-  if(!input || !list)
-    return;
-
-
-  const search =
-    input.value
-      .trim()
-      .toLowerCase();
-
-
-  list
-    .querySelectorAll(".dataCard")
-    .forEach(card => {
-
-      const text =
-        card.textContent
-          .toLowerCase();
-
-
-      card.style.display =
-        text.includes(search)
-          ? ""
-          : "none";
-
-    });
-
-};
-
-
-/* ================= SERVICE WORKER ================= */
-
-if(
-  "serviceWorker" in navigator
-){
-
-  window.addEventListener(
-    "load",
-    () => {
-
-      navigator.serviceWorker
-        .register(
-          "./service-worker.js"
-        )
-        .catch(error => {
-
-          console.log(
-            "Service Worker:",
-            error
-          );
-
-        });
-
-    }
-  );
-
-}
-
-</script>
-  /* ================= ELEVES ================= */
+/* =========================
+   ELEVES
+========================= */
 
 async function loadEleves(){
 
   const box =
-    document.getElementById("listeEleves");
+    document.getElementById(
+      "listeEleves"
+    );
 
   if(!box) return;
 
   box.innerHTML =
-    emptyCard("⏳","Chaje elèv yo...");
-
+    `
+    <div class="empty">
+      <strong>⏳</strong>
+      Chaje elèv yo...
+    </div>
+    `;
 
   try{
 
     const snap =
       await getDocs(
-        collection(db,"eleves")
+        collection(
+          db,
+          "eleves"
+        )
       );
 
-
     box.innerHTML = "";
-
 
     if(snap.empty){
 
       box.innerHTML =
-        emptyCard(
-          "👨‍🎓",
-          "Pa gen elèv pou kounye a."
-        );
+        `
+        <div class="empty">
+          <strong>👨‍🎓</strong>
+          Pa gen elèv pou montre.
+        </div>
+        `;
 
       return;
 
     }
+
+    const grid =
+      document.createElement(
+        "div"
+      );
+
+    grid.className = "grid";
 
 
     snap.forEach(item => {
@@ -3080,95 +2653,91 @@ async function loadEleves(){
       const id =
         item.id;
 
+      let actions = "";
 
-      box.innerHTML += `
+      if(isAdmin()){
 
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            (data.nom || "") +
-            " " +
-            (data.classe || "")
-          )}"
-        >
+        actions +=
+          `
+          <button
+            class="smallBtn deleteBtn"
+            onclick="deleteEleve('${id}')"
+          >
+            🗑️ Efase
+          </button>
+          `;
 
-          <div class="cardIcon">
+      }
+
+
+      grid.innerHTML +=
+        `
+        <div class="card">
+
+          <h3>
             👨‍🎓
+            ${escapeHTML(
+              (data.prenom || "") +
+              " " +
+              (data.nom || "")
+            )}
+          </h3>
+
+          <p>
+            <strong>Imèl:</strong>
+            ${escapeHTML(
+              data.email || "—"
+            )}
+          </p>
+
+          <p>
+            <strong>Klas:</strong>
+            ${escapeHTML(
+              data.classe || "—"
+            )}
+          </p>
+
+          <div class="cardActions">
+            ${actions}
           </div>
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <strong>Klas:</strong>
-              ${escapeHTML(
-                data.classe || "Pa defini"
-              )}
-            </p>
-
-            <p>
-              <strong>ID:</strong>
-              ${escapeHTML(id)}
-            </p>
-
-          </div>
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteEleve('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
 
         </div>
-
-      `;
+        `;
 
     });
 
 
+    box.appendChild(grid);
+
   }catch(error){
 
-    console.error(
-      "ERÈ ELEVES:",
-      error
-    );
+    console.error(error);
 
     box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje elèv yo."
-      );
+      `
+      <div class="empty">
+        <strong>⚠️</strong>
+        Nou pa kapab chaje elèv yo.
+      </div>
+      `;
 
   }
 
 }
 
 
-/* ================= AJOUTER ELEVE ================= */
+/* =========================
+   ADD ELEVE
+========================= */
 
 window.ajouterEleve =
 async function(){
 
   if(!isAdmin()){
 
-    alert(
-      "Se administratè a sèlman ki ka ajoute elèv."
+    showMessage(
+      "Se administratè sèlman ki kapab ajoute elèv.",
+      "error"
     );
 
     return;
@@ -3177,1119 +2746,32 @@ async function(){
 
 
   const nom =
-    document
-      .getElementById("eleveNom")
-      .value
-      .trim();
-
-
-  const classe =
-    document
-      .getElementById("eleveClasse")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non elèv la."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "eleves",
-        "eleve_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        classe: classe,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("eleveNom")
-      .value = "";
-
-
-    document
-      .getElementById("eleveClasse")
-      .value = "";
-
-
-    await loadEleves();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Elèv la ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute elèv la."
-    );
-
-  }
-
-};
-
-
-/* ================= PROFESSEURS ================= */
-
-async function loadProfesseurs(){
-
-  const box =
     document.getElementById(
-      "listeProfesseurs"
-    );
+      "eleveNom"
+    ).value.trim();
 
-  if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje pwofesè yo..."
-    );
-
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "professeurs"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "👨‍🏫",
-          "Pa gen pwofesè pou kounye a."
-        );
-
-      return;
-
-    }
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
-      box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            (data.nom || "") +
-            " " +
-            (data.email || "") +
-            " " +
-            (data.matiere || "")
-          )}"
-        >
-
-          <div class="cardIcon">
-            👨‍🏫
-          </div>
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <strong>Email:</strong>
-              ${escapeHTML(
-                data.email || "Pa gen email"
-              )}
-            </p>
-
-            <p>
-              <strong>Matyè:</strong>
-              ${escapeHTML(
-                data.matiere || "Pa defini"
-              )}
-            </p>
-
-          </div>
-
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteProfesseur('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ PROFESSEURS:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje pwofesè yo."
-      );
-
-  }
-
-}
-
-
-/* ================= AJOUTER PROFESSEUR ================= */
-
-window.ajouterProfesseur =
-async function(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute pwofesè."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("profNom")
-      .value
-      .trim();
-
+  const prenom =
+    document.getElementById(
+      "elevePrenom"
+    ).value.trim();
 
   const email =
-    document
-      .getElementById("profEmail")
-      .value
-      .trim();
-
-
-  const matiere =
-    document
-      .getElementById("profMatiere")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non pwofesè a."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "professeurs",
-        "professeur_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        email: email,
-
-        matiere: matiere,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("profNom")
-      .value = "";
-
-
-    document
-      .getElementById("profEmail")
-      .value = "";
-
-
-    document
-      .getElementById("profMatiere")
-      .value = "";
-
-
-    await loadProfesseurs();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Pwofesè a ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute pwofesè a."
-    );
-
-  }
-
-};
-
-
-/* ================= KLAS ================= */
-
-async function loadClasses(){
-
-  const box =
     document.getElementById(
-      "listeClasses"
-    );
-
-  if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje klas yo..."
-    );
-
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "classes"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "🏫",
-          "Pa gen klas pou kounye a."
-        );
-
-      return;
-
-    }
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
-      box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            data.nom || ""
-          )}"
-        >
-
-          <div class="cardIcon">
-            🏫
-          </div>
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <strong>ID:</strong>
-              ${escapeHTML(id)}
-            </p>
-
-            <p>
-              <span class="badge">
-                Aktif
-              </span>
-            </p>
-
-          </div>
-
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteClasse('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ CLASSES:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje klas yo."
-      );
-
-  }
-
-}
-
-
-/* ================= AJOUTER KLAS ================= */
-
-window.ajouterClasse =
-async function(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute klas."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("classeNom")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non klas la."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "classes",
-        "classe_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        active: true,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("classeNom")
-      .value = "";
-
-
-    await loadClasses();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Klas la ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute klas la."
-    );
-
-  }
-
-};
-
-
-/* ================= MATIERES ================= */
-
-async function loadMatieres(){
-
-  const box =
-    document.getElementById(
-      "listeMatieres"
-    );
-
-  if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje matyè yo..."
-    );
-
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "matieres"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "📚",
-          "Pa gen matyè pou kounye a."
-        );
-
-      return;
-
-    }
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
-      box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            data.nom || ""
-          )}"
-        >
-
-          <div class="cardIcon">
-            📚
-          </div>
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.nom || "San non"
-              )}
-            </h3>
-
-            <p>
-              <span class="badge">
-                Aktif
-              </span>
-            </p>
-
-          </div>
-
-
-          ${
-            isAdmin()
-            ? `
-              <div class="cardActions">
-
-                <button
-                  class="smallBtn refuse"
-                  onclick="deleteMatiere('${id}')"
-                >
-                  🗑️ Efase
-                </button>
-
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ MATIERES:",
-      error
-    );
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje matyè yo."
-      );
-
-  }
-
-}
-
-
-/* ================= AJOUTER MATIERE ================= */
-
-window.ajouterMatiere =
-async function(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka ajoute matyè."
-    );
-
-    return;
-
-  }
-
-
-  const nom =
-    document
-      .getElementById("matiereNom")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Tanpri antre non matyè a."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "matieres",
-        "matiere_" + Date.now()
-      ),
-
-      {
-
-        nom: nom,
-
-        active: true,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("matiereNom")
-      .value = "";
-
-
-    await loadMatieres();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Matyè a ajoute avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ajoute matyè a."
-    );
-
-  }
-
-};
-  /* ================= DEVOIRS ================= */
-
-async function loadDevoirs(){
-
-  const box =
-    document.getElementById(
-      "listeDevoirs"
-    );
-
-  if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje devwa yo..."
-    );
-
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "devoirs"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "📝",
-          "Pa gen devwa pou kounye a."
-        );
-
-      return;
-
-    }
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-      const id =
-        item.id;
-
-
-      const title =
-        data.titre ||
-        "San tit";
-
-
-      const matiere =
-        data.matiere ||
-        "Pa defini";
-
-
-      const classe =
-        data.classe ||
-        "Pa defini";
-
-
-      const duree =
-        data.duree ||
-        0;
-
-
-      const tentatives =
-        data.maxTentatives ||
-        1;
-
-
-      let action = "";
-
-
-      if(role() === "eleve"){
-
-        action = `
-
-          <button
-            class="smallBtn edit"
-            onclick="ouvrirRemetDevoir('${id}')"
-          >
-            📤 Fè epi remèt
-          </button>
-
-        `;
-
-      }
-
-
-      if(isAdmin() || role() === "professeur"){
-
-        action += `
-
-          <button
-            class="smallBtn refuse"
-            onclick="deleteDevoir('${id}')"
-          >
-            🗑️ Efase
-          </button>
-
-        `;
-
-      }
-
-
-      box.innerHTML += `
-
-        <div
-          class="dataCard"
-          data-search="${escapeHTML(
-            title +
-            " " +
-            matiere +
-            " " +
-            classe
-          )}"
-        >
-
-          <div class="cardIcon">
-            📝
-          </div>
-
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(title)}
-            </h3>
-
-
-            <p>
-              <strong>Matyè:</strong>
-              ${escapeHTML(matiere)}
-            </p>
-
-
-            <p>
-              <strong>Klas:</strong>
-              ${escapeHTML(classe)}
-            </p>
-
-
-            <p>
-              <strong>Dire:</strong>
-              ${escapeHTML(duree)} minit
-            </p>
-
-
-            <p>
-              <strong>Tantativ:</strong>
-              ${escapeHTML(tentatives)}
-            </p>
-
-
-            <div class="cardActions">
-
-              ${action}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ DEVOIRS:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje devwa yo."
-      );
-
-  }
-
-}
-
-
-/* ================= AJOUTER DEVOIR ================= */
-
-window.ajouterDevoir =
-async function(){
-
-  if(!isTeacher()){
-
-    alert(
-      "Se pwofesè oswa administratè sèlman ki ka kreye devwa."
-    );
-
-    return;
-
-  }
-
-
-  const titre =
-    document
-      .getElementById("devoirTitre")
-      .value
-      .trim();
-
-
-  const matiere =
-    document
-      .getElementById("devoirMatiere")
-      .value
-      .trim();
-
+      "eleveEmail"
+    ).value.trim();
 
   const classe =
-    document
-      .getElementById("devoirClasse")
-      .value
-      .trim();
+    document.getElementById(
+      "eleveClasse"
+    ).value.trim();
 
 
-  const duree =
-    Number(
-      document
-        .getElementById("devoirDuree")
-        .value
-    ) || 30;
+  if(!nom || !prenom){
 
-
-  const maxTentatives =
-    Number(
-      document
-        .getElementById("devoirTentatives")
-        .value
-    ) || 1;
-
-
-  if(!titre){
-
-    alert(
-      "Tanpri antre tit devwa a."
+    showMessage(
+      "Tanpri antre non ak prénom elèv la.",
+      "error"
     );
-
-    return;
-
-  }
-
-
-  try{
-
-    await setDoc(
-
-      doc(
-        db,
-        "devoirs",
-        "devoir_" + Date.now()
-      ),
-
-      {
-
-        titre: titre,
-
-        matiere: matiere,
-
-        classe: classe,
-
-        duree: duree,
-
-        maxTentatives:
-          maxTentatives,
-
-        createdAt:
-          serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    document
-      .getElementById("devoirTitre")
-      .value = "";
-
-
-    document
-      .getElementById("devoirMatiere")
-      .value = "";
-
-
-    document
-      .getElementById("devoirClasse")
-      .value = "";
-
-
-    await loadDevoirs();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Devwa a kreye avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab kreye devwa a."
-    );
-
-  }
-
-};
-
-
-/* ================= OUVRI REMET DEVWA ================= */
-
-window.ouvrirRemetDevoir =
-async function(devoirId){
-
-  if(role() !== "eleve"){
 
     return;
 
@@ -4300,1382 +2782,54 @@ async function(devoirId){
 
     const ref =
       doc(
-        db,
-        "devoirs",
-        devoirId
-      );
-
-
-    const snap =
-      await getDoc(ref);
-
-
-    if(!snap.exists()){
-
-      alert(
-        "Devwa sa a pa egziste ankò."
-      );
-
-      return;
-
-    }
-
-
-    const data =
-      snap.data();
-
-
-    document
-      .getElementById(
-        "remetDevoirId"
-      )
-      .value =
-        devoirId;
-
-
-    document
-      .getElementById(
-        "remetDevoirInfo"
-      )
-      .innerHTML = `
-
-        <div class="infoBox">
-
-          <h3>
-            ${escapeHTML(
-              data.titre || "Devwa"
-            )}
-          </h3>
-
-          <p>
-            <strong>Matyè:</strong>
-            ${escapeHTML(
-              data.matiere || "Pa defini"
-            )}
-          </p>
-
-          <p>
-            <strong>Klas:</strong>
-            ${escapeHTML(
-              data.classe || "Pa defini"
-            )}
-          </p>
-
-          <p>
-            <strong>Dire:</strong>
-            ${escapeHTML(
-              data.duree || 0
-            )} minit
-          </p>
-
-        </div>
-
-      `;
-
-
-    document
-      .getElementById(
-        "remetReponse"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "remetTemps"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "remetModal"
-      )
-      .classList
-      .remove("hidden");
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Nou pa kapab ouvri devwa sa a."
-    );
-
-  }
-
-};
-
-
-/* ================= FERMER MODAL ================= */
-
-window.fermerRemetModal =
-function(){
-
-  document
-    .getElementById(
-      "remetModal"
-    )
-    .classList
-    .add("hidden");
-
-};
-
-
-/* ================= ENVOYE REMISE ================= */
-
-window.envoyerRemise =
-async function(){
-
-  if(role() !== "eleve"){
-
-    alert(
-      "Se elèv yo sèlman ki ka remèt devwa."
-    );
-
-    return;
-
-  }
-
-
-  const devoirId =
-    document
-      .getElementById(
-        "remetDevoirId"
-      )
-      .value;
-
-
-  const reponse =
-    document
-      .getElementById(
-        "remetReponse"
-      )
-      .value
-      .trim();
-
-
-  const temps =
-    Number(
-      document
-        .getElementById(
-          "remetTemps"
-        )
-        .value
-    ) || 0;
-
-
-  if(!devoirId){
-
-    alert(
-      "Devwa a pa idantifye."
-    );
-
-    return;
-
-  }
-
-
-  if(!reponse){
-
-    alert(
-      "Tanpri ekri repons oswa travay ou."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    const devoirSnap =
-      await getDoc(
-        doc(
+        collection(
           db,
-          "devoirs",
-          devoirId
+          "eleves"
         )
       );
-
-
-    if(!devoirSnap.exists()){
-
-      alert(
-        "Devwa sa a pa egziste ankò."
-      );
-
-      return;
-
-    }
-
-
-    const devoir =
-      devoirSnap.data();
-
-
-    const tentativesSnap =
-      await getDocs(
-
-        query(
-
-          collection(
-            db,
-            "tentatives"
-          ),
-
-          where(
-            "eleveId",
-            "==",
-            currentUser.uid
-          ),
-
-          where(
-            "devoirId",
-            "==",
-            devoirId
-          )
-
-        )
-
-      );
-
-
-    const maxTentatives =
-      Number(
-        devoir.maxTentatives || 1
-      );
-
-
-    if(
-      tentativesSnap.size >=
-      maxTentatives
-    ){
-
-      alert(
-        "Ou rive nan kantite tantativ ki pèmèt pou devwa sa a."
-      );
-
-      return;
-
-    }
-
-
-    const tentativeId =
-      "tentative_" +
-      Date.now();
 
 
     await setDoc(
-
-      doc(
-        db,
-        "tentatives",
-        tentativeId
-      ),
-
+      ref,
       {
 
-        devoirId:
-          devoirId,
+        nom,
 
-        devoirTitre:
-          devoir.titre || "",
+        prenom,
 
-        eleveId:
-          currentUser.uid,
+        email,
 
-        eleveEmail:
-          currentUser.email || "",
+        classe,
 
-        reponse:
-          reponse,
-
-        temps:
-          temps,
-
-        numeroTentative:
-          tentativesSnap.size + 1,
-
-        status:
-          "soumis",
-
-        score:
-          null,
-
-        noteFinale:
-          null,
-
-        commentaire:
-          "",
-
-        submittedAt:
+        createdAt:
           serverTimestamp(),
 
-        correctedAt:
-          null,
-
-        correctedBy:
-          null
-
-      }
-
-    );
-
-
-    document
-      .getElementById(
-        "remetReponse"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "remetTemps"
-      )
-      .value = "";
-
-
-    fermerRemetModal();
-
-
-    alert(
-      "✅ Travay la voye avèk siksè."
-    );
-
-
-    await loadResultats();
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ REMISE:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab voye travay la."
-    );
-
-  }
-
-};
-
-
-/* ================= REMISES ================= */
-
-async function loadRemises(){
-
-  const box =
-    document.getElementById(
-      "listeRemises"
-    );
-
-  if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje travay elèv yo..."
-    );
-
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "tentatives"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "📤",
-          "Pa gen travay remèt pou kounye a."
-        );
-
-      return;
-
-    }
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-
-      const id =
-        item.id;
-
-
-      const score =
-        data.noteFinale ??
-        data.score;
-
-
-      const status =
-        String(
-          data.status || "soumis"
-        );
-
-
-      box.innerHTML += `
-
-        <div class="dataCard">
-
-          <div class="cardIcon">
-            📤
-          </div>
-
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.devoirTitre ||
-                "Devwa"
-              )}
-            </h3>
-
-
-            <p>
-              <strong>Elèv:</strong>
-              ${escapeHTML(
-                data.eleveEmail ||
-                data.eleveId ||
-                "Pa defini"
-              )}
-            </p>
-
-
-            <p>
-              <strong>Repons:</strong>
-            </p>
-
-
-            <div class="responseBox">
-              ${escapeHTML(
-                data.reponse || ""
-              )}
-            </div>
-
-
-            <p>
-              <strong>Tan:</strong>
-              ${escapeHTML(
-                data.temps || 0
-              )} minit
-            </p>
-
-
-            <p>
-              <strong>Status:</strong>
-              ${escapeHTML(status)}
-            </p>
-
-
-            <div class="field">
-
-              <label>
-                Nòt /100
-              </label>
-
-              <input
-                id="score_${id}"
-                type="number"
-                min="0"
-                max="100"
-                value="${
-                  score === null ||
-                  score === undefined
-                    ? ""
-                    : escapeHTML(score)
-                }"
-                placeholder="Egzanp: 15"
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label>
-                Kòmantè pwofesè
-              </label>
-
-              <textarea
-                id="comment_${id}"
-                rows="4"
-                placeholder="Ekri yon kòmantè..."
-              >${escapeHTML(
-                data.commentaire || ""
-              )}</textarea>
-
-            </div>
-
-
-            <div class="cardActions">
-
-              <button
-                class="smallBtn edit"
-                onclick="corrigerRemise('${id}')"
-              >
-                💾 Sove koreksyon
-              </button>
-
-
-              ${
-                isAdmin()
-                ? `
-
-                  <button
-                    class="smallBtn refuse"
-                    onclick="deleteRemise('${id}')"
-                  >
-                    🗑️ Efase
-                  </button>
-
-                `
-                : ""
-              }
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ REMISES:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje travay yo."
-      );
-
-  }
-
-}
-
-
-/* ================= CORRIGER REMISE ================= */
-
-window.corrigerRemise =
-async function(id){
-
-  if(!isTeacher()){
-
-    alert(
-      "Se pwofesè oswa administratè sèlman ki ka korije travay."
-    );
-
-    return;
-
-  }
-
-
-  const scoreInput =
-    document.getElementById(
-      "score_" + id
-    );
-
-
-  const commentInput =
-    document.getElementById(
-      "comment_" + id
-    );
-
-
-  if(!scoreInput){
-
-    alert(
-      "Chan nòt la pa jwenn."
-    );
-
-    return;
-
-  }
-
-
-  let score =
-    Number(
-      scoreInput.value
-    );
-
-
-  if(
-    Number.isNaN(score) ||
-    score < 0 ||
-    score > 100
-  ){
-
-    alert(
-      "Nòt la dwe ant 0 ak 100."
-    );
-
-    return;
-
-  }
-
-
-  const commentaire =
-    commentInput
-      ? commentInput.value.trim()
-      : "";
-
-
-  try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "tentatives",
-        id
-      ),
-
-      {
-
-        score:
-          score,
-
-        noteFinale:
-          score,
-
-        commentaire:
-          commentaire,
-
-        status:
-          "corrige",
-
-        correctedAt:
-          serverTimestamp(),
-
-        correctedBy:
+        createdBy:
           currentUser.uid
 
       }
-
     );
 
 
-    await setDoc(
-
-      doc(
-        db,
-        "resultats",
-        id
-      ),
-
-      {
-
-        tentativeId:
-          id,
-
-        devoirId:
-          "",
-
-        eleveId:
-          "",
-
-        score:
-          score,
-
-        note:
-          score,
-
-        noteFinale:
-          score,
-
-        commentaire:
-          commentaire,
-
-        updatedAt:
-          serverTimestamp(),
-
-        updatedBy:
-          currentUser.uid
-
-      },
-
-      {
-        merge: true
-      }
-
-    );
-
-
-    alert(
-      "✅ Koreksyon an sove."
-    );
-
-
-    await loadRemises();
-
-    await loadResultats();
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ KOREKSYON:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab sove koreksyon an."
-    );
-
-  }
-
-};
-     /* ================= RESULTATS ================= */
-
-async function loadResultats(){
-
-  const box =
     document.getElementById(
-      "listeResultats"
-    );
+      "eleveNom"
+    ).value = "";
 
-  if(!box) return;
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje rezilta yo..."
-    );
-
-
-  try{
-
-    const r = role();
-
-    let snap;
-
-
-    /*
-      Elèv la pa bezwen li tout rezilta
-      lòt elèv yo.
-    */
-
-    if(r === "eleve"){
-
-      snap =
-        await getDocs(
-
-          query(
-
-            collection(
-              db,
-              "resultats"
-            ),
-
-            where(
-              "eleveId",
-              "==",
-              currentUser.uid
-            )
-
-          )
-
-        );
-
-    }else{
-
-      snap =
-        await getDocs(
-          collection(
-            db,
-            "resultats"
-          )
-        );
-
-    }
-
-
-    box.innerHTML = "";
-
-
-    if(snap.empty){
-
-      box.innerHTML =
-        emptyCard(
-          "🏆",
-          "Pa gen rezilta pou kounye a."
-        );
-
-      return;
-
-    }
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-
-      const id =
-        item.id;
-
-
-      const note =
-        data.noteFinale ??
-        data.note ??
-        data.score;
-
-
-      const noteText =
-        note === null ||
-        note === undefined ||
-        note === ""
-          ? "Pa korije"
-          : Number(note).toFixed(0) + "/100";
-
-
-      box.innerHTML += `
-
-        <div class="dataCard">
-
-          <div class="cardIcon">
-            🏆
-          </div>
-
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(
-                data.devoirTitre ||
-                "Rezilta devwa"
-              )}
-            </h3>
-
-
-            ${
-              r !== "eleve"
-              ? `
-
-                <p>
-                  <strong>Elèv:</strong>
-                  ${escapeHTML(
-                    data.eleveEmail ||
-                    data.eleveId ||
-                    "Pa defini"
-                  )}
-                </p>
-
-              `
-              : ""
-            }
-
-
-            <div
-              style="
-                font-size:28px;
-                font-weight:800;
-                margin:12px 0;
-              "
-            >
-              ${escapeHTML(noteText)}
-            </div>
-
-
-            <p>
-              <strong>Kòmantè:</strong>
-              ${
-                escapeHTML(
-                  data.commentaire ||
-                  "Pa gen kòmantè."
-                )
-              }
-            </p>
-
-
-            ${
-              isAdmin()
-              ? `
-
-                <div class="cardActions">
-
-                  <button
-                    class="smallBtn refuse"
-                    onclick="deleteResultat('${id}')"
-                  >
-                    🗑️ Efase
-                  </button>
-
-                </div>
-
-              `
-              : ""
-            }
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ RESULTATS:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje rezilta yo."
-      );
-
-  }
-
-};
-
-
-/* ================= USERS ================= */
-
-async function loadUsers(){
-
-  const box =
     document.getElementById(
-      "listeUsers"
-    );
+      "elevePrenom"
+    ).value = "";
 
-  if(!box) return;
-
-
-  if(!isAdmin()){
-
-    box.innerHTML =
-      emptyCard(
-        "🔒",
-        "Se administratè a sèlman ki ka wè itilizatè yo."
-      );
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    emptyCard(
-      "⏳",
-      "Chaje demann yo..."
-    );
-
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "users"
-        )
-      );
-
-
-    box.innerHTML = "";
-
-
-    let count = 0;
-
-
-    snap.forEach(item => {
-
-      const data =
-        item.data();
-
-
-      const status =
-        String(
-          data.status || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-      if(status !== "attente"){
-
-        return;
-
-      }
-
-
-      count++;
-
-
-      const uid =
-        item.id;
-
-
-      const nom =
-        data.nom ||
-        "San non";
-
-
-      const email =
-        data.email ||
-        "San email";
-
-
-      box.innerHTML += `
-
-        <div class="dataCard">
-
-          <div class="cardIcon">
-            👤
-          </div>
-
-
-          <div class="cardContent">
-
-            <h3>
-              ${escapeHTML(nom)}
-            </h3>
-
-
-            <p>
-              <strong>Email:</strong>
-              ${escapeHTML(email)}
-            </p>
-
-
-            <p>
-              <strong>Status:</strong>
-              <span class="badge">
-                An atant
-              </span>
-            </p>
-
-
-            <div class="field">
-
-              <label>
-                Chwazi wòl
-              </label>
-
-              <select
-                id="role_${uid}"
-              >
-
-                <option value="eleve">
-                  Elèv
-                </option>
-
-                <option value="professeur">
-                  Pwofesè
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="cardActions">
-
-              <button
-                class="smallBtn accept"
-                onclick="acceptUser('${uid}')"
-              >
-                ✅ Aksepte
-              </button>
-
-
-              <button
-                class="smallBtn refuse"
-                onclick="refuseUser('${uid}')"
-              >
-                ❌ Refize
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-
-    if(count === 0){
-
-      box.innerHTML =
-        emptyCard(
-          "👥",
-          "Pa gen demann an atant."
-        );
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ USERS:",
-      error
-    );
-
-
-    box.innerHTML =
-      emptyCard(
-        "⚠️",
-        "Nou pa kapab chaje itilizatè yo."
-      );
-
-  }
-
-}
-
-
-/* ================= AKSEPTE USER ================= */
-
-window.acceptUser =
-async function(uid){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka aksepte itilizatè."
-    );
-
-    return;
-
-  }
-
-
-  const select =
     document.getElementById(
-      "role_" + uid
-    );
+      "eleveEmail"
+    ).value = "";
 
+    document.getElementById(
+      "eleveClasse"
+    ).value = "";
 
-  const selectedRole =
-    select
-      ? select.value
-      : "eleve";
 
-
-  if(
-    selectedRole !== "eleve" &&
-    selectedRole !== "professeur"
-  ){
-
-    alert(
-      "Wòl la pa valab."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "users",
-        uid
-      ),
-
-      {
-
-        role:
-          selectedRole,
-
-        status:
-          "accepted",
-
-        approvedAt:
-          serverTimestamp(),
-
-        approvedBy:
-          currentUser.uid
-
-      }
-
-    );
-
-
-    await loadUsers();
-
-
-    alert(
-      "✅ Itilizatè a aksepte avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ ACCEPT USER:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab aksepte itilizatè sa a."
-    );
-
-  }
-
-};
-
-
-/* ================= REFIZE USER ================= */
-
-window.refuseUser =
-async function(uid){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka refize itilizatè."
-    );
-
-    return;
-
-  }
-
-
-  const ok =
-    confirm(
-      "Èske ou sèten ou vle refize epi efase demann sa a?"
-    );
-
-
-  if(!ok) return;
-
-
-  try{
-
-    await deleteDoc(
-
-      doc(
-        db,
-        "users",
-        uid
-      )
-
-    );
-
-
-    await loadUsers();
-
-
-    alert(
-      "✅ Demann lan efase."
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ REFIZE USER:",
-      error
-    );
-
-
-    alert(
-      "❌ Nou pa kapab efase demann lan."
-    );
-
-  }
-
-};
-
-
-/* ================= ADMIN DELETE ================= */
-
-async function verifyAdmin(){
-
-  if(!isAdmin()){
-
-    alert(
-      "Se administratè a sèlman ki ka fè operasyon sa a."
-    );
-
-    return false;
-
-  }
-
-
-  return true;
-
-}
-
-
-async function confirmDelete(message){
-
-  return confirm(message);
-
-}
-
-
-/* ================= DELETE ELEVE ================= */
-
-window.deleteEleve =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase elèv sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "eleves",
-        id
-      )
+    showMessage(
+      "Elèv la anrejistre avèk siksè."
     );
 
 
@@ -5683,19 +2837,13 @@ async function(id){
 
     await updateStats();
 
-
-    alert(
-      "✅ Elèv la efase avèk siksè."
-    );
-
-
   }catch(error){
 
     console.error(error);
 
-
-    alert(
-      "❌ Nou pa kapab efase elèv la."
+    showMessage(
+      "Nou pa kapab anrejistre elèv la.",
+      "error"
     );
 
   }
@@ -5703,489 +2851,11 @@ async function(id){
 };
 
 
-/* ================= DELETE PROFESSEUR ================= */
-
-window.deleteProfesseur =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase pwofesè sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "professeurs",
-        id
-      )
-    );
-
-
-    await loadProfesseurs();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Pwofesè a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase pwofesè a."
-    );
-
-  }
-
-};
-
-
-/* ================= DELETE KLAS ================= */
-
-window.deleteClasse =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase klas sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "classes",
-        id
-      )
-    );
-
-
-    await loadClasses();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Klas la efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase klas la."
-    );
-
-  }
-
-};
-
-
-/* ================= DELETE MATIERE ================= */
-
-window.deleteMatiere =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase matyè sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "matieres",
-        id
-      )
-    );
-
-
-    await loadMatieres();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Matyè a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase matyè a."
-    );
-
-  }
-
-};
-
-
-/* ================= DELETE DEVOIR ================= */
-
-window.deleteDevoir =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase devwa sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "devoirs",
-        id
-      )
-    );
-
-
-    await loadDevoirs();
-
-    await updateStats();
-
-
-    alert(
-      "✅ Devwa a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase devwa a."
-    );
-
-  }
-
-};
-
-
-/* ================= DELETE REMISE ================= */
-
-window.deleteRemise =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase travay elèv sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "tentatives",
-        id
-      )
-    );
-
-
-    /*
-      Nou efase rezilta ki gen menm ID
-      si li egziste.
-    */
-
-    try{
-
-      await deleteDoc(
-        doc(
-          db,
-          "resultats",
-          id
-        )
-      );
-
-    }catch(resultError){
-
-      console.log(
-        "Rezilta a pa jwenn:",
-        resultError
-      );
-
-    }
-
-
-    await loadRemises();
-
-    await loadResultats();
-
-
-    alert(
-      "✅ Travay la efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase travay sa a."
-    );
-
-  }
-
-};
-
-
-/* ================= DELETE RESULTAT ================= */
-
-window.deleteResultat =
-async function(id){
-
-  if(
-    !(await verifyAdmin()) ||
-    !(await confirmDelete(
-      "Èske ou sèten ou vle efase rezilta sa a?"
-    ))
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "resultats",
-        id
-      )
-    );
-
-
-    await loadResultats();
-
-
-    alert(
-      "✅ Rezilta a efase avèk siksè."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "❌ Nou pa kapab efase rezilta a."
-    );
-
-  }
-
-};
-
-
-/* ================= STATISTIQUES ================= */
-
-async function updateStats(){
-
-  try{
-
-    const devoirsSnap =
-      await getDocs(
-        collection(
-          db,
-          "devoirs"
-        )
-      );
-
-
-    const devoirsCount =
-      devoirsSnap.size;
-
-
-    document
-      .getElementById(
-        "statDevoirs"
-      )
-      ?.textContent =
-        devoirsCount;
-
-
-    document
-      .getElementById(
-        "stat2Devoirs"
-      )
-      ?.textContent =
-        devoirsCount;
-
-
-    if(!isAdmin()){
-
-      return;
-
-    }
-
-
-    const [
-      elevesSnap,
-      professeursSnap,
-      classesSnap
-    ] =
-      await Promise.all([
-
-        getDocs(
-          collection(
-            db,
-            "eleves"
-          )
-        ),
-
-        getDocs(
-          collection(
-            db,
-            "professeurs"
-          )
-        ),
-
-        getDocs(
-          collection(
-            db,
-            "classes"
-          )
-        )
-
-      ]);
-
-
-    const elevesCount =
-      elevesSnap.size;
-
-
-    const professeursCount =
-      professeursSnap.size;
-
-
-    const classesCount =
-      classesSnap.size;
-
-
-    document
-      .getElementById(
-        "statEleves"
-      )
-      ?.textContent =
-        elevesCount;
-
-
-    document
-      .getElementById(
-        "statProfesseurs"
-      )
-      ?.textContent =
-        professeursCount;
-
-
-    document
-      .getElementById(
-        "statClasses"
-      )
-      ?.textContent =
-        classesCount;
-
-
-    document
-      .getElementById(
-        "stat2Eleves"
-      )
-      ?.textContent =
-        elevesCount;
-
-
-    document
-      .getElementById(
-        "stat2Professeurs"
-      )
-      ?.textContent =
-        professeursCount;
-
-
-    document
-      .getElementById(
-        "stat2Classes"
-      )
-      ?.textContent =
-        classesCount;
-
-
-  }catch(error){
-
-    console.error(
-      "ERÈ STATS:",
-      error
-    );
-
-  }
-
-} 
-     /* ================= FEN SCRIPT ================= */
+/* =========================
+   END PART 1
+========================= */
 
 </script>
 
 </body>
-
-</html> 
-      
+</html>
