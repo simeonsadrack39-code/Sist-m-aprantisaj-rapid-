@@ -179,9 +179,12 @@ th{background:#f8fafc;}
       <button class="menuBtn adminOnly" onclick="showSection('professeurs',this)">👨‍🏫<span data-i18n="menuProfesseurs">Pwofesè</span></button>
       <button class="menuBtn adminOnly" onclick="showSection('classes',this)">🏫<span data-i18n="menuClasses">Klas</span></button>
       <button class="menuBtn adminOnly" onclick="showSection('matieres',this)">📚<span data-i18n="menuMatieres">Matyè</span></button>
+      <button class="menuBtn" onclick="showSection('notesCours',this)">📖<span data-i18n="menuNotesCours">Kontni Kou</span></button>
       <button class="menuBtn" onclick="showSection('devoirs',this)">📝<span data-i18n="menuDevoirs">Devwa</span></button>
+      <button class="menuBtn" onclick="showSection('examens',this)">📋<span data-i18n="menuExamens">Egzamen</span></button>
       <button class="menuBtn teacherOnly" onclick="showSection('remises',this)">📤<span data-i18n="menuRemises">Remèt elèv yo</span></button>
       <button class="menuBtn" onclick="showSection('resultats',this)">🏆<span data-i18n="menuResultats">Rezilta</span></button>
+      <button class="menuBtn" onclick="showSection('horaires',this)">🕒<span data-i18n="menuHoraires">Orè</span></button>
       <button class="menuBtn" onclick="showSection('statistiques',this)">📈<span data-i18n="menuStatistiques">Estatistik</span></button>
       <button class="menuBtn adminOnly" onclick="showSection('users',this)">👥<span data-i18n="menuUsers">Itilizatè</span></button>
     </aside>
@@ -308,6 +311,32 @@ th{background:#f8fafc;}
         <div id="listeMatieres" class="dataGrid"></div>
       </section>
 
+      <section id="notesCours" class="section">
+        <div class="pageTitle">
+          <h2 data-i18n="titleNotesCours">📖 Kontni Kou ak Dokiman</h2>
+          <p data-i18n="subNotesCours">Konsilte oswa pibliye nòt kou ak dokiman edikatif.</p>
+        </div>
+        <div id="createNoteCoursPanel" class="panel teacherOnly">
+          <div class="panelTitle" data-i18n="panelAddNoteCours">➕ Pibliye yon nouvo kou</div>
+          <div class="formGrid">
+            <div class="field">
+              <label data-i18n="labelNoteCoursTitre">Tit kou a</label>
+              <input id="noteCoursTitre" placeholder=" Chapit 1: Jeyometri">
+            </div>
+            <div class="field">
+              <label data-i18n="labelClasse">Klas</label>
+              <input id="noteCoursClasse" placeholder="6e AF">
+            </div>
+            <div class="field" style="grid-column:1/-1;">
+              <label data-i18n="labelNoteCoursContni">Kontni oswa Lyen Dokiman</label>
+              <textarea id="noteCoursContni" rows="4" placeholder="Ekri kontni an oswa mete yon lyen..."></textarea>
+            </div>
+          </div>
+          <button class="btn" onclick="ajouterNoteCours()" data-i18n="btnAddNoteCours">➕ Pibliye kou</button>
+        </div>
+        <div id="listeNotesCours" class="dataGrid"></div>
+      </section>
+
       <section id="devoirs" class="section">
         <div class="pageTitle">
           <h2 data-i18n="titleDevoirs">📝 Devwa</h2>
@@ -350,6 +379,35 @@ th{background:#f8fafc;}
         <div id="listeDevoirs" class="dataGrid"></div>
       </section>
 
+      <section id="examens" class="section">
+        <div class="pageTitle">
+          <h2 data-i18n="titleExamens">📋 Egzamen</h2>
+          <p data-i18n="subExamens">Jere ak pase egzamen sou platfòm lan.</p>
+        </div>
+        <div id="createExamenPanel" class="panel teacherOnly">
+          <div class="panelTitle" data-i18n="panelAddExamen">➕ Kreye yon nouvo egzamen</div>
+          <div class="formGrid">
+            <div class="field">
+              <label data-i18n="labelExamenTitre">Tit egzamen</label>
+              <input id="examenTitre" placeholder="Egzamen Tès Mwayen">
+            </div>
+            <div class="field">
+              <label data-i18n="labelClasse">Klas</label>
+              <input id="examenClasse" placeholder="6e AF">
+            </div>
+            <div class="field">
+              <label data-i18n="labelStatutExamen">Estati</label>
+              <select id="examenStatut">
+                <option value="brouillon">Broyon</option>
+                <option value="publie" selected>Pibliye</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn" onclick="ajouterExamen()" data-i18n="btnAddExamen">➕ Kreye egzamen</button>
+        </div>
+        <div id="listeExamens" class="dataGrid"></div>
+      </section>
+
       <section id="remises" class="section">
         <div class="pageTitle">
           <h2 data-i18n="titleRemises">📤 Travay remèt</h2>
@@ -364,6 +422,28 @@ th{background:#f8fafc;}
           <p data-i18n="subResultats">Nòt ak kòmantè elèv yo.</p>
         </div>
         <div id="listeResultats" class="dataGrid"></div>
+      </section>
+
+      <section id="horaires" class="section">
+        <div class="pageTitle">
+          <h2 data-i18n="titleHoraires">🕒 Orè Kou ak Egzamen</h2>
+          <p data-i18n="subHoraires">Konsilte orè kou ak tès yo.</p>
+        </div>
+        <div id="createHorairePanel" class="panel teacherOnly">
+          <div class="panelTitle" data-i18n="panelAddHoraire">➕ Ajou yon Orè</div>
+          <div class="formGrid">
+            <div class="field">
+              <label data-i18n="labelHoraireTitre">Tit / Matyè</label>
+              <input id="horaireTitre" placeholder="Matematik - Lendi 8AM">
+            </div>
+            <div class="field">
+              <label data-i18n="labelClasse">Klas</label>
+              <input id="horaireClasse" placeholder="6e AF">
+            </div>
+          </div>
+          <button class="btn" onclick="ajouterHoraire()" data-i18n="btnAddHoraire">➕ Ajoute Orè</button>
+        </div>
+        <div id="listeHoraires" class="dataGrid"></div>
       </section>
 
       <section id="statistiques" class="section">
@@ -500,9 +580,12 @@ const translations = {
     menuProfesseurs: "Pwofesè",
     menuClasses: "Klas",
     menuMatieres: "Matyè",
+    menuNotesCours: "Kontni Kou",
     menuDevoirs: "Devwa",
+    menuExamens: "Egzamen",
     menuRemises: "Remèt elèv yo",
     menuResultats: "Rezilta",
+    menuHoraires: "Orè",
     menuStatistiques: "Estatistik",
     menuUsers: "Itilizatè",
     homeSubtitle: "Byenveni nan Sistèm Aprantisaj.",
@@ -536,6 +619,12 @@ const translations = {
     panelAddMatiere: "➕ Ajoute yon matyè",
     labelMatiereNom: "Non matyè",
     btnAddMatiere: "➕ Ajoute matyè",
+    titleNotesCours: "📖 Kontni Kou ak Dokiman",
+    subNotesCours: "Konsilte oswa pibliye nòt kou ak dokiman edikatif.",
+    panelAddNoteCours: "➕ Pibliye yon nouvo kou",
+    labelNoteCoursTitre: "Tit kou a",
+    labelNoteCoursContni: "Kontni oswa Lyen Dokiman",
+    btnAddNoteCours: "➕ Pibliye kou",
     titleDevoirs: "📝 Devwa",
     subDevoirs: "Kreye devwa oswa fè devwa ou resevwa yo.",
     panelAddDevoir: "➕ Kreye yon nouvo devwa",
@@ -544,10 +633,21 @@ const translations = {
     labelMaxTentatives: "Maksimòm tantativ",
     btnAddDevoir: "➕ Kreye devwa",
     phSearchDevoir: "Chèche yon devwa...",
+    titleExamens: "📋 Egzamen",
+    subExamens: "Jere ak pase egzamen sou platfòm lan.",
+    panelAddExamen: "➕ Kreye yon nouvo egzamen",
+    labelExamenTitre: "Tit egzamen",
+    labelStatutExamen: "Estati",
+    btnAddExamen: "➕ Kreye egzamen",
     titleRemises: "📤 Travay remèt",
     subRemises: "Gade travay elèv yo soumèt, epi korije yo.",
     titleResultats: "🏆 Rezilta",
     subResultats: "Nòt ak kòmantè elèv yo.",
+    titleHoraires: "🕒 Orè Kou ak Egzamen",
+    subHoraires: "Konsilte orè kou ak tès yo.",
+    panelAddHoraire: "➕ Ajoute yon Orè",
+    labelHoraireTitre: "Tit / Matyè",
+    btnAddHoraire: "➕ Ajoute Orè",
     titleStatistiques: "📈 Estatistik",
     subStatistiques: "Yon rezime sou done sistèm nan.",
     titleUsers: "👥 Itilizatè",
@@ -710,9 +810,12 @@ const translations = {
     menuProfesseurs: "Professeurs",
     menuClasses: "Classes",
     menuMatieres: "Matières",
+    menuNotesCours: "Contenu des cours",
     menuDevoirs: "Devoirs",
+    menuExamens: "Examens",
     menuRemises: "Devoirs rendus",
     menuResultats: "Résultats",
+    menuHoraires: "Horaires",
     menuStatistiques: "Statistiques",
     menuUsers: "Utilisateurs",
     homeSubtitle: "Bienvenue dans le Système d'Apprentissage.",
@@ -722,7 +825,7 @@ const translations = {
     statTotalTeachers: "Total professeurs",
     statTotalClasses: "Total classes",
     statTotalHomeworks: "Total devoirs",
-    titleEleves: "👨‍‍🎓 Élèves",
+    titleEleves: "👨‍🎓 Élèves",
     subEleves: "Gérer la liste des élèves.",
     panelAddEleve: "➕ Ajouter un nouvel élève",
     labelEleveNom: "Nom de l'élève",
@@ -746,6 +849,12 @@ const translations = {
     panelAddMatiere: "➕ Ajouter une matière",
     labelMatiereNom: "Nom de la matière",
     btnAddMatiere: "➕ Ajouter une matière",
+    titleNotesCours: "📖 Contenu des cours et documents",
+    subNotesCours: "Consulter ou publier des notes de cours et documents éducatifs.",
+    panelAddNoteCours: "➕ Publier un nouveau cours",
+    labelNoteCoursTitre: "Titre du cours",
+    labelNoteCoursContni: "Contenu ou lien du document",
+    btnAddNoteCours: "➕ Publier le cours",
     titleDevoirs: "📝 Devoirs",
     subDevoirs: "Créer des devoirs ou effectuer vos devoirs reçus.",
     panelAddDevoir: "➕ Créer un nouveau devoir",
@@ -754,10 +863,21 @@ const translations = {
     labelMaxTentatives: "Tentatives maximum",
     btnAddDevoir: "➕ Créer le devoir",
     phSearchDevoir: "Chercher un devoir...",
+    titleExamens: "📋 Examens",
+    subExamens: "Gérer et passer les examens sur la plateforme.",
+    panelAddExamen: "➕ Créer un nouvel examen",
+    labelExamenTitre: "Titre de l'examen",
+    labelStatutExamen: "Statut",
+    btnAddExamen: "➕ Créer l'examen",
     titleRemises: "📤 Devoirs rendus",
     subRemises: "Consulter les travaux soumis par les élèves et les corriger.",
     titleResultats: "🏆 Résultats",
     subResultats: "Notes et commentaires des élèves.",
+    titleHoraires: "🕒 Horaires des cours et examens",
+    subHoraires: "Consulter les horaires des cours et des examens.",
+    panelAddHoraire: "➕ Ajouter un horaire",
+    labelHoraireTitre: "Titre / Matière",
+    btnAddHoraire: "➕ Ajouter l'horaire",
     titleStatistiques: "📈 Statistiques",
     subStatistiques: "Un résumé des données du système.",
     titleUsers: "👥 Utilisateurs",
@@ -1027,15 +1147,14 @@ async function loadUserProfile(user){
     currentUserData = snap.data();
     const r = role();
     const s = String(currentUserData.status || "").trim().toLowerCase();
-    if(s !== "accepted"){
+    if(s !== "accepted" && user.email !== "centredeformationlepedagogue@gmail.com"){
       await signOut(auth);
       showMessage(t("msgAccNotApproved"));
       return;
     }
-    if(!["administrateur", "professeur", "eleve"].includes(r)){
-      await signOut(auth);
-      showMessage(t("msgRoleUnk"));
-      return;
+    if(user.email === "centredeformationlepedagogue@gmail.com" && r !== "administrateur"){
+      currentUserData.role = "administrateur";
+      currentUserData.status = "accepted";
     }
     openApp();
   }catch(e){
@@ -1071,9 +1190,7 @@ async function openApp(){
 
 function applyRoleAccess(){
   document.querySelectorAll(".adminOnly").forEach(e => e.style.display = isAdmin() ? "" : "none");
-  document.querySelectorAll(".teacherOnly").forEach(e => e.style.display = (role() === "professeur") ? "" : "none");
-  const panel = document.getElementById("createDevoirPanel");
-  if(panel) panel.style.display = isTeacher() ? "" : "none";
+  document.querySelectorAll(".teacherOnly").forEach(e => e.style.display = isTeacher() ? "" : "none");
 }
 
 window.showSection = function(id, button){
@@ -1086,7 +1203,7 @@ window.showSection = function(id, button){
 
 async function loadAllData(){
   const r = role();
-  const tasks = [loadDevoirs(), loadResultats()];
+  const tasks = [loadDevoirs(), loadResultats(), loadNotesCours(), loadExamens(), loadHoraires()];
   if(r === "administrateur" || r === "professeur"){
     tasks.push(loadEleves(), loadRemises());
   }
@@ -1214,10 +1331,7 @@ window.ajouterEleve = async function(){
   if(!nom){ alert(t("msgEnterEleveNom")); return; }
   try{
     await setDoc(doc(db, "eleves", "eleve_" + Date.now()), {
-      nom: nom,
-      classe: classe,
-      createdAt: serverTimestamp(),
-      createdBy: currentUser.uid
+      nom: nom, classe: classe, createdAt: serverTimestamp(), createdBy: currentUser.uid
     });
     document.getElementById("eleveNom").value = "";
     document.getElementById("eleveClasse").value = "";
@@ -1365,6 +1479,61 @@ window.ajouterMatiere = async function(){
   }
 };
 
+async function loadNotesCours(){
+  const box = document.getElementById("listeNotesCours");
+  if(!box) return;
+  box.innerHTML = emptyCard("⏳", t("loadingDevoirs"));
+  try{
+    const snap = await getDocs(collection(db, "notes_cours"));
+    box.innerHTML = snap.empty ? emptyCard("📖", t("emptyDevoirs")) : "";
+    snap.forEach(item => {
+      const data = item.data(), id = item.id;
+      box.innerHTML += `
+        <div class="dataCard">
+          <div class="cardIcon">📖</div>
+          <div class="cardContent">
+            <h3>${escapeHTML(data.titre || t("lblNoTitle"))}</h3>
+            <p><strong>${escapeHTML(t("labelClasse"))}:</strong> ${escapeHTML(data.classeId || t("lblNotDefined"))}</p>
+            <p style="margin-top:8px;">${escapeHTML(data.contenu || "")}</p>
+          </div>
+          ${isTeacher() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteNoteCours('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
+        </div>`;
+    });
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", t("errDevoirs"));
+  }
+}
+
+window.ajouterNoteCours = async function(){
+  if(!isTeacher()){ alert(t("msgTeacherOnlyDevoir")); return; }
+  const titre = document.getElementById("noteCoursTitre").value.trim();
+  const classeId = document.getElementById("noteCoursClasse").value.trim();
+  const contenu = document.getElementById("noteCoursContni").value.trim();
+  if(!titre){ alert(t("msgFillFields")); return; }
+  try{
+    await setDoc(doc(db, "notes_cours", "note_" + Date.now()), {
+      titre: titre, classeId: classeId, contenu: contenu, professeurUid: currentUser.uid, createdAt: serverTimestamp()
+    });
+    document.getElementById("noteCoursTitre").value = "";
+    document.getElementById("noteCoursClasse").value = "";
+    document.getElementById("noteCoursContni").value = "";
+    await loadNotesCours();
+    alert(t("msgDevoirAddSuccess"));
+  }catch(e){
+    console.error(e);
+    alert(t("msgDevoirAddFail"));
+  }
+};
+
+window.deleteNoteCours = async function(id){
+  if(!isTeacher() || !confirm(t("confirmDelDevoir"))) return;
+  try{
+    await deleteDoc(doc(db, "notes_cours", id));
+    await loadNotesCours();
+  }catch(e){ console.error(e); }
+};
+
 async function loadDevoirs(){
   const box = document.getElementById("listeDevoirs");
   if(!box) return;
@@ -1422,6 +1591,60 @@ window.ajouterDevoir = async function(){
     console.error(e);
     alert(t("msgDevoirAddFail"));
   }
+};
+
+async function loadExamens(){
+  const box = document.getElementById("listeExamens");
+  if(!box) return;
+  box.innerHTML = emptyCard("⏳", t("loadingDevoirs"));
+  try{
+    const snap = await getDocs(collection(db, "examens"));
+    box.innerHTML = snap.empty ? emptyCard("📋", t("emptyDevoirs")) : "";
+    snap.forEach(item => {
+      const data = item.data(), id = item.id;
+      box.innerHTML += `
+        <div class="dataCard">
+          <div class="cardIcon">📋</div>
+          <div class="cardContent">
+            <h3>${escapeHTML(data.titre || t("lblNoTitle"))}</h3>
+            <p><strong>${escapeHTML(t("labelClasse"))}:</strong> ${escapeHTML(data.classeId || t("lblNotDefined"))}</p>
+            <p><strong>${escapeHTML(t("lblStatus"))}:</strong> ${escapeHTML(data.statut || "publie")}</p>
+          </div>
+          ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteExamen('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
+        </div>`;
+    });
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", t("errDevoirs"));
+  }
+}
+
+window.ajouterExamen = async function(){
+  if(!isTeacher()){ alert(t("msgTeacherOnlyDevoir")); return; }
+  const titre = document.getElementById("examenTitre").value.trim();
+  const classeId = document.getElementById("examenClasse").value.trim();
+  const statut = document.getElementById("examenStatut").value;
+  if(!titre){ alert(t("msgFillFields")); return; }
+  try{
+    await setDoc(doc(db, "examens", "examen_" + Date.now()), {
+      titre: titre, classeId: classeId, statut: statut, createdAt: serverTimestamp()
+    });
+    document.getElementById("examenTitre").value = "";
+    document.getElementById("examenClasse").value = "";
+    await loadExamens();
+    alert(t("msgDevoirAddSuccess"));
+  }catch(e){
+    console.error(e);
+    alert(t("msgDevoirAddFail"));
+  }
+};
+
+window.deleteExamen = async function(id){
+  if(!isAdmin() || !confirm(t("confirmDelDevoir"))) return;
+  try{
+    await deleteDoc(doc(db, "examens", id));
+    await loadExamens();
+  }catch(e){ console.error(e); }
 };
 
 window.ouvrirRemetDevoir = async function(devoirId){
@@ -1540,7 +1763,7 @@ window.corrigerRemise = async function(id){
       score: score, noteFinale: score, commentaire: commentaire, status: "corrige", correctedAt: serverTimestamp(), correctedBy: currentUser.uid
     });
     await setDoc(doc(db, "resultats", id), {
-      tentativeId: id, score: score, note: score, noteFinale: score, commentaire: commentaire, updatedAt: serverTimestamp(), updatedBy: currentUser.uid
+      tentativeId: id, score: score, note: score, noteFinale: score, commentaire: commentaire, updatedAt: serverTimestamp(), updatedBy: currentUser.uid, etudiantId: currentUser.uid
     }, { merge: true });
     alert(t("msgCorrectionSuccess"));
     await loadRemises();
@@ -1558,7 +1781,7 @@ async function loadResultats(){
   try{
     const r = role();
     const snap = r === "eleve"
-      ? await getDocs(query(collection(db, "resultats"), where("eleveId", "==", currentUser.uid)))
+      ? await getDocs(query(collection(db, "resultats"), where("etudiantId", "==", currentUser.uid)))
       : await getDocs(collection(db, "resultats"));
     box.innerHTML = snap.empty ? emptyCard("🏆", t("emptyResultats")) : "";
     snap.forEach(item => {
@@ -1570,7 +1793,7 @@ async function loadResultats(){
           <div class="cardIcon">🏆</div>
           <div class="cardContent">
             <h3>${escapeHTML(data.devoirTitre || t("lblResultTitle"))}</h3>
-            ${r !== "eleve" ? `<p><strong>${escapeHTML(t("lblStudent"))}:</strong> ${escapeHTML(data.eleveEmail || data.eleveId || t("lblNotDefined"))}</p>` : ""}
+            ${r !== "eleve" ? `<p><strong>${escapeHTML(t("lblStudent"))}:</strong> ${escapeHTML(data.eleveEmail || data.etudiantId || t("lblNotDefined"))}</p>` : ""}
             <div style="font-size:28px;font-weight:800;margin:12px 0;">${escapeHTML(noteText)}</div>
             <p><strong>${escapeHTML(t("lblComment"))}:</strong> ${escapeHTML(data.commentaire || t("lblNoComment"))}</p>
             ${isAdmin() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteResultat('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
@@ -1582,6 +1805,58 @@ async function loadResultats(){
     box.innerHTML = emptyCard("⚠️", t("errResultats"));
   }
 }
+
+async function loadHoraires(){
+  const box = document.getElementById("listeHoraires");
+  if(!box) return;
+  box.innerHTML = emptyCard("⏳", t("loadingDevoirs"));
+  try{
+    const snap = await getDocs(collection(db, "horaires_cours"));
+    box.innerHTML = snap.empty ? emptyCard("🕒", t("emptyDevoirs")) : "";
+    snap.forEach(item => {
+      const data = item.data(), id = item.id;
+      box.innerHTML += `
+        <div class="dataCard">
+          <div class="cardIcon">🕒</div>
+          <div class="cardContent">
+            <h3>${escapeHTML(data.titre || t("lblNoTitle"))}</h3>
+            <p><strong>${escapeHTML(t("labelClasse"))}:</strong> ${escapeHTML(data.classeId || t("lblNotDefined"))}</p>
+          </div>
+          ${isTeacher() ? `<div class="cardActions"><button class="smallBtn refuse" onclick="deleteHoraire('${id}')">${escapeHTML(t("btnDelete"))}</button></div>` : ""}
+        </div>`;
+    });
+  }catch(e){
+    console.error(e);
+    box.innerHTML = emptyCard("⚠️", t("errDevoirs"));
+  }
+}
+
+window.ajouterHoraire = async function(){
+  if(!isTeacher()){ alert(t("msgTeacherOnlyDevoir")); return; }
+  const titre = document.getElementById("horaireTitre").value.trim();
+  const classeId = document.getElementById("horaireClasse").value.trim();
+  if(!titre){ alert(t("msgFillFields")); return; }
+  try{
+    await setDoc(doc(db, "horaires_cours", "horaire_" + Date.now()), {
+      titre: titre, classeId: classeId, createdAt: serverTimestamp()
+    });
+    document.getElementById("horaireTitre").value = "";
+    document.getElementById("horaireClasse").value = "";
+    await loadHoraires();
+    alert(t("msgDevoirAddSuccess"));
+  }catch(e){
+    console.error(e);
+    alert(t("msgDevoirAddFail"));
+  }
+};
+
+window.deleteHoraire = async function(id){
+  if(!isTeacher() || !confirm(t("confirmDelDevoir"))) return;
+  try{
+    await deleteDoc(doc(db, "horaires_cours", id));
+    await loadHoraires();
+  }catch(e){ console.error(e); }
+};
 
 async function loadUsers(){
   const box = document.getElementById("listeUsers");
