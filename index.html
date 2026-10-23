@@ -358,7 +358,62 @@ function nomClasseLisible(id) {
   if(!id) return "—";
   return cacheNomsClasses[id] || id;
 }
+const translations = {
+ht: {
+Etidyan: "Etidyan",
+"Elèv": "Elèv",
+"Pwofesè": "Pwofesè",
+"Devwa": "Devwa",
+"Egzamen": "Egzamen",
+"Rezilta": "Rezilta",
+"Dokiman": "Dokiman",
+"Videyo": "Videyo",
+"Anons": "Anons",
+"Itilizatè": "Itilizatè",
+"Sovyad": "Sovyad"
+},
+fr: {
+Etidyan: "Étudiants",
+"Elèv": "Élèves",
+"Pwofesè": "Professeurs",
+"Devwa": "Devoirs",
+"Egzamen": "Examens",
+"Rezilta": "Résultats",
+"Dokiman": "Documents",
+"Videyo": "Vidéos",
+"Anons": "Annonces",
+"Itilizatè": "Utilisateurs",
+"Sovyad": "Sauvegarde"
+}
+};
 
+let currentLanguage = localStorage.getItem("appLanguage") || "ht";
+
+function translateText(text) {
+return translations[currentLanguage]?.[text] || text;
+}
+
+function addLanguageSelector() {
+const existing = document.getElementById("languageSelector");
+if (existing) return;
+
+const selector = document.createElement("select");
+selector.id = "languageSelector";
+selector.innerHTML = "<option value="ht">🇭🇹 Kreyòl</option> <option value="fr">🇫🇷 Français</option>";
+selector.value = currentLanguage;
+selector.style.cssText = "padding:8px;margin:8px;border-radius:8px;";
+
+selector.onchange = function () {
+currentLanguage = this.value;
+localStorage.setItem("appLanguage", currentLanguage);
+buildNavigation();
+};
+
+const navigation = document.getElementById("navigation");
+if (navigation && navigation.parentElement) {
+navigation.parentElement.insertBefore(selector, navigation);
+}
+}
 function buildNavigation(){
 const n=$("navigation");n.innerHTML="";
 navItems.filter(([id])=>
@@ -366,10 +421,10 @@ navItems.filter(([id])=>
     ? ["eleve","etudiant"].includes(currentProfile?.role)
     : isAdmin()||(currentProfile?.role==="professeur"?teacherPages:studentPages).includes(id)
 ).forEach(([id,label])=>{
-const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
+const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent = translateText(label);b.onclick=()=>openPage(id);n.appendChild(b)
 });
 if(isAdmin())for(const [id,label] of [["utilisateurs","👥 Itilizatè"],["sauvegarde","💾 Sovyad"]]){
-const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
+const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent = translateText(label);b.onclick=()=>openPage(id);n.appendChild(b) addLanguageSelector();
 }
 }
 
