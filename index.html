@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
-<meta name="description" content="Sistèm Aprantisaj - Platfòm edikatif sou entènèt">
-<title>Sistèm Aprantisaj</title>
+<meta name="description" content="Centre de formation Le pédagogue - Plateforme éducative en ligne">
+<title>Centre de formation Le pédagogue</title>
 <link rel="manifest" href="./manifest.json">
 <style>
 :root{--b:#2563eb;--b2:#1d4ed8;--bg:#f4f7fb;--bd:#dbe3ef;--txt:#0f172a;--mut:#64748b;--green:#16a34a;--red:#dc2626}
@@ -25,91 +25,91 @@
 <section id="authScreen">
 <div class="auth-card">
 <div class="logo">📚</div>
-<h1>Sistèm Aprantisaj</h1>
-<p>Platfòm aprantisaj sou entènèt</p>
+<h1>Centre de formation Le pédagogue</h1>
+<p>Plateforme d'apprentissage en ligne</p>
 <div id="authMessage"></div>
 <form id="loginForm">
-<div class="field"><label for="loginEmail">Imèl</label><input id="loginEmail" type="email" autocomplete="username" required placeholder="Egzanp: non@email.com"></div>
-<div class="field"><label for="loginPassword">Modpas</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Modpas"></div>
-<button class="btn primary block">Konekte</button>
+<div class="field"><label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="username" required placeholder="Exemple : nom@email.com"></div>
+<div class="field"><label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Mot de passe"></div>
+<button class="btn primary block">Se connecter</button>
 </form>
 
 <div id="registrationFields" class="hidden">
-<div class="notice">Ranpli enfòmasyon ki anba yo pou kreye kont ou. Administratè a ap gen pou apwouve demann ou an.</div>
+<div class="notice">Remplissez les informations ci-dessous pour créer votre compte. L'administrateur devra approuver votre demande.</div>
 <div class="field">
-<label for="regEmail">Imèl *</label>
+<label for="regEmail">Email *</label>
 <input id="regEmail" type="email" autocomplete="email" required>
 </div>
 <div class="field">
-<label for="regPassword">Modpas (6 karaktè min.) *</label>
+<label for="regPassword">Mot de passe (6 caractères min.) *</label>
 <input id="regPassword" type="password" autocomplete="new-password" required>
 </div>
 <div class="field">
-<label for="regRole">Tip de kont</label>
+<label for="regRole">Type de compte</label>
 <select id="regRole" required>
-<option value="eleve">Elèv</option>
-<option value="etudiant">Etidyan</option>
-<option value="professeur">Pwofesè</option>
+<option value="eleve">Élève</option>
+<option value="etudiant">Étudiant</option>
+<option value="professeur">Professeur</option>
 </select>
 </div>
 <div class="form-grid">
 <div class="field">
-<label for="regNom">Non *</label>
+<label for="regNom">Nom *</label>
 <input id="regNom" type="text" autocomplete="family-name" required>
 </div>
 <div class="field">
-<label for="regPrenom">Prenon *</label>
+<label for="regPrenom">Prénom *</label>
 <input id="regPrenom" type="text" autocomplete="given-name" required>
 </div>
 <div class="field full">
-<label for="regTelephone">Telefòn *</label>
+<label for="regTelephone">Téléphone *</label>
 <input id="regTelephone" type="tel" autocomplete="tel" required>
 </div>
 <div class="field" id="regNiveauField">
-<label for="regNiveau">Nivo etid *</label>
+<label for="regNiveau">Niveau d'études *</label>
 <select id="regNiveau" required>
-<option value="">Chwazi yon nivo</option>
+<option value="">Sélectionner un niveau</option>
 <option value="Fondamental">Fondamental</option>
-<option value="Secondaire">Segondè</option>
-<option value="Professionnel">Pwofesyonèl</option>
-<option value="Universitaire">Inivèsitè</option>
-<option value="Autre">Lòt</option>
+<option value="Secondaire">Secondaire</option>
+<option value="Professionnel">Professionnel</option>
+<option value="Universitaire">Universitaire</option>
+<option value="Autre">Autre</option>
 </select>
 </div>
 <div class="field" id="regClasseField">
-<label for="regClasse">Klas oswa filè *</label>
+<label for="regClasse">Classe ou filière *</label>
 <select id="regClasse" required>
-<option value="">Chaje klas yo...</option>
+<option value="">Chargement des classes...</option>
 </select>
 </div>
 <div class="field full hidden" id="regSpecialiteField">
-<label for="regSpecialite">Espesyalite oswa matyè ou anseye *</label>
-<input id="regSpecialite" type="text" placeholder="Egzanp: Matematik, Enfòmatik...">
+<label for="regSpecialite">Spécialité ou matière enseignée *</label>
+<input id="regSpecialite" type="text" placeholder="Exemple : Mathématiques, Informatique...">
 </div>
 </div>
 </div>
 
-<button class="btn secondary block" id="registerBtn" type="button">Kreye yon kont</button>
-<button class="btn google" id="googleBtn" type="button">Kontinye ak Google</button>
-<button class="btn secondary block" id="resetBtn" type="button">Modpas ou bliye?</button>
-<p style="font-size:12px; margin-top:12px; text-align:center;">Tout nouvo kont dwe resevwa apwobasyon administratè a.</p>
+<button class="btn secondary block" id="registerBtn" type="button">Créer un compte</button>
+<button class="btn google" id="googleBtn" type="button">Continuer avec Google</button>
+<button class="btn secondary block" id="resetBtn" type="button">Mot de passe oublié ?</button>
+<p style="font-size:12px; margin-top:12px; text-align:center;">Tout nouveau compte doit être approuvé par l'administrateur.</p>
 </div>
 </section>
 
 <section id="app" class="hidden">
 <header class="topbar">
-<div class="brand">📚 Sistèm Aprantisaj</div>
-<div class="top-actions"><span id="userInfo" class="user-info"></span><button id="installBtn" class="btn secondary">📲 Enstale</button><button id="logoutBtn" class="btn danger">Dekonekte</button></div>
+<div class="brand">📚 Centre de formation Le pédagogue</div>
+<div class="top-actions"><span id="userInfo" class="user-info"></span><button id="installBtn" class="btn secondary">📲 Installer</button><button id="logoutBtn" class="btn danger">Se déconnecter</button></div>
 </header>
 <div class="layout">
-<aside class="sidebar"><div class="sidebar-title">Meni prensipal</div><div id="navigation"></div></aside>
+<aside class="sidebar"><div class="sidebar-title">Menu principal</div><div id="navigation"></div></aside>
 <main class="main">
-<div class="page-head"><h2 id="pageTitle">Akèy</h2><button id="refreshBtn" class="btn secondary">↻ Aktyalize</button></div>
+<div class="page-head"><h2 id="pageTitle">Accueil</h2><button id="refreshBtn" class="btn secondary">↻ Actualiser</button></div>
 <div id="pageContent"></div>
 <footer>
-  <div style="margin-bottom:4px; font-weight:bold;">Kontakte administrasyon an</div>
-  <div style="margin-bottom:6px;">Imèl administratè: <a href="mailto:simeonsadrack39@gmail.com" style="color:var(--b); text-decoration:underline;">simeonsadrack39@gmail.com</a></div>
-  Sistèm Aprantisaj · Espas akademik
+  <div style="margin-bottom:4px; font-weight:bold;">Contacter l'administration</div>
+  <div style="margin-bottom:6px;">Email de l'administrateur : <a href="mailto:simeonsadrack39@gmail.com" style="color:var(--b); text-decoration:underline;">simeonsadrack39@gmail.com</a></div>
+  Centre de formation Le pédagogue · Espace académique
 </footer>
 </main>
 </div>
@@ -140,12 +140,12 @@ let currentUser=null,currentProfile=null,currentPage="accueil",installPrompt=nul
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function toast(s,bad=false){const t=$("toast");t.textContent=s;t.classList.remove("hidden");t.style.background=bad?"#dc2626":"#0f172a";clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.add("hidden"),4500)}
 function authMessage(s,type="info"){$("authMessage").innerHTML=`<div class="message ${type==="error"?"error":type==="success"?"success":""}">${esc(s)}</div>`}
-function friendly(e){const c=e?.code||"";const m={"auth/invalid-credential":"Imèl oswa modpas la pa kòrèk.","auth/invalid-email":"Adrès imèl la pa valab.","auth/email-already-in-use":"Imèl sa a gen yon kont deja.","auth/weak-password":"Modpas la dwe gen omwen 6 karaktè.","auth/unauthorized-domain":"Domèn sa a pa otorize nan Firebase Authentication.","auth/popup-closed-by-user":"Fichye Google la fèmen.","permission-denied":"Aksè refize pa règ Firestore yo.","unavailable":"Sèvis la pa disponib kounye a."};return m[c]||e?.message||"Gen yon erè ki fèt."}
+function friendly(e){const c=e?.code||"";const m={"auth/invalid-credential":"Email ou mot de passe incorrect.","auth/invalid-email":"Adresse email invalide.","auth/email-already-in-use":"Cet email est déjà associé à un compte.","auth/weak-password":"Le mot de passe doit comporter au moins 6 caractères.","auth/unauthorized-domain":"Ce domaine n'est pas autorisé dans l'authentification Firebase.","auth/popup-closed-by-user":"Fenêtre Google fermée par l'utilisateur.","permission-denied":"Accès refusé par les règles Firestore.","unavailable":"Service actuellement indisponible."};return m[c]||e?.message||"Une erreur est survenue."}
 function isAdmin(){return!!currentUser&&((currentUser.email||"").toLowerCase()===ADMIN_EMAIL||(currentProfile?.role==="administrateur"&&currentProfile?.status==="accepted"))}
 function isProfessor(){return!!currentProfile&&(currentProfile.role==="professeur"&&currentProfile.status==="accepted")}
 function isStudent(){return ["eleve","etudiant"].includes(String(currentProfile?.role||"").toLowerCase())}
 function approved(){return!!currentProfile&&(isAdmin()||(currentProfile.status==="accepted"&&["professeur","eleve","etudiant"].includes(currentProfile.role)))}
-function roleName(r){return({administrateur:"Administratè",professeur:"Pwofesè",eleve:"Elèv",etudiant:"Etidyan"})[r]||r||"Itilizatè"}
+function roleName(r){return({administrateur:"Administrateur",professeur:"Professeur",eleve:"Élève",etudiant:"Étudiant"})[r]||r||"Utilisateur"}
 function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null}}
 
 let cacheNomsUtilisateurs = {};
@@ -158,11 +158,11 @@ async function chargerNomsUtilisateurs() {
       cacheNomsUtilisateurs[d.id] = nomComplet;
     });
   } catch(e) {
-    console.warn("Non d'utilisateurs pa disponib", e);
+    console.warn("Noms d'utilisateurs non disponibles", e);
   }
 }
 function nomUtilisateurLisible(uid) {
-  if(!uid) return "Pa defini";
+  if(!uid) return "Non défini";
   return cacheNomsUtilisateurs[uid] || uid;
 }
 
@@ -196,26 +196,26 @@ currentProfile=await ensureProfile(user);
 const isOpen = await checkAppOpenState();
 if(!isOpen && !isAdmin()){
 await signOut(auth);currentUser=null;currentProfile=null;
-authMessage("Aplikasyon an fèmen pou antretyen pou kounye a pa administratè a.", "error");
+authMessage("L'application est actuellement fermée pour maintenance par l'administrateur.", "error");
 return;
 }
 if(!approved()){
 const status=currentProfile.status;await signOut(auth);currentUser=null;currentProfile=null;
-authMessage(status==="refuse"?"Demann ou an te refize.":"Kont ou an atant apwobasyon administratè.",status==="refuse"?"error":"info");return;
+authMessage(status==="refuse"?"Votre demande a été refusée.":"Votre compte est en attente d'approbation par l'administrateur.",status==="refuse"?"error":"info");return;
 }
 $("authScreen").classList.add("hidden");$("app").classList.remove("hidden");
 $("userInfo").textContent=`${currentProfile.nom||user.displayName||user.email} — ${roleName(currentProfile.role)}`;
 await chargerNomsClasses();
 await chargerNomsUtilisateurs();
 buildNavigation();await openPage("accueil");
-}catch(e){console.error(e);await signOut(auth).catch(()=>{});currentUser=null;currentProfile=null;authMessage("Erè chajman pwofil : "+friendly(e),"error")}
+}catch(e){console.error(e);await signOut(auth).catch(()=>{});currentUser=null;currentProfile=null;authMessage("Erreur de chargement du profil : "+friendly(e),"error")}
 finally{loginLock=false}
 }
 onAuthStateChanged(auth,u=>{if(!u){stopTimer();currentUser=null;currentProfile=null;$("app").classList.add("hidden");$("authScreen").classList.remove("hidden")}else completeLogin(u)});
 
 $("loginForm").addEventListener("submit",async e=>{
 e.preventDefault();
-try{authMessage("Koneksyon ap fèt…");await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value)}
+try{authMessage("Connexion en cours…");await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value)}
 catch(err){authMessage(friendly(err),"error")}
 });
 
@@ -228,11 +228,11 @@ async function chargerClassesInscription(){
   try {
     const snap = await getDocs(collection(db, "classes"));
     const classes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    selectClasse.innerHTML = `<option value="">-- Chwazi yon klas --</option>` + classes.map(c => `
+    selectClasse.innerHTML = `<option value="">-- Choisir une classe --</option>` + classes.map(c => `
       <option value="${esc(c.id)}">${esc(c.nom || c.code || c.niveau || c.id)}</option>
     `).join("");
   } catch(e) {
-    selectClasse.innerHTML = `<option value="">Erè chajman klas yo</option>`;
+    selectClasse.innerHTML = `<option value="">Erreur de chargement des classes</option>`;
   }
 }
 
@@ -256,7 +256,7 @@ registrationVisible=true;
 $("registrationFields").classList.remove("hidden");
 updateRegistrationFields();
 await chargerClassesInscription();
-btn.textContent="Valide epi kreye kont mwen";
+btn.textContent="Valider et créer mon compte";
 $("regEmail").focus();
 return;
 }
@@ -271,15 +271,15 @@ const niveau=$("regNiveau").value;
 const classeId=$("regClasse").value.trim();
 const specialite=$("regSpecialite").value.trim();
 
-if(!email||!password){authMessage("Antre imèl ak modpas ou.","error");return;}
-if(password.length<6){authMessage("Modpas la dwe gen omwen 6 karaktè.","error");return;}
-if(!nom||!prenom||!telephone){authMessage("Ranpli non, prenon ak telefòn.","error");return;}
-if(role==="professeur"&&!specialite){authMessage("Endike espesyalite ou.","error");return;}
-if(role!=="professeur"&&(!niveau||!classeId)){authMessage("Endike nivo ak klas ou.","error");return;}
+if(!email||!password){authMessage("Veuillez entrer votre email et mot de passe.","error");return;}
+if(password.length<6){authMessage("Le mot de passe doit comporter au moins 6 caractères.","error");return;}
+if(!nom||!prenom||!telephone){authMessage("Veuillez remplir le nom, le prénom et le téléphone.","error");return;}
+if(role==="professeur"&&!specialite){authMessage("Veuillez indiquer votre spécialité.","error");return;}
+if(role!=="professeur"&&(!niveau||!classeId)){authMessage("Veuillez indiquer votre niveau et votre classe.","error");return;}
 
 registrationBusy=true;btn.disabled=true;
 try{
-authMessage("Kreye kont la ap fèt...");
+authMessage("Création du compte en cours...");
 const credential=await createUserWithEmailAndPassword(auth,email,password);
 const profileData={uid:credential.user.uid,email:credential.user.email||email,nom,prenom,telephone,role,status:"attente",updatedAt:stamp()};
 if(role==="professeur")profileData.specialite=specialite;else{profileData.niveau=niveau;profileData.classeId=classeId;}
@@ -289,8 +289,8 @@ await signOut(auth);
 $("regPassword").value="";
 $("registrationFields").classList.add("hidden");
 registrationVisible=false;
-btn.textContent="Kreye yon kont";
-authMessage("Kont kreye ak siksè. Tcheke imèl ou. Administratè a ap apwouve l.","success");
+btn.textContent="Créer un compte";
+authMessage("Compte créé avec succès. Veuillez vérifier votre email. L'administrateur l'approuvera.","success");
 }catch(e){authMessage(friendly(e),"error")}
 finally{registrationBusy=false;btn.disabled=false;}
 });
@@ -300,43 +300,43 @@ try{await signInWithPopup(auth,googleProvider)}catch(e){authMessage(friendly(e),
 });
 $("resetBtn").addEventListener("click",async()=>{
 const email=$("loginEmail").value.trim();
-if(!email)return authMessage("Antre adrès imèl ou.","error");
-try{await sendPasswordResetEmail(auth,email);authMessage("Yon imèl rekiperasyon voye si kont lan egziste.","success")}
+if(!email)return authMessage("Veuillez entrer votre adresse email.","error");
+try{await sendPasswordResetEmail(auth,email);authMessage("Un email de récupération a été envoyé si le compte existe.","success")}
 catch(e){authMessage(friendly(e),"error")}
 });
-$("logoutBtn").addEventListener("click",async()=>{if(confirm("Èske ou vle dekonekte?")){stopTimer();await signOut(auth)}});
+$("logoutBtn").addEventListener("click",async()=>{if(confirm("Voulez-vous vous déconnecter ?")){stopTimer();await signOut(auth)}});
 $("refreshBtn").addEventListener("click",()=>openPage(currentPage));
 
 const modules=[
-{id:"etudiants",title:"Etidyan",collection:"etudiants",fields:[["nom","Non"],["prenom","Prenon"],["email","Imèl"],["telephone","Telefòn"],["classeId","Klas"]]},
-{id:"eleves",title:"Elèv",collection:"eleves",fields:[["nom","Non"],["prenom","Prenon"],["email","Imèl"],["telephone","Telefòn"],["classeId","Klas"]]},
-{id:"professeurs",title:"Pwofesè",collection:"professeurs",fields:[["nom","Non"],["prenom","Prenon"],["email","Imèl"],["telephone","Telefòn"],["specialite","Espesyalite"]]},
-{id:"departements",title:"Depatman",collection:"departements",fields:[["nom","Non"],["code","Kòd depatman"],["description","Deskripsyon"]]},
-{id:"filieres",title:"Filè",collection:"filieres",fields:[["nom","Non"],["description","Deskripsyon"],["departementId","Kòd depatman"]]},
-{id:"classes",title:"Klas",collection:"classes",fields:[["nom","Non klas la"],["niveau","Nivo"],["filiereId","Kòd filè"],["anneeAcademique","Ane akademik"]]},
-{id:"matieres",title:"Matyè",collection:"matieres",fields:[["nom","Non"],["code","Kòd matyè"],["description","Deskripsyon"]]},
-{id:"cours",title:"Kou",collection:"cours",fields:[["nom","Tit"],["description","Deskripsyon"],["matiereId","Kòd matyè"],["classeId","Klas"]]},
-{id:"annees",title:"Ane akademik",collection:"annees_academiques",fields:[["nom","Non"],["debut","Dat kòmansman"],["fin","Dat fen"],["statut","Estati"]]},
-{id:"affectations",title:"Afektasyon",collection:"affectations",fields:[["professeurUid","Kont pwofesè"],["classeId","Klas"],["matiereId","Kòd matyè"],["coursId","Kòd kou"]]},
-{id:"inscriptions",title:"Enskripsyon",collection:"inscriptions",fields:[["etudiantId","Kont etidyan"],["eleveId","Kont elèv"],["classeId","Klas"],["anneeAcademique","Ane akademik"],["statut","Estati"]]},
-{id:"devoirs",title:"Devwa",collection:"devoirs",fields:[["titre","Tit"],["description","Deskripsyon"],["classeId","Klas"],["dateDebut","Dat kòmansman"],["dateLimite","Dat limit"],["dureeMinutes","Dire (minit)"]]},
-{id:"examens",title:"Egzamen",collection:"examens",fields:[["titre","Tit egzamen an"],["description","Deskripsyon"],["classeId","Klas"],["dateDebut","Dat kòmansman"],["dateLimite","Dat fen"],["dureeMinutes","Dire an minit"]]},
-{id:"remises",title:"Remèt travay",collection:"remises",fields:[["devoirId","Kòd devwa"],["etudiantId","Kont elèv"],["classeId","Klas"],["contenu","Travay remèt"],["note100","Nòt sou 100"],["commentaire","Kòmantè"],["statut","Estati"]]},
-{id:"resultats",title:"Rezilta",collection:"resultats",fields:[["etudiantId","Kont elèv"],["classeId","Klas"],["matiereId","Kòd matyè"],["note100","Nòt sou 100"],["note20","Nòt sou 20"],["commentaire","Kòmantè"],["dateDebut","Dat kòmansman vizibilite"],["dateLimite","Dat fen vizibilite"]]},
-{id:"videos",title:"Videyo",collection:"videos",fields:[["titre","Tit"],["classeId","Klas"],["url","Lyen videyo"],["description","Deskripsyon"]]},
-{id:"documents",title:"Dokiman",collection:"documents",fields:[["titre","Tit"],["classeId","Klas"],["url","Lyen dokiman"],["description","Deskripsyon"]]},
-{id:"annonces",title:"Anons",collection:"annonces",fields:[["titre","Tit anons la"],["message","Mesaj ofisyèl"],["dateDebut","Dat kòmansman"],["dateLimite","Dat limit"],["cible","Moun ki konsène yo"]]},
-{id:"statistiques",title:"Estatistik",collection:"statistiques",fields:[["nom","Non"],["description","Deskripsyon"],["valeur","Valè"]]},
-{id:"configuration",title:"Konfigirasyon",collection:"configuration",fields:[["nom","Non"],["valeur","Valè"],["description","Deskripsyon"]]}
+{id:"etudiants",title:"Étudiants",collection:"etudiants",fields:[["nom","Nom"],["prenom","Prénom"],["email","Email"],["telephone","Téléphone"],["classeId","Classe"]]},
+{id:"eleves",title:"Élèves",collection:"eleves",fields:[["nom","Nom"],["prenom","Prénom"],["email","Email"],["telephone","Téléphone"],["classeId","Classe"]]},
+{id:"professeurs",title:"Professeurs",collection:"professeurs",fields:[["nom","Nom"],["prenom","Prénom"],["email","Email"],["telephone","Téléphone"],["specialite","Spécialité"]]},
+{id:"departements",title:"Départements",collection:"departements",fields:[["nom","Nom"],["code","Code département"],["description","Description"]]},
+{id:"filieres",title:"Filières",collection:"filieres",fields:[["nom","Nom"],["description","Description"],["departementId","Code département"]]},
+{id:"classes",title:"Classes",collection:"classes",fields:[["nom","Nom de la classe"],["niveau","Niveau"],["filiereId","Code filière"],["anneeAcademique","Année académique"]]},
+{id:"matieres",title:"Matières",collection:"matieres",fields:[["nom","Nom"],["code","Code matière"],["description","Description"]]},
+{id:"cours",title:"Cours",collection:"cours",fields:[["nom","Titre"],["description","Description"],["matiereId","Code matière"],["classeId","Classe"]]},
+{id:"annees",title:"Années académiques",collection:"annees_academiques",fields:[["nom","Nom"],["debut","Date de début"],["fin","Date de fin"],["statut","Statut"]]},
+{id:"affectations",title:"Affectations",collection:"affectations",fields:[["professeurUid","Compte professeur"],["classeId","Classe"],["matiereId","Code matière"],["coursId","Code cours"]]},
+{id:"inscriptions",title:"Inscriptions",collection:"inscriptions",fields:[["etudiantId","Compte étudiant"],["eleveId","Compte élève"],["classeId","Classe"],["anneeAcademique","Année académique"],["statut","Statut"]]},
+{id:"devoirs",title:"Devoirs",collection:"devoirs",fields:[["titre","Titre"],["description","Description"],["classeId","Classe"],["dateDebut","Date de début"],["dateLimite","Date limite"],["dureeMinutes","Durée (minutes)"]]},
+{id:"examens",title:"Examens",collection:"examens",fields:[["titre","Titre de l'examen"],["description","Description"],["classeId","Classe"],["dateDebut","Date de début"],["dateLimite","Date de fin"],["dureeMinutes","Durée en minutes"]]},
+{id:"remises",title:"Remises de travaux",collection:"remises",fields:[["devoirId","Code devoir"],["etudiantId","Compte élève"],["classeId","Classe"],["contenu","Travail remis"],["note100","Note sur 100"],["commentaire","Commentaire"],["statut","Statut"]]},
+{id:"resultats",title:"Résultats",collection:"resultats",fields:[["etudiantId","Compte élève"],["classeId","Classe"],["matiereId","Code matière"],["note100","Note sur 100"],["note20","Note sur 20"],["commentaire","Commentaire"],["dateDebut","Date de début de visibilité"],["dateLimite","Date de fin de visibilité"]]},
+{id:"videos",title:"Vidéos",collection:"videos",fields:[["titre","Titre"],["classeId","Classe"],["url","Lien vidéo"],["description","Description"],["dateDebut","Date de début"],["dateLimite","Date de fin"]]},
+{id:"documents",title:"Documents",collection:"documents",fields:[["titre","Titre"],["classeId","Classe"],["url","Lien document"],["description","Description"],["dateDebut","Date de début"],["dateLimite","Date de fin"]]},
+{id:"annonces",title:"Annonces",collection:"annonces",fields:[["titre","Titre de l'annonce"],["message","Message officiel"],["dateDebut","Date de début"],["dateLimite","Date limite"],["cible","Cible"]]},
+{id:"statistiques",title:"Statistiques",collection:"statistiques",fields:[["nom","Nom"],["description","Description"],["valeur","Valeur"]]},
+{id:"configuration",title:"Configuration",collection:"configuration",fields:[["nom","Nom"],["valeur","Valeur"],["description","Description"]]}
 ];
 
 const navItems=[
-["accueil","🏠 Akèy"],
-["annonces","📢 Anons"],
-["etudiants","🎓 Etidyan"],["eleves","👨‍🎓 Elèv"],["professeurs","👨‍🏫 Pwofesè"],["departements","🏢 Depatman"],["filieres","📚 Filè"],["classes","🏫 Klas"],["affectations","🔗 Afektasyon"],["inscriptions","📋 Enskripsyon"],["matieres","📖 Matyè"],["cours","📝 Kou"],
-["horaire_cours","🗓️ Orè kou yo"],
-["horaire_examens","📝 Orè egzamen yo"],
-["annees","📅 Ane akademik"],["devoirs","📑 Devwa"],["examens","⏱️ Egzamen"],["notes_cours","📒 Nòt kou"],["remises","📥 Remèt / Koreksyon"],["bulletin","🎓 Bilten mwen"],["resultats","📊 Rezilta"],["videos","🎬 Videyo"],["documents","📄 Dokiman"],["statistiques","📈 Estatistik"],["configuration","⚙️ Konfigirasyon"]
+["accueil","🏠 Accueil"],
+["annonces","📢 Annonces"],
+["etudiants","🎓 Étudiants"],["eleves","👨‍🎓 Élèves"],["professeurs","👨‍🏫 Professeurs"],["departements","🏢 Départements"],["filieres","📚 Filières"],["classes","🏫 Classes"],["affectations","🔗 Affectations"],["inscriptions","📋 Inscriptions"],["matieres","📖 Matières"],["cours","📝 Cours"],
+["horaire_cours","🗓️ Emploi du temps"],
+["horaire_examens","📝 Planning des examens"],
+["annees","📅 Années académiques"],["devoirs","📑 Devoirs"],["examens","⏱️ Examens"],["notes_cours","📒 Notes de cours"],["remises","📥 Remises / Corrections"],["bulletin","🎓 Mon bulletin"],["resultats","📊 Résultats"],["videos","🎬 Vidéos"],["documents","📄 Documents"],["statistiques","📈 Statistiques"],["configuration","⚙️ Configuration"]
 ];
 
 const studentPages=["accueil","annonces","devoirs","examens","notes_cours","remises","resultats","bulletin","videos","documents","horaire_cours","horaire_examens"];
@@ -368,7 +368,7 @@ navItems.filter(([id])=>
 ).forEach(([id,label])=>{
 const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
 });
-if(isAdmin())for(const [id,label] of [["utilisateurs","👥 Itilizatè"],["sauvegarde","💾 Sovyad"]]){
+if(isAdmin())for(const [id,label] of [["utilisateurs","👥 Utilisateurs"],["sauvegarde","💾 Sauvegarde"]]){
 const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
 }
 }
@@ -376,14 +376,14 @@ const b=document.createElement("button");b.className="nav-btn"+(id===currentPage
 async function openPage(page){
 if(!approved())return;
 if(!isAdmin()&&!(currentProfile?.role==="professeur"?teacherPages:studentPages).includes(page)){
-toast("Aksè pa otorize.",true);return;
+toast("Accès non autorisé.",true);return;
 }
 try{
 stopTimer();currentPage=page;await chargerNomsClasses();await chargerNomsUtilisateurs();buildNavigation();
 const mod=modules.find(m=>m.id===page);
-const titles={accueil:"Tablo de bord",annonces:"Anons ofisyèl",examens:"Egzamen kwonometre",notes_cours:"Nòt kou",utilisateurs:"Jesyon itilizatè",sauvegarde:"Sovyad",horaire_cours:"Orè kou yo",horaire_examens:"Orè egzamen yo",bulletin:"Bilten mwen"};
+const titles={accueil:"Tableau de bord",annonces:"Annonces officielles",examens:"Examens chronométrés",notes_cours:"Notes de cours",utilisateurs:"Gestion des utilisateurs",sauvegarde:"Sauvegarde",horaire_cours:"Emploi du temps",horaire_examens:"Planning des examens",bulletin:"Mon bulletin"};
 $("pageTitle").textContent=titles[page]||mod?.title||page;
-$("pageContent").innerHTML='<div class="card">Chajman an ap fèt...</div>';
+$("pageContent").innerHTML='<div class="card">Chargement en cours...</div>';
 if(page==="accueil")return await renderDashboard();
 if(page==="examens")return await renderExams();
 if(page==="notes_cours")return await renderNotesCours();
@@ -394,17 +394,17 @@ if(page==="utilisateurs")return await renderUsers();
 if(page==="sauvegarde")return await renderBackup();
 if(mod)return await renderModule(mod);
 }catch(e){
-console.error("Erè navigasyon :",e);
-$("pageContent").innerHTML='<div class="card"><b>Erè navigasyon :</b> '+esc(friendly(e))+'</div>';
+console.error("Erreur de navigation :",e);
+$("pageContent").innerHTML='<div class="card"><b>Erreur de navigation :</b> '+esc(friendly(e))+'</div>';
 }
 }
 window.goPage=p=>openPage(p);
 
-function dash(icon,title,desc,page){return`<div class="dash-card"><div style="font-size:27px">${icon}</div><h3>${esc(title)}</h3><p>${esc(desc)}</p><button class="btn secondary" onclick="window.goPage('${page}')">Ouvri →</button></div>`}
+function dash(icon,title,desc,page){return`<div class="dash-card"><div style="font-size:27px">${icon}</div><h3>${esc(title)}</h3><p>${esc(desc)}</p><button class="btn secondary" onclick="window.goPage('${page}')">Ouvrir →</button></div>`}
 
 async function renderDashboard(){
-const name=currentProfile?.nom||currentUser?.displayName||currentUser?.email||"Itilizatè";
-let html=`<div class="card welcome"><h3>Byenveni, ${esc(name)} !</h3><p>Espas akademik ou — ${esc(roleName(currentProfile.role))}</p></div>`;
+const name=currentProfile?.nom||currentUser?.displayName||currentUser?.email||"Utilisateur";
+let html=`<div class="card welcome"><h3>Bienvenue, ${esc(name)} !</h3><p>Votre espace académique — ${esc(roleName(currentProfile.role))}</p></div>`;
 
 try {
   const annSnap = await getDocs(collection(db, "annonces"));
@@ -419,12 +419,12 @@ try {
 
   if(activeAnnonces.length > 0){
     html+=`<div class="card" style="border:1px solid var(--b); background:#f0f6ff; margin-bottom:16px;">
-      <h3 style="color:var(--b)">📢 Anons ki fre</h3>
+      <h3 style="color:var(--b)">📢 Annonces récentes</h3>
       ${activeAnnonces.map(a=>`
         <div style="background:white; padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid var(--bd);">
           <b>${esc(a.titre)}</b>
           <p style="margin:4px 0 0 0; font-size:13px;">${esc(a.message)}</p>
-          <small class="muted">Pibliye nan : ${esc(a.dateDebut||"—")}</small>
+          <small class="muted">Publié le : ${esc(a.dateDebut||"—")}</small>
         </div>
       `).join("")}
     </div>`;
@@ -441,36 +441,36 @@ try{
   if(stSnap.exists() && stSnap.data().ferme===true) appOpenState=false;
 }catch(e){}
 
-html+=`<div class="stats-grid">${[["Etidyan",Math.max(counts[0],counts[1])],["Pwofesè",counts[2]],["Klas",counts[3]],["Matyè",counts[4]],["Devwa",counts[5]],["Egzamen",counts[6]],["Kont an atant",waiting.size]].map(x=>`<div class="stat"><small>${esc(x[0])}</small><strong>${x[1]}</strong></div>`).join("")}</div>`;
+html+=`<div class="stats-grid">${[["Étudiants",Math.max(counts[0],counts[1])],["Professeurs",counts[2]],["Classes",counts[3]],["Matières",counts[4]],["Devoirs",counts[5]],["Examens",counts[6]],["Comptes en attente",waiting.size]].map(x=>`<div class="stat"><small>${esc(x[0])}</small><strong>${x[1]}</strong></div>`).join("")}</div>`;
 
 html+=`<div class="card" style="border:1px solid var(--bd);background:#f8fafc;margin-bottom:16px">
-  <h3>⚙️ Kontwòl ouvèti aplikasyon an</h3>
-  <p class="muted">Estati aktyèl : <strong style="color:${appOpenState?'var(--green)':'var(--red)'}">${appOpenState?'Aplikasyon Louvri':'Aplikasyon Fèmen (Antretyen)'}</strong></p>
+  <h3>⚙️ Contrôle d'ouverture de l'application</h3>
+  <p class="muted">Statut actuel : <strong style="color:${appOpenState?'var(--green)':'var(--red)'}">${appOpenState?'Application Ouverte':'Application Fermée (Maintenance)'}</strong></p>
   <div class="actions">
-    <button class="btn ${appOpenState?'danger':'success'}" id="toggleAppStatusBtn">${appOpenState?'Fèmen aplikasyon an':'Louvri aplikasyon an'}</button>
+    <button class="btn ${appOpenState?'danger':'success'}" id="toggleAppStatusBtn">${appOpenState?'Fermer l\'application':'Ouvrir l\'application'}</button>
   </div>
 </div>`;
 
-html+='<div class="dashboard-grid">'+dash("👥","Itilizatè","Apwouve kont yo epi bay wòl yo.","utilisateurs")+dash("📢","Anons","Difize avi ak enfòmasyon ofisyèl.","annonces")+dash("🎓","Bilten","Jere ak pibliye bilten lekòl yo.","bulletin")+dash("🏫","Klas","Òganize klas yo.","classes")+dash("🎓","Etidyan","Jere dosye yo.","etudiants")+dash("👨‍🏫","Pwofesè","Jere pwofesè yo.","professeurs")+dash("⏱️","Egzamen","Kreye QCM ak kesyon louvri.","examens")+dash("📒","Nòt kou","Pibliye tèks ak foto kou.","notes_cours")+dash("📥","Koreksyon","Konsilte remèt travay yo.","remises")+dash("💾","Sovyad","Esfòte done yo.","sauvegarde")+'</div>';
+html+='<div class="dashboard-grid">'+dash("👥","Utilisateurs","Approuver les comptes et attribuer les rôles.","utilisateurs")+dash("📢","Annonces","Diffuser des avis et informations officielles.","annonces")+dash("🎓","Bulletins","Gérer et publier les bulletins scolaires.","bulletin")+dash("🏫","Classes","Organiser les classes.","classes")+dash("🎓","Étudiants","Gérer les dossiers.","etudiants")+dash("👨‍🏫","Professeurs","Gérer les professeurs.","professeurs")+dash("⏱️","Examens","Créer des QCM et questions ouvertes.","examens")+dash("📒","Notes de cours","Publier des textes et photos de cours.","notes_cours")+dash("📥","Corrections","Consulter les travaux remis.","remises")+dash("💾","Sauvegarde","Sauvegarder les données.","sauvegarde")+'</div>';
 }else if(currentProfile.role==="professeur"){
 html+='<div class="dashboard-grid">'
-+dash("📢","Anons","Konsilte anons ofisyèl yo.","annonces")
-+dash("📑","Devwa","Kreye ak jere devwa yo.","devoirs")
-+dash("⏱️","Egzamen","Kreye QCM ak kesyon louvri.","examens")
-+dash("📒","Nòt kou","Pibliye kou yo.","notes_cours")
-+dash("📥","Koreksyon","Korije travay ak egzamen yo.","remises")
-+dash("📊","Rezilta","Konsilte nòt yo.","resultats")
-+dash("🎓","Bilten","Prepare nòt pou bilten yo.","bulletin")
++dash("📢","Annonces","Consulter les annonces officielles.","annonces")
++dash("📑","Devoirs","Créer et gérer les devoirs.","devoirs")
++dash("⏱️","Examens","Créer des QCM et questions ouvertes.","examens")
++dash("📒","Notes de cours","Publier les cours.","notes_cours")
++dash("📥","Corrections","Corriger les travaux et examens.","remises")
++dash("📊","Résultats","Consulter les notes.","resultats")
++dash("🎓","Bulletins","Préparer les notes pour les bulletins.","bulletin")
 +'</div>';
 }else{
 html+='<div class="dashboard-grid">'
-+dash("📢","Anons","Konsilte anons yo.","annonces")
-+dash("📑","Devwa mwen","Konsilte devwa yo.","devoirs")
-+dash("⏱️","Egzamen","Pase egzamen yo.","examens")
-+dash("📒","Nòt kou","Li ak kopye kou yo.","notes_cours")
-+dash("📥","Remèt mwen","Konsilte travay ou voye yo.","remises")
-+dash("📊","Rezilta mwen","Gade nòt yo.","resultats")
-+dash("🎓","Bilten mwen","Konsilte ak enprime bilten ou.","bulletin")
++dash("📢","Annonces","Consulter les annonces.","annonces")
++dash("📑","Mes devoirs","Consulter les devoirs.","devoirs")
++dash("⏱️","Examens","Passer les examens.","examens")
++dash("📒","Notes de cours","Lire et copier les cours.","notes_cours")
++dash("📥","Mes remises","Consulter les travaux envoyés.","remises")
++dash("📊","Mes résultats","Voir les notes.","resultats")
++dash("🎓","Mon bulletin","Consulter et imprimer votre bulletin.","bulletin")
 +'</div>';
 }
 $("pageContent").innerHTML=html;
@@ -483,7 +483,7 @@ if($("toggleAppStatusBtn")){
       if(stSnap.exists() && stSnap.data().ferme===true) appOpenState=false;
       const newState = !appOpenState;
       await setDoc(doc(db,"configuration","app_state"),{ferme:!newState, updatedAt:stamp()}, {merge:true});
-      toast(newState?"Aplikasyon louvri avèk siksè.":"Aplikasyon fèmen pou antretyen.");
+      toast(newState?"Application ouverte avec succès.":"Application fermée pour maintenance.");
       await renderDashboard();
     }catch(e){toast(friendly(e),true);}
   };
@@ -515,8 +515,16 @@ async function renderModule(m){
       if(cl){
         records = (await getDocs(query(collection(db,m.collection),where("classeId","==",cl)))).docs.map(d=>({id:d.id,...d.data()}));
       }
+      const now = Date.now();
+      records = records.filter(item => {
+        const debut = item.dateDebut ? new Date(item.dateDebut).getTime() : 0;
+        const fin = item.dateLimite || item.dateFin ? new Date(item.dateLimite || item.dateFin).getTime() : Infinity;
+        return now >= debut && now <= fin;
+      });
     }else if(role==="professeur"){
       records = (await getDocs(query(collection(db,m.collection),where("professeurUid","==",uid)))).docs.map(d=>({id:d.id,...d.data()}));
+      // Requirement 8: Prevent teachers from seeing admin-restricted content for a class
+      records = records.filter(r => r.adminOnly !== true && r.type !== "administration");
     }
   }else if(m.id==="annonces"){
     records = (await getDocs(collection(db,m.collection))).docs.map(d=>({id:d.id,...d.data()}));
@@ -570,17 +578,17 @@ async function renderModule(m){
       <div class="page-head">
         <div>
           <h3>${esc(m.title)}</h3>
-          <p class="muted">${records.length} eleman(wa)</p>
+          <p class="muted">${records.length} élément(s)</p>
         </div>
-        ${canAdd ? '<button id="addRecord" class="btn primary">＋ Ajoute</button>' : ""}
+        ${canAdd ? '<button id="addRecord" class="btn primary">＋ Ajouter</button>' : ""}
       </div>
       <div id="recordFormArea"></div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Enfòmasyon</th>
-              <th>Aksyon</th>
+              <th>Informations</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -597,19 +605,20 @@ async function renderModule(m){
                       let val = r[k];
                       if(k==="classeId") val = nomClasseLisible(val);
                       else if(k==="professeurUid" || k==="professeurId" || k==="etudiantId") val = nomUtilisateurLisible(val);
-                      return `<div><b>${esc(l)} :</b> ${k==="url"?`<a href="${esc(r[k])}" target="_blank" rel="noopener">Ouvri lyen / Telechaje</a>`:esc(val)}</div>`;
+                      return `<div><b>${esc(l)} :</b> ${k==="url"?`<a href="${esc(r[k])}" target="_blank" rel="noopener">Ouvrir le lien / Télécharger</a>`:esc(val)}</div>`;
                     }).join("") || esc(r.titre||r.id)}
-                    ${isStudent() && m.id==="devoirs" ? `<div style="margin-top:6px;"><span class="badge ${alreadySubmitted?'':'wait'}">${alreadySubmitted?'Deja remèt':'Te poko remèt'}</span></div>`:''}
+                    ${isStudent() && m.id==="devoirs" ? `<div style="margin-top:6px;"><span class="badge ${alreadySubmitted?'':'wait'}">${alreadySubmitted?'Déjà soumis':'Non soumis'}</span></div>`:''}
+                    ${isStudent() && (m.id==="documents" || m.id==="videos") && r.url ? `<div style="margin-top:8px;"><a class="btn secondary" href="${esc(r.url)}" target="_blank" rel="noopener" style="font-size:12px; text-decoration:none;">📥 Télécharger / Ouvrir</a></div>`:''}
                   </td>
                   <td>
                     <div class="actions">
-                    ${m.id === "devoirs" && isStudent() ? (alreadySubmitted ? `<span class="badge">Deja remèt</span>` : `<button class="btn primary" data-submit-homework="${esc(r.id)}">Fè epi remèt</button>`):""}
-                    ${canEdit && (m.id!=="remises" || role==="professeur" || isAdmin() || isStudent()) ? `<button class="btn secondary" data-edit="${esc(r.id)}">Modifye</button>` : ""}
-                    ${isAdmin() || (role==="professeur" && (r.professeurUid===currentUser?.uid || r.professeurId===currentUser?.uid)) ? `<button class="btn danger" data-del="${esc(r.id)}">Efase</button>` : ""}
+                    ${m.id === "devoirs" && isStudent() ? (alreadySubmitted ? `<span class="badge">Déjà soumis</span>` : `<button class="btn primary" data-submit-homework="${esc(r.id)}">Faire et soumettre</button>`):""}
+                    ${canEdit && (m.id!=="remises" || role==="professeur" || isAdmin() || isStudent()) ? `<button class="btn secondary" data-edit="${esc(r.id)}">Modifier</button>` : ""}
+                    ${isAdmin() || (role==="professeur" && (r.professeurUid===currentUser?.uid || r.professeurId===currentUser?.uid)) ? `<button class="btn danger" data-del="${esc(r.id)}">Supprimer</button>` : ""}
                     </div>
                   </td>
                 </tr>
-              `;}).join("") || '<tr><td colspan="2">Pa gen done pou kounye a.</td></tr>'}
+              `;}).join("") || '<tr><td colspan="2">Aucune donnée pour le moment.</td></tr>'}
           </tbody>
         </table>
       </div>
@@ -630,7 +639,7 @@ async function renderModule(m){
       const record = records.find(r=>r.id===b.dataset.edit);
       if(!record)return;
       if(m.id==="remises" && !isAdmin() && role!=="professeur" && record.statut==="soumis"){
-        toast("Ou pa kapab modifye yon travay ki te deja voye.",true);
+        toast("Vous ne pouvez pas modifier un travail déjà soumis.",true);
         return;
       }
       recordForm(m,record);
@@ -639,10 +648,10 @@ async function renderModule(m){
 
   $("pageContent").querySelectorAll("[data-del]").forEach(b=>{
     b.onclick = async()=>{
-      if(confirm("Èske ou vle efase done sa a?")){
+      if(confirm("Voulez-vous supprimer cette donnée ?")){
         try{
           await deleteDoc(doc(db,m.collection,b.dataset.del));
-          toast("Efase ak siksè.");
+          toast("Supprimé avec succès.");
           await openPage(m.id);
         }catch(e){toast(friendly(e),true);}
       }
@@ -654,24 +663,24 @@ async function ouvrirSoumissionDevoir(devoir){
   if(!isStudent() || !currentUser || !devoir) return;
   const classeId = String(currentProfile?.classeId || "");
   if(devoir.classeId && classeId && String(devoir.classeId) !== classeId){
-    toast("Devwa sa a pa pou klas ou.",true);
+    toast("Ce devoir n'est pas pour votre classe.",true);
     return;
   }
   if(devoir.dateLimite && Date.now() > new Date(devoir.dateLimite).getTime()){
-    toast("Dat limit devwa sa a pase.", true);
+    toast("La date limite de ce devoir est dépassée.", true);
     await openPage("devoirs");
     return;
   }
   try {
     const existingSnap = await getDocs(query(collection(db,"remises"), where("devoirId","==",devoir.id), where("etudiantId","==",currentUser.uid)));
     if(!existingSnap.empty){
-      toast("Ou te deja remèt devwa sa a.", true);
+      toast("Vous avez déjà soumis ce devoir.", true);
       await openPage("devoirs");
       return;
     }
   }catch(err){}
 
-  const titre = devoir.titre || "Devwa";
+  const titre = devoir.titre || "Devoir";
   const zone = $("recordFormArea");
   if(!zone) return;
 
@@ -684,28 +693,28 @@ async function ouvrirSoumissionDevoir(devoir){
 
   zone.innerHTML = `
     <div class="card">
-      <h3>Fè devwa : ${esc(titre)}</h3>
-      ${hasTimer?`<div id="homeworkTimer" class="timer">⏱ Tan ki rete : --:--</div>`:""}
+      <h3>Effectuer le devoir : ${esc(titre)}</h3>
+      ${hasTimer?`<div id="homeworkTimer" class="timer">⏱ Temps restant : --:--</div>`:""}
       <form id="soumissionDevoirForm">
         ${hasQuestions ? qs.map((q,i)=>`
           <div class="exam-question">
-            <h4>Kesyon ${i+1} — ${Number(q.points)||1} pwen</h4>
+            <h4>Question ${i+1} — ${Number(q.points)||1} point(s)</h4>
             <p>${esc(q.question)}</p>
-            ${q.type==="qcm"?(q.options||[]).map(o=>`<label class="exam-option"><input type="radio" name="q${i}" value="${esc(o)}" required><span>${esc(o)}</span></label>`).join(""):`<textarea name="q${i}" placeholder="Repons ou..." required></textarea>`}
+            ${q.type==="qcm"?(q.options||[]).map(o=>`<label class="exam-option"><input type="radio" name="q${i}" value="${esc(o)}" required><span>${esc(o)}</span></label>`).join(""):`<textarea name="q${i}" placeholder="Votre réponse..." required></textarea>`}
           </div>
         `).join("") : `
           <div class="field">
-            <label>Repons ou *</label>
-            <textarea name="contenu" required placeholder="Ekri repons ou la..."></textarea>
+            <label>Votre réponse *</label>
+            <textarea name="contenu" required placeholder="Rédigez votre réponse ici..."></textarea>
           </div>
         `}
         <div class="field" style="margin-top:12px;">
-          <label>Lyen dokiman / Prèv (opsyonèl)</label>
+          <label>Lien document / Preuve (optionnel)</label>
           <input name="lienDocument" type="url" placeholder="https://...">
         </div>
         <div class="actions" style="margin-top:12px;">
-          <button class="btn primary" type="submit" id="submitHomeworkBtn">Voye devwa</button>
-          <button class="btn secondary" id="annulerSoumission" type="button">Anile</button>
+          <button class="btn primary" type="submit" id="submitHomeworkBtn">Soumettre le devoir</button>
+          <button class="btn secondary" id="annulerSoumission" type="button">Annuler</button>
         </div>
       </form>
     </div>
@@ -715,11 +724,11 @@ async function ouvrirSoumissionDevoir(devoir){
     const updateHomeworkTimer = () => {
       let left = durationMs - (Date.now() - startTime);
       let s = Math.max(0, Math.ceil(left / 1000));
-      $("homeworkTimer").textContent = "⏱ Tan ki rete : " + String(Math.floor(s/60)).padStart(2,"0") + ":" + String(s%60).padStart(2,"0");
+      $("homeworkTimer").textContent = "⏱ Temps restant : " + String(Math.floor(s/60)).padStart(2,"0") + ":" + String(s%60).padStart(2,"0");
       $("homeworkTimer").classList.toggle("warning", left <= 60000);
       if(left <= 0){
         clearInterval(homeworkTimerInterval);
-        toast("Tan an fini! Voye otomatik...", true);
+        toast("Temps écoulé ! Envoi automatique...", true);
         $("soumissionDevoirForm").requestSubmit();
       }
     };
@@ -762,7 +771,7 @@ async function ouvrirSoumissionDevoir(devoir){
 
     isSubmitting = true;
     const bouton = $("submitHomeworkBtn");
-    if(bouton){ bouton.disabled = true; bouton.textContent = "Voye ap fèt..."; }
+    if(bouton){ bouton.disabled = true; bouton.textContent = "Envoi en cours..."; }
     if(homeworkTimerInterval) clearInterval(homeworkTimerInterval);
 
     try{
@@ -786,13 +795,13 @@ async function ouvrirSoumissionDevoir(devoir){
       if(lienDocument) remise.lienDocument = lienDocument;
 
       await addDoc(collection(db,"remises"),remise);
-      toast("Devwa voye ak siksè.");
+      toast("Devoir soumis avec succès.");
       zone.innerHTML = "";
       await openPage("devoirs");
     }catch(err){
       toast(friendly(err),true);
       isSubmitting = false;
-      if(bouton){ bouton.disabled = false; bouton.textContent = "Voye devwa"; }
+      if(bouton){ bouton.disabled = false; bouton.textContent = "Soumettre le devoir"; }
     }
   };
 }
@@ -808,21 +817,21 @@ try {
   matieresDisponibles = matSnap.docs.map(d => ({ id: d.id, ...d.data() }));
 }catch(e){}
 
-area.innerHTML=`<div class="card"><h3>${r?"Modifye":"Ajoute"} — ${esc(m.title)}</h3><form id="dataForm"><div class="form-grid">${m.fields.filter(([k])=>!(isExam&&k===['questionsJSON'])).map(([k,l])=>{
+area.innerHTML=`<div class="card"><h3>${r?"Modifier":"Ajouter"} — ${esc(m.title)}</h3><form id="dataForm"><div class="form-grid">${m.fields.filter(([k])=>!(isExam&&k===['questionsJSON'])).map(([k,l])=>{
 const value=r?.[k]??"",long=["description","contenu","commentaire","message"].includes(k),num=["note100","note20","dureeMinutes","noteMax"].includes(k),type=["dateLimite","dateDebut"].includes(k)?"datetime-local":num?"number":"text";
 let formattedValue=value;if(type==="datetime-local"&&value)formattedValue=String(value).slice(0,16);
 
 if (k === "classeId") {
-  return `<div class="field ${long?"full":""}"><label>${esc(l)} *</label><select name="classeId" required><option value="">-- Chwazi klas --</option>${classesDisponibles.map(c=>`<option value="${esc(c.id)}" ${value===c.id||value===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`).join("")}</select></div>`;
+  return `<div class="field ${long?"full":""}"><label>${esc(l)} *</label><select name="classeId" required><option value="">-- Choisir une classe --</option>${classesDisponibles.map(c=>`<option value="${esc(c.id)}" ${value===c.id||value===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`).join("")}</select></div>`;
 }
 if (k === "matiereId") {
-  return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="matiereId"><option value="">-- Chwazi matyè --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${value===mat.id||value===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`).join("")}</select></div>`;
+  return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="matiereId"><option value="">-- Choisir une matière --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${value===mat.id||value===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`).join("")}</select></div>`;
 }
 if (k === "cible") {
-  return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="cible"><option value="tous" ${value==="tous"?"selected":""}>Tout itilizatè yo</option><option value="professeurs" ${value==="professeurs"?"selected":""}>Pwofesè sèlman</option><option value="eleves" ${value==="eleves"?"selected":""}>Elèv ak etidyan sèlman</option></select></div>`;
+  return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="cible"><option value="tous" ${value==="tous"?"selected":""}>Tous les utilisateurs</option><option value="professeurs" ${value==="professeurs"?"selected":""}>Professeurs uniquement</option><option value="eleves" ${value==="eleves"?"selected":""}>Élèves et étudiants uniquement</option></select></div>`;
 }
 return`<div class="field ${long?"full":""}"><label>${esc(l)}</label>${long?`<textarea name="${esc(k)}">${esc(value)}</textarea>`:`<input name="${esc(k)}" type="${type}" value="${esc(formattedValue)}" ${num?'min="0"':''} ${isExam&&k==="titre"?"required":""}>`}</div>`
-}).join("")}</div>${isExam?examBuilder():""}<div class="actions"><button class="btn primary" type="submit">Anrejistre</button><button class="btn secondary" id="cancelForm" type="button">Anile</button></div></form></div>`;
+}).join("")}</div>${isExam?examBuilder():""}<div class="actions"><button class="btn primary" type="submit">Enregistrer</button><button class="btn secondary" id="cancelForm" type="button">Annuler</button></div></form></div>`;
 $("cancelForm").onclick=()=>area.innerHTML="";
 if(isExam)setupQuestionBuilder(parseQuestions(r||{}));
 $("dataForm").onsubmit=async e=>{
@@ -833,30 +842,30 @@ if(["devoirs","examens","remises","resultats","affectations","videos","documents
 }
 if(isExam){
 let questions=[];
-try{questions=readBuilderQuestions()}catch(error){return toast(error?.message||"Tcheke kesyon yo.",true)}
+try{questions=readBuilderQuestions()}catch(error){return toast(error?.message||"Veuillez vérifier les questions.",true)}
 data.questionsJSON=JSON.stringify(questions);
 const duration=Number(data.dureeMinutes||30);
 if(Number.isFinite(duration)&&duration>0)data.dureeMinutes=Math.floor(duration);
 if(questions.length>0)data.noteMax=questions.reduce((s,q)=>s+Number(q.points||0),0);
 if(m.id==="examens")data.statut="publie";
 }
-try{data.updatedAt=stamp();if(r)await updateDoc(doc(db,m.collection,r.id),data);else{data.createdAt=stamp();await addDoc(collection(db,m.collection),data)}toast("Fèt avèk siksè.");await openPage(m.id)}
+try{data.updatedAt=stamp();if(r)await updateDoc(doc(db,m.collection,r.id),data);else{data.createdAt=stamp();await addDoc(collection(db,m.collection),data)}toast("Effectué avec succès.");await openPage(m.id)}
 catch(err){toast(friendly(err),true)}
 }
 }
 
 function examBuilder(){
-return`<div class="full"><div class="notice">Ajoute kesyon (QCU oubyen kesyon ak repons ekri) pou egzamen oswa devwa sa a.</div><div class="field"><label>Tip pwochen kesyon an</label><select id="newQuestionType"><option value="qcm">QCM — yon sèl bon repons</option><option value="ecrit">Kesyon louvri — repons ekri</option></select></div><button class="btn secondary" id="addQuestion" type="button">＋ Ajoute yon kesyon</button><div id="questionBuilder"></div></div>`
+return`<div class="full"><div class="notice">Ajouter des questions (QCM ou questions ouvertes) pour cet examen ou ce devoir.</div><div class="field"><label>Type de la prochaine question</label><select id="newQuestionType"><option value="qcm">QCM — une seule bonne réponse</option><option value="ecrit">Question ouverte — réponse écrite</option></select></div><button class="btn secondary" id="addQuestion" type="button">＋ Ajouter une question</button><div id="questionBuilder"></div></div>`
 }
 let builderQuestions=[];
 function setupQuestionBuilder(qs){
-builderQuestions=(qs||[]).map(q=>({...q,options:Array.isArray(q.options)?[...q.options]:["Opsyon A","Opsyon B","Opsyon C"]}));
+builderQuestions=(qs||[]).map(q=>({...q,options:Array.isArray(q.options)?[...q.options]:["Option A","Option B","Option C"]}));
 drawQuestionBuilder();
-$("addQuestion").onclick=()=>{builderQuestions.push({type:$("newQuestionType").value,question:"",points:1,options:["Opsyon A","Opsyon B","Opsyon C"],correctAnswer:"Opsyon A"});drawQuestionBuilder()}
+$("addQuestion").onclick=()=>{builderQuestions.push({type:$("newQuestionType").value,question:"",points:1,options:["Option A","Option B","Option C"],correctAnswer:"Option A"});drawQuestionBuilder()}
 }
 function drawQuestionBuilder(){
 const area=$("questionBuilder");if(!area)return;
-area.innerHTML=builderQuestions.map((q,i)=>`<div class="exam-question"><div class="page-head"><h4>Kesyon ${i+1}</h4><button type="button" class="btn danger" data-remove-q="${i}">Efase</button></div><div class="field"><label>Tip kesyon</label><select data-qtype="${i}"><option value="qcm" ${q.type==="qcm"?"selected":""}>QCM</option><option value="ecrit" ${q.type==="ecrit"?"selected":""}>Kesyon louvri</option></select></div><div class="field"><label>Tèks kesyon an</label><textarea data-qtext="${i}" required>${esc(q.question||"")}</textarea></div><div class="field"><label>Pwen</label><input data-qpoints="${i}" type="number" min="0.5" step="0.5" value="${Number(q.points)||1}"></div>${q.type==="qcm"?`<div class="field"><label>Pwopozisyon yo (yonn pa liy)</label><textarea data-qopts="${i}">${esc((q.options||[]).join("\n"))}</textarea><label>Bon repons lan</label><select data-qcorrect="${i}">${(q.options||[]).map(o=>`<option value="${esc(o)}" ${String(o)===String(q.correctAnswer)?"selected":""}>${esc(o)}</option>`).join("")}</select></div>`:'<p class="muted">Elèv la ap ekri repons li.</p>'}</div>`).join("");
+area.innerHTML=builderQuestions.map((q,i)=>`<div class="exam-question"><div class="page-head"><h4>Question ${i+1}</h4><button type="button" class="btn danger" data-remove-q="${i}">Supprimer</button></div><div class="field"><label>Type de question</label><select data-qtype="${i}"><option value="qcm" ${q.type==="qcm"?"selected":""}>QCM</option><option value="ecrit" ${q.type==="ecrit"?"selected":""}>Question ouverte</option></select></div><div class="field"><label>Texte de la question</label><textarea data-qtext="${i}" required>${esc(q.question||"")}</textarea></div><div class="field"><label>Points</label><input data-qpoints="${i}" type="number" min="0.5" step="0.5" value="${Number(q.points)||1}"></div>${q.type==="qcm"?`<div class="field"><label>Propositions (une par ligne)</label><textarea data-qopts="${i}">${esc((q.options||[]).join("\n"))}</textarea><label>Bonne réponse</label><select data-qcorrect="${i}">${(q.options||[]).map(o=>`<option value="${esc(o)}" ${String(o)===String(q.correctAnswer)?"selected":""}>${esc(o)}</option>`).join("")}</select></div>`:'<p class="muted">L\'élève rédigera sa réponse.</p>'}</div>`).join("");
 area.querySelectorAll("[data-qtype]").forEach(el=>el.onchange=()=>{builderQuestions[Number(el.dataset.qtype)].type=el.value;drawQuestionBuilder()});
 area.querySelectorAll("[data-qtext]").forEach(el=>el.oninput=()=>builderQuestions[Number(el.dataset.qtext)].question=el.value);
 area.querySelectorAll("[data-qpoints]").forEach(el=>el.oninput=()=>builderQuestions[Number(el.dataset.qpoints)].points=Number(el.value));
@@ -867,11 +876,11 @@ area.querySelectorAll("[data-remove-q]").forEach(el=>el.onclick=()=>{builderQues
 function readBuilderQuestions(){
 const result=builderQuestions.map(q=>({...q,question:String(q.question||"").trim(),points:Number(q.points)}));
 for(const q of result){
-if(!q.question||!Number.isFinite(q.points)||q.points<=0)throw new Error("Chak kesyon dwe gen yon tèks ak pwen pozitif.");
+if(!q.question||!Number.isFinite(q.points)||q.points<=0)throw new Error("Chaque question doit avoir un texte et des points positifs.");
 if(q.type==="qcm"){
 q.options=(q.options||[]).map(x=>String(x).trim()).filter(Boolean);
-if(q.options.length<2)throw new Error("Chak QCM dwe gen omwen 2 opsyon.");
-if(!q.options.includes(String(q.correctAnswer||"")))throw new Error("Chwazi bon repons lan nan lis la.");
+if(q.options.length<2)throw new Error("Chaque QCM doit comporter au moins 2 options.");
+if(!q.options.includes(String(q.correctAnswer||"")))throw new Error("Veuillez choisir la bonne réponse dans la liste.");
 }else if(q.type==="ecrit"){delete q.options;delete q.correctAnswer}
 }
 return result;
@@ -887,7 +896,7 @@ async function renderExams(){
 stopTimer();
 if(isAdmin()||isProfessor())return renderTeacherExams();
 const cl=currentProfile.classeId;
-if(!cl){$("pageContent").innerHTML='<div class="card"><h3>Egzamen</h3><div class="notice">Kont ou pa gen klas afekte. Kontakte administratè a.</div></div>';return}
+if(!cl){$("pageContent").innerHTML='<div class="card"><h3>Examens</h3><div class="notice">Votre compte n\'a pas de classe assignée. Veuillez contacter l\'administrateur.</div></div>';return}
 const snap=await getDocs(query(collection(db,"examens"),where("classeId","==",cl)));
 const now = Date.now();
 const exams=snap.docs.map(d=>({id:d.id,...d.data()})).filter(e=>{
@@ -895,43 +904,43 @@ const exams=snap.docs.map(d=>({id:d.id,...d.data()})).filter(e=>{
   return now <= fin;
 });
 let attempts=[];try{attempts=(await getDocs(query(collection(db,"tentatives_examens"),where("etudiantId","==",currentUser.uid)))).docs.map(d=>({id:d.id,...d.data()}))}catch(e){}
-$("pageContent").innerHTML=`<div class="card"><h3>Egzamen mwen yo</h3><div class="table-wrap"><table><thead><tr><th>Egzamen</th><th>Dire</th><th>Rezilta</th><th>Aksyon</th></tr></thead><tbody>${exams.map(e=>{const a=attempts.find(x=>x.examenId===e.id&&x.statut==="termine"),ongoing=attempts.find(x=>x.examenId===e.id&&x.statut==="en_cours");return`<tr><td><b>${esc(e.titre)}</b><div>${esc(e.description||"")}</div></td><td>${Number(e.dureeMinutes||30)} min</td><td>${a?`${Number(a.noteObtenue||0)} / ${Number(a.noteMax||e.noteMax||0)}`:ongoing?"Nan kou":"Poko kòmanse"}</td><td>${a?"Fini":available(e)?`<button class="btn primary" data-start="${esc(e.id)}">${ongoing?"Kontinye":"Kòmanse"}</button>`:"Deò peryòd"}</td></tr>`}).join("")||'<tr><td colspan="4">Pa gen egzamen pou klas ou.</td></tr>'}</tbody></table></div></div>`;
+$("pageContent").innerHTML=`<div class="card"><h3>Mes examens</h3><div class="table-wrap"><table><thead><tr><th>Examen</th><th>Durée</th><th>Résultat</th><th>Actions</th></tr></thead><tbody>${exams.map(e=>{const a=attempts.find(x=>x.examenId===e.id&&x.statut==="termine"),ongoing=attempts.find(x=>x.examenId===e.id&&x.statut==="en_cours");return`<tr><td><b>${esc(e.titre)}</b><div>${esc(e.description||"")}</div></td><td>${Number(e.dureeMinutes||30)} min</td><td>${a?`${Number(a.noteObtenue||0)} / ${Number(a.noteMax||e.noteMax||0)}`:ongoing?"En cours":"Pas encore commencé"}</td><td>${a?"Terminé":available(e)?`<button class="btn primary" data-start="${esc(e.id)}">${ongoing?"Continuer":"Commencer"}</button>`:"Hors période"}</td></tr>`}).join("")||'<tr><td colspan="4">Aucun examen pour votre classe.</td></tr>'}</tbody></table></div></div>`;
 $("pageContent").querySelectorAll("[data-start]").forEach(b=>b.onclick=()=>startExam(exams.find(e=>e.id===b.dataset.start),attempts.find(a=>a.examenId===b.dataset.start&&a.statut==="en_cours")))
 }
 
 async function renderTeacherExams(){
 const snap=isAdmin()?await getDocs(collection(db,"examens")):await getDocs(query(collection(db,"examens"),where("professeurUid","==",currentUser.uid)));
 const exams=snap.docs.map(d=>({id:d.id,...d.data()}));
-$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>Jesyon egzamen</h3></div><button id="createExam" class="btn primary">＋ Kreye yon egzamen</button></div><div class="table-wrap"><table><thead><tr><th>Egzamen</th><th>Klas</th><th>Dire</th><th>Kesyon</th><th>Aksyon</th></tr></thead><tbody>${exams.map(e=>`<tr><td>${esc(e.titre)}</td><td>${esc(nomClasseLisible(e.classeId))}</td><td>${Number(e.dureeMinutes||30)} min</td><td>${parseQuestions(e).length}</td><td><div class="actions"><button class="btn secondary" data-edit-exam="${esc(e.id)}">Modifye</button><button class="btn primary" data-attempts="${esc(e.id)}">Tantativ</button><button class="btn danger" data-delete-exam="${esc(e.id)}">Efase</button></div></td></tr>`).join("")||'<tr><td colspan="5">Pa gen egzamen.</td></tr>'}</tbody></table></div><div id="recordFormArea"></div><div id="examExtra"></div></div>`;
+$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>Gestion des examens</h3></div><button id="createExam" class="btn primary">＋ Créer un examen</button></div><div class="table-wrap"><table><thead><tr><th>Examen</th><th>Classe</th><th>Durée</th><th>Questions</th><th>Actions</th></tr></thead><tbody>${exams.map(e=>`<tr><td>${esc(e.titre)}</td><td>${esc(nomClasseLisible(e.classeId))}</td><td>${Number(e.dureeMinutes||30)} min</td><td>${parseQuestions(e).length}</td><td><div class="actions"><button class="btn secondary" data-edit-exam="${esc(e.id)}">Modifier</button><button class="btn primary" data-attempts="${esc(e.id)}">Tentatives</button><button class="btn danger" data-delete-exam="${esc(e.id)}">Supprimer</button></div></td></tr>`).join("")||'<tr><td colspan="5">Aucun examen.</td></tr>'}</tbody></table></div><div id="recordFormArea"></div><div id="examExtra"></div></div>`;
 $("createExam").onclick=()=>recordForm(modules.find(x=>x.id==="examens"),null);
 $("pageContent").querySelectorAll("[data-edit-exam]").forEach(b=>b.onclick=()=>recordForm(modules.find(m=>m.id==="examens"),exams.find(x=>x.id===b.dataset.editExam)));
-$("pageContent").querySelectorAll("[data-delete-exam]").forEach(b=>b.onclick=async()=>{if(confirm("Efase egzamen sa a?"))try{await deleteDoc(doc(db,"examens",b.dataset.deleteExam));toast("Efase.");await renderExams()}catch(e){toast(friendly(e),true)}});
+$("pageContent").querySelectorAll("[data-delete-exam]").forEach(b=>b.onclick=async()=>{if(confirm("Supprimer cet examen ?"))try{await deleteDoc(doc(db,"examens",b.dataset.deleteExam));toast("Supprimé.");await renderExams()}catch(e){toast(friendly(e),true)}});
 $("pageContent").querySelectorAll("[data-attempts]").forEach(b=>b.onclick=()=>showAttempts(exams.find(x=>x.id===b.dataset.attempts)))
 }
 
 async function showAttempts(exam){
-const area=$("examExtra");area.innerHTML='<div class="card">Chajman tantativ yo...</div>';
+const area=$("examExtra");area.innerHTML='<div class="card">Chargement des tentatives...</div>';
 try{
 const snap=await getDocs(query(collection(db,"tentatives_examens"),where("examenId","==",exam.id))),rows=snap.docs.map(d=>({id:d.id,...d.data()}));
-area.innerHTML=`<div class="card"><h3>Tantativ — ${esc(exam.titre)}</h3><div class="table-wrap"><table><thead><tr><th>Elèv</th><th>Nòt</th><th>Estati</th><th>Aksyon</th></tr></thead><tbody>${rows.map(a=>`<tr><td>${esc(nomUtilisateurLisible(a.etudiantId)||a.etudiantEmail)}</td><td>${Number(a.noteObtenue||0)} / ${Number(a.noteMax||exam.noteMax||0)}</td><td>${esc(a.statut)}</td><td>${a.statut==="termine"&&a.correctionManuelle?`<button class="btn primary" data-grade="${esc(a.id)}">Korije</button>`:"—"}</td></tr>`).join("")||'<tr><td colspan="4">Pa gen tantativ.</td></tr>'}</tbody></table></div><div id="gradeArea"></div></div>`;
+area.innerHTML=`<div class="card"><h3>Tentatives — ${esc(exam.titre)}</h3><div class="table-wrap"><table><thead><tr><th>Élève</th><th>Note</th><th>Statut</th><th>Actions</th></tr></thead><tbody>${rows.map(a=>`<tr><td>${esc(nomUtilisateurLisible(a.etudiantId)||a.etudiantEmail)}</td><td>${Number(a.noteObtenue||0)} / ${Number(a.noteMax||exam.noteMax||0)}</td><td>${esc(a.statut)}</td><td>${a.statut==="termine"&&a.correctionManuelle?`<button class="btn primary" data-grade="${esc(a.id)}">Corriger</button>`:"—"}</td></tr>`).join("")||'<tr><td colspan="4">Aucune tentative.</td></tr>'}</tbody></table></div><div id="gradeArea"></div></div>`;
 area.querySelectorAll("[data-grade]").forEach(b=>b.onclick=()=>gradeAttempt(rows.find(a=>a.id===b.dataset.grade),exam))
 }catch(e){area.innerHTML=`<div class="notice">${esc(friendly(e))}</div>`}
 }
 
 async function gradeAttempt(a,exam){
 const qs=parseQuestions(exam),answers=a.reponses||{},indices=qs.map((q,i)=>q.type==="ecrit"?i:-1).filter(i=>i>=0),area=$("gradeArea");
-area.innerHTML=`<h3>Koreksyon kesyon louvri</h3><form id="gradeForm">${indices.map(i=>`<div class="exam-question"><h4>${esc(qs[i].question)}</h4><p><b>Repons :</b><br>${esc(answers[i]||"Pa gen repons")}</p><label>Nòt (maksimòm ${Number(qs[i].points)||1})</label><input type="number" name="g${i}" min="0" max="${Number(qs[i].points)||1}" step="0.5" value="${Number((a.notesEcrites||{})[i]||0)}" required></div>`).join("")}<div class="field"><label>Kòmantè</label><textarea name="commentaire">${esc(a.commentaire||"")}</textarea></div><button class="btn primary">Anrejistre koreksyon</button></form>`;
+area.innerHTML=`<h3>Correction des questions ouvertes</h3><form id="gradeForm">${indices.map(i=>`<div class="exam-question"><h4>${esc(qs[i].question)}</h4><p><b>Réponse :</b><br>${esc(answers[i]||"Aucune réponse")}</p><label>Note (maximum ${Number(qs[i].points)||1})</label><input type="number" name="g${i}" min="0" max="${Number(qs[i].points)||1}" step="0.5" value="${Number((a.notesEcrites||{})[i]||0)}" required></div>`).join("")}<div class="field"><label>Commentaire</label><textarea name="commentaire">${esc(a.commentaire||"")}</textarea></div><button class="btn primary">Enregistrer la correction</button></form>`;
 $("gradeForm").onsubmit=async e=>{e.preventDefault();const fd=new FormData(e.currentTarget),notes={};let score=0;for(const i of indices){const n=Number(fd.get("g"+i));notes[i]=n;score+=n}
-try{const noteQCM=Number(a.noteQCM||0),noteObtenue=noteQCM+score,max=qs.reduce((s,q)=>s+Number(q.points||1),0);await updateDoc(doc(db,"tentatives_examens",a.id),{notesEcrites:notes,noteEcrite:score,noteObtenue,noteMax:max,commentaire:String(fd.get("commentaire")||""),correctionManuelle:false,corrigePar:currentUser.uid,dateCorrection:stamp(),updatedAt:stamp()});toast("Koreksyon sove.");await showAttempts(exam)}catch(err){toast(friendly(err),true)}
+try{const noteQCM=Number(a.noteQCM||0),noteObtenue=noteQCM+score,max=qs.reduce((s,q)=>s+Number(q.points||1),0);await updateDoc(doc(db,"tentatives_examens",a.id),{notesEcrites:notes,noteEcrite:score,noteObtenue,noteMax:max,commentaire:String(fd.get("commentaire")||""),correctionManuelle:false,corrigePar:currentUser.uid,dateCorrection:stamp(),updatedAt:stamp()});toast("Correction enregistrée.");await showAttempts(exam)}catch(err){toast(friendly(err),true)}
 }
 }
 
 async function startExam(exam,existing){
-if(!exam||!available(exam))return toast("Egzamen an pa disponib kounye a.",true);
-const qs=parseQuestions(exam);if(!qs.length)return toast("Egzamen sa a pa gen kesyon.",true);
+if(!exam||!available(exam))return toast("L'examen n'est pas disponible pour le moment.",true);
+const qs=parseQuestions(exam);if(!qs.length)return toast("Cet examen ne contient pas de questions.",true);
 let attempt=existing;
 if(!attempt){
-if(!confirm(`Kòmanse « ${exam.titre} »? Dire: ${Number(exam.dureeMinutes||30)} minit.`))return;
+if(!confirm(`Commencer « ${exam.titre} » ? Durée : ${Number(exam.dureeMinutes||30)} minutes.`))return;
 const start=Date.now(),duration=Math.max(1,Number(exam.dureeMinutes||30))*60000,data={examenId:exam.id,titre:exam.titre||"",etudiantId:currentUser.uid,etudiantEmail:currentUser.email||"",classeId:exam.classeId||"",professeurUid:exam.professeurUid||"",debutMs:start,finMs:start+duration,dureeMinutes:Number(exam.dureeMinutes||30),statut:"en_cours",reponses:{},createdAt:stamp(),updatedAt:stamp()};
 try{const ref=await addDoc(collection(db,"tentatives_examens"),data);attempt={id:ref.id,...data}}catch(e){return toast(friendly(e),true)}
 }
@@ -940,11 +949,11 @@ activeExam=exam;activeAttempt=attempt;answerCache={...(attempt.reponses||{})};re
 
 function renderExamAttempt(){
 stopTimer();const exam=activeExam,a=activeAttempt,qs=parseQuestions(exam);if(!exam||!a)return;
-$("pageTitle").textContent=exam.titre||"Egzamen";
-$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>${esc(exam.titre)}</h3><p>${esc(exam.description||"")}</p></div><button class="btn secondary" id="leaveExam">Kite ekran</button></div><div id="examTimer" class="timer">--:--</div><form id="answerForm">${qs.map((q,i)=>`<div class="exam-question"><h4>Kesyon ${i+1} — ${Number(q.points)||1} pwen</h4><p>${esc(q.question)}</p>${q.type==="qcm"?(q.options||[]).map(o=>`<label class="exam-option"><input type="radio" name="q${i}" value="${esc(o)}" ${String(answerCache[i]??"")===String(o)?"checked":""}><span>${esc(o)}</span></label>`).join(""):`<textarea name="q${i}">${esc(answerCache[i]||"")}</textarea>`}</div>`).join("")}<button id="submitExam" class="btn primary block">Remèt egzamen</button></form></div>`;
-$("leaveExam").onclick=async()=>{if(confirm("Kite? Tan ap kontinye.")){await saveAnswers(false);stopTimer();activeExam=null;activeAttempt=null;await openPage("examens")}};
+$("pageTitle").textContent=exam.titre||"Examen";
+$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>${esc(exam.titre)}</h3><p>${esc(exam.description||"")}</p></div><button class="btn secondary" id="leaveExam">Quitter l'écran</button></div><div id="examTimer" class="timer">--:--</div><form id="answerForm">${qs.map((q,i)=>`<div class="exam-question"><h4>Question ${i+1} — ${Number(q.points)||1} point(s)</h4><p>${esc(q.question)}</p>${q.type==="qcm"?(q.options||[]).map(o=>`<label class="exam-option"><input type="radio" name="q${i}" value="${esc(o)}" ${String(answerCache[i]??"")===String(o)?"checked":""}><span>${esc(o)}</span></label>`).join(""):`<textarea name="q${i}">${esc(answerCache[i]||"")}</textarea>`}</div>`).join("")}<button id="submitExam" class="btn primary block">Soumettre l'examen</button></form></div>`;
+$("leaveExam").onclick=async()=>{if(confirm("Quitter ? Le temps continuera de s'écouler.")){await saveAnswers(false);stopTimer();activeExam=null;activeAttempt=null;await openPage("examens")}};
 const form=$("answerForm");form.addEventListener("input",()=>saveAnswers(false));form.addEventListener("change",()=>saveAnswers(false));
-form.onsubmit=async e=>{e.preventDefault();if(confirm("Remèt definitif?"))await submitExam(false)};
+form.onsubmit=async e=>{e.preventDefault();if(confirm("Soumettre définitivement ?"))await submitExam(false)};
 updateTimer();timerInterval=setInterval(updateTimer,1000)
 }
 
@@ -955,12 +964,12 @@ const fd=new FormData(form),out={};parseQuestions(activeExam).forEach((q,i)=>{co
 function saveAnswers(showError){
 if(!activeAttempt||!$("answerForm"))return Promise.resolve();
 answerCache=collectAnswers();const answers={...answerCache},id=activeAttempt.id;
-saveQueue=saveQueue.then(()=>updateDoc(doc(db,"tentatives_examens",id),{reponses:answers,updatedAt:stamp()})).catch(e=>{if(showError)toast("Erè sovgad.",true)});
+saveQueue=saveQueue.then(()=>updateDoc(doc(db,"tentatives_examens",id),{reponses:answers,updatedAt:stamp()})).catch(e=>{if(showError)toast("Erreur de sauvegarde.",true)});
 return saveQueue
 }
 function updateTimer(){
 if(!activeAttempt||!$("examTimer"))return;
-const left=Number(activeAttempt.finMs)-Date.now();$("examTimer").textContent="⏱ Tan ki rete : "+fmtTime(left);$("examTimer").classList.toggle("warning",left<=60000);
+const left=Number(activeAttempt.finMs)-Date.now();$("examTimer").textContent="⏱ Temps restant : "+fmtTime(left);$("examTimer").classList.toggle("warning",left<=60000);
 if(left<=0){stopTimer();submitExam(true)}
 }
 async function submitExam(auto){
@@ -973,20 +982,20 @@ const hasWritten=qs.some((q,i)=>q.type==="ecrit"&&String(answers[i]||"").trim())
 const max=qs.reduce((s,q)=>s+(Number(q.points)||1),0);
 await updateDoc(doc(db,"tentatives_examens",a.id),{reponses:answers,notesQCM,noteQCM:score,noteEcrite:0,noteObtenue:score,noteMax:max,correctionManuelle:hasWritten,statut:"termine",remisAutomatiquement:!!auto,dateRemise:stamp(),updatedAt:stamp()});
 activeExam=null;activeAttempt=null;answerCache={};
-$("pageContent").innerHTML=`<div class="card"><h3>Egzamen remèt ak siksè</h3><div class="notice">${auto?"Tan fini. Egzamen an voye otomatikman.":"Egzamen remèt."}</div><h2>Nòt QCM : ${score} / ${maxQCM}</h2><button class="btn primary" id="backExams">Retounen nan egzamen</button></div>`;
+$("pageContent").innerHTML=`<div class="card"><h3>Examen soumis avec succès</h3><div class="notice">${auto?"Temps écoulé. L'examen a été envoyé automatiquement.":"Examen soumis."}</div><h2>Note QCM : ${score} / ${maxQCM}</h2><button class="btn primary" id="backExams">Retourner aux examens</button></div>`;
 $("backExams").onclick=()=>openPage("examens")
-}catch(e){if($("submitExam"))$("submitExam").disabled=false;toast("Remèt la echwe.",true)}
+}catch(e){if($("submitExam"))$("submitExam").disabled=false;toast("Échec de la soumission.",true)}
 }
 
 async function compressPhoto(file){
-if(!file||!file.type.startsWith("image/"))throw Error("Chwazi yon imaj ki valab.");
-if(file.size>12*1024*1024)throw Error("Imaj la twò gwo.");
+if(!file||!file.type.startsWith("image/"))throw Error("Veuillez choisir une image valide.");
+if(file.size>12*1024*1024)throw Error("L'image est trop grande.");
 const url=URL.createObjectURL(file);
 try{
-const img=new Image();await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(Error("Imaj pa ka li"));img.src=url});
+const img=new Image();await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(Error("Impossible de lire l'image"));img.src=url});
 const scale=Math.min(1,1000/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));c.getContext("2d").drawImage(img,0,0,c.width,c.height);
 for(const q of [.7,.55,.4,.3]){const d=c.toDataURL("image/jpeg",q);if(d.length<300000)return d}
-throw Error("Imaj twò gwo apre konpresyon.")
+throw Error("Image trop grande après compression.")
 }finally{URL.revokeObjectURL(url)}
 }
 
@@ -995,17 +1004,34 @@ const teacher=isAdmin()||isProfessor();let notes=[];
 if(isAdmin())notes=(await getDocs(collection(db,"notes_cours"))).docs.map(d=>({id:d.id,...d.data()}));
 else if(teacher)notes=(await getDocs(query(collection(db,"notes_cours"),where("professeurUid","==",currentUser.uid)))).docs.map(d=>({id:d.id,...d.data()}));
 else{
-const cl=currentProfile.classeId;if(!cl){$("pageContent").innerHTML='<div class="card">Kont ou pa gen klas.</div>';return}
+const cl=currentProfile.classeId;if(!cl){$("pageContent").innerHTML='<div class="card">Votre compte n\'a pas de classe.</div>';return}
 notes=(await getDocs(query(collection(db,"notes_cours"),where("classeId","==",cl)))).docs.map(d=>({id:d.id,...d.data()}))
 }
-$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>Nòt kou</h3></div>${teacher?'<button id="newNote" class="btn primary">＋ Ajoute yon nòt</button>':""}</div><div id="noteFormArea"></div>${notes.map(n=>{
+$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>Notes de cours</h3></div>${teacher?'<button id="newNote" class="btn primary">＋ Ajouter une note</button>':""}</div><div id="noteFormArea"></div>${notes.map(n=>{
 let photosArr = Array.isArray(n.photosData)?n.photosData:(n.photoData?[n.photoData]:[]);
-return `<article class="course-note"><h3>${esc(n.titre)}</h3><p class="muted">Klas : ${esc(nomClasseLisible(n.classeId))} · ${esc(n.matiereId||"")}</p><div class="course-text" id="noteText${esc(n.id)}">${esc(n.contenu||"")}</div>${photosArr.map(p=>`<img src="${p}" alt="Foto kou">`).join("")}<div class="actions"><button class="btn secondary" data-copy-note="${esc(n.id)}">Kopye tèks</button>${teacher&&(isAdmin()||n.professeurUid===currentUser.uid)?`<button class="btn secondary" data-edit-note="${esc(n.id)}">Modifye</button><button class="btn danger" data-del-note="${esc(n.id)}">Efase</button>`:""}</div></article>`;
-}).join("")||'<div class="notice">Pa gen nòt kou.</div>'}</div>`;
+return `<article class="course-note">
+  <h3>${esc(n.titre)}</h3>
+  <p class="muted">Classe : ${esc(nomClasseLisible(n.classeId))} · ${esc(n.matiereId||"")}</p>
+  <div class="course-text" id="noteText${esc(n.id)}">${esc(n.contenu||"")}</div>
+  ${photosArr.map((p,pIdx)=>`
+    <div style="margin:12px 0; text-align:center;">
+      <img src="${p}" alt="Photo de cours" style="max-width:100%; max-height:500px; border-radius:8px; cursor:pointer;" onclick="window.open('${p}','_blank')" title="Cliquer pour grand format">
+      <div style="margin-top:8px; display:flex; justify-content:center; gap:8px;">
+        <a class="btn primary" href="${p}" download="note-cours-${esc(n.id)}-${pIdx+1}.jpg" target="_blank" rel="noopener" style="font-size:12px; padding:6px 12px; text-decoration:none;">📥 Télécharger la photo</a>
+        <button class="btn secondary" onclick="window.open('${p}','_blank')" style="font-size:12px; padding:6px 12px;">🔍 Grand format</button>
+      </div>
+    </div>
+  `).join("")}
+  <div class="actions">
+    <button class="btn secondary" data-copy-note="${esc(n.id)}">Copier le texte</button>
+    ${teacher&&(isAdmin()||n.professeurUid===currentUser?.uid)?`<button class="btn secondary" data-edit-note="${esc(n.id)}">Modifier</button><button class="btn danger" data-del-note="${esc(n.id)}">Supprimer</button>`:""}
+  </div>
+</article>`;
+}).join("")||'<div class="notice">Aucune note de cours.</div>'}</div>`;
 if(teacher)$("newNote").onclick=()=>noteForm(null);
-$("pageContent").querySelectorAll("[data-copy-note]").forEach(b=>b.onclick=async()=>{const t=$("noteText"+b.dataset.copyNote)?.innerText||"";try{await navigator.clipboard.writeText(t);toast("Tèks kopye.")}catch{toast("Kopye manyèlman.",true)}});
+$("pageContent").querySelectorAll("[data-copy-note]").forEach(b=>b.onclick=async()=>{const t=$("noteText"+b.dataset.copyNote)?.innerText||"";try{await navigator.clipboard.writeText(t);toast("Texte copié.")}catch{toast("Copiez manuellement.",true)}});
 $("pageContent").querySelectorAll("[data-edit-note]").forEach(b=>b.onclick=()=>noteForm(notes.find(n=>n.id===b.dataset.editNote)));
-$("pageContent").querySelectorAll("[data-del-note]").forEach(b=>b.onclick=async()=>{if(confirm("Efase nòt sa a?"))try{await deleteDoc(doc(db,"notes_cours",b.dataset.delNote));await renderNotesCours();toast("Efase.")}catch(e){toast(friendly(e),true)}})
+$("pageContent").querySelectorAll("[data-del-note]").forEach(b=>b.onclick=async()=>{if(confirm("Supprimer cette note ?"))try{await deleteDoc(doc(db,"notes_cours",b.dataset.delNote));await renderNotesCours();toast("Supprimé.")}catch(e){toast(friendly(e),true)}})
 }
 
 async function noteForm(n){
@@ -1019,12 +1045,12 @@ try {
 }catch(e){}
 
 let existingPhotos = Array.isArray(n?.photosData)?n.photosData:(n?.photoData?[n.photoData]:[]);
-area.innerHTML=`<div class="card"><h3>${n?"Modifye":"Nouvo"} nòt kou</h3><form id="noteForm"><div class="field"><label>Tit *</label><input name="titre" required value="${esc(n?.titre||"")}"></div><div class="form-grid"><div class="field"><label>Klas *</label><select name="classeId" required><option value="">-- Chwazi klas --</option>${classesDisponibles.map(c=>`<option value="${esc(c.id)}" ${n?.classeId===c.id||n?.classeId===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`)}</select></div><div class="field"><label>Matyè</label><select name="matiereId"><option value="">-- Chwazi matyè --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${n?.matiereId===mat.id||n?.matiereId===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`)}</select></div></div><div class="field"><label>Tèks kou a</label><textarea name="contenu" maxlength="12000">${esc(n?.contenu||"")}</textarea></div><div class="field"><label>Foto / Paj ki kole</label><div class="actions"><button class="btn primary" id="choosePhotosBtn" type="button">🖼️ Chwazi foto</button></div><input id="choosePhotosInput" type="file" accept="image/*" multiple hidden><div id="photosPreview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;"></div></div><div class="actions"><button class="btn primary" id="saveNote" type="submit">Anrejistre</button><button class="btn secondary" id="cancelNote" type="button">Anile</button></div></form></div>`;
+area.innerHTML=`<div class="card"><h3>${n?"Modifier":"Nouvelle"} note de cours</h3><form id="noteForm"><div class="field"><label>Titre *</label><input name="titre" required value="${esc(n?.titre||"")}"></div><div class="form-grid"><div class="field"><label>Classe *</label><select name="classeId" required><option value="">-- Choisir une classe --</option>${classesDisponibles.map(c=>`<option value="${esc(c.id)}" ${n?.classeId===c.id||n?.classeId===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`)}</select></div><div class="field"><label>Matière</label><select name="matiereId"><option value="">-- Choisir une matière --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${n?.matiereId===mat.id||n?.matiereId===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`)}</select></div></div><div class="field"><label>Texte du cours</label><textarea name="contenu" maxlength="12000">${esc(n?.contenu||"")}</textarea></div><div class="field"><label>Photos / Pages collées</label><div class="actions"><button class="btn primary" id="choosePhotosBtn" type="button">🖼️ Choisir des photos</button></div><input id="choosePhotosInput" type="file" accept="image/*" multiple hidden><div id="photosPreview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;"></div></div><div class="actions"><button class="btn primary" id="saveNote" type="submit">Enregistrer</button><button class="btn secondary" id="cancelNote" type="button">Annuler</button></div></form></div>`;
 
 let selectedPhotos=[...existingPhotos];
 function renderPhotoPreviews(){
   const prev=$("photosPreview");if(!prev)return;
-  if(selectedPhotos.length===0){prev.innerHTML='<p class="muted">Pa gen foto.</p>';return;}
+  if(selectedPhotos.length===0){prev.innerHTML='<p class="muted">Aucune photo.</p>';return;}
   prev.innerHTML=selectedPhotos.map((p,idx)=>`<div style="position:relative;border:1px solid var(--bd);border-radius:6px;padding:4px;background:#fff"><img src="${p}" style="width:90px;height:90px;object-fit:cover;border-radius:4px"><button type="button" class="btn danger" style="position:absolute;top:2px;right:2px;padding:2px 6px;font-size:10px;" data-remove-img="${idx}">×</button></div>`).join("");
   prev.querySelectorAll("[data-remove-img]").forEach(b=>{b.onclick=()=>{selectedPhotos.splice(Number(b.dataset.removeImg),1);renderPhotoPreviews();}});
 }
@@ -1035,7 +1061,7 @@ $("choosePhotosInput").onchange=async e=>{
   for(let file of e.target.files){
     try{selectedPhotos.push(await compressPhoto(file));}catch(err){toast(err.message,true);}
   }
-  e.target.value="";renderPhotoPreviews();toast("Foto ajoute.");
+  e.target.value="";renderPhotoPreviews();toast("Photo ajoutée.");
 };
 $("noteForm").onsubmit=async e=>{
 e.preventDefault();
@@ -1043,34 +1069,34 @@ const btn=$("saveNote");btn.disabled=true;
 try{
 const fd=new FormData(e.currentTarget);
 const data={titre:String(fd.get("titre")||"").trim(),classeId:String(fd.get("classeId")||"").trim(),matiereId:String(fd.get("matiereId")||"").trim(),contenu:String(fd.get("contenu")||"").trim(),photosData:selectedPhotos,professeurUid:currentUser.uid,updatedAt:stamp()};
-if(!data.titre||!data.classeId)throw Error("Tit ak klas obligatwa.");
+if(!data.titre||!data.classeId)throw Error("Titre et classe obligatoires.");
 if(n)await updateDoc(doc(db,"notes_cours",n.id),data);else{data.createdAt=stamp();await addDoc(collection(db,"notes_cours"),data);}
-toast("Nòt sove.");await renderNotesCours();
+toast("Note enregistrée.");await renderNotesCours();
 }catch(err){toast(friendly(err),true);}finally{btn.disabled=false;}
 };
 }
 
 async function renderBulletin(){
   const isAdm = isAdmin(), isProf = isProfessor(), isStd = ["eleve","etudiant"].includes(currentProfile?.role);
-  if(!isAdm && !isProf && !isStd){$("pageContent").innerHTML='<div class="card">Aksè refize.</div>';return;}
+  if(!isAdm && !isProf && !isStd){$("pageContent").innerHTML='<div class="card">Accès refusé.</div>';return;}
 
   if(isAdm || isProf){
-    $("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>🎓 Bilten lekòl</h3></div><button id="newBulletinBtn" class="btn primary">＋ Prepare yon bilten</button></div><div id="bulletinFormArea"></div><div id="bulletinsListContainer">Chajman...</div></div>`;
+    $("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>🎓 Bulletins scolaires</h3></div><button id="newBulletinBtn" class="btn primary">＋ Préparer un bulletin</button></div><div id="bulletinFormArea"></div><div id="bulletinsListContainer">Chargement...</div></div>`;
     await loadTeacherAdminBulletins();
     return;
   }
 
-  $("pageContent").innerHTML=`<div class="card"><h3>🎓 Bilten mwen</h3><p class="muted">Chajman bilten pibliye yo...</p></div>`;
+  $("pageContent").innerHTML=`<div class="card"><h3>🎓 Mon bulletin</h3><p class="muted">Chargement des bulletins publiés...</p></div>`;
   try{
     const snap=await getDocs(query(collection(db,"bulletins"),where("etudiantId","==",currentUser.uid),where("publie","==",true)));
     const rows=snap.docs.map(d=>({id:d.id,...d.data()}));
-    if(rows.length===0){$("pageContent").innerHTML='<div class="card"><h3>🎓 Bilten mwen</h3><div class="notice">Pa gen bilten pibliye pou kounye a.</div></div>';return;}
+    if(rows.length===0){$("pageContent").innerHTML='<div class="card"><h3>🎓 Mon bulletin</h3><div class="notice">Aucun bulletin publié pour le moment.</div></div>';return;}
     const bulletin=rows[0], studentName=[currentProfile.prenom,currentProfile.nom].filter(Boolean).join(" ")||currentUser.email;
-    $("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>🎓 Bilten (${esc(bulletin.periode)})</h3><p class="muted">Klas : ${esc(nomClasseLisible(bulletin.classeId))}</p></div><button id="printBulletinBtn" class="btn primary">📄 Enprime / PDF</button></div><div id="printArea"><div class="notice"><b>Sistèm Aprantisaj</b><br>Bilten ofisyèl</div><p><b>Elèv :</b> ${esc(studentName)}</p><p><b>Mwayèn jeneral :</b> <strong>${esc(bulletin.moyenne||"—")} / 20</strong></p><p><b>Apreyasyon :</b> ${esc(bulletin.appreciation||"—")}</p></div></div>`;
+    $("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>🎓 Bulletin (${esc(bulletin.periode)})</h3><p class="muted">Classe : ${esc(nomClasseLisible(bulletin.classeId))}</p></div><button id="printBulletinBtn" class="btn primary">📄 Imprimer / PDF</button></div><div id="printArea"><div class="notice"><b>Centre de formation Le pédagogue</b><br>Bulletin officiel</div><p><b>Élève :</b> ${esc(studentName)}</p><p><b>Moyenne générale :</b> <strong>${esc(bulletin.moyenne||"—")} / 20</strong></p><p><b>Appréciation :</b> ${esc(bulletin.appreciation||"—")}</p></div></div>`;
     $("printBulletinBtn").onclick=()=>{
       const w=window.open("","_blank");
       if(!w)return;
-      w.document.write(`<!DOCTYPE html><html><head><title>Bilten</title><style>body{font-family:Arial;padding:20px}</style></head><body>${$("printArea").innerHTML}<script>window.onload=()=>window.print()<\/script></body></html>`);
+      w.document.write(`<!DOCTYPE html><html><head><title>Bulletin</title><style>body{font-family:Arial;padding:20px}</style></head><body>${$("printArea").innerHTML}<script>window.onload=()=>window.print()<\/script></body></html>`);
       w.document.close();
     };
   }catch(e){$("pageContent").innerHTML=`<div class="card"><div class="message error">${esc(friendly(e))}</div></div>`;}
@@ -1082,38 +1108,38 @@ async function loadTeacherAdminBulletins(){
     const bulletins = snap.docs.map(d=>({id:d.id,...d.data()}));
     const container = $("bulletinsListContainer");
     if(!container) return;
-    container.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Elèv</th><th>Klas</th><th>Peryòd</th><th>Mwayèn</th><th>Estati</th><th>Aksyon</th></tr></thead><tbody>${bulletins.map(b=>`<tr><td>${esc(nomUtilisateurLisible(b.etudiantId))}</td><td>${esc(nomClasseLisible(b.classeId))}</td><td>${esc(b.periode)}</td><td><b>${esc(b.moyenne)} / 20</b></td><td>${b.publie?'<span class="badge">Pibliye</span>':'<span class="badge wait">Poko pibliye</span>'}</td><td><div class="actions"><button class="btn secondary" data-edit-bulletin="${esc(b.id)}">Modifye</button>${isAdmin()?`<button class="btn ${b.publie?'danger':'success'}" data-toggle-pub="${esc(b.id)}" data-current-pub="${!!b.publie}">${b.publie?'Retire':'Pibliye'}</button>`:""}<button class="btn danger" data-del-bulletin="${esc(b.id)}">Efase</button></div></td></tr>`).join("")||'<tr><td colspan="6">Pa gen bilten.</td></tr>'}</tbody></table></div>`;
+    container.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Élève</th><th>Classe</th><th>Période</th><th>Moyenne</th><th>Statut</th><th>Actions</th></tr></thead><tbody>${bulletins.map(b=>`<tr><td>${esc(nomUtilisateurLisible(b.etudiantId))}</td><td>${esc(nomClasseLisible(b.classeId))}</td><td>${esc(b.periode)}</td><td><b>${esc(b.moyenne)} / 20</b></td><td>${b.publie?'<span class="badge">Publié</span>':'<span class="badge wait">Non publié</span>'}</td><td><div class="actions"><button class="btn secondary" data-edit-bulletin="${esc(b.id)}">Modifier</button>${isAdmin()?`<button class="btn ${b.publie?'danger':'success'}" data-toggle-pub="${esc(b.id)}" data-current-pub="${!!b.publie}">${b.publie?'Retirer':'Publier'}</button>`:""}<button class="btn danger" data-del-bulletin="${esc(b.id)}">Supprimer</button></div></td></tr>`).join("")||'<tr><td colspan="6">Aucun bulletin.</td></tr>'}</tbody></table></div>`;
     if($("newBulletinBtn")) $("newBulletinBtn").onclick=()=>openBulletinForm(null);
     container.querySelectorAll("[data-edit-bulletin]").forEach(b=>b.onclick=()=>openBulletinForm(bulletins.find(x=>x.id===b.dataset.editBulletin)));
-    container.querySelectorAll("[data-del-bulletin]").forEach(b=>b.onclick=async()=>{if(confirm("Efase?")){await deleteDoc(doc(db,"bulletins",b.dataset.delBulletin));toast("Efase.");await loadTeacherAdminBulletins();}});
-    container.querySelectorAll("[data-toggle-pub]").forEach(b=>b.onclick=async()=>{const id=b.dataset.togglePub,cp=b.dataset.currentPub==="true";await updateDoc(doc(db,"bulletins",id),{publie:!cp,updatedAt:stamp()});toast("Mete ajou.");await loadTeacherAdminBulletins();});
+    container.querySelectorAll("[data-del-bulletin]").forEach(b=>b.onclick=async()=>{if(confirm("Supprimer ?")){await deleteDoc(doc(db,"bulletins",b.dataset.delBulletin));toast("Supprimé.");await loadTeacherAdminBulletins();}});
+    container.querySelectorAll("[data-toggle-pub]").forEach(b=>b.onclick=async()=>{const id=b.dataset.togglePub,cp=b.dataset.currentPub==="true";await updateDoc(doc(db,"bulletins",id),{publie:!cp,updatedAt:stamp()});toast("Mis à jour.");await loadTeacherAdminBulletins();});
   }catch(e){}
 }
 
 async function openBulletinForm(b){
   const area=$("bulletinFormArea");if(!area) return;
   let students=[];try{const us=await getDocs(collection(db,"users"));students=us.docs.map(d=>({id:d.id,...d.data()})).filter(u=>["eleve","etudiant"].includes(u.role));}catch(e){}
-  area.innerHTML=`<div class="card" style="border:2px solid var(--bd)"><h3>${b?"Modifye":"Prepare"} yon bilten</h3><form id="bulletinForm"><div class="form-grid"><div class="field"><label>Elèv *</label><select name="etudiantId" required><option value="">Chwazi elèv</option>${students.map(s=>`<option value="${esc(s.id)}" ${b?.etudiantId===s.id?"selected":""}>${esc([s.nom,s.prenom].filter(Boolean).join(" ")||s.email)}</option>`)}</select></div><div class="field"><label>Klas *</label><input name="classeId" value="${esc(b?.classeId||"")}" required></div><div class="field"><label>Peryòd *</label><input name="periode" value="${esc(b?.periode||"1ye Trimès")}" required></div><div class="field"><label>Mwayèn (/20) *</label><input name="moyenne" type="number" step="0.01" max="20" min="0" value="${esc(b?.moyenne||"")}" required></div><div class="field full"><label>Apreyasyon</label><textarea name="appreciation">${esc(b?.appreciation||"")}</textarea></div></div><div class="actions"><button class="btn primary" type="submit">Anrejistre</button><button class="btn secondary" id="cancelBulletinForm" type="button">Anile</button></div></form></div>`;
+  area.innerHTML=`<div class="card" style="border:2px solid var(--bd)"><h3>${b?"Modifier":"Préparer"} un bulletin</h3><form id="bulletinForm"><div class="form-grid"><div class="field"><label>Élève *</label><select name="etudiantId" required><option value="">Choisir un élève</option>${students.map(s=>`<option value="${esc(s.id)}" ${b?.etudiantId===s.id?"selected":""}>${esc([s.nom,s.prenom].filter(Boolean).join(" ")||s.email)}</option>`)}</select></div><div class="field"><label>Classe *</label><input name="classeId" value="${esc(b?.classeId||"")}" required></div><div class="field"><label>Période *</label><input name="periode" value="${esc(b?.periode||"1er Trimestre")}" required></div><div class="field"><label>Moyenne (/20) *</label><input name="moyenne" type="number" step="0.01" max="20" min="0" value="${esc(b?.moyenne||"")}" required></div><div class="field full"><label>Appréciation</label><textarea name="appreciation">${esc(b?.appreciation||"")}</textarea></div></div><div class="actions"><button class="btn primary" type="submit">Enregistrer</button><button class="btn secondary" id="cancelBulletinForm" type="button">Annuler</button></div></form></div>`;
   $("cancelBulletinForm").onclick=()=>area.innerHTML="";
   $("bulletinForm").onsubmit=async e=>{
     e.preventDefault();const fd=new FormData(e.currentTarget);
     const data={etudiantId:String(fd.get("etudiantId")||"").trim(),classeId:String(fd.get("classeId")||"").trim(),periode:String(fd.get("periode")||"").trim(),moyenne:Number(fd.get("moyenne")||0),appreciation:String(fd.get("appreciation")||"").trim(),publie:b?!!b.publie:false,updatedAt:stamp()};
     if(b)await updateDoc(doc(db,"bulletins",b.id),data);else{data.createdAt=stamp();await addDoc(collection(db,"bulletins"),data);}
-    toast("Sove.");area.innerHTML="";await loadTeacherAdminBulletins();
+    toast("Enregistré.");area.innerHTML="";await loadTeacherAdminBulletins();
   };
 }
 
 window.cflpScheduleState = window.cflpScheduleState || {};
 window.cflpScheduleCache = window.cflpScheduleCache || {};
-function scheduleLabelDate(value){if(!value)return"—";const d=new Date(value+"T12:00:00");return Number.isNaN(d.getTime())?value:d.toLocaleDateString("ht-HT",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});}
+function scheduleLabelDate(value){if(!value)return"—";const d=new Date(value+"T12:00:00");return Number.isNaN(d.getTime())?value:d.toLocaleDateString("fr-FR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});}
 function scheduleTimeRange(r){return`${esc(r.heureDebut||"—")} – ${esc(r.heureFin||"—")}`;}
 function scheduleClassName(id){return nomClasseLisible(id);}
-function scheduleSubjectName(id){const s=window.cflpScheduleCache.matieres||[];const m=s.find(x=>x.id===id||x.code===id);return m?(m.nom||m.titre||m.code||m.id):(id||"Pa defini");}
+function scheduleSubjectName(id){const s=window.cflpScheduleCache.matieres||[];const m=s.find(x=>x.id===id||x.code===id);return m?(m.nom||m.titre||m.code||m.id):(id||"Non défini");}
 function scheduleTeacherName(id){return nomUtilisateurLisible(id);}
 function scheduleCanManage(page,r){return isAdmin();}
 
 async function renderSchedule(page){
-  const isCourse=page==="horaire_cours", collectionName=isCourse?"horaires_cours":"horaires_examens", title=isCourse?"Orè kou yo":"Orè egzamen yo";
+  const isCourse=page==="horaire_cours", collectionName=isCourse?"horaires_cours":"horaires_examens", title=isCourse?"Emploi du temps des cours":"Planning des examens";
   try{
     const [classSnap, subjectSnap] = await Promise.all([getDocs(collection(db, "classes")), getDocs(collection(db, "matieres"))]);
     const classes = classSnap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -1141,23 +1167,23 @@ async function renderSchedule(page){
     };
     if (!window.cflpScheduleState[page]) window.cflpScheduleState[page] = { view: "table", month: new Date().getMonth(), year: new Date().getFullYear() };
     drawSchedulePage(page);
-  }catch(e){$("pageContent").innerHTML=`<div class="card"><h3>${esc(title)}</h3><div class="notice">Erè chajman orè yo.</div></div>`;}
+  }catch(e){$("pageContent").innerHTML=`<div class="card"><h3>${esc(title)}</h3><div class="notice">Erreur de chargement des emplois du temps.</div></div>`;}
 }
 
 function drawSchedulePage(page){
-  const isCourse=page==="horaire_cours", title=isCourse?"Orè kou yo":"Orè egzamen yo", state=window.cflpScheduleState[page], cache=window.cflpScheduleCache[page];
+  const isCourse=page==="horaire_cours", title=isCourse?"Emploi du temps des cours":"Planning des examens", state=window.cflpScheduleState[page], cache=window.cflpScheduleCache[page];
   if(!cache)return;
   let records=[...cache.records];
   const canCreate = isAdmin();
-  $("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>${isCourse?"🗓️":"📝"} ${esc(title)}</h3></div>${canCreate?'<button class="btn primary" id="scheduleAdd">＋ Ajoute orè</button>':""}</div><div class="actions" style="margin-bottom:14px"><button class="btn ${state.view==="table"?"primary":"secondary"}" id="scheduleTableView">Tablo</button><button class="btn ${state.view==="calendar"?"primary":"secondary"}" id="scheduleCalendarView">Kalandriye</button></div><div id="scheduleFormArea"></div><div id="scheduleDisplay"></div></div>`;
+  $("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>${isCourse?"🗓️":"📝"} ${esc(title)}</h3></div>${canCreate?'<button class="btn primary" id="scheduleAdd">＋ Ajouter un emploi du temps</button>':""}</div><div class="actions" style="margin-bottom:14px"><button class="btn ${state.view==="table"?"primary":"secondary"}" id="scheduleTableView">Tableau</button><button class="btn ${state.view==="calendar"?"primary":"secondary"}" id="scheduleCalendarView">Calendrier</button></div><div id="scheduleFormArea"></div><div id="scheduleDisplay"></div></div>`;
   if($("scheduleAdd")) $("scheduleAdd").onclick=()=>scheduleOpenForm(page,null);
   $("scheduleTableView").onclick=()=>{state.view="table";drawSchedulePage(page);};
   $("scheduleCalendarView").onclick=()=>{state.view="calendar";drawSchedulePage(page);};
   const display=$("scheduleDisplay");
   if(state.view==="table"){
-    display.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Dat</th><th>Lè</th><th>Tit / Matyè</th><th>Klas</th><th>Pwofesè</th><th>Sal</th><th>Aksyon</th></tr></thead><tbody>${records.map(r=>`<tr><td>${esc(scheduleLabelDate(r.date))}</td><td>${scheduleTimeRange(r)}</td><td><b>${esc(r.titre||scheduleSubjectName(r.matiereId))}</b></td><td>${esc(scheduleClassName(r.classeId))}</td><td>${esc(scheduleTeacherName(r.professeurUid))}</td><td>${esc(r.salle||"—")}</td><td><div class="actions">${scheduleCanManage(page,r)?`<button class="btn secondary" data-schedule-edit="${esc(r.id)}">Modifye</button><button class="btn danger" data-schedule-delete="${esc(r.id)}">Efase</button>`:"—"}</div></td></tr>`).join("")||'<tr><td colspan="7">Pa gen orè.</td></tr>'}</tbody></table></div>`;
+    display.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Heures</th><th>Titre / Matière</th><th>Classe</th><th>Professeur</th><th>Salle</th><th>Actions</th></tr></thead><tbody>${records.map(r=>`<tr><td>${esc(scheduleLabelDate(r.date))}</td><td>${scheduleTimeRange(r)}</td><td><b>${esc(r.titre||scheduleSubjectName(r.matiereId))}</b></td><td>${esc(scheduleClassName(r.classeId))}</td><td>${esc(scheduleTeacherName(r.professeurUid))}</td><td>${esc(r.salle||"—")}</td><td><div class="actions">${scheduleCanManage(page,r)?`<button class="btn secondary" data-schedule-edit="${esc(r.id)}">Modifier</button><button class="btn danger" data-schedule-delete="${esc(r.id)}">Supprimer</button>`:"—"}</div></td></tr>`).join("")||'<tr><td colspan="7">Aucun emploi du temps.</td></tr>'}</tbody></table></div>`;
   }else{
-    display.innerHTML=`<div class="notice">Vizyon kalandriye aktif. (Gade tabl anwo a pou lis la tou)</div>`;
+    display.innerHTML=`<div class="notice">Vue calendrier active. (Voir le tableau ci-dessus pour la liste)</div>`;
   }
   $("pageContent").querySelectorAll("[data-schedule-edit]").forEach(b=>b.onclick=()=>{const r=cache.records.find(x=>x.id===b.dataset.scheduleEdit);if(r)scheduleOpenForm(page,r);});
   $("pageContent").querySelectorAll("[data-schedule-delete]").forEach(b=>b.onclick=()=>scheduleDelete(page,b.dataset.scheduleDelete));
@@ -1165,7 +1191,7 @@ function drawSchedulePage(page){
 
 async function scheduleOpenForm(page,record){
   const isCourse=page==="horaire_cours", cache=window.cflpScheduleCache[page], area=$("scheduleFormArea");
-  area.innerHTML=`<div class="card" style="border:2px solid var(--bd)"><h3>${record?"Modifye":"Kreye"} orè</h3><form id="scheduleForm"><div class="form-grid"><div class="field full"><label>Tit *</label><input name="titre" value="${esc(record?.titre||"")}" required></div><div class="field"><label>Klas *</label><select name="classeId" required><option value="">Chwazi klas</option>${cache.classes.map(c=>`<option value="${esc(c.id||c.code)}" ${record?.classeId===c.id||record?.classeId===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`)}</select></div><div class="field"><label>Matyè</label><select name="matiereId"><option value="">Chwazi matyè</option>${cache.matieres.map(m=>`<option value="${esc(m.id||m.code)}" ${record?.matiereId===m.id||record?.matiereId===m.code?"selected":""}>${esc(m.nom||m.code||m.id)}</option>`)}</select></div><div class="field"><label>Dat *</label><input name="date" type="date" value="${esc(record?.date||"")}" required></div><div class="field"><label>Lè kòmansman *</label><input name="heureDebut" type="time" value="${esc(record?.heureDebut||"")}" required></div><div class="field"><label>Lè fen *</label><input name="heureFin" type="time" value="${esc(record?.heureFin||"")}" required></div><div class="field full"><label>Sal</label><input name="salle" value="${esc(record?.salle||"")}"></div></div><div class="actions"><button type="submit" class="btn primary">Anrejistre</button><button type="button" class="btn secondary" id="scheduleCancel">Anile</button></div></form></div>`;
+  area.innerHTML=`<div class="card" style="border:2px solid var(--bd)"><h3>${record?"Modifier":"Créer"} un emploi du temps</h3><form id="scheduleForm"><div class="form-grid"><div class="field full"><label>Titre *</label><input name="titre" value="${esc(record?.titre||"")}" required></div><div class="field"><label>Classe *</label><select name="classeId" required><option value="">Choisir une classe</option>${cache.classes.map(c=>`<option value="${esc(c.id||c.code)}" ${record?.classeId===c.id||record?.classeId===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`)}</select></div><div class="field"><label>Matière</label><select name="matiereId"><option value="">Choisir une matière</option>${cache.matieres.map(m=>`<option value="${esc(m.id||m.code)}" ${record?.matiereId===m.id||record?.matiereId===m.code?"selected":""}>${esc(m.nom||m.code||m.id)}</option>`)}</select></div><div class="field"><label>Date *</label><input name="date" type="date" value="${esc(record?.date||"")}" required></div><div class="field"><label>Heure de début *</label><input name="heureDebut" type="time" value="${esc(record?.heureDebut||"")}" required></div><div class="field"><label>Heure de fin *</label><input name="heureFin" type="time" value="${esc(record?.heureFin||"")}" required></div><div class="field full"><label>Salle</label><input name="salle" value="${esc(record?.salle||"")}"></div></div><div class="actions"><button type="submit" class="btn primary">Enregistrer</button><button type="button" class="btn secondary" id="scheduleCancel">Annuler</button></div></form></div>`;
   $("scheduleCancel").onclick=()=>area.innerHTML="";
   $("scheduleForm").onsubmit=async e=>{
     e.preventDefault();
@@ -1173,14 +1199,14 @@ async function scheduleOpenForm(page,record){
     const data={titre:String(fd.get("titre")||"").trim(),classeId:String(fd.get("classeId")||"").trim(),matiereId:String(fd.get("matiereId")||"").trim(),professeurUid:currentUser.uid,date:String(fd.get("date")||"").trim(),heureDebut:String(fd.get("heureDebut")||"").trim(),heureFin:String(fd.get("heureFin")||"").trim(),salle:String(fd.get("salle")||"").trim(),updatedAt:stamp()};
     const colName=isCourse?"horaires_cours":"horaires_examens";
     if(record) await updateDoc(doc(db,colName,record.id),data); else { data.createdAt=stamp(); await addDoc(collection(db,colName),data); }
-    toast("Orè sove.");await renderSchedule(page);
+    toast("Emploi du temps enregistré.");await renderSchedule(page);
   };
 }
 
 async function scheduleDelete(page,id){
-  if(confirm("Efase orè sa a?")){
+  if(confirm("Supprimer cet emploi du temps ?")){
     await deleteDoc(doc(db,page==="horaire_cours"?"horaires_cours":"horaires_examens",id));
-    toast("Efase.");await renderSchedule(page);
+    toast("Supprimé.");await renderSchedule(page);
   }
 }
 
@@ -1196,36 +1222,36 @@ async function renderUsers(){
 
     $("pageContent").innerHTML = `
       <div class="card">
-        <h3>Jesyon itilizatè yo</h3>
+        <h3>Gestion des utilisateurs</h3>
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Non</th><th>Imèl</th><th>Rôle</th><th>Estati</th><th>Aksyon</th></tr>
+              <tr><th>Nom</th><th>Email</th><th>Rôle</th><th>Statut</th><th>Actions</th></tr>
             </thead>
             <tbody>
               ${users.map(u=>`
                 <tr>
-                  <td>${esc([u.nom,u.prenom].filter(Boolean).join(" ")||"San non")}</td>
+                  <td>${esc([u.nom,u.prenom].filter(Boolean).join(" ")||"Sans nom")}</td>
                   <td>${esc(u.email||"—")}</td>
                   <td>
                     <select data-role="${esc(u.id)}">
-                      <option value="eleve" ${u.role==="eleve"?"selected":""}>Elèv</option>
-                      <option value="etudiant" ${u.role==="etudiant"?"selected":""}>Etidyan</option>
-                      <option value="professeur" ${u.role==="professeur"?"selected":""}>Pwofesè</option>
-                      <option value="administrateur" ${u.role==="administrateur"?"selected":""}>Administratè</option>
+                      <option value="eleve" ${u.role==="eleve"?"selected":""}>Élève</option>
+                      <option value="etudiant" ${u.role==="etudiant"?"selected":""}>Étudiant</option>
+                      <option value="professeur" ${u.role==="professeur"?"selected":""}>Professeur</option>
+                      <option value="administrateur" ${u.role==="administrateur"?"selected":""}>Administrateur</option>
                     </select>
                   </td>
                   <td>
                     <select data-status="${esc(u.id)}">
-                      <option value="attente" ${u.status==="attente"?"selected":""}>An atant</option>
-                      <option value="accepted" ${u.status==="accepted"?"selected":""}>Aksepte</option>
-                      <option value="refuse" ${u.status==="refuse"?"selected":""}>Refize</option>
+                      <option value="attente" ${u.status==="attente"?"selected":""}>En attente</option>
+                      <option value="accepted" ${u.status==="accepted"?"selected":""}>Accepté</option>
+                      <option value="refuse" ${u.status==="refuse"?"selected":""}>Refusé</option>
                     </select>
                   </td>
                   <td>
                     <div class="actions">
-                      <button class="btn success" data-save-user="${esc(u.id)}">Sove</button>
-                      ${u.id!==currentUser.uid?`<button class="btn danger" data-del-user="${esc(u.id)}">Efase</button>`:""}
+                      <button class="btn success" data-save-user="${esc(u.id)}">Enregistrer</button>
+                      ${u.id!==currentUser.uid?`<button class="btn danger" data-del-user="${esc(u.id)}">Supprimer</button>`:""}
                     </div>
                   </td>
                 </tr>
@@ -1241,33 +1267,52 @@ async function renderUsers(){
       const role=$("pageContent").querySelector(`[data-role="${CSS.escape(id)}"]`).value;
       const status=$("pageContent").querySelector(`[data-status="${CSS.escape(id)}"]`).value;
       await updateDoc(doc(db,"users",id),{role,status,updatedAt:stamp()});
-      toast("Mete ajou.");await renderUsers();
+      toast("Mis à jour.");await renderUsers();
     });
     $("pageContent").querySelectorAll("[data-del-user]").forEach(b=>b.onclick=async()=>{
-      if(confirm("Efase profil sa a?")){await deleteDoc(doc(db,"users",b.dataset.delUser));toast("Efase.");await renderUsers();}
+      if(confirm("Supprimer ce profil ?")){await deleteDoc(doc(db,"users",b.dataset.delUser));toast("Supprimé.");await renderUsers();}
     });
-  }catch(e){toast("Erè chajman itilizatè yo.",true);}
+  }catch(e){toast("Erreur de chargement des utilisateurs.",true);}
 }
 
 async function renderBackup(){
   if(!isAdmin())return;
-  $("pageContent").innerHTML='<div class="card"><h3>Sovyad done yo</h3><p>Ekspòte tout koleksyon baz done a an fòma JSON.</p><button id="exportBtn" class="btn primary">Telechaje sovyad la</button></div>';
+  $("pageContent").innerHTML='<div class="card"><h3>Sauvegarde des données</h3><p>Exporter toute la base de données au format JSON.</p><button id="exportBtn" class="btn primary">Télécharger la sauvegarde</button></div>';
   $("exportBtn").onclick=async()=>{
-    const names=["users","etudiants","eleves","professeurs","departements","filieres","classes","matieres","cours","annees_academiques","affectations","inscriptions","devoirs","examens","tentatives_examens","notes_cours","remises","resultats","videos","documents","annonces","bulletins","statistiques","configuration"],backup={application:"Sistèm Aprantisaj",projectId:firebaseConfig.projectId,exportedAt:new Date().toISOString(),collections:{}};
+    const names=["users","etudiants","eleves","professeurs","departements","filieres","classes","matieres","cours","annees_academiques","affectations","inscriptions","devoirs","examens","tentatives_examens","notes_cours","remises","resultats","videos","documents","annonces","bulletins","statistiques","configuration"],backup={application:"Centre de formation Le pédagogue",projectId:firebaseConfig.projectId,exportedAt:new Date().toISOString(),collections:{}};
     for(const name of names){const s=await getDocs(collection(db,name));backup.collections[name]=s.docs.map(d=>({id:d.id,...d.data()}))}
-    const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="sovyad-sistem-aprantisaj-"+new Date().toISOString().slice(0,10)+".json";a.click();URL.revokeObjectURL(url);toast("Ekspòtasyon fini.");
+    const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="sauvegarde-centre-pedagogue-"+new Date().toISOString().slice(0,10)+".json";a.click();URL.revokeObjectURL(url);toast("Exportation terminée.");
   }
 }
 
 window.addEventListener("beforeinstallprompt",e=>{
-  e.preventDefault();installPrompt=e;$("installBtn").textContent="📲 Enstale";$("installBtn").disabled=false;
+  e.preventDefault();installPrompt=e;$("installBtn").textContent="📲 Installer";$("installBtn").disabled=false;
 });
 $("installBtn").addEventListener("click",async()=>{
   if(installPrompt){
-    try{await installPrompt.prompt();const res=await installPrompt.userChoice;installPrompt=null;}catch(e){}
+    try{
+      await installPrompt.prompt();
+      const res=await installPrompt.userChoice;
+      if(res.outcome==='accepted'){toast("Application installée avec succès !");}
+      installPrompt=null;
+    }catch(e){}
     return;
   }
-  alert("Pou enstale Sistèm Aprantisaj:\n\n1. Louvri sit la nan Google Chrome oswa Samsung Internet.\n2. Peze meni ⋮ navigatè a.\n3. Chwazi « Enstale aplikasyon an » oswa « Mete sou ekran akèy ».");
+  if(window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone){
+    toast("L'application est déjà installée !");
+    return;
+  }
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  if(/iPad|iPhone|iPod/.test(ua) && !window.MSStream){
+    alert("Pour installer Centre de formation Le pédagogue sur votre iPhone ou iPad :\n\n1. Appuyez sur le bouton de partage (icône de carré avec une flèche vers le haut) dans Safari.\n2. Faites défiler vers le bas et sélectionnez « Sur l'écran d'accueil ».\n3. Appuyez sur « Ajouter » en haut à droite.");
+  } else {
+    alert("Pour installer Centre de formation Le pédagogue :\n\n1. Ouvrez le menu ⋮ de votre navigateur (Chrome, Edge, etc.).\n2. Sélectionnez « Installer l'application » ou « Ajouter à l'écran d'accueil ».");
+  }
+});
+
+window.addEventListener('appinstalled',()=>{
+  installPrompt=null;
+  toast("Application installée avec succès !");
 });
 
 if("serviceWorker" in navigator){
