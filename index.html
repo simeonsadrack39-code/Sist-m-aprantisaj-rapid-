@@ -222,17 +222,54 @@ catch(err){authMessage(friendly(err),"error")}
 let registrationVisible=false;
 let registrationBusy=false;
 
-async function chargerClassesInscription(){
+/* Chargement des classes lors de l'inscription */
+async function chargerClassesInscription() {
   const selectClasse = $("regClasse");
-  if(!selectClasse) return;
+
+  if (!selectClasse) return;
+
+  selectClasse.innerHTML =
+    `<option value="">Chargement des classes...</option>`;
+
   try {
     const snap = await getDocs(collection(db, "classes"));
-    const classes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    selectClasse.innerHTML = `<option value="">-- Choisir une classe --</option>` + classes.map(c => `
-      <option value="${esc(c.id)}">${esc(c.nom || c.code || c.niveau || c.id)}</option>
-    `).join("");
-  } catch(e) {
-    selectClasse.innerHTML = `<option value="">Erreur de chargement des classes</option>`;
+
+    const classes = snap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    if (classes.length === 0) {
+      selectClasse.innerHTML =
+        `<option value="">Aucune classe disponible</option>`;
+      return;
+    }
+
+    selectClasse.innerHTML =
+      `<option value="">-- Choisir une classe --</option>` +
+      classes.map(c => `
+        <option value="${esc(c.id)}">
+          ${esc(c.nom || c.code || c.niveau || c.id)}
+        </option>
+      `).join("");
+
+  } catch (e) {
+    console.error(
+      "Erreur lors du chargement des classes :",
+      e
+    );
+
+    selectClasse.innerHTML =
+      `<option value="">Impossible de charger les classes</option>`;
+
+    if (typeof authMessage === "function") {
+      authMessage(
+        e.code === "permission-denied"
+          ? "Accès refusé aux classes. Vérifiez les règles Firestore."
+          : "Impossible de charger les classes. Vérifiez Firebase et votre connexion.",
+        "error"
+      );
+    }
   }
 }
 
