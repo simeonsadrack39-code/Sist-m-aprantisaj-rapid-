@@ -952,10 +952,16 @@ const area=$("recordFormArea");if(!area)return;
 const isExam=m.id==="examens"||m.id==="devoirs";
 let classesDisponibles = [];
 let matieresDisponibles = [];
+let coursDisponibles = [];
 try {
-  const [clsSnap, matSnap] = await Promise.all([getDocs(collection(db, "classes")), getDocs(collection(db, "matieres"))]);
+  const [clsSnap, matSnap, coursSnap] = await Promise.all([
+getDocs(collection(db, "classes")),
+getDocs(collection(db, "matieres")),
+getDocs(collection(db, "cours"))
+]);
   classesDisponibles = clsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
   matieresDisponibles = matSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  coursDisponibles = coursSnap.docs.map(d => ({ id: d.id, ...d.data() }));
 }catch(e){}
 
 area.innerHTML=`<div class="card"><h3>${r?"Modifier":"Ajouter"} — ${esc(m.title)}</h3><form id="dataForm"><div class="form-grid">${m.fields.filter(([k])=>!(isExam&&k===['questionsJSON'])).map(([k,l])=>{
@@ -967,6 +973,54 @@ if (k === "classeId") {
 }
 if (k === "matiereId") {
   return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="matiereId"><option value="">-- Choisir une matière --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${value===mat.id||value===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`).join("")}</select></div>`;
+}
+  if (k === "coursId" || k === "codeCours") {
+return `<div class="field">
+<label>${esc(l)}</label>
+<select name="${esc(k)}" id="affectationCours">
+<option value="">-- Choisir un cours --</option>
+</select>
+
+  </div>`;
+}
+  if (k === "coursId" || k === "codeCours") {
+const classeChoisie = r?.classeId || "";
+const matiereChoisie = r?.matiereId || "";
+
+const coursFiltres = coursDisponibles.filter(c =>
+(!classeChoisie || c.classeId === classeChoisie) &&
+(!matiereChoisie || c.matiereId === matiereChoisie)
+);
+
+return "<div class="field"> <label>${esc(l)}</label> <select name="${esc(k)}"> <option value="">-- Choisir un cours --</option> ${coursFiltres.map(c => "<option value="${esc(c.code || c.id)}"
+${(value === c.code || value === c.id) ? "selected" : ""}>
+${esc(c.nom || c.code || c.id)}
+</option>`
+).join("")}
+</select>
+
+  </div>`;
+}
+  if (k === "coursId") {
+  const classeChoisie = r?.classeId || "";
+  const matiereChoisie = r?.matiereId || "";
+
+  const coursFiltres = coursDisponibles.filter(c =>
+    (!classeChoisie || String(c.classeId || "") === String(classeChoisie)) &&
+    (!matiereChoisie || String(c.matiereId || "") === String(matiereChoisie))
+  );
+
+  return `<div class="field">
+    <label>${esc(l)} *</label>
+    <select name="coursId" required>
+      <option value="">-- Choisir un cours --</option>
+      ${coursFiltres.map(c => `
+        <option value="${esc(c.id)}" ${value === c.id ? "selected" : ""}>
+          ${esc(c.nom || c.titre || c.code || c.id)}
+        </option>
+      `).join("")}
+    </select>
+  </div>`;
 }
 if (k === "cible") {
   return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="cible"><option value="tous" ${value==="tous"?"selected":""}>Tous les utilisateurs</option><option value="professeurs" ${value==="professeurs"?"selected":""}>Professeurs uniquement</option><option value="eleves" ${value==="eleves"?"selected":""}>Élèves et étudiants uniquement</option></select></div>`;
