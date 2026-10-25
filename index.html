@@ -1438,11 +1438,24 @@ async function scheduleOpenForm(page,record){
   };
 }
 
-async function scheduleDelete(page,id){
-  if(confirm("Supprimer cet emploi du temps ?")){
-    await deleteDoc(doc(db,page==="horaire_cours"?"horaires_cours":"horaires_examens",id));
-    toast("Supprimé.");await renderSchedule(page);
+async function scheduleDelete(page, id) {
+  try {
+    if (!confirm("Supprimer cet emploi du temps ?")) return;
+
+    const collectionName =
+      page === "horaire_cours"
+        ? "horaires_cours"
+        : "horaires_examens";
+
+    await deleteDoc(doc(db, collectionName, id));
+
+    toast("Supprimé.");
+    await renderSchedule(page);
+  } catch (error) {
+    console.error("Erreur suppression horaire :", error);
+    toast("Erreur lors de la suppression.", true);
   }
+}
 
 async function renderUsers(){
   if(!isAdmin()) return;
