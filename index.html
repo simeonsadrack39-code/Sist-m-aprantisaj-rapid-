@@ -1176,7 +1176,7 @@ function scheduleTeacherName(id){return nomUtilisateurLisible(id);}
 function scheduleCanManage(page,r){return isAdmin();}
 
 async function renderSchedule(page){
-  const isCourse=page==="horaire_cours", collectionName=isCourse?"horaires_cours":"horaires_examens", title=isCourse?"Emploi du temps des cours":"Planning des examens";
+  const isCourse=page==="horaire_cours", collectionName=isCourse?"horaires_cours":"horaires_examens", title=isCourse?"Horaires des cours":"Horaires des examens";
   try{
     const [classSnap, subjectSnap] = await Promise.all([getDocs(collection(db, "classes")), getDocs(collection(db, "matieres"))]);
     const classes = classSnap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -1208,7 +1208,7 @@ async function renderSchedule(page){
 }
 
 function drawSchedulePage(page){
-  const isCourse=page==="horaire_cours", title=isCourse?"Emploi du temps des cours":"Planning des examens", state=window.cflpScheduleState[page], cache=window.cflpScheduleCache[page];
+  const isCourse=page==="horaire_cours",title=isCourse?"Horaires des cours":"Horaires des examens" , state=window.cflpScheduleState[page], cache=window.cflpScheduleCache[page];
   if(!cache)return;
   let records=[...cache.records];
   const canCreate = isAdmin();
