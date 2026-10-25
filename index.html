@@ -19,6 +19,71 @@
 .main{flex:1;min-width:0;padding:22px}.page-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.page-head h2{margin:0;color:var(--b)}.card,.stat,.dash-card{background:white;border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:16px}.card h3,.dash-card h3{color:var(--b);margin-top:0}.stats-grid,.dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}.stat small{color:var(--mut)}.stat strong{display:block;font-size:27px;color:var(--b);margin-top:8px}.dash-card{display:flex;flex-direction:column;gap:9px}.dash-card p{color:var(--mut);font-size:14px;line-height:1.5;flex:1}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;background:white}th,td{border-bottom:1px solid var(--bd);padding:10px;text-align:left;font-size:13px;overflow-wrap:anywhere}th{background:#f8fafc;color:var(--b)}.actions{display:flex;gap:6px;flex-wrap:wrap}.actions .btn{font-size:12px;padding:7px 9px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}.muted{color:var(--mut)}.welcome{background:linear-gradient(120deg,#2563eb,#1e40af);color:white}.welcome h3{color:white}.welcome p{line-height:1.6}.badge{display:inline-block;padding:4px 8px;border-radius:20px;font-size:11px;background:#dcfce7;color:#15803d}.wait{background:#ffedd5;color:#c2410c}
 .exam-question,.course-note{padding:15px;border:1px solid var(--bd);border-radius:10px;margin:12px 0;background:#fff}.exam-question h4{color:var(--b);margin:0 0 10px}.exam-option{display:flex;align-items:center;gap:8px;padding:8px;background:#f8faff;margin:5px 0;border-radius:6px}.exam-option input{width:auto}.exam-option span{flex:1}.timer{font-size:26px;text-align:center;padding:13px;background:#eff6fc;border:2px solid var(--bd);border-radius:10px;position:sticky;top:70px;z-index:3}.timer.warning{background:#fee2e2;color:#991b1b}.course-text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}.course-note img{max-width:100%;max-height:600px;display:block;margin:12px auto}#toast{position:fixed;bottom:18px;right:18px;background:#0f172a;color:white;padding:13px 16px;border-radius:8px;z-index:99;max-width:90%}footer{text-align:center;padding:20px;color:var(--mut);font-size:12px}
 @media(max-width:800px){.layout{display:block}.sidebar{width:100%;display:flex;flex-wrap:wrap;gap:3px}.sidebar-title{width:100%}.nav-btn{width:auto;flex:1 1 130px;font-size:13px}.main{padding:12px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.topbar{position:static}.timer{top:5px}}
+/* ===== TABLEAUX DES HORAIRES ===== */
+.schedule-table-wrap {
+width: 100%;
+max-width: 100%;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+border: 1px solid var(--bd);
+border-radius: 10px;
+background: white;
+}
+
+.schedule-table {
+width: 100%;
+min-width: 850px;
+border-collapse: collapse;
+background: white;
+font-size: 13px;
+}
+
+.schedule-table th,
+.schedule-table td {
+padding: 8px 10px;
+text-align: left;
+vertical-align: middle;
+border-bottom: 1px solid var(--bd);
+}
+
+.schedule-table th {
+background: #eff6ff;
+color: var(--b);
+white-space: nowrap;
+}
+
+.schedule-table tbody tr:hover {
+background: #f8fafc;
+}
+
+.schedule-table td strong {
+overflow-wrap: anywhere;
+}
+
+.schedule-actions {
+display: flex;
+align-items: center;
+gap: 6px;
+flex-wrap: wrap;
+}
+
+.schedule-actions .btn {
+padding: 6px 8px;
+font-size: 12px;
+white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+.schedule-table {
+min-width: 850px;
+font-size: 12px;
+}
+
+.schedule-table th,
+.schedule-table td {
+padding: 7px 8px;
+}
+}
 </style>
 </head>
 <body>
@@ -1362,7 +1427,59 @@ function drawSchedulePage(page){
   $("scheduleCalendarView").onclick=()=>{state.view="calendar";drawSchedulePage(page);};
   const display=$("scheduleDisplay");
   if(state.view==="table"){
-    display.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Heures</th><th>Titre / Matière</th><th>Classe</th><th>Professeur</th><th>Salle</th><th>Actions</th></tr></thead><tbody>${records.map(r=>`<tr><td>${esc(scheduleLabelDate(r.date))}</td><td>${scheduleTimeRange(r)}</td><td><b>${esc(r.titre||scheduleSubjectName(r.matiereId))}</b></td><td>${esc(scheduleClassName(r.classeId))}</td><td>${esc(scheduleTeacherName(r.professeurUid))}</td><td>${esc(r.salle||"—")}</td><td><div class="actions">${scheduleCanManage(page,r)?`<button class="btn secondary" data-schedule-edit="${esc(r.id)}">Modifier</button><button class="btn danger" data-schedule-delete="${esc(r.id)}">Supprimer</button>`:"—"}</div></td></tr>`).join("")||'<tr><td colspan="7">Aucun emploi du temps.</td></tr>'}</tbody></table></div>`;
+    display.innerHTML = `
+  <div class="table-wrap schedule-table-wrap">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Heures</th>
+          <th>Titre / Matière</th>
+          <th>Classe</th>
+          <th>Professeur</th>
+          <th>Salle</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${
+          records.map(r => `
+            <tr>
+              <td>${esc(scheduleLabelDate(r.date))}</td>
+              <td>${scheduleTimeRange(r)}</td>
+              <td>
+                <strong>${esc(r.titre || scheduleSubjectName(r.matiereId))}</strong>
+              </td>
+              <td>${esc(scheduleClassName(r.classeId))}</td>
+              <td>${esc(scheduleTeacherName(r.professeurUid))}</td>
+              <td>${esc(r.salle || "—")}</td>
+              <td>
+                <div class="schedule-actions">
+                  ${
+                    scheduleCanManage(page, r)
+                      ? `
+                        <button
+                          class="btn secondary"
+                          data-schedule-edit="${esc(r.id)}"
+                        >Modifier</button>
+
+                        <button
+                          class="btn danger"
+                          data-schedule-delete="${esc(r.id)}"
+                        >Supprimer</button>
+                      `
+                      : "—"
+                  }
+                </div>
+              </td>
+            </tr>
+          `).join("")
+          || '<tr><td colspan="7">Aucun emploi du temps.</td></tr>'
+        }
+      </tbody>
+    </table>
+  </div>
+`;
   }else{
     display.innerHTML=`<div class="notice">Vue calendrier active. (Voir le tableau ci-dessus pour la liste)</div>`;
   }
