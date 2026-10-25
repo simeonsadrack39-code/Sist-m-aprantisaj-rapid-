@@ -1443,7 +1443,7 @@ async function scheduleDelete(page,id){
     await deleteDoc(doc(db,page==="horaire_cours"?"horaires_cours":"horaires_examens",id));
     toast("Supprimé.");await renderSchedule(page);
   }
-}
+
 async function renderUsers(){
   if(!isAdmin()) return;
 
@@ -1452,404 +1452,490 @@ async function renderUsers(){
       usersSnap,
       classesSnap,
       matieresSnap,
-      affectationsSnap
+      affectationsSnap,
+      inscriptionsSnap,
+      etudiantsSnap,
+      elevesSnap
     ] = await Promise.all([
       getDocs(collection(db,"users")),
       getDocs(collection(db,"classes")),
       getDocs(collection(db,"matieres")),
-      getDocs(collection(db,"affectations"))
+      getDocs(collection(db,"affectations")),
+      getDocs(collection(db,"inscriptions")),
+      getDocs(collection(db,"etudiants")),
+      getDocs(collection(db,"eleves"))
     ]);
 
-    const users = usersSnap.docs.map(d=>({
-      id:d.id,...d.data()
-    }));
-
-    const classes = classesSnap.docs.map(d=>({
-      id:d.id,...d.data()
-    }));
-
-    const matieres = matieresSnap.docs.map(d=>({
-      id:d.id,...d.data()
-    }));
-
-    const affectations = affectationsSnap.docs.map(d=>({
-      id:d.id,...d.data()
-    }));
+    const users = usersSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const classes = classesSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const matieres = matieresSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const affectations = affectationsSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const inscriptions = inscriptionsSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const etudiants = etudiantsSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const eleves = elevesSnap.docs.map(d=>({id:d.id,...d.data()}));
 
     const classLabel = id => {
-      const c = classes.find(x =>
-        x.id===id || x.code===id
-      );
-      return c ? (c.nom || c.code || c.niveau || c.id) : id;
+      const c = classes.find(x=>x.id===id || x.code===id || x.nom===id);
+      return c ? (c.nom||c.code||c.niveau||c.id) : (id||"");
     };
 
-    const matiereLabel = id => {
-      const m = matieres.find(x =>
-        x.id===id || x.code===id
-      );
-      return m ? (m.nom || m.code || m.id) : id;
+    const subjectLabel = id => {
+      const m = matieres.find(x=>x.id===id || x.code===id || x.nom===id);
+      return m ? (m.nom||m.code||m.id) : (id||"");
     };
+
+    const profileIds = u => {
+      const email = String(u.email||"").toLowerCase().trim();
+      const linked = [...etudiants,...eleves].filter(p =>
+        (email && String(p.email||"").toLowerCase().trim()===email) ||
+        p.uid===u.id || p.userUid===u.id || p.userId===u.id
+      );
+      return [...new Set([u.id,...linked.map(p=>p.id)])];
+    };
+
+    const assignedClasses = u => {
+      const ids = profileIds(u);
+      const result = [];
+
+      if(u.role==="professeur"){
+        affectations
+          .filter(a=>ids.includes(a.professeurUid)||a.professeurUid===u.id)
+          .forEach(a=>{
+            const label = classLabel(a.classeId);
+            const subject = subjectLabel(a.matiereId);
+            if(label) result.push(subject ? `${label} (${subject})` : label);
+          });
+      }
+
+      if(["eleve","etudiant"].includes(u.role)){
+        [...etudiants,...eleves]
+          .filter(p=>ids.includes(p.id))
+          .forEach(p=>{if(p.classeId) result.push(classLabel(p.classeId));});
+
+        inscriptions
+          .filter(i=>ids.includes(i.eleveId)||ids.includes(i.etudiantId))
+          .forEach(i=>{if(i.classeId) result.push(classLabel(i.classeId));});
+
+        if(u.classeId) result.push(classLabel(u.classeId));
+      }
+
+      return [...new Set(result.filter(Boolean))];
+    };
+
+    const roleLabel = role => ({
+      administrateur:"Administrateur",
+      professeur:"Professeur",
+      eleve:"Élève",
+      etudiant:"Étudiant"
+    })[role] || role || "Non défini";
+
+    const statusLabel = status => ({
+      accepted:"Accepté",
+      attente:"En attente",
+      refuse:"Refusé"
+    })[status] || status || "Non défini";
 
     const userName = u =>
-      [u.nom,u.prenom].filter(Boolean).join(" ") ||
-      u.email || u.id;
+      [u.prenom,u.nom].filter(Boolean).join(" ") || "Nom non renseigné";
 
     $("pageContent").innerHTML = `
-      <div class="card">
-        <h3>Gestion des utilisateurs</h3>
-        <p class="muted">
-          Validez les comptes et affectez les classes et les matières.
+      <style>
+        .users-compact{font-size:13px}
+        .users-compact .users-toolbar{
+          display:grid;
+          grid-template-columns:minmax(0,1.5fr) minmax(120px,1fr);
+          gap:8px;
+          margin:10px 0
+        }
+        .users-compact .field{margin:0;min-width:0}
+        .users-compact label{
+          display:block;font-size:12px;margin-bottom:4px
+        }
+        .users-compact input,
+        .users-compact select{
+          width:100%;min-width:0;max-width:100%;
+          padding:7px 8px;font-size:13px;
+          box-sizing:border-box
+        }
+        .users-compact .user-list{
+          display:grid;grid-template-columns:minmax(0,1fr);
+          gap:8px;margin-top:10px
+        }
+        .users-compact .user-item{
+          border:1px solid var(--bd);
+          border-radius:10px;padding:10px;
+          min-width:0;background:var(--card,#fff)
+        }
+        .users-compact .user-top{
+          display:flex;justify-content:space-between;
+          align-items:flex-start;gap:8px;
+          padding-bottom:7px;margin-bottom:7px;
+          border-bottom:1px solid var(--bd)
+        }
+        .users-compact .user-name{
+          font-size:14px;font-weight:700;
+          overflow-wrap:anywhere
+        }
+        .users-compact .user-info{
+          font-size:12px;line-height:1.5;
+          overflow-wrap:anywhere;color:var(--muted,#666)
+        }
+        .users-compact .user-fields{
+          display:grid;
+          grid-template-columns:repeat(2,minmax(0,1fr));
+          gap:7px;margin-top:8px
+        }
+        .users-compact .user-field{min-width:0}
+        .users-compact .user-actions{
+          display:flex;flex-wrap:wrap;gap:6px;
+          margin-top:9px;align-items:center
+        }
+        .users-compact .user-actions .btn{
+          padding:6px 9px;font-size:12px
+        }
+        .users-compact .user-assign{
+          margin-top:8px;padding:8px;
+          border-radius:8px;background:var(--bg,#f5f5f5)
+        }
+        .users-compact .user-assign .btn{
+          margin-top:7px;width:100%
+        }
+        .users-compact .user-badge{
+          font-size:11px;padding:3px 7px;
+          border-radius:20px;border:1px solid var(--bd);
+          white-space:nowrap
+        }
+        .users-compact .user-current-classes{
+          font-size:12px;margin-bottom:6px;
+          overflow-wrap:anywhere
+        }
+        @media(min-width:700px){
+          .users-compact .user-list{
+            grid-template-columns:repeat(2,minmax(0,1fr))
+          }
+        }
+        @media(max-width:420px){
+          .users-compact .users-toolbar{
+            grid-template-columns:minmax(0,1fr)
+          }
+          .users-compact .user-fields{
+            grid-template-columns:minmax(0,1fr)
+          }
+        }
+      </style>
+
+      <div class="card users-compact">
+        <h3 style="margin:0 0 5px">Gestion des utilisateurs</h3>
+        <p class="muted" style="font-size:12px;margin:0">
+          Approuvez les comptes, gérez les rôles et affectez les classes.
         </p>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Rôle</th>
-                <th>Statut</th>
-                <th>Affectation</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
+        <div class="users-toolbar">
+          <div class="field">
+            <label for="usersSearch">Rechercher</label>
+            <input id="usersSearch"
+              placeholder="Nom, e-mail, téléphone, classe...">
+          </div>
+          <div class="field">
+            <label for="usersRoleFilter">Filtrer par rôle</label>
+            <select id="usersRoleFilter">
+              <option value="tous">Tous</option>
+              <option value="professeur">Professeurs</option>
+              <option value="eleves">Élèves / Étudiants</option>
+              <option value="administrateur">Administrateurs</option>
+            </select>
+          </div>
+        </div>
 
-            <tbody>
-              ${users.map(u=>{
-                const teacherAffectations = affectations.filter(a =>
-                  a.professeurUid===u.id ||
-                  a.professeurId===u.id
-                );
+        <p id="usersCount" class="muted" style="font-size:12px;margin:5px 0"></p>
 
-                const teacherClasses = [
-                  ...new Set([
-                    ...(Array.isArray(u.classIds) ? u.classIds : []),
-                    ...teacherAffectations.map(a=>a.classeId),
-                    u.classeId
-                  ].filter(Boolean))
-                ];
+        <div class="user-list">
+          ${users.map(u=>{
+            const assigned = assignedClasses(u);
+            const classesText = assigned.length
+              ? assigned.join(", ")
+              : (u.classeId ? classLabel(u.classeId) : "Non affecté");
 
-                const teacherMatieres = [
-                  ...new Set(
-                    teacherAffectations
-                      .map(a=>a.matiereId)
-                      .filter(Boolean)
-                  )
-                ];
+            const searchText = [
+              userName(u),u.email,u.telephone,
+              roleLabel(u.role),classesText,
+              u.niveau,u.specialite,statusLabel(u.status)
+            ].join(" ").toLowerCase();
 
-                const studentClass =
-                  u.classeId ||
-                  (Array.isArray(u.classIds) ? u.classIds[0] : "") ||
-                  "";
+            return `
+              <article class="user-item"
+                data-user-row="${esc(u.id)}"
+                data-user-role="${esc(u.role||"")}"
+                data-user-search="${esc(searchText)}">
 
-                return `
-                  <tr>
-                    <td>${esc(userName(u))}</td>
-                    <td>${esc(u.email||"—")}</td>
+                <div class="user-top">
+                  <div style="min-width:0">
+                    <div class="user-name">${esc(userName(u))}</div>
+                    <div class="user-info">${esc(u.email||"E-mail non renseigné")}</div>
+                    <div class="user-info">${esc(u.telephone||"Téléphone non renseigné")}</div>
+                  </div>
+                  <span class="user-badge">${esc(roleLabel(u.role))}</span>
+                </div>
 
-                    <td>
-                      <select data-role="${esc(u.id)}">
-                        <option value="eleve"
-                          ${u.role==="eleve"?"selected":""}>
-                          Élève
+                <div class="user-info">
+                  <strong>Classe(s) :</strong>
+                  <span data-user-classes="${esc(u.id)}">${esc(classesText)}</span>
+                </div>
+
+                ${u.role==="professeur" ? `
+                  <div class="user-info">
+                    <strong>Spécialité :</strong> ${esc(u.specialite||"—")}
+                  </div>
+                ` : `
+                  <div class="user-info">
+                    <strong>Niveau :</strong> ${esc(u.niveau||"—")}
+                  </div>
+                `}
+
+                ${["eleve","etudiant"].includes(u.role) ? `
+                  <div class="user-assign">
+                    <label>Attribuer une classe à cet élève</label>
+                    <select data-classe-eleve="${esc(u.id)}">
+                      <option value="">-- Choisir une classe --</option>
+                      ${classes.map(c=>`
+                        <option value="${esc(c.id)}"
+                          ${u.classeId===c.id ? "selected" : ""}>
+                          ${esc(c.nom||c.code||c.niveau||c.id)}
                         </option>
-                        <option value="etudiant"
-                          ${u.role==="etudiant"?"selected":""}>
-                          Étudiant
+                      `).join("")}
+                    </select>
+                    <button class="btn primary" type="button"
+                      data-save-classe-eleve="${esc(u.id)}">
+                      Enregistrer la classe
+                    </button>
+                  </div>
+                ` : ""}
+
+                ${u.role==="professeur" ? `
+                  <div class="user-assign">
+                    <div class="user-current-classes">
+                      <strong>Affectations actuelles :</strong>
+                      ${esc(classesText)}
+                    </div>
+                    <label>Choisir une classe</label>
+                    <select data-classe-prof="${esc(u.id)}">
+                      <option value="">-- Choisir une classe --</option>
+                      ${classes.map(c=>`
+                        <option value="${esc(c.id)}">
+                          ${esc(c.nom||c.code||c.niveau||c.id)}
                         </option>
-                        <option value="professeur"
-                          ${u.role==="professeur"?"selected":""}>
-                          Professeur
+                      `).join("")}
+                    </select>
+                    <label style="margin-top:7px">Choisir une matière</label>
+                    <select data-matiere-prof="${esc(u.id)}">
+                      <option value="">-- Choisir une matière --</option>
+                      ${matieres.map(m=>`
+                        <option value="${esc(m.id)}">
+                          ${esc(m.nom||m.code||m.id)}
                         </option>
-                        ${u.role==="administrateur" ? `
-                          <option value="administrateur" selected>
-                            Administrateur
-                          </option>
-                        ` : ""}
-                      </select>
-                    </td>
+                      `).join("")}
+                    </select>
+                    <button class="btn primary" type="button"
+                      data-affecter-prof="${esc(u.id)}">
+                      Affecter classe et matière
+                    </button>
+                  </div>
+                ` : ""}
 
-                    <td>
-                      <select data-status="${esc(u.id)}">
-                        <option value="attente"
-                          ${u.status==="attente"?"selected":""}>
-                          En attente
-                        </option>
-                        <option value="accepted"
-                          ${u.status==="accepted"?"selected":""}>
-                          Accepté
-                        </option>
-                        <option value="refuse"
-                          ${u.status==="refuse"?"selected":""}>
-                          Refusé
-                        </option>
-                      </select>
-                    </td>
+                <div class="user-fields">
+                  <div class="user-field">
+                    <label>Statut du compte</label>
+                    <select data-status="${esc(u.id)}">
+                      <option value="attente" ${u.status==="attente"?"selected":""}>En attente</option>
+                      <option value="accepted" ${u.status==="accepted"?"selected":""}>Accepté</option>
+                      <option value="refuse" ${u.status==="refuse"?"selected":""}>Refusé</option>
+                    </select>
+                  </div>
 
-                    <td>
-                      <div data-student-assignment="${esc(u.id)}"
-                        style="display:${
-                          ["eleve","etudiant"].includes(u.role)
-                            ? "block" : "none"
-                        }">
-                        <label>Classe de l'élève</label>
-                        <select data-student-class="${esc(u.id)}">
-                          <option value="">-- Choisir une classe --</option>
-                          ${classes.map(c=>`
-                            <option value="${esc(c.id)}"
-                              ${studentClass===c.id?"selected":""}>
-                              ${esc(c.nom||c.code||c.niveau||c.id)}
-                            </option>
-                          `).join("")}
-                        </select>
-                      </div>
+                  <div class="user-field">
+                    <label>Rôle</label>
+                    <select data-role="${esc(u.id)}">
+                      <option value="eleve" ${u.role==="eleve"?"selected":""}>Élève</option>
+                      <option value="etudiant" ${u.role==="etudiant"?"selected":""}>Étudiant</option>
+                      <option value="professeur" ${u.role==="professeur"?"selected":""}>Professeur</option>
+                      ${u.role==="administrateur"
+                        ? '<option value="administrateur" selected>Administrateur</option>'
+                        : ""}
+                    </select>
+                  </div>
+                </div>
 
-                      <div data-teacher-assignment="${esc(u.id)}"
-                        style="display:${
-                          u.role==="professeur" ? "block" : "none"
-                        }">
-                        <label>Classes du professeur</label>
-                        <select data-teacher-classes="${esc(u.id)}"
-                          multiple size="3"
-                          style="min-width:160px;max-width:100%">
-                          ${classes.map(c=>`
-                            <option value="${esc(c.id)}"
-                              ${teacherClasses.includes(c.id)?"selected":""}>
-                              ${esc(c.nom||c.code||c.niveau||c.id)}
-                            </option>
-                          `).join("")}
-                        </select>
-
-                        <label>Matières du professeur</label>
-                        <select data-teacher-matieres="${esc(u.id)}"
-                          multiple size="3"
-                          style="min-width:160px;max-width:100%">
-                          ${matieres.map(m=>`
-                            <option value="${esc(m.id)}"
-                              ${teacherMatieres.includes(m.id)?"selected":""}>
-                              ${esc(m.nom||m.code||m.id)}
-                            </option>
-                          `).join("")}
-                        </select>
-
-                        <small class="muted">
-                          Sur téléphone, sélectionnez les éléments souhaités.
-                        </small>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="actions">
-                        <button class="btn success"
-                          data-save-user="${esc(u.id)}">
-                          Enregistrer
-                        </button>
-
-                        ${u.id!==currentUser.uid ? `
-                          <button class="btn danger"
-                            data-del-user="${esc(u.id)}">
-                            Supprimer
-                          </button>
-                        ` : ""}
-                      </div>
-                    </td>
-                  </tr>
-                `;
-              }).join("")}
-            </tbody>
-          </table>
+                <div class="user-actions">
+                  <button class="btn success" type="button"
+                    data-save-user="${esc(u.id)}">
+                    Enregistrer
+                  </button>
+                  ${u.id!==currentUser.uid ? `
+                    <button class="btn danger" type="button"
+                      data-del-user="${esc(u.id)}">
+                      Supprimer profil
+                    </button>
+                  ` : ""}
+                </div>
+              </article>
+            `;
+          }).join("") || '<p class="notice">Aucun utilisateur.</p>'}
         </div>
       </div>
     `;
 
-    // Adapter les choix d'affectation au rôle sélectionné.
-    $("pageContent").querySelectorAll("[data-role]")
-      .forEach(sel=>{
-        sel.onchange=()=>{
-          const id=sel.dataset.role;
-          const role=sel.value;
+    const filterUsers = () => {
+      const search = $("usersSearch").value.toLowerCase().trim();
+      const roleFilter = $("usersRoleFilter").value;
+      let visible = 0;
 
-          const studentBox=$("pageContent").querySelector(
-            `[data-student-assignment="${CSS.escape(id)}"]`
-          );
+      $("pageContent").querySelectorAll("[data-user-row]").forEach(row=>{
+        const role = row.dataset.userRole;
+        const text = row.dataset.userSearch||"";
+        const matchesSearch = text.includes(search);
+        const matchesRole =
+          roleFilter==="tous" ||
+          role===roleFilter ||
+          (roleFilter==="eleves" && ["eleve","etudiant"].includes(role));
 
-          const teacherBox=$("pageContent").querySelector(
-            `[data-teacher-assignment="${CSS.escape(id)}"]`
-          );
-
-          if(studentBox){
-            studentBox.style.display=
-              ["eleve","etudiant"].includes(role) ? "block" : "none";
-          }
-
-          if(teacherBox){
-            teacherBox.style.display=
-              role==="professeur" ? "block" : "none";
-          }
-        };
+        const show = matchesSearch && matchesRole;
+        row.style.display = show ? "" : "none";
+        if(show) visible++;
       });
 
-    // Enregistrer le rôle, le statut et les affectations.
+      $("usersCount").textContent =
+        visible+" utilisateur(s) affiché(s) sur "+users.length;
+    };
+
+    $("usersSearch").oninput = filterUsers;
+    $("usersRoleFilter").onchange = filterUsers;
+    filterUsers();
+
+    $("pageContent").querySelectorAll("[data-save-classe-eleve]")
+      .forEach(b=>b.onclick=async()=>{
+        const id = b.dataset.saveClasseEleve;
+        const select = $("pageContent").querySelector(
+          `[data-classe-eleve="${CSS.escape(id)}"]`
+        );
+        const classeId = select?.value||"";
+
+        try {
+          await updateDoc(doc(db,"users",id),{
+            classeId,
+            classIds: classeId ? [classeId] : [],
+            updatedAt: stamp()
+          });
+
+          toast("Classe de l'élève mise à jour.");
+          await renderUsers();
+        } catch(e) {
+          console.error(e);
+          toast(friendly(e),true);
+        }
+      });
+
+    $("pageContent").querySelectorAll("[data-affecter-prof]")
+      .forEach(b=>b.onclick=async()=>{
+        const professeurUid = b.dataset.affecterProf;
+
+        const classeId = $("pageContent").querySelector(
+          `[data-classe-prof="${CSS.escape(professeurUid)}"]`
+        )?.value||"";
+
+        const matiereId = $("pageContent").querySelector(
+          `[data-matiere-prof="${CSS.escape(professeurUid)}"]`
+        )?.value||"";
+
+        if(!classeId) return toast("Choisissez une classe.",true);
+        if(!matiereId) return toast("Choisissez une matière.",true);
+
+        try {
+          const deja = affectations.some(a=>
+            a.professeurUid===professeurUid &&
+            a.classeId===classeId &&
+            a.matiereId===matiereId
+          );
+
+          if(deja) return toast("Cette affectation existe déjà.",true);
+
+          await addDoc(collection(db,"affectations"),{
+            professeurUid,
+            classeId,
+            matiereId,
+            createdAt:stamp(),
+            updatedAt:stamp()
+          });
+
+          const professeur = users.find(u=>u.id===professeurUid);
+          if(professeur) {
+            const anciennesClasses = Array.isArray(professeur.classIds)
+              ? professeur.classIds : [];
+
+            await updateDoc(doc(db,"users",professeurUid),{
+              classIds:[...new Set([...anciennesClasses,classeId])],
+              updatedAt:stamp()
+            });
+          }
+
+          toast("Classe et matière affectées au professeur.");
+          await renderUsers();
+        } catch(e) {
+          console.error(e);
+          toast(friendly(e),true);
+        }
+      });
+
     $("pageContent").querySelectorAll("[data-save-user]")
       .forEach(b=>b.onclick=async()=>{
-        const id=b.dataset.saveUser;
-        const root=$("pageContent");
-
-        const role=root.querySelector(
+        const id = b.dataset.saveUser;
+        const role = $("pageContent").querySelector(
           `[data-role="${CSS.escape(id)}"]`
         ).value;
-
-        const status=root.querySelector(
+        const status = $("pageContent").querySelector(
           `[data-status="${CSS.escape(id)}"]`
         ).value;
 
         if(id===currentUser.uid &&
           (role!=="administrateur" || status!=="accepted")){
-          return toast(
-            "Vous ne pouvez pas retirer votre propre accès ici.",true
-          );
+          return toast("Vous ne pouvez pas retirer votre propre accès ici.",true);
         }
 
         if(role==="administrateur" && id!==currentUser.uid){
-          return toast(
-            "Le rôle administrateur ne peut pas être attribué ici.",true
-          );
+          return toast("Le rôle administrateur ne peut pas être attribué depuis cette page.",true);
         }
-
-        const studentClass=root.querySelector(
-          `[data-student-class="${CSS.escape(id)}"]`
-        )?.value || "";
-
-        const teacherClasses=Array.from(
-          root.querySelector(
-            `[data-teacher-classes="${CSS.escape(id)}"]`
-          )?.selectedOptions || []
-        ).map(o=>o.value);
-
-        const teacherMatieres=Array.from(
-          root.querySelector(
-            `[data-teacher-matieres="${CSS.escape(id)}"]`
-          )?.selectedOptions || []
-        ).map(o=>o.value);
-
-        if(["eleve","etudiant"].includes(role) &&
-          status==="accepted" && !studentClass){
-          return toast(
-            "Choisissez une classe avant d'accepter cet élève.",true
-          );
-        }
-
-        if(role==="professeur" && status==="accepted" &&
-          (!teacherClasses.length || !teacherMatieres.length)){
-          return toast(
-            "Choisissez au moins une classe et une matière pour ce professeur.",true
-          );
-        }
-
-        const btn=b;
-        btn.disabled=true;
-        btn.textContent="Enregistrement…";
 
         try {
-          const userData={
+          await updateDoc(doc(db,"users",id),{
             role,
             status,
             updatedAt:stamp()
-          };
-
-          if(["eleve","etudiant"].includes(role) && studentClass){
-            userData.classeId=studentClass;
-            userData.classIds=[studentClass];
-          }
-
-          if(role==="professeur" && teacherClasses.length){
-            userData.classeId=teacherClasses[0];
-            userData.classIds=teacherClasses;
-          }
-
-          // Créer les affectations manquantes du professeur.
-          if(role==="professeur" && status==="accepted"){
-            const missing=[];
-
-            for(const classeId of teacherClasses){
-              for(const matiereId of teacherMatieres){
-                const exists=affectations.some(a=>
-                  (a.professeurUid===id || a.professeurId===id) &&
-                  a.classeId===classeId &&
-                  a.matiereId===matiereId
-                );
-
-                if(!exists){
-                  missing.push({classeId,matiereId});
-                }
-              }
-            }
-
-            // Enregistrer le profil avant de créer les affectations.
-            await updateDoc(doc(db,"users",id),userData);
-
-            for(const a of missing){
-              const newAffectation={
-                professeurUid:id,
-                professeurId:id,
-                classeId:a.classeId,
-                matiereId:a.matiereId,
-                createdBy:currentUser.uid,
-                createdAt:stamp(),
-                updatedAt:stamp()
-              };
-
-              const ref=await addDoc(
-                collection(db,"affectations"),
-                newAffectation
-              );
-
-              affectations.push({
-                id:ref.id,
-                ...newAffectation
-              });
-            }
-          } else {
-            await updateDoc(doc(db,"users",id),userData);
-          }
+          });
 
           toast("Utilisateur mis à jour.");
           await renderUsers();
-
-        } catch(err) {
-          console.error("Erreur de mise à jour utilisateur :",err);
-          toast(
-            "Enregistrement incomplet : "+friendly(err)+
-            " Vérifiez les règles Firestore.",true
-          );
-
-          btn.disabled=false;
-          btn.textContent="Enregistrer";
+        } catch(e) {
+          console.error(e);
+          toast(friendly(e),true);
         }
       });
 
-    // Supprimer uniquement le profil Firestore, comme avant.
     $("pageContent").querySelectorAll("[data-del-user]")
       .forEach(b=>b.onclick=async()=>{
-        if(!confirm(
-          "Supprimer ce profil Firestore ? Le compte Auth ne sera pas supprimé."
-        )) return;
+        if(!confirm("Supprimer le profil Firestore ? Le compte Auth ne sera pas supprimé.")) return;
 
         try {
           await deleteDoc(doc(db,"users",b.dataset.delUser));
           toast("Profil supprimé.");
           await renderUsers();
-        } catch(err) {
-          toast(friendly(err),true);
+        } catch(e) {
+          console.error(e);
+          toast(friendly(e),true);
         }
       });
 
-  } catch(err) {
-    console.error("Erreur Gestion des utilisateurs :",err);
-    toast(
-      "Impossible de charger les utilisateurs, classes, matières ou affectations : "+
-      friendly(err),true
-    );
+  } catch(e) {
+    console.error("Erreur Gestion des utilisateurs :",e);
+    toast("Impossible de charger les utilisateurs et les affectations. Vérifiez les règles Firestore.",true);
   }
 }
 
