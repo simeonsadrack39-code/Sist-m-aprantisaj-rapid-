@@ -109,24 +109,18 @@
 <footer>
   <div style="margin-bottom:4px; font-weight:bold;">Contacter l'administration</div>
   <div style="margin-bottom:6px;">
-  Email de l'administrateur :
-  <a href="mailto:simeonsadrack39@gmail.com" style="color:var(--b); text-decoration:underline;">simeonsadrack39@gmail.com</a>
-  <br>
-  <a href="https://wa.me/50955787291?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20l%E2%80%99application%20Syst%C3%A8me%20d%E2%80%99apprentissage."
-     target="_blank"
-     rel="noopener noreferrer"
-     style="display:inline-block;margin-top:8px;padding:9px 14px;background:#25D366;color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;">
-    
-<a href="https://wa.me/50955787291"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="display:inline-block;margin-top:8px;padding:9px 14px;background:#25D366;color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;">
-  💬 Contacter l’administration sur WhatsApp
-</a>
-
-  </a>
-</div>
-  Système d’apprentissage · Espace académique
+    Email de l'administrateur :
+    <a href="mailto:simeonsadrack39@gmail.com" style="color:var(--b); text-decoration:underline;">simeonsadrack39@gmail.com</a>
+  </div>
+  <div style="margin-top:6px;">
+    <a href="https://wa.me/50955787291?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20l%E2%80%99application%20Syst%C3%A8me%20d%E2%80%99apprentissage."
+       target="_blank"
+       rel="noopener noreferrer"
+       style="display:inline-block;margin-top:4px;padding:9px 14px;background:#25D366;color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;">
+      💬 Contacter l’administration sur WhatsApp
+    </a>
+  </div>
+  <div style="margin-top:10px;">Système d’apprentissage · Espace académique</div>
 </footer>
 </main>
 </div>
@@ -239,54 +233,22 @@ catch(err){authMessage(friendly(err),"error")}
 let registrationVisible=false;
 let registrationBusy=false;
 
-/* Chargement des classes lors de l'inscription */
 async function chargerClassesInscription() {
   const selectClasse = $("regClasse");
-
   if (!selectClasse) return;
-
-  selectClasse.innerHTML =
-    `<option value="">Chargement des classes...</option>`;
-
+  selectClasse.innerHTML = `<option value="">Chargement des classes...</option>`;
   try {
     const snap = await getDocs(collection(db, "classes"));
-
-    const classes = snap.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-
+    const classes = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     if (classes.length === 0) {
-      selectClasse.innerHTML =
-        `<option value="">Aucune classe disponible</option>`;
+      selectClasse.innerHTML = `<option value="">Aucune classe disponible</option>`;
       return;
     }
-
-    selectClasse.innerHTML =
-      `<option value="">-- Choisir une classe --</option>` +
-      classes.map(c => `
-        <option value="${esc(c.id)}">
-          ${esc(c.nom || c.code || c.niveau || c.id)}
-        </option>
-      `).join("");
-
+    selectClasse.innerHTML = `<option value="">-- Choisir une classe --</option>` +
+      classes.map(c => `<option value="${esc(c.id)}">${esc(c.nom || c.code || c.niveau || c.id)}</option>`).join("");
   } catch (e) {
-    console.error(
-      "Erreur lors du chargement des classes :",
-      e
-    );
-
-    selectClasse.innerHTML =
-      `<option value="">Impossible de charger les classes</option>`;
-
-    if (typeof authMessage === "function") {
-      authMessage(
-        e.code === "permission-denied"
-          ? "Accès refusé aux classes. Vérifiez les règles Firestore."
-          : "Impossible de charger les classes. Vérifiez Firebase et votre connexion.",
-        "error"
-      );
-    }
+    console.error("Erreur lors du chargement des classes :", e);
+    selectClasse.innerHTML = `<option value="">Classes non disponibles (Saisir ou contacter admin)</option>`;
   }
 }
 
@@ -329,7 +291,7 @@ if(!email||!password){authMessage("Veuillez entrer votre email et mot de passe."
 if(password.length<6){authMessage("Le mot de passe doit comporter au moins 6 caractères.","error");return;}
 if(!nom||!prenom||!telephone){authMessage("Veuillez remplir le nom, le prénom et le téléphone.","error");return;}
 if(role==="professeur"&&!specialite){authMessage("Veuillez indiquer votre spécialité.","error");return;}
-if(role!=="professeur"&&(!niveau||!classeId)){authMessage("Veuillez indiquer votre niveau et votre classe.","error");return;}
+if(role!=="professeur"&&!niveau){authMessage("Veuillez indiquer votre niveau.","error");return;}
 
 registrationBusy=true;btn.disabled=true;
 try{
@@ -412,9 +374,6 @@ const navItems = [
   ["configuration", "⚙️ Configuration"]
 ];
 
-
-
-
 const studentPages=["accueil","annonces","devoirs","examens","notes_cours","remises","resultats","bulletin","videos","documents","horaire_cours","horaire_examens"];
 const teacherPages=["accueil","annonces","devoirs","examens","notes_cours","remises","resultats","videos","documents","horaire_cours","horaire_examens"];
 
@@ -482,7 +441,6 @@ function contacterAdministration() {
 const numero = "50955787291";
 const message = "Bonjour, je vous contacte depuis l’application Système d’apprentissage.";
 const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(message);
-
 window.open(url, "_blank");
 }
 function dash(icon,title,desc,page){return`<div class="dash-card"><div style="font-size:27px">${icon}</div><h3>${esc(title)}</h3><p>${esc(desc)}</p><button class="btn secondary" onclick="window.goPage('${page}')">Ouvrir →</button></div>`}
@@ -608,7 +566,6 @@ async function renderModule(m){
       });
     }else if(role==="professeur"){
       records = (await getDocs(query(collection(db,m.collection),where("professeurUid","==",uid)))).docs.map(d=>({id:d.id,...d.data()}));
-      // Requirement 8: Prevent teachers from seeing admin-restricted content for a class
       records = records.filter(r => r.adminOnly !== true && r.type !== "administration");
     }
   }else if(m.id==="annonces"){
@@ -1089,17 +1046,14 @@ function telechargerPhotoCours(photoData, nomFichier) {
     toast("Photo introuvable.", true);
     return;
   }
-
   try {
     const lien = document.createElement("a");
     lien.href = photoData;
     lien.download = nomFichier;
     lien.style.display = "none";
-
     document.body.appendChild(lien);
     lien.click();
     lien.remove();
-
     toast("Téléchargement lancé.");
   } catch (e) {
     window.open(photoData, "_blank");
@@ -1121,13 +1075,10 @@ async function renderNotesCours(){
     ))).docs.map(d => ({id:d.id,...d.data()}));
   } else {
     const cl = currentProfile?.classeId;
-
     if(!cl){
-      $("pageContent").innerHTML =
-        '<div class="card">Votre compte n\'a pas de classe.</div>';
+      $("pageContent").innerHTML = '<div class="card">Votre compte n\'a pas de classe.</div>';
       return;
     }
-
     notes = (await getDocs(query(
       collection(db,"notes_cours"),
       where("classeId","==",cl)
@@ -1219,19 +1170,15 @@ async function renderNotesCours(){
         toast("Note introuvable.",true);
         return;
       }
-
       const photos = Array.isArray(note.photosData)
         ? note.photosData
         : (note.photoData ? [note.photoData] : []);
-
       const index = Number(b.dataset.photoIndex);
       const photo = photos[index];
-
       if(!photo) {
         toast("Photo introuvable.",true);
         return;
       }
-
       const nom = `note-cours-${note.id}-${index + 1}.jpg`;
       telechargerPhotoCours(photo, nom);
     };
@@ -1267,7 +1214,6 @@ async function renderNotesCours(){
     };
   });
 }
-
 
 async function noteForm(n){
 const area=$("noteFormArea");
@@ -1441,14 +1387,8 @@ async function scheduleOpenForm(page,record){
 async function scheduleDelete(page, id) {
   try {
     if (!confirm("Supprimer cet emploi du temps ?")) return;
-
-    const collectionName =
-      page === "horaire_cours"
-        ? "horaires_cours"
-        : "horaires_examens";
-
+    const collectionName = page === "horaire_cours" ? "horaires_cours" : "horaires_examens";
     await deleteDoc(doc(db, collectionName, id));
-
     toast("Supprimé.");
     await renderSchedule(page);
   } catch (error) {
@@ -1459,7 +1399,6 @@ async function scheduleDelete(page, id) {
 
 async function renderUsers(){
   if(!isAdmin()) return;
-
   try {
     const [
       usersSnap,
@@ -1548,8 +1487,7 @@ async function renderUsers(){
       refuse:"Refusé"
     })[status] || status || "Non défini";
 
-    const userName = u =>
-      [u.prenom,u.nom].filter(Boolean).join(" ") || "Nom non renseigné";
+    const userName = u => [u.prenom,u.nom].filter(Boolean).join(" ") || "Nom non renseigné";
 
     $("pageContent").innerHTML = `
       <style>
@@ -1646,8 +1584,7 @@ async function renderUsers(){
         <div class="users-toolbar">
           <div class="field">
             <label for="usersSearch">Rechercher</label>
-            <input id="usersSearch"
-              placeholder="Nom, e-mail, téléphone, classe...">
+            <input id="usersSearch" placeholder="Nom, e-mail, téléphone, classe...">
           </div>
           <div class="field">
             <label for="usersRoleFilter">Filtrer par rôle</label>
@@ -1711,14 +1648,12 @@ async function renderUsers(){
                     <select data-classe-eleve="${esc(u.id)}">
                       <option value="">-- Choisir une classe --</option>
                       ${classes.map(c=>`
-                        <option value="${esc(c.id)}"
-                          ${u.classeId===c.id ? "selected" : ""}>
+                        <option value="${esc(c.id)}" ${u.classeId===c.id ? "selected" : ""}>
                           ${esc(c.nom||c.code||c.niveau||c.id)}
                         </option>
                       `).join("")}
                     </select>
-                    <button class="btn primary" type="button"
-                      data-save-classe-eleve="${esc(u.id)}">
+                    <button class="btn primary" type="button" data-save-classe-eleve="${esc(u.id)}">
                       Enregistrer la classe
                     </button>
                   </div>
@@ -1748,8 +1683,7 @@ async function renderUsers(){
                         </option>
                       `).join("")}
                     </select>
-                    <button class="btn primary" type="button"
-                      data-affecter-prof="${esc(u.id)}">
+                    <button class="btn primary" type="button" data-affecter-prof="${esc(u.id)}">
                       Affecter classe et matière
                     </button>
                   </div>
@@ -1771,21 +1705,17 @@ async function renderUsers(){
                       <option value="eleve" ${u.role==="eleve"?"selected":""}>Élève</option>
                       <option value="etudiant" ${u.role==="etudiant"?"selected":""}>Étudiant</option>
                       <option value="professeur" ${u.role==="professeur"?"selected":""}>Professeur</option>
-                      ${u.role==="administrateur"
-                        ? '<option value="administrateur" selected>Administrateur</option>'
-                        : ""}
+                      ${u.role==="administrateur" ? '<option value="administrateur" selected>Administrateur</option>' : ""}
                     </select>
                   </div>
                 </div>
 
                 <div class="user-actions">
-                  <button class="btn success" type="button"
-                    data-save-user="${esc(u.id)}">
+                  <button class="btn success" type="button" data-save-user="${esc(u.id)}">
                     Enregistrer
                   </button>
                   ${u.id!==currentUser.uid ? `
-                    <button class="btn danger" type="button"
-                      data-del-user="${esc(u.id)}">
+                    <button class="btn danger" type="button" data-del-user="${esc(u.id)}">
                       Supprimer profil
                     </button>
                   ` : ""}
@@ -1816,135 +1746,98 @@ async function renderUsers(){
         if(show) visible++;
       });
 
-      $("usersCount").textContent =
-        visible+" utilisateur(s) affiché(s) sur "+users.length;
+      $("usersCount").textContent = visible+" utilisateur(s) affiché(s) sur "+users.length;
     };
 
     $("usersSearch").oninput = filterUsers;
     $("usersRoleFilter").onchange = filterUsers;
     filterUsers();
 
-    $("pageContent").querySelectorAll("[data-save-classe-eleve]")
-      .forEach(b=>b.onclick=async()=>{
-        const id = b.dataset.saveClasseEleve;
-        const select = $("pageContent").querySelector(
-          `[data-classe-eleve="${CSS.escape(id)}"]`
-        );
-        const classeId = select?.value||"";
+    $("pageContent").querySelectorAll("[data-save-classe-eleve]").forEach(b=>b.onclick=async()=>{
+      const id = b.dataset.saveClasseEleve;
+      const select = $("pageContent").querySelector(`[data-classe-eleve="${CSS.escape(id)}"]`);
+      const classeId = select?.value||"";
+      try {
+        await updateDoc(doc(db,"users",id),{
+          classeId,
+          classIds: classeId ? [classeId] : [],
+          updatedAt: stamp()
+        });
+        toast("Classe de l'élève mise à jour.");
+        await renderUsers();
+      } catch(e) {
+        console.error(e);
+        toast(friendly(e),true);
+      }
+    });
 
-        try {
-          await updateDoc(doc(db,"users",id),{
-            classeId,
-            classIds: classeId ? [classeId] : [],
-            updatedAt: stamp()
-          });
-
-          toast("Classe de l'élève mise à jour.");
-          await renderUsers();
-        } catch(e) {
-          console.error(e);
-          toast(friendly(e),true);
-        }
-      });
-
-    $("pageContent").querySelectorAll("[data-affecter-prof]")
-      .forEach(b=>b.onclick=async()=>{
-        const professeurUid = b.dataset.affecterProf;
-
-        const classeId = $("pageContent").querySelector(
-          `[data-classe-prof="${CSS.escape(professeurUid)}"]`
-        )?.value||"";
-
-        const matiereId = $("pageContent").querySelector(
-          `[data-matiere-prof="${CSS.escape(professeurUid)}"]`
-        )?.value||"";
-
-        if(!classeId) return toast("Choisissez une classe.",true);
-        if(!matiereId) return toast("Choisissez une matière.",true);
-
-        try {
-          const deja = affectations.some(a=>
-            a.professeurUid===professeurUid &&
-            a.classeId===classeId &&
-            a.matiereId===matiereId
-          );
-
-          if(deja) return toast("Cette affectation existe déjà.",true);
-
-          await addDoc(collection(db,"affectations"),{
-            professeurUid,
-            classeId,
-            matiereId,
-            createdAt:stamp(),
+    $("pageContent").querySelectorAll("[data-affecter-prof]").forEach(b=>b.onclick=async()=>{
+      const professeurUid = b.dataset.affecterProf;
+      const classeId = $("pageContent").querySelector(`[data-classe-prof="${CSS.escape(professeurUid)}"]`)?.value||"";
+      const matiereId = $("pageContent").querySelector(`[data-matiere-prof="${CSS.escape(professeurUid)}"]`)?.value||"";
+      if(!classeId) return toast("Choisissez une classe.",true);
+      if(!matiereId) return toast("Choisissez une matière.",true);
+      try {
+        const deja = affectations.some(a=>a.professeurUid===professeurUid && a.classeId===classeId && a.matiereId===matiereId);
+        if(deja) return toast("Cette affectation existe déjà.",true);
+        await addDoc(collection(db,"affectations"),{
+          professeurUid,
+          classeId,
+          matiereId,
+          createdAt:stamp(),
+          updatedAt:stamp()
+        });
+        const professeur = users.find(u=>u.id===professeurUid);
+        if(professeur) {
+          const anciennesClasses = Array.isArray(professeur.classIds) ? professeur.classIds : [];
+          await updateDoc(doc(db,"users",professeurUid),{
+            classIds:[...new Set([...anciennesClasses,classeId])],
             updatedAt:stamp()
           });
-
-          const professeur = users.find(u=>u.id===professeurUid);
-          if(professeur) {
-            const anciennesClasses = Array.isArray(professeur.classIds)
-              ? professeur.classIds : [];
-
-            await updateDoc(doc(db,"users",professeurUid),{
-              classIds:[...new Set([...anciennesClasses,classeId])],
-              updatedAt:stamp()
-            });
-          }
-
-          toast("Classe et matière affectées au professeur.");
-          await renderUsers();
-        } catch(e) {
-          console.error(e);
-          toast(friendly(e),true);
         }
-      });
+        toast("Classe et matière affectées au professeur.");
+        await renderUsers();
+      } catch(e) {
+        console.error(e);
+        toast(friendly(e),true);
+      }
+    });
 
-    $("pageContent").querySelectorAll("[data-save-user]")
-      .forEach(b=>b.onclick=async()=>{
-        const id = b.dataset.saveUser;
-        const role = $("pageContent").querySelector(
-          `[data-role="${CSS.escape(id)}"]`
-        ).value;
-        const status = $("pageContent").querySelector(
-          `[data-status="${CSS.escape(id)}"]`
-        ).value;
+    $("pageContent").querySelectorAll("[data-save-user]").forEach(b=>b.onclick=async()=>{
+      const id = b.dataset.saveUser;
+      const role = $("pageContent").querySelector(`[data-role="${CSS.escape(id)}"]`).value;
+      const status = $("pageContent").querySelector(`[data-status="${CSS.escape(id)}"]`).value;
+      if(id===currentUser.uid && (role!=="administrateur" || status!=="accepted")){
+        return toast("Vous ne pouvez pas retirer votre propre accès ici.",true);
+      }
+      if(role==="administrateur" && id!==currentUser.uid){
+        return toast("Le rôle administrateur ne peut pas être attribué depuis cette page.",true);
+      }
+      try {
+        await updateDoc(doc(db,"users",id),{
+          role,
+          status,
+          updatedAt:stamp()
+        });
+        toast("Utilisateur mis à jour.");
+        await renderUsers();
+      } catch(e) {
+        console.error(e);
+        toast(friendly(e),true);
+      }
+    });
 
-        if(id===currentUser.uid &&
-          (role!=="administrateur" || status!=="accepted")){
-          return toast("Vous ne pouvez pas retirer votre propre accès ici.",true);
-        }
-
-        if(role==="administrateur" && id!==currentUser.uid){
-          return toast("Le rôle administrateur ne peut pas être attribué depuis cette page.",true);
-        }
-
-        try {
-          await updateDoc(doc(db,"users",id),{
-            role,
-            status,
-            updatedAt:stamp()
-          });
-
-          toast("Utilisateur mis à jour.");
-          await renderUsers();
-        } catch(e) {
-          console.error(e);
-          toast(friendly(e),true);
-        }
-      });
-
-    $("pageContent").querySelectorAll("[data-del-user]")
-      .forEach(b=>b.onclick=async()=>{
-        if(!confirm("Supprimer le profil Firestore ? Le compte Auth ne sera pas supprimé.")) return;
-
-        try {
-          await deleteDoc(doc(db,"users",b.dataset.delUser));
-          toast("Profil supprimé.");
-          await renderUsers();
-        } catch(e) {
-          console.error(e);
-          toast(friendly(e),true);
-        }
-      });
+    $("pageContent").querySelectorAll("[data-del-user]").forEach(b=>b.onclick=async()=>{
+      if(!confirm("Supprimer le profil Firestore ? Le compte Auth ne sera pas supprimé.")) return;
+      try {
+        await deleteDoc(doc(db,"users",b.dataset.delUser));
+        toast("Profil supprimé.");
+        await renderUsers();
+      } catch(e) {
+        console.error(e);
+        toast(friendly(e),true);
+      }
+    });
 
   } catch(e) {
     console.error("Erreur Gestion des utilisateurs :",e);
@@ -1981,9 +1874,9 @@ $("installBtn").addEventListener("click",async()=>{
   }
   const ua = navigator.userAgent || navigator.vendor || window.opera;
   if(/iPad|iPhone|iPod/.test(ua) && !window.MSStream){
-    alert("Pour installer Centre de formation Le pédagogue sur votre iPhone ou iPad :\n\n1. Appuyez sur le bouton de partage (icône de carré avec une flèche vers le haut) dans Safari.\n2. Faites défiler vers le bas et sélectionnez « Sur l'écran d'accueil ».\n3. Appuyez sur « Ajouter » en haut à droite.");
+    alert("Pour installer Centre de formation Le pédagogue sur votre iPhone or iPad :\n\n1. Appuyez sur le bouton de partage.\n2. Sélectionnez « Sur l'écran d'accueil ».");
   } else {
-    alert("Pour installer Centre de formation Le pédagogue :\n\n1. Ouvrez le menu ⋮ de votre navigateur (Chrome, Edge, etc.).\n2. Sélectionnez « Installer l'application » ou « Ajouter à l'écran d'accueil ».");
+    alert("Pour installer Centre de formation Le pédagogue :\n\n1. Ouvrez le menu ⋮ de votre navigateur.\n2. Sélectionnez « Installer l'application » ou « Ajouter à l'écran d'accueil ».");
   }
 });
 
