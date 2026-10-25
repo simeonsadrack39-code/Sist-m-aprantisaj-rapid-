@@ -1084,40 +1084,190 @@ throw Error("Image trop grande après compression.")
 }finally{URL.revokeObjectURL(url)}
 }
 
+function telechargerPhotoCours(photoData, nomFichier) {
+  if (!photoData) {
+    toast("Photo introuvable.", true);
+    return;
+  }
+
+  try {
+    const lien = document.createElement("a");
+    lien.href = photoData;
+    lien.download = nomFichier;
+    lien.style.display = "none";
+
+    document.body.appendChild(lien);
+    lien.click();
+    lien.remove();
+
+    toast("Téléchargement lancé.");
+  } catch (e) {
+    window.open(photoData, "_blank");
+    toast("Ouvrez la photo puis enregistrez-la.", true);
+  }
+}
+
 async function renderNotesCours(){
-const teacher=isAdmin()||isProfessor();let notes=[];
-if(isAdmin())notes=(await getDocs(collection(db,"notes_cours"))).docs.map(d=>({id:d.id,...d.data()}));
-else if(teacher)notes=(await getDocs(query(collection(db,"notes_cours"),where("professeurUid","==",currentUser.uid)))).docs.map(d=>({id:d.id,...d.data()}));
-else{
-const cl=currentProfile.classeId;if(!cl){$("pageContent").innerHTML='<div class="card">Votre compte n\'a pas de classe.</div>';return}
-notes=(await getDocs(query(collection(db,"notes_cours"),where("classeId","==",cl)))).docs.map(d=>({id:d.id,...d.data()}))
-}
-$("pageContent").innerHTML=`<div class="card"><div class="page-head"><div><h3>Notes de cours</h3></div>${teacher?'<button id="newNote" class="btn primary">＋ Ajouter une note</button>':""}</div><div id="noteFormArea"></div>${notes.map(n=>{
-let photosArr = Array.isArray(n.photosData)?n.photosData:(n.photoData?[n.photoData]:[]);
-return `<article class="course-note">
-  <h3>${esc(n.titre)}</h3>
-  <p class="muted">Classe : ${esc(nomClasseLisible(n.classeId))} · ${esc(n.matiereId||"")}</p>
-  <div class="course-text" id="noteText${esc(n.id)}">${esc(n.contenu||"")}</div>
-  ${photosArr.map((p,pIdx)=>`
-    <div style="margin:12px 0; text-align:center;">
-      <img src="${p}" alt="Photo de cours" style="max-width:100%; max-height:500px; border-radius:8px; cursor:pointer;" onclick="window.open('${p}','_blank')" title="Cliquer pour grand format">
-      <div style="margin-top:8px; display:flex; justify-content:center; gap:8px;">
-        <a class="btn primary" href="${p}" download="note-cours-${esc(n.id)}-${pIdx+1}.jpg" target="_blank" rel="noopener" style="font-size:12px; padding:6px 12px; text-decoration:none;">📥 Télécharger la photo</a>
-        <button class="btn secondary" onclick="window.open('${p}','_blank')" style="font-size:12px; padding:6px 12px;">🔍 Grand format</button>
+  const teacher = isAdmin() || isProfessor();
+  let notes = [];
+
+  if(isAdmin()){
+    notes = (await getDocs(collection(db,"notes_cours")))
+      .docs.map(d => ({id:d.id,...d.data()}));
+  } else if(teacher){
+    notes = (await getDocs(query(
+      collection(db,"notes_cours"),
+      where("professeurUid","==",currentUser.uid)
+    ))).docs.map(d => ({id:d.id,...d.data()}));
+  } else {
+    const cl = currentProfile?.classeId;
+
+    if(!cl){
+      $("pageContent").innerHTML =
+        '<div class="card">Votre compte n\'a pas de classe.</div>';
+      return;
+    }
+
+    notes = (await getDocs(query(
+      collection(db,"notes_cours"),
+      where("classeId","==",cl)
+    ))).docs.map(d => ({id:d.id,...d.data()}));
+  }
+
+  $("pageContent").innerHTML = `
+    <div class="card">
+      <div class="page-head">
+        <div><h3>Notes de cours</h3></div>
+        ${teacher ? '<button id="newNote" class="btn primary">＋ Ajouter une note</button>' : ""}
       </div>
+
+      <div id="noteFormArea"></div>
+
+      ${notes.map(n => {
+        const photosArr = Array.isArray(n.photosData)
+          ? n.photosData
+          : (n.photoData ? [n.photoData] : []);
+
+        return `
+          <article class="course-note">
+            <h3>${esc(n.titre || "")}</h3>
+
+            <p class="muted">
+              Classe : ${esc(nomClasseLisible(n.classeId))}
+              · ${esc(n.matiereId || "")}
+            </p>
+
+            <div class="course-text" id="noteText${esc(n.id)}">${esc(n.contenu || "")}</div>
+
+            ${photosArr.map((p,pIdx) => `
+              <div style="margin:12px 0;text-align:center;">
+                <img
+                  src="${esc(p)}"
+                  alt="Photo de cours"
+                  style="max-width:100%;max-height:500px;border-radius:8px;cursor:pointer;"
+                  onclick="window.open(this.src,'_blank','noopener')"
+                  title="Cliquer pour grand format"
+                >
+
+                <div style="margin-top:8px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
+                  <button
+                    class="btn primary"
+                    type="button"
+                    data-download-photo
+                    data-photo-index="${pIdx}"
+                    data-note-id="${esc(n.id)}"
+                    style="font-size:12px;padding:6px 12px;">
+                    📥 Télécharger la photo
+                  </button>
+
+                  <button
+                    class="btn secondary"
+                    type="button"
+                    onclick="window.open(this.dataset.photo,'_blank','noopener')"
+                    data-photo="${esc(p)}"
+                    style="font-size:12px;padding:6px 12px;">
+                    🔍 Grand format
+                  </button>
+                </div>
+              </div>
+            `).join("")}
+
+            <div class="actions">
+              <button class="btn secondary" data-copy-note="${esc(n.id)}">
+                Copier le texte
+              </button>
+
+              ${teacher && (isAdmin() || n.professeurUid === currentUser?.uid) ? `
+                <button class="btn secondary" data-edit-note="${esc(n.id)}">Modifier</button>
+                <button class="btn danger" data-del-note="${esc(n.id)}">Supprimer</button>
+              ` : ""}
+            </div>
+          </article>
+        `;
+      }).join("") || '<div class="notice">Aucune note de cours.</div>'}
     </div>
-  `).join("")}
-  <div class="actions">
-    <button class="btn secondary" data-copy-note="${esc(n.id)}">Copier le texte</button>
-    ${teacher&&(isAdmin()||n.professeurUid===currentUser?.uid)?`<button class="btn secondary" data-edit-note="${esc(n.id)}">Modifier</button><button class="btn danger" data-del-note="${esc(n.id)}">Supprimer</button>`:""}
-  </div>
-</article>`;
-}).join("")||'<div class="notice">Aucune note de cours.</div>'}</div>`;
-if(teacher)$("newNote").onclick=()=>noteForm(null);
-$("pageContent").querySelectorAll("[data-copy-note]").forEach(b=>b.onclick=async()=>{const t=$("noteText"+b.dataset.copyNote)?.innerText||"";try{await navigator.clipboard.writeText(t);toast("Texte copié.")}catch{toast("Copiez manuellement.",true)}});
-$("pageContent").querySelectorAll("[data-edit-note]").forEach(b=>b.onclick=()=>noteForm(notes.find(n=>n.id===b.dataset.editNote)));
-$("pageContent").querySelectorAll("[data-del-note]").forEach(b=>b.onclick=async()=>{if(confirm("Supprimer cette note ?"))try{await deleteDoc(doc(db,"notes_cours",b.dataset.delNote));await renderNotesCours();toast("Supprimé.")}catch(e){toast(friendly(e),true)}})
+  `;
+
+  if(teacher){
+    $("newNote").onclick = () => noteForm(null);
+  }
+
+  $("pageContent").querySelectorAll("[data-download-photo]").forEach(b => {
+    b.onclick = () => {
+      const note = notes.find(n => n.id === b.dataset.noteId);
+      if(!note) {
+        toast("Note introuvable.",true);
+        return;
+      }
+
+      const photos = Array.isArray(note.photosData)
+        ? note.photosData
+        : (note.photoData ? [note.photoData] : []);
+
+      const index = Number(b.dataset.photoIndex);
+      const photo = photos[index];
+
+      if(!photo) {
+        toast("Photo introuvable.",true);
+        return;
+      }
+
+      const nom = `note-cours-${note.id}-${index + 1}.jpg`;
+      telechargerPhotoCours(photo, nom);
+    };
+  });
+
+  $("pageContent").querySelectorAll("[data-copy-note]").forEach(b => {
+    b.onclick = async () => {
+      const t = $("noteText" + b.dataset.copyNote)?.innerText || "";
+      try {
+        await navigator.clipboard.writeText(t);
+        toast("Texte copié.");
+      } catch {
+        toast("Copiez manuellement.",true);
+      }
+    };
+  });
+
+  $("pageContent").querySelectorAll("[data-edit-note]").forEach(b => {
+    b.onclick = () => noteForm(notes.find(n => n.id === b.dataset.editNote));
+  });
+
+  $("pageContent").querySelectorAll("[data-del-note]").forEach(b => {
+    b.onclick = async () => {
+      if(confirm("Supprimer cette note ?")){
+        try {
+          await deleteDoc(doc(db,"notes_cours",b.dataset.delNote));
+          await renderNotesCours();
+          toast("Supprimé.");
+        } catch(e) {
+          toast(friendly(e),true);
+        }
+      }
+    };
+  });
 }
+
 
 async function noteForm(n){
 const area=$("noteFormArea");
@@ -1294,70 +1444,413 @@ async function scheduleDelete(page,id){
     toast("Supprimé.");await renderSchedule(page);
   }
 }
-
 async function renderUsers(){
   if(!isAdmin()) return;
+
   try {
-    const [usersSnap, classesSnap, affectationsSnap, etudiantsSnap, elevesSnap] = await Promise.all([
-      getDocs(collection(db,"users")), getDocs(collection(db,"classes")), getDocs(collection(db,"affectations")), getDocs(collection(db,"etudiants")), getDocs(collection(db,"eleves"))
+    const [
+      usersSnap,
+      classesSnap,
+      matieresSnap,
+      affectationsSnap
+    ] = await Promise.all([
+      getDocs(collection(db,"users")),
+      getDocs(collection(db,"classes")),
+      getDocs(collection(db,"matieres")),
+      getDocs(collection(db,"affectations"))
     ]);
-    const users = usersSnap.docs.map(d=>({id:d.id,...d.data()}));
-    const classes = classesSnap.docs.map(d=>({id:d.id,...d.data()}));
-    const classLabel = id => { const c = classes.find(x => x.id===id || x.code===id); return c ? (c.nom || c.code || c.id) : id; };
+
+    const users = usersSnap.docs.map(d=>({
+      id:d.id,...d.data()
+    }));
+
+    const classes = classesSnap.docs.map(d=>({
+      id:d.id,...d.data()
+    }));
+
+    const matieres = matieresSnap.docs.map(d=>({
+      id:d.id,...d.data()
+    }));
+
+    const affectations = affectationsSnap.docs.map(d=>({
+      id:d.id,...d.data()
+    }));
+
+    const classLabel = id => {
+      const c = classes.find(x =>
+        x.id===id || x.code===id
+      );
+      return c ? (c.nom || c.code || c.niveau || c.id) : id;
+    };
+
+    const matiereLabel = id => {
+      const m = matieres.find(x =>
+        x.id===id || x.code===id
+      );
+      return m ? (m.nom || m.code || m.id) : id;
+    };
+
+    const userName = u =>
+      [u.nom,u.prenom].filter(Boolean).join(" ") ||
+      u.email || u.id;
 
     $("pageContent").innerHTML = `
       <div class="card">
         <h3>Gestion des utilisateurs</h3>
+        <p class="muted">
+          Validez les comptes et affectez les classes et les matières.
+        </p>
+
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Nom</th><th>Email</th><th>Rôle</th><th>Statut</th><th>Actions</th></tr>
+              <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Statut</th>
+                <th>Affectation</th>
+                <th>Actions</th>
+              </tr>
             </thead>
+
             <tbody>
-              ${users.map(u=>`
-                <tr>
-                  <td>${esc([u.nom,u.prenom].filter(Boolean).join(" ")||"Sans nom")}</td>
-                  <td>${esc(u.email||"—")}</td>
-                  <td>
-                    <select data-role="${esc(u.id)}">
-                      <option value="eleve" ${u.role==="eleve"?"selected":""}>Élève</option>
-                      <option value="etudiant" ${u.role==="etudiant"?"selected":""}>Étudiant</option>
-                      <option value="professeur" ${u.role==="professeur"?"selected":""}>Professeur</option>
-                      <option value="administrateur" ${u.role==="administrateur"?"selected":""}>Administrateur</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select data-status="${esc(u.id)}">
-                      <option value="attente" ${u.status==="attente"?"selected":""}>En attente</option>
-                      <option value="accepted" ${u.status==="accepted"?"selected":""}>Accepté</option>
-                      <option value="refuse" ${u.status==="refuse"?"selected":""}>Refusé</option>
-                    </select>
-                  </td>
-                  <td>
-                    <div class="actions">
-                      <button class="btn success" data-save-user="${esc(u.id)}">Enregistrer</button>
-                      ${u.id!==currentUser.uid?`<button class="btn danger" data-del-user="${esc(u.id)}">Supprimer</button>`:""}
-                    </div>
-                  </td>
-                </tr>
-              `).join("")}
+              ${users.map(u=>{
+                const teacherAffectations = affectations.filter(a =>
+                  a.professeurUid===u.id ||
+                  a.professeurId===u.id
+                );
+
+                const teacherClasses = [
+                  ...new Set([
+                    ...(Array.isArray(u.classIds) ? u.classIds : []),
+                    ...teacherAffectations.map(a=>a.classeId),
+                    u.classeId
+                  ].filter(Boolean))
+                ];
+
+                const teacherMatieres = [
+                  ...new Set(
+                    teacherAffectations
+                      .map(a=>a.matiereId)
+                      .filter(Boolean)
+                  )
+                ];
+
+                const studentClass =
+                  u.classeId ||
+                  (Array.isArray(u.classIds) ? u.classIds[0] : "") ||
+                  "";
+
+                return `
+                  <tr>
+                    <td>${esc(userName(u))}</td>
+                    <td>${esc(u.email||"—")}</td>
+
+                    <td>
+                      <select data-role="${esc(u.id)}">
+                        <option value="eleve"
+                          ${u.role==="eleve"?"selected":""}>
+                          Élève
+                        </option>
+                        <option value="etudiant"
+                          ${u.role==="etudiant"?"selected":""}>
+                          Étudiant
+                        </option>
+                        <option value="professeur"
+                          ${u.role==="professeur"?"selected":""}>
+                          Professeur
+                        </option>
+                        ${u.role==="administrateur" ? `
+                          <option value="administrateur" selected>
+                            Administrateur
+                          </option>
+                        ` : ""}
+                      </select>
+                    </td>
+
+                    <td>
+                      <select data-status="${esc(u.id)}">
+                        <option value="attente"
+                          ${u.status==="attente"?"selected":""}>
+                          En attente
+                        </option>
+                        <option value="accepted"
+                          ${u.status==="accepted"?"selected":""}>
+                          Accepté
+                        </option>
+                        <option value="refuse"
+                          ${u.status==="refuse"?"selected":""}>
+                          Refusé
+                        </option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <div data-student-assignment="${esc(u.id)}"
+                        style="display:${
+                          ["eleve","etudiant"].includes(u.role)
+                            ? "block" : "none"
+                        }">
+                        <label>Classe de l'élève</label>
+                        <select data-student-class="${esc(u.id)}">
+                          <option value="">-- Choisir une classe --</option>
+                          ${classes.map(c=>`
+                            <option value="${esc(c.id)}"
+                              ${studentClass===c.id?"selected":""}>
+                              ${esc(c.nom||c.code||c.niveau||c.id)}
+                            </option>
+                          `).join("")}
+                        </select>
+                      </div>
+
+                      <div data-teacher-assignment="${esc(u.id)}"
+                        style="display:${
+                          u.role==="professeur" ? "block" : "none"
+                        }">
+                        <label>Classes du professeur</label>
+                        <select data-teacher-classes="${esc(u.id)}"
+                          multiple size="3"
+                          style="min-width:160px;max-width:100%">
+                          ${classes.map(c=>`
+                            <option value="${esc(c.id)}"
+                              ${teacherClasses.includes(c.id)?"selected":""}>
+                              ${esc(c.nom||c.code||c.niveau||c.id)}
+                            </option>
+                          `).join("")}
+                        </select>
+
+                        <label>Matières du professeur</label>
+                        <select data-teacher-matieres="${esc(u.id)}"
+                          multiple size="3"
+                          style="min-width:160px;max-width:100%">
+                          ${matieres.map(m=>`
+                            <option value="${esc(m.id)}"
+                              ${teacherMatieres.includes(m.id)?"selected":""}>
+                              ${esc(m.nom||m.code||m.id)}
+                            </option>
+                          `).join("")}
+                        </select>
+
+                        <small class="muted">
+                          Sur téléphone, sélectionnez les éléments souhaités.
+                        </small>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="actions">
+                        <button class="btn success"
+                          data-save-user="${esc(u.id)}">
+                          Enregistrer
+                        </button>
+
+                        ${u.id!==currentUser.uid ? `
+                          <button class="btn danger"
+                            data-del-user="${esc(u.id)}">
+                            Supprimer
+                          </button>
+                        ` : ""}
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              }).join("")}
             </tbody>
           </table>
         </div>
       </div>
     `;
 
-    $("pageContent").querySelectorAll("[data-save-user]").forEach(b=>b.onclick=async()=>{
-      const id=b.dataset.saveUser;
-      const role=$("pageContent").querySelector(`[data-role="${CSS.escape(id)}"]`).value;
-      const status=$("pageContent").querySelector(`[data-status="${CSS.escape(id)}"]`).value;
-      await updateDoc(doc(db,"users",id),{role,status,updatedAt:stamp()});
-      toast("Mis à jour.");await renderUsers();
-    });
-    $("pageContent").querySelectorAll("[data-del-user]").forEach(b=>b.onclick=async()=>{
-      if(confirm("Supprimer ce profil ?")){await deleteDoc(doc(db,"users",b.dataset.delUser));toast("Supprimé.");await renderUsers();}
-    });
-  }catch(e){toast("Erreur de chargement des utilisateurs.",true);}
+    // Adapter les choix d'affectation au rôle sélectionné.
+    $("pageContent").querySelectorAll("[data-role]")
+      .forEach(sel=>{
+        sel.onchange=()=>{
+          const id=sel.dataset.role;
+          const role=sel.value;
+
+          const studentBox=$("pageContent").querySelector(
+            `[data-student-assignment="${CSS.escape(id)}"]`
+          );
+
+          const teacherBox=$("pageContent").querySelector(
+            `[data-teacher-assignment="${CSS.escape(id)}"]`
+          );
+
+          if(studentBox){
+            studentBox.style.display=
+              ["eleve","etudiant"].includes(role) ? "block" : "none";
+          }
+
+          if(teacherBox){
+            teacherBox.style.display=
+              role==="professeur" ? "block" : "none";
+          }
+        };
+      });
+
+    // Enregistrer le rôle, le statut et les affectations.
+    $("pageContent").querySelectorAll("[data-save-user]")
+      .forEach(b=>b.onclick=async()=>{
+        const id=b.dataset.saveUser;
+        const root=$("pageContent");
+
+        const role=root.querySelector(
+          `[data-role="${CSS.escape(id)}"]`
+        ).value;
+
+        const status=root.querySelector(
+          `[data-status="${CSS.escape(id)}"]`
+        ).value;
+
+        if(id===currentUser.uid &&
+          (role!=="administrateur" || status!=="accepted")){
+          return toast(
+            "Vous ne pouvez pas retirer votre propre accès ici.",true
+          );
+        }
+
+        if(role==="administrateur" && id!==currentUser.uid){
+          return toast(
+            "Le rôle administrateur ne peut pas être attribué ici.",true
+          );
+        }
+
+        const studentClass=root.querySelector(
+          `[data-student-class="${CSS.escape(id)}"]`
+        )?.value || "";
+
+        const teacherClasses=Array.from(
+          root.querySelector(
+            `[data-teacher-classes="${CSS.escape(id)}"]`
+          )?.selectedOptions || []
+        ).map(o=>o.value);
+
+        const teacherMatieres=Array.from(
+          root.querySelector(
+            `[data-teacher-matieres="${CSS.escape(id)}"]`
+          )?.selectedOptions || []
+        ).map(o=>o.value);
+
+        if(["eleve","etudiant"].includes(role) &&
+          status==="accepted" && !studentClass){
+          return toast(
+            "Choisissez une classe avant d'accepter cet élève.",true
+          );
+        }
+
+        if(role==="professeur" && status==="accepted" &&
+          (!teacherClasses.length || !teacherMatieres.length)){
+          return toast(
+            "Choisissez au moins une classe et une matière pour ce professeur.",true
+          );
+        }
+
+        const btn=b;
+        btn.disabled=true;
+        btn.textContent="Enregistrement…";
+
+        try {
+          const userData={
+            role,
+            status,
+            updatedAt:stamp()
+          };
+
+          if(["eleve","etudiant"].includes(role) && studentClass){
+            userData.classeId=studentClass;
+            userData.classIds=[studentClass];
+          }
+
+          if(role==="professeur" && teacherClasses.length){
+            userData.classeId=teacherClasses[0];
+            userData.classIds=teacherClasses;
+          }
+
+          // Créer les affectations manquantes du professeur.
+          if(role==="professeur" && status==="accepted"){
+            const missing=[];
+
+            for(const classeId of teacherClasses){
+              for(const matiereId of teacherMatieres){
+                const exists=affectations.some(a=>
+                  (a.professeurUid===id || a.professeurId===id) &&
+                  a.classeId===classeId &&
+                  a.matiereId===matiereId
+                );
+
+                if(!exists){
+                  missing.push({classeId,matiereId});
+                }
+              }
+            }
+
+            // Enregistrer le profil avant de créer les affectations.
+            await updateDoc(doc(db,"users",id),userData);
+
+            for(const a of missing){
+              const newAffectation={
+                professeurUid:id,
+                professeurId:id,
+                classeId:a.classeId,
+                matiereId:a.matiereId,
+                createdBy:currentUser.uid,
+                createdAt:stamp(),
+                updatedAt:stamp()
+              };
+
+              const ref=await addDoc(
+                collection(db,"affectations"),
+                newAffectation
+              );
+
+              affectations.push({
+                id:ref.id,
+                ...newAffectation
+              });
+            }
+          } else {
+            await updateDoc(doc(db,"users",id),userData);
+          }
+
+          toast("Utilisateur mis à jour.");
+          await renderUsers();
+
+        } catch(err) {
+          console.error("Erreur de mise à jour utilisateur :",err);
+          toast(
+            "Enregistrement incomplet : "+friendly(err)+
+            " Vérifiez les règles Firestore.",true
+          );
+
+          btn.disabled=false;
+          btn.textContent="Enregistrer";
+        }
+      });
+
+    // Supprimer uniquement le profil Firestore, comme avant.
+    $("pageContent").querySelectorAll("[data-del-user]")
+      .forEach(b=>b.onclick=async()=>{
+        if(!confirm(
+          "Supprimer ce profil Firestore ? Le compte Auth ne sera pas supprimé."
+        )) return;
+
+        try {
+          await deleteDoc(doc(db,"users",b.dataset.delUser));
+          toast("Profil supprimé.");
+          await renderUsers();
+        } catch(err) {
+          toast(friendly(err),true);
+        }
+      });
+
+  } catch(err) {
+    console.error("Erreur Gestion des utilisateurs :",err);
+    toast(
+      "Impossible de charger les utilisateurs, classes, matières ou affectations : "+
+      friendly(err),true
+    );
+  }
 }
 
 async function renderBackup(){
