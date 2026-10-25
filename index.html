@@ -649,17 +649,51 @@ async function renderModule(m){
     let q = role==="professeur" ? query(collection(db,m.collection),where("professeurUid","==",uid)) : query(collection(db,m.collection),where("etudiantId","==",uid));
     records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
   }else if(m.id==="resultats"){
-    let q = role==="professeur" ? query(collection(db,m.collection),where("professeurUid","==",uid)) : query(collection(db,m.collection),where("etudiantId","==",uid));
-    records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
-    if(isStudent()){
-      const now = Date.now();
-      records = records.filter(res => {
-        const debut = res.dateDebut ? new Date(res.dateDebut).getTime() : 0;
-        const fin = res.dateLimite ? new Date(res.dateLimite).getTime() : Infinity;
-        return now >= debut && now <= fin;
-      });
-    }
+if(isAdmin()){
+records = (await getDocs(
+collection(db,m.collection)
+)).docs.map(d=>({id:d.id,...d.data()}));
+
+}else if(isStudent()){
+  const classeId = String(currentProfile?.classeId || "");
+
+  if(classeId){
+    const q = query(
+      collection(db,m.collection),
+      where("etudiantId","==",uid),
+      where("classeId","==",classeId)
+    );
+
+    records = (await getDocs(q))
+      .docs.map(d=>({id:d.id,...d.data()}));
+  }else{
+    records = [];
   }
+
+  const now = Date.now();
+
+  records = records.filter(res => {
+    const debut = res.dateDebut
+      ? new Date(res.dateDebut).getTime()
+      : 0;
+
+    const fin = res.dateLimite
+      ? new Date(res.dateLimite).getTime()
+      : Infinity;
+
+    return now >= debut && now <= fin;
+  });
+
+}else if(role==="professeur"){
+  records = (await getDocs(
+    query(
+      collection(db,m.collection),
+      where("professeurUid","==",uid)
+    )
+  )).docs.map(d=>({id:d.id,...d.data()}));
+}
+
+}
 
   if(isStudent() && m.id==="devoirs"){
     const now = Date.now();
