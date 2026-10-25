@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2563eb">
 <meta name="description" content="Centre de formation Le pédagogue - Plateforme éducative en ligne">
-<title>Centre de formation Le pédagogue</title>
+<title>Système d’apprentissage</title>
 <link rel="manifest" href="./manifest.json">
 <style>
 :root{--b:#2563eb;--b2:#1d4ed8;--bg:#f4f7fb;--bd:#dbe3ef;--txt:#0f172a;--mut:#64748b;--green:#16a34a;--red:#dc2626}
@@ -25,7 +25,7 @@
 <section id="authScreen">
 <div class="auth-card">
 <div class="logo">📚</div>
-<h1>Centre de formation Le pédagogue</h1>
+<h1>Système d’apprentissage</h1>
 <p>Plateforme d'apprentissage en ligne</p>
 <div id="authMessage"></div>
 <form id="loginForm">
@@ -98,7 +98,7 @@
 
 <section id="app" class="hidden">
 <header class="topbar">
-<div class="brand">📚 Centre de formation Le pédagogue</div>
+<div class="brand">📚 Système d’apprentissage</div>
 <div class="top-actions"><span id="userInfo" class="user-info"></span><button id="installBtn" class="btn secondary">📲 Installer</button><button id="logoutBtn" class="btn danger">Se déconnecter</button></div>
 </header>
 <div class="layout">
@@ -109,7 +109,7 @@
 <footer>
   <div style="margin-bottom:4px; font-weight:bold;">Contacter l'administration</div>
   <div style="margin-bottom:6px;">Email de l'administrateur : <a href="mailto:simeonsadrack39@gmail.com" style="color:var(--b); text-decoration:underline;">simeonsadrack39@gmail.com</a></div>
-  Centre de formation Le pédagogue · Espace académique
+  Système d’apprentissage · Espace académique
 </footer>
 </main>
 </div>
@@ -419,9 +419,11 @@ function nomClasseLisible(id) {
 function buildNavigation(){
 const n=$("navigation");n.innerHTML="";
 navItems.filter(([id])=>
-  id==="bulletin"
-    ? ["eleve","etudiant"].includes(currentProfile?.role)
-    : isAdmin()||(currentProfile?.role==="professeur"?teacherPages:studentPages).includes(id)
+id==="bulletin"
+? ["eleve","etudiant"].includes(currentProfile?.role)
+: id==="contacter_admin"
+? ["eleve","etudiant","professeur"].includes(currentProfile?.role)
+: isAdmin()||(currentProfile?.role==="professeur"?teacherPages:studentPages).includes(id)
 ).forEach(([id,label])=>{
 const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
 });
