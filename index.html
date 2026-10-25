@@ -461,9 +461,10 @@ $("pageContent").innerHTML='<div class="card"><b>Erreur de navigation :</b> '+es
 window.goPage=p=>openPage(p);
 function contacterAdministration() {
 const numero = "50955787291";
-const message = "Bonjour Administrateur, je vous contacte depuis l’application Centre de formation Le Pédagogue.";
+const message = "Bonjour, je vous contacte depuis l’application Système d’apprentissage.";
 const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(message);
-window.location.href = url;
+
+window.open(url, "_blank");
 }
 function dash(icon,title,desc,page){return`<div class="dash-card"><div style="font-size:27px">${icon}</div><h3>${esc(title)}</h3><p>${esc(desc)}</p><button class="btn secondary" onclick="window.goPage('${page}')">Ouvrir →</button></div>`}
 
