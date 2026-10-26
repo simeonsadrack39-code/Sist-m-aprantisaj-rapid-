@@ -674,20 +674,11 @@ async function renderModule(m){
 
     records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
 
-    // Masquer les remises hors période pour les élèves uniquement.
-    // Les professeurs conservent l'accès aux travaux à corriger.
     if(isStudent()){
       const now = Date.now();
-
       records = records.filter(r=>{
-        const debut = r.dateDebut
-          ? new Date(r.dateDebut).getTime()
-          : 0;
-
-        const fin = r.dateLimite
-          ? new Date(r.dateLimite).getTime()
-          : Infinity;
-
+        const debut = r.dateDebut ? new Date(r.dateDebut).getTime() : 0;
+        const fin = r.dateLimite ? new Date(r.dateLimite).getTime() : Infinity;
         return now >= debut && now <= fin;
       });
     }
@@ -960,13 +951,28 @@ let matieresDisponibles = [];
 let coursDisponibles = [];
 try {
   const [clsSnap, matSnap, coursSnap] = await Promise.all([
-getDocs(collection(db, "classes")),
-getDocs(collection(db, "matieres")),
-getDocs(collection(db, "cours"))
-]);
-  classesDisponibles = clsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+    getDocs(collection(db, "classes")),
+    getDocs(collection(db, "matieres")),
+    getDocs(collection(db, "cours"))
+  ]);
+  let allClasses = clsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
   matieresDisponibles = matSnap.docs.map(d => ({ id: d.id, ...d.data() }));
   coursDisponibles = coursSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+  if (isProfessor() && !isAdmin()) {
+    const affSnap = await getDocs(query(collection(db, "affectations"), where("professeurUid", "==", currentUser.uid)));
+    const assignedClassIds = affSnap.docs.map(d => d.data().classeId).filter(Boolean);
+    const userClassIds = Array.isArray(currentProfile?.classIds) ? currentProfile.classIds : [];
+    const allowedIds = [...new Set([...assignedClassIds, ...userClassIds])];
+    
+    if (allowedIds.length > 0) {
+      classesDisponibles = allClasses.filter(c => allowedIds.includes(c.id) || allowedIds.includes(c.code) || allowedIds.includes(c.nom));
+    } else {
+      classesDisponibles = allClasses;
+    }
+  } else {
+    classesDisponibles = allClasses;
+  }
 }catch(e){}
 
 area.innerHTML=`<div class="card"><h3>${r?"Modifier":"Ajouter"} — ${esc(m.title)}</h3><form id="dataForm"><div class="form-grid">${m.fields.filter(([k])=>!(isExam&&k===['questionsJSON'])).map(([k,l])=>{
@@ -1231,39 +1237,18 @@ async function renderNotesCours(){
 const maintenant = Date.now();
 
 notes = notes.filter(n => {
-const debut = n.dateDebut
-? new Date(n.dateDebut).getTime()
-: 0;
-
-const fin = n.dateLimite
-  ? new Date(n.dateLimite).getTime()
-  : Infinity;
-
+const debut = n.dateDebut ? new Date(n.dateDebut).getTime() : 0;
+const fin = n.dateLimite ? new Date(n.dateLimite).getTime() : Infinity;
 return maintenant >= debut && maintenant <= fin;
-
 });
-  // Filtrer les notes selon leur période de disponibilité.
-// Les professeurs et l'administrateur conservent l'accès à leurs notes.
+
 if (!isAdmin() && !isProfessor()) {
 const maintenant = Date.now();
-
 notes = notes.filter(n => {
-  const debut = n.dateDebut
-    ? new Date(n.dateDebut).getTime()
-    : 0;
-
-  const fin = n.dateLimite
-    ? new Date(n.dateLimite).getTime()
-    : Infinity;
-
-  return (
-    !Number.isNaN(debut) &&
-    !Number.isNaN(fin) &&
-    maintenant >= debut &&
-    maintenant <= fin
-  );
+  const debut = n.dateDebut ? new Date(n.dateDebut).getTime() : 0;
+  const fin = n.dateLimite ? new Date(n.dateLimite).getTime() : Infinity;
+  return (!Number.isNaN(debut) && !Number.isNaN(fin) && maintenant >= debut && maintenant <= fin);
 });
-
 }
   $("pageContent").innerHTML = `
     <div class="card">
@@ -1401,8 +1386,23 @@ let classesDisponibles = [];
 let matieresDisponibles = [];
 try {
   const [clsSnap, matSnap] = await Promise.all([getDocs(collection(db, "classes")), getDocs(collection(db, "matieres"))]);
-  classesDisponibles = clsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  let allClasses = clsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
   matieresDisponibles = matSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+  if (isProfessor() && !isAdmin()) {
+    const affSnap = await getDocs(query(collection(db, "affectations"), where("professeurUid", "==", currentUser.uid)));
+    const assignedClassIds = affSnap.docs.map(d => d.data().classeId).filter(Boolean);
+    const userClassIds = Array.isArray(currentProfile?.classIds) ? currentProfile.classIds : [];
+    const allowedIds = [...new Set([...assignedClassIds, ...userClassIds])];
+    
+    if (allowedIds.length > 0) {
+      classesDisponibles = allClasses.filter(c => allowedIds.includes(c.id) || allowedIds.includes(c.code) || allowedIds.includes(c.nom));
+    } else {
+      classesDisponibles = allClasses;
+    }
+  } else {
+    classesDisponibles = allClasses;
+  }
 }catch(e){}
 
 let existingPhotos = Array.isArray(n?.photosData) ? n.photosData : (n?.photoData ? [n.photoData] : []);
