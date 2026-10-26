@@ -667,57 +667,38 @@ async function renderModule(m){
         return now >= debut && now <= fin && matchesCible;
       });
     }
-}else if(m.id==="remises"){
-let q = role==="professeur"
-? query(collection(db,m.collection),where("professeurUid","==",uid))
-: query(collection(db,m.collection),where("etudiantId","==",uid));
+  }else if(m.id==="remises"){
+    let q = role==="professeur"
+    ? query(collection(db,m.collection),where("professeurUid","==",uid))
+    : query(collection(db,m.collection),where("etudiantId","==",uid));
 
-records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
+    records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
 
-// Masquer les remises hors période pour les élèves uniquement.
-// Les professeurs conservent l'accès aux travaux à corriger.
-if(isStudent()){
-  const now = Date.now();
+    // Masquer les remises hors période pour les élèves uniquement.
+    // Les professeurs conservent l'accès aux travaux à corriger.
+    if(isStudent()){
+      const now = Date.now();
 
-  records = records.filter(r=>{
-    const debut = r.dateDebut
-      ? new Date(r.dateDebut).getTime()
-      : 0;
+      records = records.filter(r=>{
+        const debut = r.dateDebut
+          ? new Date(r.dateDebut).getTime()
+          : 0;
 
-    const fin = r.dateLimite
-      ? new Date(r.dateLimite).getTime()
-      : Infinity;
+        const fin = r.dateLimite
+          ? new Date(r.dateLimite).getTime()
+          : Infinity;
 
-    return now >= debut && now <= fin;
-  });
-}
-    records = [];
+        return now >= debut && now <= fin;
+      });
+    }
+  }else if(role==="professeur"){
+    records = (await getDocs(
+      query(
+        collection(db,m.collection),
+        where("professeurUid","==",uid)
+      )
+    )).docs.map(d=>({id:d.id,...d.data()}));
   }
-
-  const now = Date.now();
-
-  records = records.filter(res => {
-    const debut = res.dateDebut
-      ? new Date(res.dateDebut).getTime()
-      : 0;
-
-    const fin = res.dateLimite
-      ? new Date(res.dateLimite).getTime()
-      : Infinity;
-
-    return now >= debut && now <= fin;
-  });
-
-}else if(role==="professeur"){
-  records = (await getDocs(
-    query(
-      collection(db,m.collection),
-      where("professeurUid","==",uid)
-    )
-  )).docs.map(d=>({id:d.id,...d.data()}));
-}
-
-}
 
   if(isStudent() && m.id==="devoirs"){
     const now = Date.now();
