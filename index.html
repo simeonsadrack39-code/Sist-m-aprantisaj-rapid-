@@ -974,34 +974,7 @@ if (k === "classeId") {
 if (k === "matiereId") {
   return `<div class="field ${long?"full":""}"><label>${esc(l)}</label><select name="matiereId"><option value="">-- Choisir une matière --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${value===mat.id||value===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`).join("")}</select></div>`;
 }
-  if (k === "coursId" || k === "codeCours") {
-return `<div class="field">
-<label>${esc(l)}</label>
-<select name="${esc(k)}" id="affectationCours">
-<option value="">-- Choisir un cours --</option>
-</select>
-
-  </div>`;
-}
-  if (k === "coursId" || k === "codeCours") {
-const classeChoisie = r?.classeId || "";
-const matiereChoisie = r?.matiereId || "";
-
-const coursFiltres = coursDisponibles.filter(c =>
-(!classeChoisie || c.classeId === classeChoisie) &&
-(!matiereChoisie || c.matiereId === matiereChoisie)
-);
-
-return "<div class="field"> <label>${esc(l)}</label> <select name="${esc(k)}"> <option value="">-- Choisir un cours --</option> ${coursFiltres.map(c => "<option value="${esc(c.code || c.id)}"
-${(value === c.code || value === c.id) ? "selected" : ""}>
-${esc(c.nom || c.code || c.id)}
-</option>`
-).join("")}
-</select>
-
-  </div>`;
-}
-  if (k === "coursId") {
+if (k === "coursId") {
   const classeChoisie = r?.classeId || "";
   const matiereChoisie = r?.matiereId || "";
 
