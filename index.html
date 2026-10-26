@@ -402,7 +402,7 @@ const modules=[
 {id:"inscriptions",title:"Inscriptions",collection:"inscriptions",fields:[["etudiantId","Compte étudiant"],["eleveId","Compte élève"],["classeId","Classe"],["anneeAcademique","Année académique"],["statut","Statut"]]},
 {id:"devoirs",title:"Devoirs",collection:"devoirs",fields:[["titre","Titre"],["description","Description"],["classeId","Classe"],["dateDebut","Date de début"],["dateLimite","Date limite"],["dureeMinutes","Durée (minutes)"]]},
 {id:"examens",title:"Examens",collection:"examens",fields:[["titre","Titre de l'examen"],["description","Description"],["classeId","Classe"],["dateDebut","Date de début"],["dateLimite","Date de fin"],["dureeMinutes","Durée en minutes"]]},
-{id:"remises",title:"Remises de travaux",collection:"remises",fields:[["devoirId","Code devoir"],["etudiantId","Compte élève"],["classeId","Classe"],["contenu","Travail remis"],["note100","Note sur 100"],["commentaire","Commentaire"],["statut","Statut"]]},
+{id:"remises",title:"Remises de travaux",collection:"remises",fields:[["devoirId","Code devoir"],["etudiantId","Compte élève"],["classeId","Classe"],["contenu","Travail remis"],["note100","Note sur 100"],["commentaire","Commentaire"],["statut","Statut"],["dateDebut","Date de début de disponibilité"],["dateLimite","Date limite de disponibilité"]]},
 {id:"resultats",title:"Résultats",collection:"resultats",fields:[["etudiantId","Compte élève"],["classeId","Classe"],["matiereId","Code matière"],["note100","Note sur 100"],["note20","Note sur 20"],["commentaire","Commentaire"],["dateDebut","Date de début de visibilité"],["dateLimite","Date de fin de visibilité"]]},
 {id:"videos",title:"Vidéos",collection:"videos",fields:[["titre","Titre"],["classeId","Classe"],["url","Lien vidéo"],["description","Description"],["dateDebut","Date de début"],["dateLimite","Date de fin"]]},
 {id:"documents",title:"Documents",collection:"documents",fields:[["titre","Titre"],["classeId","Classe"],["url","Lien document"],["description","Description"],["dateDebut","Date de début"],["dateLimite","Date de fin"]]},
@@ -474,34 +474,56 @@ if(isAdmin())for(const [id,label] of [["utilisateurs","👥 Utilisateurs"],["sau
 const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
 }
 }
-
 async function openPage(page){
-if(!approved())return;
-if(!isAdmin()&&!(currentProfile?.role==="professeur"?teacherPages:studentPages).includes(page)){
-toast("Accès non autorisé.",true);return;
+if(!approved()) return;
+
+if(!isAdmin() && !(currentProfile?.role==="professeur" ? teacherPages : studentPages).includes(page)){
+toast("Accès non autorisé.",true);
+return;
 }
+
 try{
-stopTimer();currentPage=page;await chargerNomsClasses();await chargerNomsUtilisateurs();buildNavigation();
+stopTimer();
+currentPage=page;
+await chargerNomsClasses();
+await chargerNomsUtilisateurs();
+buildNavigation();
+
 const mod=modules.find(m=>m.id===page);
-const titles={accueil:"Tableau de bord",annonces:"Annonces officielles",examens:"Examens chronométrés",notes_cours:"Notes de cours",utilisateurs:"Gestion des utilisateurs",sauvegarde:"Sauvegarde",horaire_cours:"Emploi du temps",horaire_examens:"Planning des examens",bulletin:"Mon bulletin"};
+const titles={
+  accueil:"Tableau de bord",
+  annonces:"Annonces officielles",
+  examens:"Examens chronométrés",
+  notes_cours:"Notes de cours",
+  utilisateurs:"Gestion des utilisateurs",
+  sauvegarde:"Sauvegarde",
+  horaire_cours:"Emploi du temps",
+  horaire_examens:"Planning des examens",
+  bulletin:"Mon bulletin"
+};
+
 $("pageTitle").textContent=titles[page]||mod?.title||page;
 $("pageContent").innerHTML='<div class="card">Chargement en cours...</div>';
-if(page==="accueil")return await renderDashboard();
-if(page==="examens")return await renderExams();
-if(page==="notes_cours")return await renderNotesCours();
-if(page==="horaire_cours")return await renderSchedule(page);
-if(page==="horaire_examens")return await renderSchedule(page);
-if(page==="bulletin")return await renderBulletin();
-if(page==="utilisateurs")return await renderUsers();
-if(page==="sauvegarde")return await renderBackup();
-if(page==="contacter_admin")return contacterAdministration();
-if(mod)return await renderModule(mod);
+
+if(page==="accueil") return await renderDashboard();
+if(page==="examens") return await renderExams();
+if(page==="notes_cours") return await renderNotesCours();
+if(page==="horaire_cours") return await renderSchedule(page);
+if(page==="horaire_examens") return await renderSchedule(page);
+if(page==="bulletin") return await renderBulletin();
+if(page==="utilisateurs") return await renderUsers();
+if(page==="sauvegarde") return await renderBackup();
+if(page==="contacter_admin") return contacterAdministration();
+
+if(mod) return await renderModule(mod);
+
 }catch(e){
 console.error("Erreur de navigation :",e);
 $("pageContent").innerHTML='<div class="card"><b>Erreur de navigation :</b> '+esc(friendly(e))+'</div>';
 }
 }
 window.goPage=p=>openPage(p);
+
 function contacterAdministration() {
 const numero = "50955787291";
 const message = "Bonjour, je vous contacte depuis l’application Système d’apprentissage.";
@@ -645,28 +667,30 @@ async function renderModule(m){
         return now >= debut && now <= fin && matchesCible;
       });
     }
-  }else if(m.id==="remises"){
-    let q = role==="professeur" ? query(collection(db,m.collection),where("professeurUid","==",uid)) : query(collection(db,m.collection),where("etudiantId","==",uid));
-    records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
-  }else if(m.id==="resultats"){
-if(isAdmin()){
-records = (await getDocs(
-collection(db,m.collection)
-)).docs.map(d=>({id:d.id,...d.data()}));
+}else if(m.id==="remises"){
+let q = role==="professeur"
+? query(collection(db,m.collection),where("professeurUid","==",uid))
+: query(collection(db,m.collection),where("etudiantId","==",uid));
 
-}else if(isStudent()){
-  const classeId = String(currentProfile?.classeId || "");
+records = (await getDocs(q)).docs.map(d=>({id:d.id,...d.data()}));
 
-  if(classeId){
-    const q = query(
-      collection(db,m.collection),
-      where("etudiantId","==",uid),
-      where("classeId","==",classeId)
-    );
+// Masquer les remises hors période pour les élèves uniquement.
+// Les professeurs conservent l'accès aux travaux à corriger.
+if(isStudent()){
+  const now = Date.now();
 
-    records = (await getDocs(q))
-      .docs.map(d=>({id:d.id,...d.data()}));
-  }else{
+  records = records.filter(r=>{
+    const debut = r.dateDebut
+      ? new Date(r.dateDebut).getTime()
+      : 0;
+
+    const fin = r.dateLimite
+      ? new Date(r.dateLimite).getTime()
+      : Infinity;
+
+    return now >= debut && now <= fin;
+  });
+}
     records = [];
   }
 
@@ -1003,8 +1027,21 @@ return`<div class="field ${long?"full":""}"><label>${esc(l)}</label>${long?`<tex
 $("cancelForm").onclick=()=>area.innerHTML="";
 if(isExam)setupQuestionBuilder(parseQuestions(r||{}));
 $("dataForm").onsubmit=async e=>{
-e.preventDefault();const fd=new FormData(e.currentTarget),data={};
-for(const[k,v]of fd.entries())data[k]=String(v).trim();
+e.preventDefault();const fd = new FormData(e.currentTarget), data = {};
+for (const [k, v] of fd.entries()) data[k] = String(v).trim();
+
+if (m.id === "remises") {
+data.dateDebut = String(fd.get("dateDebut") || "").trim();
+data.dateLimite = String(fd.get("dateLimite") || "").trim();
+
+if (
+data.dateDebut &&
+data.dateLimite &&
+new Date(data.dateLimite).getTime() <= new Date(data.dateDebut).getTime()
+) {
+return toast("La date limite doit être postérieure à la date de début.", true);
+}
+}
 if(["devoirs","examens","remises","resultats","affectations","videos","documents","annonces"].includes(m.id)){
   if(!data.professeurUid) {data.professeurUid=currentUser.uid;data.professeurId=currentUser.uid;}
 }
@@ -1210,7 +1247,43 @@ async function renderNotesCours(){
       where("classeId","==",cl)
     ))).docs.map(d => ({id:d.id,...d.data()}));
   }
+const maintenant = Date.now();
 
+notes = notes.filter(n => {
+const debut = n.dateDebut
+? new Date(n.dateDebut).getTime()
+: 0;
+
+const fin = n.dateLimite
+  ? new Date(n.dateLimite).getTime()
+  : Infinity;
+
+return maintenant >= debut && maintenant <= fin;
+
+});
+  // Filtrer les notes selon leur période de disponibilité.
+// Les professeurs et l'administrateur conservent l'accès à leurs notes.
+if (!isAdmin() && !isProfessor()) {
+const maintenant = Date.now();
+
+notes = notes.filter(n => {
+  const debut = n.dateDebut
+    ? new Date(n.dateDebut).getTime()
+    : 0;
+
+  const fin = n.dateLimite
+    ? new Date(n.dateLimite).getTime()
+    : Infinity;
+
+  return (
+    !Number.isNaN(debut) &&
+    !Number.isNaN(fin) &&
+    maintenant >= debut &&
+    maintenant <= fin
+  );
+});
+
+}
   $("pageContent").innerHTML = `
     <div class="card">
       <div class="page-head">
@@ -1351,9 +1424,51 @@ try {
   matieresDisponibles = matSnap.docs.map(d => ({ id: d.id, ...d.data() }));
 }catch(e){}
 
-let existingPhotos = Array.isArray(n?.photosData)?n.photosData:(n?.photoData?[n.photoData]:[]);
-area.innerHTML=`<div class="card"><h3>${n?"Modifier":"Nouvelle"} note de cours</h3><form id="noteForm"><div class="field"><label>Titre *</label><input name="titre" required value="${esc(n?.titre||"")}"></div><div class="form-grid"><div class="field"><label>Classe *</label><select name="classeId" required><option value="">-- Choisir une classe --</option>${classesDisponibles.map(c=>`<option value="${esc(c.id)}" ${n?.classeId===c.id||n?.classeId===c.code?"selected":""}>${esc(c.nom||c.code||c.id)}</option>`)}</select></div><div class="field"><label>Matière</label><select name="matiereId"><option value="">-- Choisir une matière --</option>${matieresDisponibles.map(mat=>`<option value="${esc(mat.id)}" ${n?.matiereId===mat.id||n?.matiereId===mat.code?"selected":""}>${esc(mat.nom||mat.code||mat.id)}</option>`)}</select></div></div><div class="field"><label>Texte du cours</label><textarea name="contenu" maxlength="12000">${esc(n?.contenu||"")}</textarea></div><div class="field"><label>Photos / Pages collées</label><div class="actions"><button class="btn primary" id="choosePhotosBtn" type="button">🖼️ Choisir des photos</button></div><input id="choosePhotosInput" type="file" accept="image/*" multiple hidden><div id="photosPreview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;"></div></div><div class="actions"><button class="btn primary" id="saveNote" type="submit">Enregistrer</button><button class="btn secondary" id="cancelNote" type="button">Annuler</button></div></form></div>`;
+let existingPhotos = Array.isArray(n?.photosData) ? n.photosData : (n?.photoData ? [n.photoData] : []);
 
+area.innerHTML = `<div class="card">
+
+<h3>${n ? "Modifier" : "Nouvelle"} note de cours</h3>
+<form id="noteForm"><div class="field">
+<label>Titre *</label>
+<input name="titre" required value="${esc(n?.titre || "")}">
+</div><div class="form-grid">
+<div class="field">
+<label>Classe *</label>
+<select name="classeId" required>
+<option value="">-- Choisir une classe --</option>
+${classesDisponibles.map(c => `<option value="${esc(c.id)}" ${n?.classeId === c.id || n?.classeId === c.code ? "selected" : ""}>${esc(c.nom || c.code || c.id)}</option>`).join("")}
+</select>
+</div><div class="field">
+<label>Matière</label>
+<select name="matiereId">
+<option value="">-- Choisir une matière --</option>
+${matieresDisponibles.map(mat => `<option value="${esc(mat.id)}" ${n?.matiereId === mat.id || n?.matiereId === mat.code ? "selected" : ""}>${esc(mat.nom || mat.code || mat.id)}</option>`).join("")}
+</select>
+</div>
+</div><div class="field">
+<label>Texte du cours</label>
+<textarea name="contenu" maxlength="12000">${esc(n?.contenu || "")}</textarea>
+</div><div class="form-grid">
+<div class="field">
+<label>Date de début de disponibilité</label>
+<input type="datetime-local" name="dateDebut" value="${esc(n?.dateDebut ? String(n.dateDebut).slice(0,16) : "")}">
+</div><div class="field">
+<label>Date limite de disponibilité</label>
+<input type="datetime-local" name="dateLimite" value="${esc(n?.dateLimite ? String(n.dateLimite).slice(0,16) : "")}">
+</div>
+</div><div class="field">
+<label>Photos / Pages collées</label>
+<div class="actions">
+<button class="btn primary" id="choosePhotosBtn" type="button">🖼️ Choisir des photos</button>
+</div>
+<input id="choosePhotosInput" type="file" accept="image/*" multiple hidden>
+<div id="photosPreview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;"></div>
+</div><div class="actions">
+<button class="btn primary" id="saveNote" type="submit">Enregistrer</button>
+<button class="btn secondary" id="cancelNote" type="button">Annuler</button>
+</div></form>
+</div>`;
 let selectedPhotos=[...existingPhotos];
 function renderPhotoPreviews(){
   const prev=$("photosPreview");if(!prev)return;
@@ -1370,16 +1485,57 @@ $("choosePhotosInput").onchange=async e=>{
   }
   e.target.value="";renderPhotoPreviews();toast("Photo ajoutée.");
 };
-$("noteForm").onsubmit=async e=>{
+$("noteForm").onsubmit = async e => {
 e.preventDefault();
-const btn=$("saveNote");btn.disabled=true;
-try{
-const fd=new FormData(e.currentTarget);
-const data={titre:String(fd.get("titre")||"").trim(),classeId:String(fd.get("classeId")||"").trim(),matiereId:String(fd.get("matiereId")||"").trim(),contenu:String(fd.get("contenu")||"").trim(),photosData:selectedPhotos,professeurUid:currentUser.uid,updatedAt:stamp()};
-if(!data.titre||!data.classeId)throw Error("Titre et classe obligatoires.");
-if(n)await updateDoc(doc(db,"notes_cours",n.id),data);else{data.createdAt=stamp();await addDoc(collection(db,"notes_cours"),data);}
-toast("Note enregistrée.");await renderNotesCours();
-}catch(err){toast(friendly(err),true);}finally{btn.disabled=false;}
+
+const btn = $("saveNote");
+btn.disabled = true;
+
+try {
+const fd = new FormData(e.currentTarget);
+
+const dateDebut = String(fd.get("dateDebut") || "").trim();
+const dateLimite = String(fd.get("dateLimite") || "").trim();
+
+const data = {
+  titre: String(fd.get("titre") || "").trim(),
+  classeId: String(fd.get("classeId") || "").trim(),
+  matiereId: String(fd.get("matiereId") || "").trim(),
+  contenu: String(fd.get("contenu") || "").trim(),
+  dateDebut: dateDebut,
+  dateLimite: dateLimite,
+  photosData: selectedPhotos,
+  professeurUid: currentUser.uid,
+  updatedAt: stamp()
+};
+
+if (!data.titre || !data.classeId) {
+  throw Error("Titre et classe obligatoires.");
+}
+
+if (
+  dateDebut &&
+  dateLimite &&
+  new Date(dateLimite).getTime() <= new Date(dateDebut).getTime()
+) {
+  throw Error("La date limite doit être postérieure à la date de début.");
+}
+
+if (n) {
+  await updateDoc(doc(db, "notes_cours", n.id), data);
+} else {
+  data.createdAt = stamp();
+  await addDoc(collection(db, "notes_cours"), data);
+}
+
+toast("Note enregistrée.");
+await renderNotesCours();
+
+} catch (err) {
+toast(friendly(err), true);
+} finally {
+btn.disabled = false;
+}
 };
 }
 
