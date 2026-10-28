@@ -15,7 +15,8 @@
 .btn{border:0;border-radius:8px;padding:10px 13px;font-weight:bold;display:inline-flex;align-items:center;justify-content:center;gap:5px}.primary{background:var(--b);color:#fff}.secondary{background:#eff6ff;color:var(--b)}.danger{background:#fee2e2;color:#b91c1c}.success{background:#dcfce7;color:#15803d}.block{width:100%;margin-top:9px}.google{width:100%;background:#111827;color:#fff;margin-top:10px}
 .message,.notice{padding:11px;border-radius:8px;margin:12px 0;background:#dbeafe;color:#1e40af;line-height:1.5}.message.error{background:#fee2e2;color:#991b1b}.message.success{background:#dcfce7;color:#166534}
 .topbar{background:white;border-bottom:1px solid var(--bd);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:5}.brand{font-weight:bold;color:var(--b);display:flex;align-items:center;gap:10px}.brand img{width:38px;height:38px;object-fit:contain}.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.user-info{font-size:12px;color:var(--mut)}
-.layout{display:flex;min-height:calc(100vh - 65px)}.sidebar{width:245px;flex-shrink:0;background:#0f172a;color:white;padding:12px}.sidebar-title{font-size:12px;text-transform:uppercase;opacity:.75;padding:10px}.nav-btn{display:block;width:100%;text-align:left;border:0;border-radius:7px;background:transparent;color:#cbd5e1;padding:10px;margin:2px 0}.nav-btn:hover,.nav-btn.active{background:var(--b);color:white}
+.layout{display:flex;min-height:calc(100vh - 65px)}.sidebar{width:245px;flex-shrink:0;background:#0f172a;color:white;padding:12px}.sidebar-title{font-size:12px;text-transform:uppercase;opacity:.75;padding:10px}.nav-btn{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;border:0;border-radius:7px;background:transparent;color:#cbd5e1;padding:10px;margin:2px 0}.nav-btn:hover,.nav-btn.active{background:var(--b);color:white}
+.nav-badge{background:var(--red);color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;font-weight:bold;display:inline-block}
 .main{flex:1;min-width:0;padding:22px}.page-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.page-head h2{margin:0;color:var(--b)}.card,.stat,.dash-card{background:white;border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:16px}.card h3,.dash-card h3{color:var(--b);margin-top:0}.stats-grid,.dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}.stat small{color:var(--mut)}.stat strong{display:block;font-size:27px;color:var(--b);margin-top:8px}.dash-card{display:flex;flex-direction:column;gap:9px}.dash-card p{color:var(--mut);font-size:14px;line-height:1.5;flex:1}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;background:white}th,td{border-bottom:1px solid var(--bd);padding:10px;text-align:left;font-size:13px;overflow-wrap:anywhere}th{background:#f8fafc;color:var(--b)}.actions{display:flex;gap:6px;flex-wrap:wrap}.actions .btn{font-size:12px;padding:7px 9px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}.muted{color:var(--mut)}.welcome{background:linear-gradient(120deg,#2563eb,#1e40af);color:white}.welcome h3{color:white}.welcome p{line-height:1.6}.badge{display:inline-block;padding:4px 8px;border-radius:20px;font-size:11px;background:#dcfce7;color:#15803d}.wait{background:#ffedd5;color:#c2410c}
 .exam-question,.course-note{padding:15px;border:1px solid var(--bd);border-radius:10px;margin:12px 0;background:#fff}.exam-question h4{color:var(--b);margin:0 0 10px}.exam-option{display:flex;align-items:center;gap:8px;padding:8px;background:#f8faff;margin:5px 0;border-radius:6px}.exam-option input{width:auto}.exam-option span{flex:1}.timer{font-size:26px;text-align:center;padding:13px;background:#eff6fc;border:2px solid var(--bd);border-radius:10px;position:sticky;top:70px;z-index:3}.timer.warning{background:#fee2e2;color:#991b1b}.course-text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}.course-note img{max-width:100%;max-height:600px;display:block;margin:12px auto}#toast{position:fixed;bottom:18px;right:18px;background:#0f172a;color:white;padding:13px 16px;border-radius:8px;z-index:99;max-width:90%}footer{text-align:center;padding:20px;color:var(--mut);font-size:12px}
 @media(max-width:800px){.layout{display:block}.sidebar{width:100%;display:flex;flex-wrap:wrap;gap:3px}.sidebar-title{width:100%}.nav-btn{width:auto;flex:1 1 130px;font-size:13px}.main{padding:12px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.topbar{position:static}.timer{top:5px}}
@@ -459,6 +460,98 @@ function nomClasseLisible(id) {
   return cacheNomsClasses[id] || id;
 }
 
+let notificationCounts = {};
+async function updateNotificationCounts(){
+  if(!currentUser || !isStudent()) return;
+  try{
+    const cl = currentProfile?.classeId || "";
+    const uid = currentUser.uid;
+    const cacheKey = "seen_items_" + uid;
+    let seenMap = {};
+    try { seenMap = JSON.parse(localStorage.getItem(cacheKey) || "{}"); } catch(e){}
+
+    const [devSnap, exSnap, notesSnap, remSnap, resSnap, bullSnap, vidSnap, docSnap, annSnap, hcSnap, heSnap] = await Promise.all([
+      getDocs(query(collection(db, "devoirs"), where("classeId", "==", cl))),
+      getDocs(query(collection(db, "examens"), where("classeId", "==", cl))),
+      getDocs(query(collection(db, "notes_cours"), where("classeId", "==", cl))),
+      getDocs(query(collection(db, "remises"), where("etudiantId", "==", uid))),
+      getDocs(query(collection(db, "resultats"), where("etudiantId", "==", uid))),
+      getDocs(query(collection(db, "bulletins"), where("etudiantId", "==", uid), where("publie", "==", true))),
+      getDocs(query(collection(db, "videos"), where("classeId", "==", cl))),
+      getDocs(query(collection(db, "documents"), where("classeId", "==", cl))),
+      getDocs(collection(db, "annonces")),
+      getDocs(query(collection(db, "horaires_cours"), where("classeId", "==", cl))),
+      getDocs(query(collection(db, "horaires_examens"), where("classeId", "==", cl)))
+    ]);
+
+    const countUnseen = (items, prefix) => {
+      return items.filter(d => {
+        const id = prefix + "_" + d.id;
+        return !seenMap[id];
+      }).length;
+    };
+
+    const devList = devSnap.docs.map(d=>({id:d.id}));
+    const exList = exSnap.docs.map(d=>({id:d.id}));
+    const notesList = notesSnap.docs.map(d=>({id:d.id}));
+    const remList = remSnap.docs.map(d=>({id:d.id}));
+    const resList = resSnap.docs.map(d=>({id:d.id}));
+    const bullList = bullSnap.docs.map(d=>({id:d.id}));
+    const vidList = vidSnap.docs.map(d=>({id:d.id}));
+    const docList = docSnap.docs.map(d=>({id:d.id}));
+    const annList = annSnap.docs.map(d=>({id:d.id}));
+    const hcList = hcSnap.docs.map(d=>({id:d.id}));
+    const heList = heSnap.docs.map(d=>({id:d.id}));
+
+    notificationCounts = {
+      devoirs: countUnseen(devList, "devoirs"),
+      examens: countUnseen(exList, "examens"),
+      notes_cours: countUnseen(notesList, "notes_cours"),
+      remises: countUnseen(remList, "remises"),
+      resultats: countUnseen(resList, "resultats"),
+      bulletin: countUnseen(bullList, "bulletin"),
+      videos: countUnseen(vidList, "videos"),
+      documents: countUnseen(docList, "documents"),
+      annonces: countUnseen(annList, "annonces"),
+      horaire_cours: countUnseen(hcList, "horaire_cours"),
+      horaire_examens: countUnseen(heList, "horaire_examens")
+    };
+  }catch(e){}
+}
+
+async function markPageAsSeen(page){
+  if(!currentUser || !isStudent()) return;
+  try{
+    const cl = currentProfile?.classeId || "";
+    const uid = currentUser.uid;
+    const cacheKey = "seen_items_" + uid;
+    let seenMap = {};
+    try { seenMap = JSON.parse(localStorage.getItem(cacheKey) || "{}"); } catch(e){}
+
+    let snap;
+    if(page==="devoirs") snap = await getDocs(query(collection(db, "devoirs"), where("classeId", "==", cl)));
+    else if(page==="examens") snap = await getDocs(query(collection(db, "examens"), where("classeId", "==", cl)));
+    else if(page==="notes_cours") snap = await getDocs(query(collection(db, "notes_cours"), where("classeId", "==", cl)));
+    else if(page==="remises") snap = await getDocs(query(collection(db, "remises"), where("etudiantId", "==", uid)));
+    else if(page==="resultats") snap = await getDocs(query(collection(db, "resultats"), where("etudiantId", "==", uid)));
+    else if(page==="bulletin") snap = await getDocs(query(collection(db, "bulletins"), where("etudiantId", "==", uid), where("publie", "==", true)));
+    else if(page==="videos") snap = await getDocs(query(collection(db, "videos"), where("classeId", "==", cl)));
+    else if(page==="documents") snap = await getDocs(query(collection(db, "documents"), where("classeId", "==", cl)));
+    else if(page==="annonces") snap = await getDocs(collection(db, "annonces"));
+    else if(page==="horaire_cours") snap = await getDocs(query(collection(db, "horaires_cours"), where("classeId", "==", cl)));
+    else if(page==="horaire_examens") snap = await getDocs(query(collection(db, "horaires_examens"), where("classeId", "==", cl)));
+
+    if(snap){
+      snap.docs.forEach(d => {
+        seenMap[page + "_" + d.id] = true;
+      });
+      localStorage.setItem(cacheKey, JSON.stringify(seenMap));
+      await updateNotificationCounts();
+      buildNavigation();
+    }
+  }catch(e){}
+}
+
 function buildNavigation(){
 const n=$("navigation");n.innerHTML="";
 navItems.filter(([id])=>
@@ -468,7 +561,10 @@ id==="bulletin"
 ? ["eleve","etudiant","professeur"].includes(currentProfile?.role)
 : isAdmin()||(currentProfile?.role==="professeur"?teacherPages:studentPages).includes(id)
 ).forEach(([id,label])=>{
-const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
+const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");
+const count = isStudent() ? (notificationCounts[id] || 0) : 0;
+b.innerHTML = `<span>${esc(label)}</span>${count > 0 ? `<span class="nav-badge">${count}</span>` : ""}`;
+b.onclick=()=>openPage(id);n.appendChild(b)
 });
 if(isAdmin())for(const [id,label] of [["utilisateurs","👥 Utilisateurs"],["sauvegarde","💾 Sauvegarde"]]){
 const b=document.createElement("button");b.className="nav-btn"+(id===currentPage?" active":"");b.textContent=label;b.onclick=()=>openPage(id);n.appendChild(b)
@@ -487,7 +583,14 @@ stopTimer();
 currentPage=page;
 await chargerNomsClasses();
 await chargerNomsUtilisateurs();
+if(isStudent()){
+  await updateNotificationCounts();
+}
 buildNavigation();
+
+if(isStudent()){
+  await markPageAsSeen(page);
+}
 
 const mod=modules.find(m=>m.id===page);
 const titles={
