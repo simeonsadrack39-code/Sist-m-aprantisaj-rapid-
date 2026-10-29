@@ -242,19 +242,59 @@ function nomUtilisateurLisible(uid) {
   if(!uid) return "Non défini";
   return cacheNomsUtilisateurs[uid] || uid;
 }
+async function ensureProfile(user) {
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+  const email = (user.email || "").toLowerCase();
+  const admin = email === ADMIN_EMAIL.toLowerCase();
 
-async function ensureProfile(user){
-const ref=doc(db,"users",user.uid),snap=await getDoc(ref),email=(user.email||"").toLowerCase(),admin=email===ADMIN_EMAIL;
-if(!snap.exists()){
-const p={uid:user.uid,email:user.email||"",role:admin?"administrateur":"eleve",status:admin?"accepted":"attente",createdAt:stamp(),updatedAt:stamp()};
-await setDoc(ref,p);return p;
+  // Pa kreye otomatikman pwofil elèv oswa pwofesè
+  // ki poko anrejistre.
+  if (!snap.exists()) {
+    if (!admin) {
+      return null;
+    }
+
+    const profile = {
+      uid: user.uid,
+      email: user.email || "",
+      role: "administrateur",
+      status: "accepted",
+      createdAt: stamp(),
+      updatedAt: stamp()
+    };
+
+    await setDoc(ref, profile);
+    return profile;
+  }
+
+  let profile = snap.data();
+
+  // Konsève privilèj administratè a.
+  if (
+    admin &&
+    (
+      profile.role !== "administrateur" ||
+      profile.status !== "accepted"
+    )
+  ) {
+    await updateDoc(ref, {
+      role: "administrateur",
+      status: "accepted",
+      email: user.email || ADMIN_EMAIL,
+      updatedAt: stamp()
+    });
+
+    profile = {
+      ...profile,
+      role: "administrateur",
+      status: "accepted"
+    };
+  }
+
+  return profile;
 }
-let p=snap.data();
-if(admin&&(p.role!=="administrateur"||p.status!=="accepted")){
-await updateDoc(ref,{role:"administrateur",status:"accepted",email:user.email||ADMIN_EMAIL,updatedAt:stamp()});p={...p,role:"administrateur",status:"accepted"}
-}
-return p;
-}
+
 
 async function checkAppOpenState(){
   if(isAdmin()) return true;
@@ -270,6 +310,17 @@ async function completeLogin(user){
 if(loginLock)return;loginLock=true;currentUser=user;
 try{
 currentProfile=await ensureProfile(user);
+  if (!currentProfile) {
+  await signOut(auth).catch(() => {});
+  currentUser = null;
+  currentProfile = null;
+
+  authMessage(
+    "Aucun profil trouvé. Veuillez créer votre compte avant de vous connecter.",
+    "error"
+  );
+  return;
+}
 const isOpen = await checkAppOpenState();
 if(!isOpen && !isAdmin()){
 await signOut(auth);currentUser=null;currentProfile=null;
