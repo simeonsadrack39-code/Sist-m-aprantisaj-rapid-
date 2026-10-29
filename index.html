@@ -460,19 +460,12 @@ authMessage("Compte créé avec succès. Veuillez vérifier votre email. L'admin
 finally{registrationBusy=false;btn.disabled=false;}
 });
 $("googleBtn").addEventListener("click", async () => {
-  const email = $("loginEmail").value.trim().toLowerCase();
-  const password = $("loginPassword").value;
-
-  // Konsève koneksyon Google dirèk administratè a.
-  if (email === ADMIN_EMAIL.toLowerCase()) {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (e) {
-      authMessage(friendly(e), "error");
-    }
-    return;
+  try {
+    await signInWithPopup(auth, googleProvider);
+  } catch (e) {
+    console.error("Erreur de connexion Google :", e);
+    authMessage(friendly(e), "error");
   }
-
   // Pou yon elèv oswa pwofesè, verifye kont ki deja egziste a.
   if (!email || !password) {
     authMessage(
