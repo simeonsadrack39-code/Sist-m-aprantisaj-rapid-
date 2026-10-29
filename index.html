@@ -195,7 +195,7 @@ padding: 7px 8px;
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,signOut,sendEmailVerification,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,linkWithPopup,GoogleAuthProvider,signOut,sendEmailVerification,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import{getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,getDocs,addDoc,serverTimestamp,query,where}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -427,16 +427,103 @@ authMessage("Compte créé avec succès. Veuillez vérifier votre email. L'admin
 }catch(e){authMessage(friendly(e),"error")}
 finally{registrationBusy=false;btn.disabled=false;}
 });
+$("googleBtn").addEventListener("click", async () => {
+  const email = $("loginEmail").value.trim().toLowerCase();
+  const password = $("loginPassword").value;
 
-$("googleBtn").addEventListener("click",async()=>{
-try{await signInWithPopup(auth,googleProvider)}catch(e){authMessage(friendly(e),"error")}
+  // Konsève koneksyon Google dirèk administratè a.
+  if (email === ADMIN_EMAIL.toLowerCase()) {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (e) {
+      authMessage(friendly(e), "error");
+    }
+    return;
+  }
+
+  // Pou yon elèv oswa pwofesè, verifye kont ki deja egziste a.
+  if (!email || !password) {
+    authMessage(
+      "Entrez votre adresse e-mail et votre mot de passe pour associer votre compte Google.",
+      "error"
+    );
+    return;
+  }
+
+  try {
+    authMessage("Vérification de votre compte en cours…");
+
+    const credential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user = credential.user;
+    const profileRef = doc(db, "users", user.uid);
+    const profileSnap = await getDoc(profileRef);
+
+    if (!profileSnap.exists()) {
+      await signOut(auth).catch(() => {});
+      authMessage(
+        "Aucun profil trouvé pour ce compte. Vérifiez votre inscription.",
+        "error"
+      );
+      return;
+    }
+
+    const profile = profileSnap.data();
+    const role = String(profile.role || "").toLowerCase();
+
+    if (
+      profile.status !== "accepted" ||
+      !["eleve", "etudiant", "professeur"].includes(role)
+    ) {
+      await signOut(auth).catch(() => {});
+      authMessage(
+        profile.status === "refuse"
+          ? "Votre demande a été refusée."
+          : "Votre compte doit être approuvé par l'administrateur avant d'associer Google.",
+        "error"
+      );
+      return;
+    }
+
+    // Si Google est déjà associé, le compte peut être utilisé directement.
+    if (
+      user.providerData.some(
+        provider => provider.providerId === "google.com"
+      )
+    ) {
+      authMessage(
+        "Google est déjà associé à votre compte. Déconnectez-vous puis utilisez le bouton Google pour vous connecter.",
+        "success"
+      );
+      return;
+    }
+
+    // Associe Google au compte existant et approuvé.
+    await linkWithPopup(user, googleProvider);
+
+    authMessage(
+      "Votre compte Google est maintenant associé. Vous pourrez utiliser Google pour vos prochaines connexions.",
+      "success"
+    );
+
+  } catch (e) {
+    console.error("Association Google :", e);
+
+    if (e.code === "auth/credential-already-in-use") {
+      authMessage(
+        "Ce compte Google est déjà associé à un autre compte. Contactez l'administrateur pour résoudre ce conflit.",
+        "error"
+      );
+    } else {
+      authMessage(friendly(e), "error");
+    }
+  }
 });
-$("resetBtn").addEventListener("click",async()=>{
-const email=$("loginEmail").value.trim();
-if(!email)return authMessage("Veuillez entrer votre adresse email.","error");
-try{await sendPasswordResetEmail(auth,email);authMessage("Un email de récupération a été envoyé si le compte existe.","success")}
-catch(e){authMessage(friendly(e),"error")}
-});
+
 $("logoutBtn").addEventListener("click",async()=>{if(confirm("Voulez-vous vous déconnecter ?")){stopTimer();await signOut(auth)}});
 $("refreshBtn").addEventListener("click",()=>openPage(currentPage));
 
