@@ -349,23 +349,55 @@ catch(err){authMessage(friendly(err),"error")}
 
 let registrationVisible=false;
 let registrationBusy=false;
-
+  
 async function chargerClassesInscription() {
   const selectClasse = $("regClasse");
   if (!selectClasse) return;
-  selectClasse.innerHTML = `<option value="">Chargement des classes...</option>`;
+
+  selectClasse.innerHTML =
+    '<option value="">Chargement des classes...</option>';
+  selectClasse.disabled = true;
+
   try {
     const snap = await getDocs(collection(db, "classes"));
-    const classes = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    const classes = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .filter(c => c.actif !== false && c.active !== false)
+      .sort((a, b) =>
+        String(a.nom || a.code || a.niveau || "")
+          .localeCompare(
+            String(b.nom || b.code || b.niveau || ""),
+            "fr"
+          )
+      );
+
     if (classes.length === 0) {
-      selectClasse.innerHTML = `<option value="">Aucune classe disponible</option>`;
+      selectClasse.innerHTML =
+        '<option value="">Aucune classe disponible</option>';
       return;
     }
-    selectClasse.innerHTML = `<option value="">-- Choisir une classe --</option>` +
-      classes.map(c => `<option value="${esc(c.id)}">${esc(c.nom || c.code || c.niveau || c.id)}</option>`).join("");
+
+    selectClasse.innerHTML =
+      '<option value="">Choisir votre classe</option>' +
+      classes.map(c => `
+        <option value="${esc(c.id)}">
+          ${esc(c.nom || c.code || c.niveau || c.id)}
+        </option>
+      `).join("");
+
   } catch (e) {
-    console.error("Erreur lors du chargement des classes :", e);
-    selectClasse.innerHTML = `<option value="">Classes non disponibles (Saisir ou contacter admin)</option>`;
+    console.error("Erreur chargement classes inscription :", e);
+
+    selectClasse.innerHTML =
+      '<option value="">Impossible de charger les classes</option>';
+
+    authMessage(
+      "Impossible de charger les classes. Vérifiez les règles Firestore et la connexion.",
+      "error"
+    );
+  } finally {
+    selectClasse.disabled = false;
   }
 }
 
