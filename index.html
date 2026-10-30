@@ -1299,7 +1299,7 @@ if (m.id === "remises" && k === "contenu" && typeof value === "string") {
     if (parsed && typeof parsed === "object") {
       value = Object.entries(parsed)
         .sort((a, b) => Number(a[0]) - Number(b[0]))
-        .map(([index, answer]) => `Question ${Number(index) + 1} : ${String(answer ?? "")}`)
+        .map(([index, answer]) => `${Number(index) + 1} : ${String(answer ?? "")}`)
         .join("\n\n");
     }
   } catch (e) {
