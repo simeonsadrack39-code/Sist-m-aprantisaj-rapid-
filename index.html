@@ -1860,11 +1860,6 @@ Collez un lien par ligne. Vérifiez que le partage Google Drive est réglé sur 
 let selectedPhotos = [...existingPhotos];
 
 $("cancelNote").onclick = () => area.innerHTML = "";
-  for(let file of e.target.files){
-    try{selectedPhotos.push(await compressPhoto(file));}catch(err){toast(err.message,true);}
-  }
-  e.target.value="";renderPhotoPreviews();toast("Photo ajoutée.");
-};
 $("noteForm").onsubmit = async e => {
 e.preventDefault();
 
@@ -1882,13 +1877,6 @@ const liensBruts = String(fd.get("photosLiens") || "").trim();
 const photosLiens = liensBruts
   ? liensBruts.split(/\r?\n/).map(lien => lien.trim()).filter(Boolean)
   : [];
-
-const liensBruts = String(fd.get("photosLiens") || "").trim();
-
-const photosLiens = liensBruts
-  ? liensBruts.split(/\r?\n/).map(lien => lien.trim()).filter(Boolean)
-  : [];
-
 const data = {
   titre: String(fd.get("titre") || "").trim(),
   classeId: String(fd.get("classeId") || "").trim(),
